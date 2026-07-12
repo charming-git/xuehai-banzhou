@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心翼 · 大学生社会微任务平台</title>
+  <style>
+    :root {
+      --deep-purple: #17132f;
+      --dark-purple: #241b4d;
+      --primary-purple: #6c5ce7;
+      --dream-purple: #8b7cf6;
+      --light-purple-bg: #f3f0ff;
+      --soft-purple-card: #f8f6ff;
+      --mint: #4ecdc4;
+      --amber: #f5a623;
+      --rose: #d4567b;
+      --ink: #1a1a2e;
+      --muted: #73728a;
+      --line: #ded9f6;
+      --paper: #f8f7fb;
+      --white: #ffffff;
+      --green: #1d9e75;
+      --red: #c9475f;
+      --shadow: 0 16px 36px rgba(32, 24, 75, .10);
+      --shadow-soft: 0 8px 20px rgba(32, 24, 75, .08);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(108,92,231,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(108,92,231,.06) 1px, transparent 1px),
+        linear-gradient(180deg, #f8f6ff 0%, #f7f7fb 48%, #ffffff 100%);
+      background-size: 34px 34px, 34px 34px, auto;
+      line-height: 1.5;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 252px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px 16px;
+      color: var(--white);
+      background: linear-gradient(180deg, var(--deep-purple) 0%, var(--dark-purple) 100%);
+      border-right: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 8px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-purple), var(--mint));
+      box-shadow: 0 0 26px rgba(139,124,246,.35);
+    }
+    .brand strong { display: block; font-size: 15px; }
+    .brand span { display: block; color: #c9c2ff; font-size: 11px; margin-top: 2px; }
+
+    .nav-list {
+      display: grid;
+      gap: 6px;
+      padding: 4px 0;
+    }
+    .nav-item {
+      border: 0;
+      width: 100%;
+      min-height: 42px;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      color: #d8d3ff;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      transition: background .16s ease, color .16s ease, transform .16s ease;
+    }
+    .nav-item:hover { background: rgba(255,255,255,.08); color: white; transform: translateX(2px); }
+    .nav-item.active {
+      color: white;
+      background: rgba(108,92,231,.24);
+      box-shadow: inset 4px 0 0 var(--dream-purple);
+    }
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      background: rgba(255,255,255,.08);
+      font-size: 13px;
+      flex: 0 0 auto;
+    }
+
+    .sidebar-foot {
+      margin-top: auto;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 12px;
+      color: #ded9ff;
+      font-size: 12px;
+    }
+    .sidebar-foot strong { display: block; color: white; margin-bottom: 4px; }
+
+    .main {
+      min-width: 0;
+      padding: 24px;
+    }
+    .top-strip {
+      max-width: 1240px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .notice {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      color: #565178;
+      font-size: 13px;
+      box-shadow: var(--shadow-soft);
+    }
+    .user-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: white;
+      padding: 8px 12px;
+      box-shadow: var(--shadow-soft);
+      color: #4d4772;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .page {
+      display: none;
+      max-width: 1240px;
+      margin: 0 auto;
+      animation: fadeIn .22s ease both;
+    }
+    .page.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      margin: 12px 0 20px;
+    }
+    .eyebrow {
+      color: var(--primary-purple);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: 0;
+      margin: 0 0 12px;
+    }
+    h2 {
+      font-size: clamp(24px, 2.8vw, 34px);
+      line-height: 1.15;
+      margin: 0;
+    }
+    .sub {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .btn {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--ink);
+      padding: 9px 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-weight: 800;
+      font-size: 13px;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .btn:hover { transform: translateY(-1px) scale(1.01); box-shadow: var(--shadow-soft); }
+    .btn.primary {
+      border-color: transparent;
+      color: white;
+      background: linear-gradient(135deg, var(--primary-purple), var(--dream-purple));
+    }
+    .btn.mint {
+      border-color: transparent;
+      color: #123a3b;
+      background: linear-gradient(135deg, #7ee7dc, var(--mint));
+    }
+    .btn.amber {
+      border-color: transparent;
+      color: #3e2c0a;
+      background: linear-gradient(135deg, #ffd783, var(--amber));
+    }
+    .btn.rose {
+      border-color: transparent;
+      color: white;
+      background: linear-gradient(135deg, #e46b90, var(--rose));
+    }
+    .btn.ghost {
+      background: transparent;
+      color: var(--primary-purple);
+      border-color: rgba(108,92,231,.28);
+    }
+    .btn.small { min-height: 32px; padding: 7px 10px; font-size: 12px; }
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: .58;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(340px, .88fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 30px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(23,19,47,.98), rgba(36,27,77,.96)),
+        linear-gradient(135deg, var(--primary-purple), var(--mint));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      width: 180px;
+      height: 120px;
+      opacity: .16;
+      background:
+        linear-gradient(90deg, transparent 0 46%, white 46% 54%, transparent 54%),
+        linear-gradient(0deg, transparent 0 46%, white 46% 54%, transparent 54%);
+      background-size: 34px 34px;
+      transform: rotate(-8deg);
+    }
+    .hero-card > * { position: relative; z-index: 1; }
+    .hero-card h1 span { color: #a9fff6; }
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .side-panel {
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .kpi, .card, .task-card, .credential-card, .column, .admin-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow-soft);
+    }
+    .kpi {
+      padding: 18px;
+      min-height: 116px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-purple);
+    }
+    .kpi.mint::before { background: var(--mint); }
+    .kpi.amber::before { background: var(--amber); }
+    .kpi.rose::before { background: var(--rose); }
+    .kpi strong { display: block; font-size: 30px; line-height: 1; margin-bottom: 8px; }
+    .kpi span { color: var(--muted); font-size: 13px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .card { padding: 18px; }
+    .card h3, .side-panel h3, .task-card h3, .column h3, .admin-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+    .card p, .task-card p, .admin-card p { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--light-purple-bg);
+      color: #5542bf;
+      border: 1px solid rgba(108,92,231,.16);
+      white-space: nowrap;
+    }
+    .tag.mint { background: rgba(78,205,196,.15); color: #08736f; border-color: rgba(78,205,196,.28); }
+    .tag.amber { background: rgba(245,166,35,.16); color: #81520d; border-color: rgba(245,166,35,.28); }
+    .tag.rose { background: rgba(212,86,123,.13); color: #a2365a; border-color: rgba(212,86,123,.22); }
+    .tag.gray { background: #f1f1f6; color: #6f7080; border-color: #e1e1eb; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .field, .select, .textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: var(--radius);
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+    .field:focus, .select:focus, .textarea:focus {
+      border-color: var(--primary-purple);
+      box-shadow: 0 0 0 3px rgba(108,92,231,.12);
+    }
+    .textarea { min-height: 96px; resize: vertical; }
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: white;
+      color: #514b74;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 800;
+      font-size: 12px;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .chip:hover { transform: translateY(-1px); border-color: var(--primary-purple); }
+    .chip.active {
+      background: var(--primary-purple);
+      border-color: var(--primary-purple);
+      color: white;
+    }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .task-card {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .task-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: rgba(108,92,231,.38);
+    }
+    .task-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .task-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--light-purple-bg), #e9e4ff);
+      color: var(--primary-purple);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+    .task-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .task-meta div {
+      border-radius: var(--radius);
+      background: var(--soft-purple-card);
+      padding: 8px;
+    }
+    .task-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .column {
+      min-height: 360px;
+      padding: 14px;
+      background: rgba(255,255,255,.78);
+    }
+    .column-head {
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-bottom: 12px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary-purple), var(--dream-purple));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .column.submitted .column-head { background: linear-gradient(135deg, var(--dream-purple), var(--amber)); }
+    .column.completed .column-head { background: linear-gradient(135deg, var(--primary-purple), var(--mint)); }
+    .mini-task {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 6px 16px rgba(32,24,75,.05);
+    }
+    .mini-task h4 { margin: 0 0 6px; font-size: 14px; }
+    .mini-task p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
+
+    .credential-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .credential-card {
+      padding: 18px;
+      min-height: 210px;
+      display: grid;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .credential-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .credential-card.locked {
+      opacity: .58;
+      filter: grayscale(.25);
+      background: rgba(245,243,252,.76);
+    }
+    .badge-mark {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 26px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--mint));
+      box-shadow: 0 12px 24px rgba(108,92,231,.22);
+    }
+    .credential-card.locked .badge-mark { background: linear-gradient(135deg, #bbb5d6, #ded9f6); color: #655f86; box-shadow: none; }
+    .progress {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: #e9e6f5;
+      overflow: hidden;
+    }
+    .progress span {
+      display: block;
+      height: 100%;
+      width: var(--value, 36%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary-purple), var(--mint));
+    }
+    .flash {
+      animation: flashBadge 1.2s ease both;
+    }
+    @keyframes flashBadge {
+      0%, 100% { box-shadow: var(--shadow-soft); }
+      30% { box-shadow: 0 0 0 5px rgba(78,205,196,.22), 0 18px 34px rgba(108,92,231,.2); }
+    }
+
+    .generator {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(340px, 1.1fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .ai-panel {
+      border-radius: var(--radius);
+      border: 1px solid rgba(108,92,231,.28);
+      background: linear-gradient(135deg, rgba(23,19,47,.98), rgba(36,27,77,.96));
+      color: white;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .ai-panel .field, .ai-panel .textarea {
+      color: white;
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+    }
+    .ai-panel .field::placeholder, .ai-panel .textarea::placeholder { color: rgba(255,255,255,.48); }
+    .ai-panel .chip {
+      color: #e9e4ff;
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+    }
+    .ai-result {
+      min-height: 300px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+    .loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d8d3ff;
+      font-weight: 800;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--mint);
+      animation: pulse 1s ease infinite;
+    }
+    .dot:nth-child(2) { animation-delay: .14s; }
+    .dot:nth-child(3) { animation-delay: .28s; }
+    @keyframes pulse {
+      0%, 80%, 100% { transform: scale(.72); opacity: .55; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      gap: 16px;
+    }
+    .avatar-card {
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(180deg, white, var(--soft-purple-card));
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 26px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      color: white;
+      font-size: 34px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-purple), var(--mint));
+      box-shadow: 0 18px 36px rgba(108,92,231,.2);
+    }
+    .resume-box {
+      border: 1px dashed rgba(108,92,231,.42);
+      background: var(--soft-purple-card);
+      border-radius: var(--radius);
+      padding: 14px;
+      color: #4d4772;
+      font-size: 13px;
+      margin: 12px 0;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, .82fr) minmax(0, 1.18fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .admin-card { padding: 18px; }
+    .form-grid { display: grid; gap: 10px; }
+    .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .review-item {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .empty {
+      border: 1px dashed rgba(108,92,231,.34);
+      border-radius: var(--radius);
+      padding: 26px;
+      background: rgba(255,255,255,.62);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .resource-embed-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .resource-embed-head {
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(243,240,255,.98), rgba(232,252,249,.82));
+    }
+    .resource-embed-frame {
+      width: 100%;
+      height: min(78vh, 860px);
+      min-height: 640px;
+      border: 0;
+      display: block;
+      background: white;
+    }
+    .integration-path {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .integration-step {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+    }
+    .integration-step strong { display: block; margin-bottom: 6px; }
+    .integration-step span { color: var(--muted); font-size: 12px; }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(19, 16, 42, .48);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 80;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      width: min(760px, 100%);
+      max-height: min(86vh, 760px);
+      overflow: auto;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 28px 72px rgba(23,19,47,.28);
+      transform: scale(.96);
+      opacity: 0;
+      animation: modalIn .18s ease forwards;
+    }
+    @keyframes modalIn {
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: white;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .modal-body { padding: 18px; }
+    .modal-close {
+      border: 0;
+      background: var(--light-purple-bg);
+      color: var(--primary-purple);
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .toast {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 100;
+      max-width: min(360px, calc(100vw - 36px));
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      color: white;
+      background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
+      box-shadow: var(--shadow);
+      transform: translateY(-14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .18s ease, opacity .18s ease;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 14px;
+      }
+      .nav-list {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .nav-item {
+        width: auto;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+      .sidebar-foot { display: none; }
+      .hero-grid, .generator, .profile-grid, .admin-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .board { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr; }
+      .resource-embed-head { align-items: stretch; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .main { padding: 14px; }
+      .top-strip, .page-head { align-items: stretch; flex-direction: column; }
+      .kpi-grid, .grid-2, .grid-3, .two { grid-template-columns: 1fr; }
+      .hero-card { padding: 22px; }
+      .task-meta { grid-template-columns: 1fr; }
+      .user-chip { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">翼</div>
+        <div>
+          <strong>心翼</strong>
+          <span>大学生社会微任务平台</span>
+        </div>
+      </div>
+      <nav class="nav-list" aria-label="主导航">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">📊</span>首页看板</button>
+        <button class="nav-item" data-page="market"><span class="nav-icon">🧭</span>任务广场</button>
+        <button class="nav-item" data-page="generator"><span class="nav-icon">✨</span>AI任务生成</button>
+        <button class="nav-item" data-page="resources"><span class="nav-icon">🗂</span>资源库</button>
+        <button class="nav-item" data-page="mytasks"><span class="nav-icon">✅</span>我的任务</button>
+        <button class="nav-item" data-page="credentials"><span class="nav-icon">🏅</span>能力凭证</button>
+        <button class="nav-item" data-page="profile"><span class="nav-icon">👤</span>个人中心</button>
+        <button class="nav-item" data-page="admin"><span class="nav-icon">🛠</span>管理端</button>
+      </nav>
+      <div class="sidebar-foot">
+        <strong>Demo 模拟数据 / 待试点核验</strong>
+        所有任务、积分、凭证仅用于交互演示，不作为真实统计结论。
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="top-strip">
+        <div class="notice">Demo 模拟数据 / 待试点核验：在前端完成搜索、领取、提交、审核和凭证生成。</div>
+        <div class="user-chip"><strong>学生端</strong><span id="userQuickStats">0 个进行中 · 0 张凭证</span></div>
+      </div>
+
+      <section class="page active" id="page-dashboard">
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="eyebrow">XINYI TASK OS</div>
+            <h1><span>心翼</span> · 大学生社会微任务平台</h1>
+            <p class="sub" style="color:#ddd8ff;">把校园里的真实问题拆成可领取、可提交、可认证的微任务。学生完成行动，负责人审核确认，系统沉淀能力凭证和成长记录。</p>
+            <div class="hero-actions">
+              <button class="btn mint" data-go="market">去任务广场</button>
+              <button class="btn ghost" data-go="generator" style="color:#ded9ff;border-color:rgba(255,255,255,.26);">AI 生成任务</button>
+              <button class="btn ghost" data-go="resources" style="color:#ded9ff;border-color:rgba(255,255,255,.26);">打开资源库</button>
+              <button class="btn ghost" data-go="mytasks" style="color:#ded9ff;border-color:rgba(255,255,255,.26);">查看我的任务</button>
+            </div>
+          </div>
+          <div class="side-panel">
+            <h3>推荐体验路径</h3>
+            <div class="tag-row">
+              <span class="tag">搜索“宿舍”</span>
+              <span class="tag mint">领取任务</span>
+              <span class="tag amber">提交成果</span>
+              <span class="tag">审核生成凭证</span>
+            </div>
+            <p class="sub">完成“宿舍声环境观察员”后，能力凭证会进入徽章卡包，个人中心数据同步更新。</p>
+            <button class="btn primary" id="startDemoFlow">开始这条路径</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi"><strong id="kpiAvailable">12</strong><span>可领取任务</span></div>
+          <div class="kpi mint"><strong id="kpiClaimed">0</strong><span>进行中任务</span></div>
+          <div class="kpi amber"><strong id="kpiSubmitted">0</strong><span>待审核成果</span></div>
+          <div class="kpi rose"><strong id="kpiCredentials">0</strong><span>已获得凭证</span></div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>今日可做</h3>
+            <p>小体量、可验证、能沉淀成果的校园公共任务。</p>
+            <div id="dashboardTaskPicks" class="tag-row"></div>
+          </div>
+          <div class="card">
+            <h3>我的任务进度</h3>
+            <p id="dashboardProgressText">还没有领取任务。</p>
+            <div class="progress"><span id="dashboardProgressBar" style="--value:0%;"></span></div>
+          </div>
+          <div class="card">
+            <h3>能力成长</h3>
+            <p>凭证会记录任务内容、技能维度、完成状态和确认来源。</p>
+            <button class="btn small primary" data-go="credentials">打开徽章卡包</button>
+          </div>
+          <div class="card">
+            <h3>资源支持</h3>
+            <p>接入 AI 工具、公开课、公益组织、CSR 和基金入口，给任务成果找下一步支持。</p>
+            <button class="btn small mint" data-go="resources">进入资源库</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-market">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Task Square</div>
+            <h2>任务广场</h2>
+            <p class="sub">搜索和筛选校园微任务，查看详情后即可领取到“我的任务”。</p>
+          </div>
+          <button class="btn primary" data-go="admin">发布入口</button>
+        </div>
+        <div class="toolbar">
+          <input class="field" id="taskSearch" type="search" placeholder="搜索任务标题，如：宿舍、垃圾、AI、食堂">
+          <select class="select" id="typeFilter" aria-label="任务类型筛选"></select>
+          <select class="select" id="difficultyFilter" aria-label="难度筛选"></select>
+        </div>
+        <div class="chip-group" id="quickSearchChips" style="margin-bottom:16px;"></div>
+        <div class="task-grid" id="taskList"></div>
+      </section>
+
+      <section class="page" id="page-generator">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">AI Task Generator</div>
+            <h2>AI 任务生成</h2>
+            <p class="sub">输入一个关心的问题，系统会把它拆成可执行微任务，并可一键加入任务清单。</p>
+          </div>
+        </div>
+        <div class="generator">
+          <div class="ai-panel">
+            <h3>问题输入</h3>
+            <p style="color:#cbc5ff;font-size:13px;">快捷灵感会自动填充输入框；生成结果为 Demo 模拟。</p>
+            <div class="chip-group" id="ideaChips" style="margin:12px 0 14px;"></div>
+            <textarea class="textarea" id="aiInput" placeholder="例如：宿舍晚上太吵，但同学不好意思直接沟通"></textarea>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+              <button class="btn mint" id="runAi">生成微任务</button>
+              <button class="btn ghost" id="clearAi" style="color:#ded9ff;border-color:rgba(255,255,255,.26);">清空</button>
+            </div>
+          </div>
+          <div class="card ai-result" id="aiResult">
+            <h3>生成结果</h3>
+            <p class="sub">输入问题后，这里会出现推荐任务标题、步骤、凭证和加入按钮。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-resources">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Resource Database</div>
+            <h2>大学生创新创业支持生态数据库</h2>
+            <p class="sub">把资源库作为心翼平台的一级模块接入：学生做完微任务后，可以继续匹配 AI 工具、公开课、公益组织、CSR 项目和基金入口。</p>
+          </div>
+          <a class="btn primary" href="xinyi-resource-database.html" target="_blank" rel="noopener noreferrer">新窗口打开完整资源库</a>
+        </div>
+        <div class="integration-path">
+          <div class="integration-step"><strong>1. 任务产生问题</strong><span>从宿舍、环保、食安、AI 学习等微任务沉淀真实需求。</span></div>
+          <div class="integration-step"><strong>2. 资源库匹配支持</strong><span>按问题、地区、专业、阶段推荐工具、课程、CSR、基金和公益组织。</span></div>
+          <div class="integration-step"><strong>3. 成果继续升级</strong><span>把任务成果整理成作品集、申报材料或创新创业项目。</span></div>
+        </div>
+        <div class="resource-embed-card">
+          <div class="resource-embed-head">
+            <div>
+              <h3>已接入资源数据库模块</h3>
+              <p class="sub">下方嵌入的是同目录的 <code>xinyi-resource-database.html</code>。资源库内部的搜索、筛选、收藏、同步和导出功能保持独立运行。</p>
+            </div>
+            <a class="btn mint" href="xinyi-resource-database.html" target="_blank" rel="noopener noreferrer">打开完整资源库</a>
+          </div>
+          <iframe class="resource-embed-frame" src="xinyi-resource-database.html" title="大学生创新创业支持生态数据库"></iframe>
+        </div>
+      </section>
+
+      <section class="page" id="page-mytasks">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">My Tasks</div>
+            <h2>我的任务</h2>
+            <p class="sub">领取任务、提交成果、等待审核，并在通过后获得能力凭证。</p>
+          </div>
+          <button class="btn primary" data-go="market">继续领取</button>
+        </div>
+        <div class="board">
+          <div class="column claimed">
+            <div class="column-head"><strong>已领取</strong><span id="countClaimed">0</span></div>
+            <div id="claimedList"></div>
+          </div>
+          <div class="column submitted">
+            <div class="column-head"><strong>待审核</strong><span id="countSubmitted">0</span></div>
+            <div id="submittedList"></div>
+          </div>
+          <div class="column completed">
+            <div class="column-head"><strong>已完成</strong><span id="countCompleted">0</span></div>
+            <div id="completedList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-credentials">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Credential Wallet</div>
+            <h2>能力凭证</h2>
+            <p class="sub">完成并审核通过的任务会生成凭证，未获得的能力以灰紫色锁定卡显示。</p>
+          </div>
+        </div>
+        <div class="credential-grid" id="credentialList"></div>
+      </section>
+
+      <section class="page" id="page-profile">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Student Profile</div>
+            <h2>个人中心</h2>
+            <p class="sub">把微任务、凭证和能力标签沉淀为成长档案。</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div class="card avatar-card">
+            <div class="avatar">心</div>
+            <h3>校园行动者</h3>
+            <p class="sub">公共事务参与 · AI 协作 · 能力凭证成长</p>
+            <div class="tag-row" style="justify-content:center;">
+              <span class="tag">Lv.<span id="profileLevel">1</span></span>
+              <span class="tag mint"><span id="profileDone">0</span> 个完成任务</span>
+              <span class="tag amber"><span id="profileCerts">0</span> 张凭证</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>简历描述</h3>
+            <div class="resume-box" id="resumeText"></div>
+            <button class="btn primary" id="copyResume">复制简历描述</button>
+            <h3 style="margin-top:18px;">能力标签</h3>
+            <div class="tag-row" id="skillTags"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-admin">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Admin Console</div>
+            <h2>管理端</h2>
+            <p class="sub">老师、后勤、社团负责人可发布微任务，审核学生提交成果。</p>
+          </div>
+        </div>
+        <div class="admin-grid">
+          <div class="admin-card">
+            <h3>发布任务</h3>
+            <form class="form-grid" id="publishForm">
+              <input class="field" name="title" required placeholder="任务标题">
+              <div class="two">
+                <select class="select" name="type" required>
+                  <option value="校园治理">校园治理</option>
+                  <option value="绿色行动">绿色行动</option>
+                  <option value="食安反馈">食安反馈</option>
+                  <option value="AI协作">AI协作</option>
+                  <option value="活动记录">活动记录</option>
+                </select>
+                <select class="select" name="difficulty" required>
+                  <option value="轻量">轻量</option>
+                  <option value="标准">标准</option>
+                  <option value="挑战">挑战</option>
+                </select>
+              </div>
+              <input class="field" name="org" required placeholder="发布方，如：后勤服务中心">
+              <textarea class="textarea" name="desc" required placeholder="任务描述"></textarea>
+              <input class="field" name="cert" required placeholder="可获得凭证，如：沟通协商能力">
+              <textarea class="textarea" name="steps" placeholder="完成步骤，一行一个"></textarea>
+              <button class="btn primary" type="submit">发布任务</button>
+            </form>
+          </div>
+          <div class="admin-card">
+            <h3>待审核成果</h3>
+            <div id="reviewList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">详情</h3>
+        <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const seedTasks = [
+      {
+        id: "dorm-noise-observer",
+        title: "宿舍声环境观察员",
+        type: "校园治理",
+        difficulty: "轻量",
+        org: "宿管中心",
+        duration: "2 小时",
+        points: 30,
+        icon: "宿",
+        desc: "记录宿舍楼晚间公共噪声时段，整理匿名观察表，为宿舍公约和温和反馈提供依据。",
+        steps: ["选择 2 个晚间时段观察", "记录噪声来源类型，不记录个人隐私", "整理匿名观察表", "提出 2 条温和沟通建议"],
+        certs: ["沟通协商能力", "数据记录能力"],
+        skills: ["数据记录", "沟通协商", "公共观察"]
+      },
+      {
+        id: "green-poster",
+        title: "垃圾分类宣传共创员",
+        type: "绿色行动",
+        difficulty: "标准",
+        org: "绿色校园社",
+        duration: "3 小时",
+        points: 42,
+        icon: "绿",
+        desc: "围绕宿舍区高频错投垃圾制作一组轻量宣传内容，并提交给绿色校园社复核。",
+        steps: ["收集 5 个高频错投案例", "整理正确投放方式", "生成海报文案草稿", "提交宣传内容"],
+        certs: ["绿色行动能力", "宣传策划能力"],
+        skills: ["绿色行动", "内容策划", "信息整理"]
+      },
+      {
+        id: "canteen-feedback",
+        title: "餐桌透明反馈整理员",
+        type: "食安反馈",
+        difficulty: "轻量",
+        org: "后勤饮食中心",
+        duration: "1.5 小时",
+        points: 28,
+        icon: "食",
+        desc: "将同学对食堂窗口、外卖档案、食材来源的疑问整理成标准化反馈表。",
+        steps: ["收集 3 条同学关心的问题", "按窗口/商家/问题类型分类", "生成标准化反馈", "提交后勤复盘"],
+        certs: ["信息整理能力", "标准化反馈能力"],
+        skills: ["信息整理", "标准化表达", "食安反馈"]
+      },
+      {
+        id: "ai-prompt-tester",
+        title: "AI问题拆解体验官",
+        type: "AI协作",
+        difficulty: "标准",
+        org: "创新创业学院",
+        duration: "2 小时",
+        points: 36,
+        icon: "AI",
+        desc: "使用 AI 将一个校园问题拆解成可执行任务，并反馈生成结果是否清晰可做。",
+        steps: ["输入一个真实校园问题", "生成 WHWRV 拆解", "补充任务约束", "提交体验反馈"],
+        certs: ["Prompt能力", "问题拆解能力"],
+        skills: ["Prompt", "问题拆解", "AI协作"]
+      },
+      {
+        id: "student-interview",
+        title: "校园议题小访谈员",
+        type: "调研访谈",
+        difficulty: "挑战",
+        org: "学生发展中心",
+        duration: "4 小时",
+        points: 56,
+        icon: "访",
+        desc: "围绕一个校园议题完成小范围访谈和调研记录，输出一页调研小结。",
+        steps: ["确定一个议题", "完成至少 3 人访谈", "整理共性问题", "提交调研小结"],
+        certs: ["调研访谈能力", "报告写作能力"],
+        skills: ["访谈", "报告写作", "议题分析"]
+      },
+      {
+        id: "activity-recorder",
+        title: "绿色活动记录官",
+        type: "活动记录",
+        difficulty: "轻量",
+        org: "学生社团联合会",
+        duration: "2 小时",
+        points: 32,
+        icon: "记",
+        desc: "为一次校园绿色活动记录流程、照片说明和参与反馈，形成活动复盘素材。",
+        steps: ["记录活动流程", "整理 5 张照片说明", "提炼参与反馈", "提交负责人"],
+        certs: ["活动记录能力", "新媒体表达能力"],
+        skills: ["活动记录", "新媒体表达", "复盘"]
+      },
+      {
+        id: "resource-map",
+        title: "社区资源地图整理员",
+        type: "信息整理",
+        difficulty: "标准",
+        org: "社区联动小组",
+        duration: "3 小时",
+        points: 40,
+        icon: "图",
+        desc: "整理校园周边可对接的公益组织、社会企业或社区服务资源。",
+        steps: ["检索 5 个资源点", "记录联系人或公开渠道", "标注适合合作方向", "提交资源表"],
+        certs: ["信息检索能力", "资源整理能力"],
+        skills: ["信息检索", "资源整理", "合作分析"]
+      },
+      {
+        id: "ux-feedback",
+        title: "校园服务体验反馈员",
+        type: "用户体验",
+        difficulty: "轻量",
+        org: "信息化办公室",
+        duration: "1 小时",
+        points: 24,
+        icon: "评",
+        desc: "体验一个校园线上服务流程，记录卡点并提出优化建议。",
+        steps: ["选择一个服务流程", "完成一次体验", "记录卡点截图说明", "提交优化建议"],
+        certs: ["用户反馈分析能力"],
+        skills: ["用户体验", "反馈分析", "流程观察"]
+      },
+      {
+        id: "quiet-rule",
+        title: "宿舍公约共创协助员",
+        type: "校园治理",
+        difficulty: "标准",
+        org: "辅导员工作室",
+        duration: "3 小时",
+        points: 44,
+        icon: "约",
+        desc: "协助同宿舍成员共同制定一份温和、可执行的宿舍声环境公约。",
+        steps: ["收集成员需求", "整理共同底线", "生成公约草案", "提交辅导员审核"],
+        certs: ["规则共创能力", "沟通表达能力"],
+        skills: ["规则共创", "沟通表达", "冲突预防"]
+      },
+      {
+        id: "recycle-station",
+        title: "回收点巡查记录员",
+        type: "绿色行动",
+        difficulty: "轻量",
+        org: "后勤服务中心",
+        duration: "2 小时",
+        points: 34,
+        icon: "收",
+        desc: "巡查校园回收点状态，记录满溢、污染和标识不清问题。",
+        steps: ["选择 3 个点位", "记录投放状态", "拍摄点位问题", "提交巡查表"],
+        certs: ["绿色行动能力", "问题发现能力"],
+        skills: ["绿色行动", "问题发现", "现场记录"]
+      },
+      {
+        id: "ai-event-plan",
+        title: "AI活动策划共创员",
+        type: "AI协作",
+        difficulty: "挑战",
+        org: "学生组织发展部",
+        duration: "4 小时",
+        points: 58,
+        icon: "策",
+        desc: "用 AI 辅助生成一份校园公共议题活动策划案，并完成可执行性检查。",
+        steps: ["选择活动议题", "用 AI 生成策划案", "补充预算和分工", "提交学生组织负责人"],
+        certs: ["AI工具应用能力", "活动策划能力"],
+        skills: ["AI应用", "活动策划", "执行拆解"]
+      },
+      {
+        id: "campus-clue",
+        title: "校园问题线索收集员",
+        type: "校园治理",
+        difficulty: "轻量",
+        org: "校园治理观察小组",
+        duration: "1 小时",
+        points: 22,
+        icon: "线",
+        desc: "收集校园中值得改善的小问题，并提交结构化记录。",
+        steps: ["发现一个问题点", "记录地点和影响", "补充照片或描述", "提交线索表"],
+        certs: ["问题发现能力"],
+        skills: ["问题发现", "结构化记录", "公共表达"]
+      }
+    ];
+
+    const credentialCatalog = [
+      { title: "沟通协商能力", icon: "协", skills: ["沟通协商", "规则共创"], desc: "能用温和、非对抗方式推动校园公共问题沟通。" },
+      { title: "数据记录能力", icon: "数", skills: ["数据记录", "现场观察"], desc: "能将观察过程转化为结构化、可复盘记录。" },
+      { title: "绿色行动能力", icon: "绿", skills: ["绿色行动", "现场巡查"], desc: "能参与垃圾分类、回收巡查和绿色校园行动。" },
+      { title: "Prompt能力", icon: "P", skills: ["Prompt", "AI协作"], desc: "能用清晰指令引导 AI 拆解真实问题。" },
+      { title: "标准化反馈能力", icon: "馈", skills: ["标准化表达", "反馈整理"], desc: "能把零散反馈整理成负责人可处理的信息。" },
+      { title: "调研访谈能力", icon: "访", skills: ["访谈", "议题分析"], desc: "能完成小范围访谈并整理共性洞察。" },
+      { title: "活动策划能力", icon: "策", skills: ["活动策划", "执行拆解"], desc: "能把公共议题转化为活动方案和执行清单。" },
+      { title: "问题发现能力", icon: "问", skills: ["问题发现", "公共表达"], desc: "能识别校园公共场景中的改进线索。" }
+    ];
+
+    const savedState = loadSavedState();
+    const state = {
+      tasks: savedState?.tasks?.length ? savedState.tasks : [...seedTasks],
+      myTasks: savedState?.myTasks || [],
+      credentials: savedState?.credentials || [],
+      filters: { query: "", type: "全部类型", difficulty: "全部难度" },
+      generatedTask: null
+    };
+
+    const ideas = [
+      "宿舍晚上太吵，但不想直接冲突",
+      "垃圾分类标识看不懂，大家容易扔错",
+      "想知道食堂窗口和外卖店铺是否透明",
+      "社团活动结束后没人做复盘记录",
+      "同学想参与公共事务但不知道从哪里开始"
+    ];
+
+    function $(selector) { return document.querySelector(selector); }
+    function $all(selector) { return [...document.querySelectorAll(selector)]; }
+    function byId(id) { return state.tasks.find(task => task.id === id); }
+    function myTask(id) { return state.myTasks.find(item => item.taskId === id); }
+    function loadSavedState() {
+      try {
+        const raw = localStorage.getItem("xinyiPlatformState");
+        return raw ? JSON.parse(raw) : null;
+      } catch (error) {
+        return null;
+      }
+    }
+    function saveState() {
+      try {
+        localStorage.setItem("xinyiPlatformState", JSON.stringify({
+          tasks: state.tasks,
+          myTasks: state.myTasks,
+          credentials: state.credentials
+        }));
+      } catch (error) {
+        console.warn("State save skipped", error);
+      }
+    }
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
+    }
+
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    function showPage(page) {
+      $all(".page").forEach(el => el.classList.toggle("active", el.id === `page-${page}`));
+      $all(".nav-item").forEach(el => el.classList.toggle("active", el.dataset.page === page));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      renderAll();
+    }
+
+    function openModal(title, body) {
+      $("#modalTitle").textContent = title;
+      $("#modalBody").innerHTML = body;
+      $("#modalBackdrop").classList.add("show");
+    }
+
+    function closeModal() {
+      $("#modalBackdrop").classList.remove("show");
+      $("#modalBody").innerHTML = "";
+    }
+
+    function statusText(status) {
+      return { claimed: "已领取", submitted: "待审核", completed: "已完成" }[status] || status;
+    }
+
+    function typeClass(type) {
+      if (type.includes("绿色")) return "mint";
+      if (type.includes("食安")) return "amber";
+      if (type.includes("AI")) return "";
+      if (type.includes("治理")) return "rose";
+      return "gray";
+    }
+
+    function renderFilters() {
+      const types = ["全部类型", ...new Set(state.tasks.map(task => task.type))];
+      const difficulties = ["全部难度", "轻量", "标准", "挑战"];
+      $("#typeFilter").innerHTML = types.map(type => `<option ${type === state.filters.type ? "selected" : ""}>${escapeHtml(type)}</option>`).join("");
+      $("#difficultyFilter").innerHTML = difficulties.map(diff => `<option ${diff === state.filters.difficulty ? "selected" : ""}>${escapeHtml(diff)}</option>`).join("");
+      const quick = ["宿舍", "垃圾", "AI", "食堂", "活动", "调研"];
+      $("#quickSearchChips").innerHTML = quick.map(word => `<button class="chip" data-quick="${word}">${word}</button>`).join("");
+    }
+
+    function filteredTasks() {
+      const q = state.filters.query.trim();
+      return state.tasks.filter(task => {
+        const matchQuery = !q || [task.title, task.type, task.org, task.desc, ...task.certs].join(" ").includes(q);
+        const matchType = state.filters.type === "全部类型" || task.type === state.filters.type;
+        const matchDiff = state.filters.difficulty === "全部难度" || task.difficulty === state.filters.difficulty;
+        return matchQuery && matchType && matchDiff;
+      });
+    }
+
+    function renderTaskList() {
+      const list = filteredTasks();
+      $("#taskList").innerHTML = list.length ? list.map(task => {
+        const mine = myTask(task.id);
+        return `
+          <article class="task-card">
+            <div class="task-top">
+              <div>
+                <div class="tag-row">
+                  <span class="tag ${typeClass(task.type)}">${escapeHtml(task.type)}</span>
+                  <span class="tag gray">${escapeHtml(task.difficulty)}</span>
+                </div>
+                <h3>${escapeHtml(task.title)}</h3>
+              </div>
+              <div class="task-icon">${escapeHtml(task.icon)}</div>
+            </div>
+            <p>${escapeHtml(task.desc)}</p>
+            <div class="task-meta">
+              <div><strong>${escapeHtml(task.org)}</strong><br>发布方</div>
+              <div><strong>${escapeHtml(task.duration)}</strong><br>预计用时</div>
+              <div><strong>${task.points}</strong><br>行动积分</div>
+              <div><strong>${escapeHtml(task.certs[0])}</strong><br>主要凭证</div>
+            </div>
+            <div class="task-actions">
+              <button class="btn small ghost" data-detail="${task.id}">查看详情</button>
+              <button class="btn small primary" data-claim="${task.id}" ${mine ? "disabled" : ""}>${mine ? statusText(mine.status) : "立即领取"}</button>
+            </div>
+          </article>
+        `;
+      }).join("") : `<div class="empty" style="grid-column:1/-1;">没有找到匹配任务。换个关键词，或者去 AI 任务生成页创建一个新任务。</div>`;
+    }
+
+    function taskDetail(taskId) {
+      const task = byId(taskId);
+      if (!task) return;
+      const mine = myTask(taskId);
+      openModal(task.title, `
+        <div class="tag-row">
+          <span class="tag ${typeClass(task.type)}">${escapeHtml(task.type)}</span>
+          <span class="tag gray">${escapeHtml(task.difficulty)}</span>
+          <span class="tag mint">${escapeHtml(task.duration)}</span>
+        </div>
+        <p>${escapeHtml(task.desc)}</p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>完成步骤</h3>
+            <ol>${task.steps.map(step => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
+          </div>
+          <div class="card">
+            <h3>可获得凭证</h3>
+            <div class="tag-row">${task.certs.map(cert => `<span class="tag">${escapeHtml(cert)}</span>`).join("")}</div>
+            <p>发布方：${escapeHtml(task.org)}<br>行动积分：${task.points}</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+          <button class="btn primary" data-claim="${task.id}" ${mine ? "disabled" : ""}>${mine ? statusText(mine.status) : "领取任务"}</button>
+          <button class="btn ghost" data-close-modal>关闭</button>
+        </div>
+      `);
+    }
+
+    function claimTask(taskId, silent = false) {
+      const task = byId(taskId);
+      if (!task || myTask(taskId)) return;
+      state.myTasks.push({
+        taskId,
+        status: "claimed",
+        claimedAt: new Date().toISOString(),
+        submission: null
+      });
+      if (!silent) showToast(`已领取「${task.title}」，可在“我的任务”提交成果。`);
+      closeModal();
+      saveState();
+      renderAll();
+    }
+
+    function openSubmit(taskId) {
+      const task = byId(taskId);
+      openModal("提交成果", `
+        <form id="submitForm" class="form-grid">
+          <input type="hidden" name="taskId" value="${escapeHtml(taskId)}">
+          <p>任务：<strong>${escapeHtml(task.title)}</strong></p>
+          <textarea class="textarea" name="summary" required placeholder="完成说明，例如：已完成两个晚间时段观察，整理匿名记录和沟通建议。"></textarea>
+          <input class="field" name="evidence" required placeholder="成果链接或文件说明，例如：观察表 / 海报草稿 / 访谈小结">
+          <input class="field" name="time" required placeholder="完成时间，例如：2026-07-09 20:00">
+          <button class="btn primary" type="submit">提交成果</button>
+        </form>
+      `);
+    }
+
+    function submitResult(form) {
+      const taskId = form.taskId.value;
+      const item = myTask(taskId);
+      if (!item) return;
+      item.status = "submitted";
+      item.submission = {
+        summary: form.summary.value,
+        evidence: form.evidence.value,
+        time: form.time.value,
+        submittedAt: new Date().toISOString()
+      };
+      closeModal();
+      saveState();
+      showToast("成果已提交，等待负责人审核。");
+      showPage("mytasks");
+    }
+
+    function approveTask(taskId) {
+      const item = myTask(taskId);
+      const task = byId(taskId);
+      if (!item || !task) return;
+      item.status = "completed";
+      issueCredential(task);
+      saveState();
+      showToast("审核通过，能力凭证已生成。");
+      renderAll();
+      setTimeout(() => {
+        const card = document.querySelector(`[data-credential-card="${CSS.escape(task.certs[0])}"]`);
+        if (card) card.classList.add("flash");
+      }, 80);
+    }
+
+    function rejectTask(taskId) {
+      const item = myTask(taskId);
+      const task = byId(taskId);
+      if (!item || !task) return;
+      item.status = "claimed";
+      item.submission = null;
+      saveState();
+      showToast(`已退回「${task.title}」，学生可重新提交。`);
+      renderAll();
+    }
+
+    function issueCredential(task) {
+      task.certs.forEach(cert => {
+        if (!state.credentials.some(item => item.title === cert && item.sourceTask === task.id)) {
+          state.credentials.push({
+            id: `${task.id}-${cert}`,
+            title: cert,
+            sourceTask: task.id,
+            sourceTitle: task.title,
+            org: task.org,
+            issuedAt: new Date().toISOString().slice(0, 10),
+            skills: task.skills,
+            level: Math.min(3, 1 + state.credentials.filter(item => item.title === cert).length)
+          });
+        }
+      });
+    }
+
+    function renderMyTasks() {
+      const groups = {
+        claimed: state.myTasks.filter(item => item.status === "claimed"),
+        submitted: state.myTasks.filter(item => item.status === "submitted"),
+        completed: state.myTasks.filter(item => item.status === "completed")
+      };
+      $("#countClaimed").textContent = groups.claimed.length;
+      $("#countSubmitted").textContent = groups.submitted.length;
+      $("#countCompleted").textContent = groups.completed.length;
+
+      const renderGroup = (items, type) => {
+        if (!items.length) return `<div class="empty">${type === "claimed" ? "你还没有领取任务。从一个你关心的问题开始吧。" : "暂无任务"}</div>`;
+        return items.map(item => {
+          const task = byId(item.taskId);
+          const actions = type === "claimed"
+            ? `<button class="btn small primary" data-submit-task="${task.id}">提交成果</button>`
+            : type === "submitted"
+              ? `<button class="btn small amber" data-approve-task="${task.id}">模拟审核通过</button>`
+              : `<button class="btn small ghost" data-go="credentials">查看凭证</button>`;
+          return `
+            <div class="mini-task">
+              <h4>${escapeHtml(task.title)}</h4>
+              <p>${escapeHtml(task.org)} · ${escapeHtml(task.difficulty)} · ${escapeHtml(task.certs[0])}</p>
+              ${item.submission ? `<p><strong>成果：</strong>${escapeHtml(item.submission.summary)}</p>` : ""}
+              ${actions}
+            </div>
+          `;
+        }).join("");
+      };
+
+      $("#claimedList").innerHTML = renderGroup(groups.claimed, "claimed");
+      $("#submittedList").innerHTML = renderGroup(groups.submitted, "submitted");
+      $("#completedList").innerHTML = renderGroup(groups.completed, "completed");
+    }
+
+    function renderCredentials() {
+      const earnedTitles = new Set(state.credentials.map(item => item.title));
+      $("#credentialList").innerHTML = credentialCatalog.map(catalog => {
+        const earned = earnedTitles.has(catalog.title);
+        const credential = state.credentials.find(item => item.title === catalog.title);
+        const count = state.credentials.filter(item => item.title === catalog.title).length;
+        const progress = earned ? Math.min(100, 34 + count * 26) : 18;
+        return `
+          <article class="credential-card ${earned ? "" : "locked"}" data-credential-card="${escapeHtml(catalog.title)}" data-credential="${escapeHtml(catalog.title)}">
+            <div class="badge-mark">${escapeHtml(catalog.icon)}</div>
+            <div>
+              <div class="tag-row">
+                <span class="tag ${earned ? "mint" : "gray"}">${earned ? "已获得" : "未获得"}</span>
+                <span class="tag">Lv.${earned ? credential.level : 0}</span>
+              </div>
+              <h3>${escapeHtml(catalog.title)}</h3>
+              <p>${escapeHtml(catalog.desc)}</p>
+            </div>
+            <div>
+              <div class="progress"><span style="--value:${progress}%;"></span></div>
+              <p style="margin-top:8px;">${earned ? `来自：${escapeHtml(credential.sourceTitle)}` : "再完成相关任务即可解锁"}</p>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function openCredential(title) {
+      const catalog = credentialCatalog.find(item => item.title === title);
+      const items = state.credentials.filter(item => item.title === title);
+      const earned = items.length > 0;
+      openModal(title, `
+        <div class="tag-row">
+          <span class="tag ${earned ? "mint" : "gray"}">${earned ? "已获得" : "未获得"}</span>
+          <span class="tag">等级 Lv.${earned ? items[items.length - 1].level : 0}</span>
+        </div>
+        <p>${escapeHtml(catalog.desc)}</p>
+        <h3>能力标签</h3>
+        <div class="tag-row">${catalog.skills.map(skill => `<span class="tag">${escapeHtml(skill)}</span>`).join("")}</div>
+        <h3>完成记录</h3>
+        ${earned ? items.map(item => `
+          <div class="review-item">
+            <strong>${escapeHtml(item.sourceTitle)}</strong>
+            <p>确认方：${escapeHtml(item.org)} · 生成日期：${escapeHtml(item.issuedAt)}</p>
+          </div>
+        `).join("") : `<div class="empty">完成相关任务并审核通过后，这里会出现凭证记录。</div>`}
+      `);
+    }
+
+    function renderAiResult() {
+      if (!state.generatedTask) return;
+      const task = state.generatedTask;
+      $("#aiResult").innerHTML = `
+        <div class="tag-row">
+          <span class="tag ${typeClass(task.type)}">${escapeHtml(task.type)}</span>
+          <span class="tag gray">${escapeHtml(task.difficulty)}</span>
+          <span class="tag mint">Demo 模拟生成</span>
+        </div>
+        <h3>${escapeHtml(task.title)}</h3>
+        <p>${escapeHtml(task.desc)}</p>
+        <div class="card" style="box-shadow:none;">
+          <h3>完成步骤</h3>
+          <ol>${task.steps.map(step => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
+        </div>
+        <div class="tag-row">${task.certs.map(cert => `<span class="tag">${escapeHtml(cert)}</span>`).join("")}</div>
+        <button class="btn primary" id="addAiTask">一键加入任务清单</button>
+      `;
+    }
+
+    function generateAiTask() {
+      const text = $("#aiInput").value.trim();
+      if (!text) {
+        showToast("先输入一个你关心的问题。");
+        return;
+      }
+      $("#aiResult").innerHTML = `
+        <h3>生成结果</h3>
+        <div class="loading">
+          <span>AI 正在拆解任务</span>
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+      `;
+      window.setTimeout(() => {
+        const theme = text.includes("宿舍") || text.includes("吵") ? "宿舍协商"
+          : text.includes("垃圾") || text.includes("分类") ? "绿色行动"
+          : text.includes("食堂") || text.includes("外卖") ? "食安反馈"
+          : text.includes("活动") || text.includes("社团") ? "活动记录"
+          : "校园治理";
+        const type = theme === "绿色行动" ? "绿色行动" : theme === "食安反馈" ? "食安反馈" : theme === "活动记录" ? "活动记录" : "校园治理";
+        state.generatedTask = {
+          id: `ai-${Date.now()}`,
+          title: `${theme}微任务共创员`,
+          type,
+          difficulty: "标准",
+          org: "AI任务生成器",
+          duration: "2 小时",
+          points: 36,
+          icon: "AI",
+          desc: `围绕“${text}”生成一项可执行微任务，要求有观察记录、成果提交和负责人确认。`,
+          steps: ["描述问题场景", "收集 3 条相关证据或反馈", "整理为结构化任务记录", "提交一份可复盘成果"],
+          certs: type === "绿色行动" ? ["绿色行动能力", "问题发现能力"] : type === "食安反馈" ? ["标准化反馈能力", "信息整理能力"] : ["问题拆解能力", "沟通表达能力"],
+          skills: ["问题拆解", "信息整理", "AI协作"]
+        };
+        renderAiResult();
+      }, 760);
+    }
+
+    function addAiTask() {
+      if (!state.generatedTask) return;
+      const task = state.generatedTask;
+      state.tasks.unshift(task);
+      claimTask(task.id, true);
+      state.generatedTask = null;
+      $("#aiResult").innerHTML = `<h3>已加入任务清单</h3><p class="sub">任务已进入“我的任务”的已领取列表。</p><button class="btn primary" data-go="mytasks">查看我的任务</button>`;
+      saveState();
+      showToast("AI 生成任务已加入“我的任务”。");
+      renderFilters();
+      renderAll();
+    }
+
+    function renderDashboard() {
+      const available = state.tasks.length - state.myTasks.length;
+      const claimed = state.myTasks.filter(item => item.status === "claimed").length;
+      const submitted = state.myTasks.filter(item => item.status === "submitted").length;
+      const completed = state.myTasks.filter(item => item.status === "completed").length;
+      $("#kpiAvailable").textContent = available;
+      $("#kpiClaimed").textContent = claimed;
+      $("#kpiSubmitted").textContent = submitted;
+      $("#kpiCredentials").textContent = state.credentials.length;
+      $("#userQuickStats").textContent = `${claimed + submitted} 个进行中 · ${state.credentials.length} 张凭证`;
+      const totalStarted = state.myTasks.length || 1;
+      const progress = Math.round((completed / totalStarted) * 100);
+      $("#dashboardProgressText").textContent = state.myTasks.length
+        ? `已完成 ${completed} / ${state.myTasks.length} 个任务，${submitted} 个等待审核。`
+        : "还没有领取任务。";
+      $("#dashboardProgressBar").style.setProperty("--value", `${progress}%`);
+      $("#dashboardTaskPicks").innerHTML = state.tasks.slice(0, 5).map(task => `<span class="tag">${escapeHtml(task.title)}</span>`).join("");
+    }
+
+    function renderReviewList() {
+      const queue = state.myTasks.filter(item => item.status === "submitted");
+      $("#reviewList").innerHTML = queue.length ? queue.map(item => {
+        const task = byId(item.taskId);
+        return `
+          <div class="review-item">
+            <div class="tag-row">
+              <span class="tag ${typeClass(task.type)}">${escapeHtml(task.type)}</span>
+              <span class="tag amber">待审核</span>
+            </div>
+            <h3>${escapeHtml(task.title)}</h3>
+            <p><strong>提交说明：</strong>${escapeHtml(item.submission.summary)}</p>
+            <p><strong>成果：</strong>${escapeHtml(item.submission.evidence)}<br><strong>完成时间：</strong>${escapeHtml(item.submission.time)}</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn small mint" data-approve-task="${task.id}">审核通过</button>
+              <button class="btn small rose" data-reject-task="${task.id}">退回修改</button>
+            </div>
+          </div>
+        `;
+      }).join("") : `<div class="empty">暂无待审核成果。学生提交后会自动出现在这里。</div>`;
+    }
+
+    function renderProfile() {
+      const completed = state.myTasks.filter(item => item.status === "completed").length;
+      const level = Math.max(1, Math.floor(state.credentials.length / 2) + 1);
+      $("#profileLevel").textContent = level;
+      $("#profileDone").textContent = completed;
+      $("#profileCerts").textContent = state.credentials.length;
+      const skills = [...new Set(state.credentials.flatMap(item => item.skills))];
+      $("#skillTags").innerHTML = skills.length ? skills.map(skill => `<span class="tag">${escapeHtml(skill)}</span>`).join("") : `<span class="tag gray">完成任务后生成能力标签</span>`;
+      const latest = state.credentials.at(-1);
+      $("#resumeText").textContent = latest
+        ? `曾参与「${latest.sourceTitle}」，完成校园公共事务微任务并通过${latest.org}确认，获得「${latest.title}」凭证，具备${latest.skills.slice(0, 3).join("、")}等基础能力。`
+        : "完成并审核通过第一个微任务后，这里会自动生成可复制的简历描述。";
+    }
+
+    function publishTask(form) {
+      const steps = form.steps.value.split(/\n+/).map(item => item.trim()).filter(Boolean);
+      const task = {
+        id: `admin-${Date.now()}`,
+        title: form.title.value.trim(),
+        type: form.type.value,
+        difficulty: form.difficulty.value,
+        org: form.org.value.trim(),
+        duration: form.difficulty.value === "挑战" ? "4 小时" : form.difficulty.value === "标准" ? "2.5 小时" : "1.5 小时",
+        points: form.difficulty.value === "挑战" ? 55 : form.difficulty.value === "标准" ? 38 : 24,
+        icon: "新",
+        desc: form.desc.value.trim(),
+        steps: steps.length ? steps : ["领取任务", "完成行动记录", "提交成果", "等待负责人审核"],
+        certs: [form.cert.value.trim()],
+        skills: [form.cert.value.trim(), "任务执行", "成果表达"]
+      };
+      state.tasks.unshift(task);
+      form.reset();
+      saveState();
+      renderFilters();
+      renderAll();
+      showToast("新任务已发布到任务广场。");
+    }
+
+    function copyResume() {
+      const text = $("#resumeText").textContent.trim();
+      const fallback = () => {
+        const input = document.createElement("textarea");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(fallback);
+      } else {
+        fallback();
+      }
+      showToast("简历描述已复制。");
+    }
+
+    function renderAll() {
+      renderDashboard();
+      renderTaskList();
+      renderMyTasks();
+      renderCredentials();
+      renderReviewList();
+      renderProfile();
+    }
+
+    function init() {
+      renderFilters();
+      $("#ideaChips").innerHTML = ideas.map((idea, index) => `<button class="chip" data-idea="${index}">${escapeHtml(idea)}</button>`).join("");
+      $all(".nav-item").forEach(btn => btn.addEventListener("click", () => showPage(btn.dataset.page)));
+      document.body.addEventListener("click", event => {
+        const go = event.target.closest("[data-go]");
+        if (go) showPage(go.dataset.go);
+        const detail = event.target.closest("[data-detail]");
+        if (detail) taskDetail(detail.dataset.detail);
+        const claim = event.target.closest("[data-claim]");
+        if (claim) claimTask(claim.dataset.claim);
+        const submit = event.target.closest("[data-submit-task]");
+        if (submit) openSubmit(submit.dataset.submitTask);
+        const approve = event.target.closest("[data-approve-task]");
+        if (approve) approveTask(approve.dataset.approveTask);
+        const reject = event.target.closest("[data-reject-task]");
+        if (reject) rejectTask(reject.dataset.rejectTask);
+        const credential = event.target.closest("[data-credential]");
+        if (credential) openCredential(credential.dataset.credential);
+        const close = event.target.closest("[data-close-modal]");
+        if (close) closeModal();
+        const quick = event.target.closest("[data-quick]");
+        if (quick) {
+          $("#taskSearch").value = quick.dataset.quick;
+          state.filters.query = quick.dataset.quick;
+          renderTaskList();
+        }
+        const idea = event.target.closest("[data-idea]");
+        if (idea) {
+          $("#aiInput").value = ideas[Number(idea.dataset.idea)];
+          $all("#ideaChips .chip").forEach(chip => chip.classList.toggle("active", chip === idea));
+        }
+      });
+      $("#taskSearch").addEventListener("input", event => {
+        state.filters.query = event.target.value;
+        renderTaskList();
+      });
+      $("#typeFilter").addEventListener("change", event => {
+        state.filters.type = event.target.value;
+        renderTaskList();
+      });
+      $("#difficultyFilter").addEventListener("change", event => {
+        state.filters.difficulty = event.target.value;
+        renderTaskList();
+      });
+      $("#modalClose").addEventListener("click", closeModal);
+      $("#modalBackdrop").addEventListener("click", event => {
+        if (event.target.id === "modalBackdrop") closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closeModal();
+      });
+      document.body.addEventListener("submit", event => {
+        if (event.target.id === "submitForm") {
+          event.preventDefault();
+          submitResult(event.target.elements);
+        }
+      });
+      $("#runAi").addEventListener("click", generateAiTask);
+      $("#clearAi").addEventListener("click", () => {
+        $("#aiInput").value = "";
+        state.generatedTask = null;
+        $("#aiResult").innerHTML = `<h3>生成结果</h3><p class="sub">输入问题后，这里会出现推荐任务标题、步骤、凭证和加入按钮。</p>`;
+      });
+      $("#aiResult").addEventListener("click", event => {
+        if (event.target.closest("#addAiTask")) addAiTask();
+      });
+      $("#publishForm").addEventListener("submit", event => {
+        event.preventDefault();
+        publishTask(event.target.elements);
+      });
+      $("#copyResume").addEventListener("click", copyResume);
+      $("#startDemoFlow").addEventListener("click", () => {
+        showPage("market");
+        state.filters.query = "宿舍";
+        $("#taskSearch").value = "宿舍";
+        renderTaskList();
+        showToast("已为你筛选“宿舍”相关任务。");
+      });
+      renderAll();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
