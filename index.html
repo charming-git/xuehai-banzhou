@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学海伴舟 ✖️ 学海共治 · 智慧校园治理平台 | 益优青年×毕马威</title>
+<style>
+/* ==================== KPMG BLUE DESIGN SYSTEM ==================== */
+:root {
+  --blue-deep: #00338D;
+  --blue-main: #005EB8;
+  --blue-bright: #0091DA;
+  --blue-light: #EAF3FA;
+  --blue-surface: #F4F8FC;
+  --white: #FFFFFF;
+  --text-dark: #10233F;
+  --text-mid: #4A5568;
+  --text-light: #718096;
+  --border-light: #E2E8F0;
+  --accent-teal: #0F6E56;
+  --accent-green: #1D9E75;
+  --accent-purple: #534AB7;
+  --accent-amber: #D4940E;
+  --accent-red: #A32D2D;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 16px rgba(0,51,141,0.06);
+  --shadow-hover: 0 8px 32px rgba(0,51,141,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
+  background:var(--blue-surface);color:var(--text-dark);line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ==================== NAVIGATION ==================== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border-light);transition:box-shadow .3s;
+}
+.navbar.scrolled{box-shadow:0 2px 20px rgba(0,51,141,0.08)}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;color:var(--blue-deep);text-decoration:none}
+.nav-logo svg{width:32px;height:32px}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center}
+.nav-links a,.nav-links .nav-dropdown-toggle{
+  text-decoration:none;color:var(--text-mid);font-size:14px;font-weight:500;
+  padding:8px 14px;border-radius:6px;transition:all .2s;white-space:nowrap;cursor:pointer;
+  background:none;border:none;font-family:inherit;
+}
+.nav-links a:hover,.nav-links .nav-dropdown-toggle:hover{color:var(--blue-main);background:var(--blue-light)}
+.nav-dropdown{position:relative}
+.nav-dropdown-menu{
+  display:none;position:absolute;top:100%;left:0;background:white;
+  border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:var(--shadow-hover);
+  padding:8px;min-width:200px;z-index:1001;
+}
+.nav-dropdown.active .nav-dropdown-menu{display:block}
+.nav-dropdown-menu a{display:block;padding:8px 14px;border-radius:var(--radius-sm);font-size:13px}
+.nav-dropdown-menu .dropdown-label{font-size:11px;font-weight:700;color:var(--blue-main);text-transform:uppercase;padding:8px 14px 4px;letter-spacing:1px}
+.nav-cta a{
+  background:var(--blue-main);color:white!important;padding:8px 20px!important;
+  border-radius:24px!important;font-weight:600!important;
+}
+.nav-cta a:hover{background:var(--blue-deep)!important}
+.menu-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-dark);padding:8px}
+
+/* ==================== COVER ==================== */
+.cover{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--blue-deep) 0%,#002766 30%,var(--blue-main) 70%,var(--blue-bright) 100%);
+  color:white;padding:100px 32px 96px;text-align:center;position:relative;overflow:hidden;
+}
+.cover-inner{position:relative;z-index:1;max-width:900px;width:100%}
+.cover-scroll-indicator{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.6;cursor:pointer;
+  transition:opacity .3s;
+}
+.cover-scroll-indicator:hover{opacity:1}
+.cover-scroll-indicator span{font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.7)}
+.cover-scroll-arrow{
+  width:22px;height:22px;border-right:2px solid rgba(255,255,255,0.6);
+  border-bottom:2px solid rgba(255,255,255,0.6);transform:rotate(45deg);
+  animation:scrollBounce 2s ease-in-out infinite;
+}
+@keyframes scrollBounce{0%,100%{transform:rotate(45deg) translate(0,0)}50%{transform:rotate(45deg) translate(5px,5px)}}
+.cover::before{
+  content:'';position:absolute;top:-20%;right:-10%;width:700px;height:700px;
+  border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 70%);
+}
+.cover::after{
+  content:'';position:absolute;bottom:-15%;left:-5%;width:500px;height:500px;
+  border-radius:50%;background:radial-gradient(circle,rgba(0,145,218,0.1) 0%,transparent 70%);
+}
+.cover-badge{
+  display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+  border-radius:24px;padding:6px 20px;font-size:13px;letter-spacing:1px;margin-bottom:28px;
+  position:relative;z-index:1;
+}
+.cover h1{font-size:52px;font-weight:800;line-height:1.2;margin-bottom:8px;position:relative;z-index:1;letter-spacing:2px}
+.cover h1 .brand-x{color:#6BC5F0;font-weight:300;margin:0 8px}
+.cover .cover-sub{font-size:22px;font-weight:600;opacity:0.9;margin-top:8px;position:relative;z-index:1}
+.cover .cover-concept{
+  font-size:17px;opacity:0.85;max-width:720px;margin:28px auto 36px;position:relative;z-index:1;line-height:1.8;
+}
+.cover .cover-concept strong{color:#6BC5F0}
+.cover-motto{
+  font-size:20px;font-style:italic;color:#6BC5F0;font-weight:600;
+  position:relative;z-index:1;margin-top:8px;
+}
+.cover-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;margin-top:36px}
+.cover-desc{
+  font-size:15px;opacity:0.82;max-width:780px;margin:24px auto 0;position:relative;z-index:1;
+  line-height:1.9;text-align:center;color:rgba(255,255,255,0.9);
+}
+.cover-desc strong{color:#6BC5F0;font-weight:600}
+.cover-kpi-row{
+  display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:40px;
+  position:relative;z-index:1;
+}
+.cover-kpi-item{text-align:center}
+.cover-kpi-item strong{display:block;font-size:28px;font-weight:800;color:#6BC5F0;line-height:1.2}
+.cover-kpi-item span{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;display:block}
+.btn-cover-primary{
+  padding:14px 36px;border-radius:50px;background:white;color:var(--blue-deep);
+  font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .25s;
+  text-decoration:none;display:inline-block;
+}
+.btn-cover-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,0.25)}
+.btn-cover-secondary{
+  padding:14px 36px;border-radius:50px;background:transparent;color:white;
+  font-size:15px;font-weight:600;border:2px solid rgba(255,255,255,0.3);
+  cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block;
+}
+.btn-cover-secondary:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.5)}
+
+/* ==================== SECTIONS ==================== */
+.main{max-width:1280px;margin:0 auto;padding:0 32px}
+.section{padding:80px 0}
+.section-label{
+  font-size:13px;font-weight:700;letter-spacing:2px;color:var(--blue-main);
+  text-transform:uppercase;margin-bottom:12px;
+}
+.section-title{font-size:32px;font-weight:800;color:var(--text-dark);margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--text-light);max-width:720px;margin-bottom:48px}
+
+/* ==================== BACKGROUND ==================== */
+.bg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.bg-card{
+  background:white;border-radius:var(--radius);padding:28px;border:1px solid var(--border-light);
+  box-shadow:var(--shadow);transition:all .25s;border-top:3px solid var(--blue-main);
+}
+.bg-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.bg-card .bg-num{font-size:28px;font-weight:800;color:var(--blue-main);margin-bottom:8px}
+.bg-card h3{font-size:17px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.bg-card p{font-size:14px;color:var(--text-mid)}
+.bg-card .bg-tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.bg-card .bg-tag{font-size:12px;padding:3px 10px;background:var(--blue-light);color:var(--blue-main);border-radius:12px}
+
+/* ==================== PAIN POINTS ==================== */
+.pain-side-toggle{display:flex;gap:0;margin-bottom:32px;border-bottom:2px solid var(--border-light)}
+.pain-side-btn{
+  padding:12px 28px;font-size:15px;font-weight:600;color:var(--text-light);cursor:pointer;
+  border:none;background:none;border-bottom:3px solid transparent;transition:all .2s;font-family:inherit;
+  margin-bottom:-2px;
+}
+.pain-side-btn.active{color:var(--blue-main);border-bottom-color:var(--blue-main)}
+.pain-side-btn .badge{
+  display:inline-block;background:var(--blue-main);color:white;font-size:11px;
+  padding:2px 8px;border-radius:10px;margin-left:6px;
+}
+.pain-content{display:none}
+.pain-content.active{display:block}
+
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pain-card{
+  background:white;border-radius:var(--radius);padding:28px;border:1px solid var(--border-light);
+  box-shadow:var(--shadow);transition:all .25s;
+}
+.pain-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.pain-card.highlight{border-left:4px solid var(--blue-main);background:linear-gradient(135deg,#fff 0%,var(--blue-light) 100%)}
+.pain-icon{font-size:36px;margin-bottom:16px}
+.pain-card h3{font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.pain-card p{font-size:14px;color:var(--text-mid);margin-bottom:12px}
+.pain-card .pain-summary{
+  font-size:13px;color:var(--blue-main);padding:10px 14px;background:var(--blue-light);
+  border-radius:var(--radius-sm);line-height:1.6;font-weight:500;
+}
+.pain-card .pain-data{display:flex;gap:16px;margin-top:12px}
+.pain-card .pain-data-item{text-align:center;flex:1}
+.pain-card .pain-data-num{font-size:22px;font-weight:800;color:var(--blue-main)}
+.pain-card .pain-data-label{font-size:11px;color:var(--text-light)}
+
+/* ==================== SOLUTION ==================== */
+.solution-hero{
+  background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));
+  color:white;border-radius:20px;padding:48px;text-align:center;margin-bottom:40px;
+}
+.solution-hero h2{font-size:28px;font-weight:800;margin-bottom:16px}
+.solution-hero p{font-size:17px;opacity:0.9;max-width:680px;margin:0 auto;line-height:1.8}
+.solution-hero .solution-quote{
+  font-size:20px;font-weight:700;color:#6BC5F0;margin-top:20px;font-style:italic;
+}
+
+.scenarios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.scenario-card{
+  background:white;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--border-light);box-shadow:var(--shadow);transition:all .25s;
+}
+.scenario-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.scenario-head{padding:24px 24px 16px}
+.scenario-tag{
+  display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;
+  margin-bottom:12px;
+}
+.scenario-tag.teal{background:#E1F6F4;color:var(--accent-teal)}
+.scenario-tag.green{background:#E4F7EB;color:var(--accent-green)}
+.scenario-tag.amber{background:#FFF2D6;color:var(--accent-amber)}
+.scenario-tag.purple{background:#EFEAFF;color:var(--accent-purple)}
+.scenario-card h3{font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.scenario-card .scenario-desc{font-size:14px;color:var(--text-mid);line-height:1.6}
+.scenario-body{padding:0 24px 24px}
+.scenario-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.scenario-tag-pill{font-size:11px;padding:4px 10px;border-radius:14px;font-weight:500;border:1px solid var(--border-light);background:var(--blue-surface);color:var(--text-mid);white-space:nowrap}
+.scenario-tag-pill.s{background:#E1F6F4;border-color:#4ecdc4;color:var(--accent-teal)}
+.scenario-tag-pill.g{background:#E4F7EB;border-color:var(--accent-green);color:var(--accent-green)}
+.scenario-tag-pill.a{background:#FFF2D6;border-color:var(--accent-amber);color:var(--accent-amber)}
+.scenario-tag-pill.p{background:#EFEAFF;border-color:var(--accent-purple);color:var(--accent-purple)}
+
+/* Compact stat indicators */
+.stat-inline{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+.stat-dot{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-mid)}
+.stat-dot strong{color:var(--blue-main);font-size:14px}
+
+/* Progress bar mini */
+.progress-mini{height:4px;background:var(--border-light);border-radius:2px;margin-top:6px;overflow:hidden}
+.progress-mini-fill{height:100%;border-radius:2px;transition:width 1s ease}
+.progress-mini-fill.blue{background:var(--blue-main)}
+.progress-mini-fill.green{background:var(--accent-green)}
+.progress-mini-fill.amber{background:var(--accent-amber)}
+.progress-mini-fill.red{background:var(--accent-red)}
+
+/* Icon grid */
+.icon-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.icon-grid-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-mid);padding:4px 8px;background:var(--blue-surface);border-radius:6px}
+.scenario-actions{display:flex;gap:8px}
+.btn-scenario-plan{
+  flex:1;padding:10px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;
+  border:1px solid var(--blue-main);background:white;color:var(--blue-main);cursor:pointer;
+  transition:all .2s;font-family:inherit;text-align:center;text-decoration:none;
+}
+.btn-scenario-plan:hover{background:var(--blue-light)}
+.btn-scenario-demo{
+  flex:1;padding:10px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;
+  border:none;background:var(--blue-main);color:white;cursor:pointer;transition:all .2s;font-family:inherit;
+  text-align:center;text-decoration:none;
+}
+.btn-scenario-demo:hover{background:var(--blue-deep)}
+
+/* ==================== ARCHITECTURE ==================== */
+.arch-section{background:white;border-radius:20px;padding:56px;box-shadow:var(--shadow)}
+.arch-top{text-align:center;margin-bottom:32px}
+.arch-top .arch-core{
+  display:inline-block;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));
+  color:white;padding:12px 40px;border-radius:50px;font-size:20px;font-weight:700;
+}
+.arch-flow{display:flex;justify-content:center;gap:4px;margin:24px 0;flex-wrap:wrap}
+.arch-flow-node{padding:8px 16px;background:var(--blue-light);color:var(--blue-main);border-radius:8px;font-size:13px;font-weight:600}
+.arch-flow-arrow{color:var(--blue-bright);font-size:16px;align-self:center}
+.arch-modules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:32px 0}
+.arch-module{
+  text-align:center;padding:28px 18px;border-radius:var(--radius);
+  border:2px solid var(--border-light);background:white;transition:all .25s;
+}
+.arch-module:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.arch-module .am-icon{font-size:40px;margin-bottom:12px}
+.arch-module .am-name{font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:6px}
+.arch-module .am-desc{font-size:13px;color:var(--text-light)}
+.arch-module.life{border-color:var(--blue-main);background:var(--blue-light)}
+.arch-note{
+  text-align:center;font-size:14px;color:var(--text-mid);margin-top:20px;padding:16px;
+  background:var(--blue-light);border-radius:var(--radius);line-height:1.8;
+}
+
+/* ==================== GOVERNANCE ==================== */
+.gov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.gov-card{
+  background:white;border-radius:var(--radius);padding:28px;border:1px solid var(--border-light);
+  box-shadow:var(--shadow);transition:all .25s;border-top:4px solid var(--blue-main);
+}
+.gov-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.gov-card .gov-icon{font-size:32px;margin-bottom:12px}
+.gov-card h3{font-size:17px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.gov-card p{font-size:13px;color:var(--text-mid);line-height:1.6}
+.gov-card .gov-data{display:flex;gap:12px;margin-top:16px}
+.gov-card .gov-data-item{flex:1;text-align:center;padding:8px;background:var(--blue-surface);border-radius:var(--radius-sm)}
+.gov-card .gov-data-num{font-size:20px;font-weight:800;color:var(--blue-main)}
+.gov-card .gov-data-label{font-size:11px;color:var(--text-light)}
+
+/* Governance Dashboard */
+.gov-dashboard{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.gov-panel{background:white;border-radius:var(--radius);padding:24px;border:1px solid var(--border-light);box-shadow:var(--shadow)}
+.gov-panel h4{font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:16px}
+.bar-chart{display:flex;align-items:flex-end;gap:12px;height:160px;padding-top:16px}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.bar-fill{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--blue-bright),var(--blue-main));transition:height .8s ease;min-height:8px}
+.bar-label{font-size:11px;color:var(--text-light)}
+.bar-value{font-size:12px;font-weight:600;color:var(--blue-main)}
+.heatmap{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px}
+.heat-cell{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:600}
+.heat-legend{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:var(--text-light)}
+.heat-legend-bar{width:120px;height:8px;border-radius:4px;background:linear-gradient(90deg,#EAF3FA,var(--blue-main),var(--blue-deep))}
+.task-list{list-style:none}
+.task-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-light)}
+.task-item:last-child{border-bottom:none}
+.task-status{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.task-status.urgent{background:var(--accent-red)}
+.task-status.normal{background:var(--accent-amber)}
+.task-status.done{background:var(--accent-green)}
+.task-content{flex:1}
+.task-title{font-size:13px;font-weight:600;color:var(--text-dark)}
+.task-meta{font-size:11px;color:var(--text-light)}
+.task-action{font-size:12px;color:var(--blue-main);cursor:pointer;font-weight:600}
+
+/* ==================== COMMERCIAL PLAN ==================== */
+.bp-section{background:white;border-radius:20px;padding:48px;box-shadow:var(--shadow);margin-bottom:32px}
+.bp-chapter{font-size:13px;font-weight:700;color:var(--blue-main);letter-spacing:1px;margin-bottom:8px}
+.bp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:24px}
+.bp-card{
+  background:var(--blue-surface);border-radius:var(--radius);padding:24px;border:1px solid var(--border-light);
+  transition:all .25s;
+}
+.bp-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.bp-card h4{font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.bp-card p{font-size:13px;color:var(--text-mid);line-height:1.6}
+.bp-card .bp-list{list-style:none;margin-top:8px}
+.bp-card .bp-list li{font-size:13px;color:var(--text-mid);padding:3px 0;padding-left:16px;position:relative}
+.bp-card .bp-list li::before{content:'•';position:absolute;left:0;color:var(--blue-main)}
+
+/* Business Model Chart */
+.biz-model-chart{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.biz-model-item{text-align:center;padding:20px 12px;border-radius:var(--radius);background:var(--blue-surface);border:1px solid var(--border-light)}
+.biz-model-item .biz-icon{font-size:32px;margin-bottom:8px}
+.biz-model-item .biz-title{font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:4px}
+.biz-model-item .biz-desc{font-size:12px;color:var(--text-light)}
+.biz-model-item .biz-price{font-size:18px;font-weight:800;color:var(--blue-main);margin-top:8px}
+
+/* Roadmap */
+.roadmap{position:relative;padding-left:32px;margin-top:32px}
+.roadmap::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--blue-deep),var(--blue-bright))}
+.roadmap-item{position:relative;margin-bottom:24px}
+.roadmap-item::before{content:'';position:absolute;left:-28px;top:4px;width:16px;height:16px;border-radius:50%;background:white;border:3px solid var(--blue-main)}
+.roadmap-item .rm-phase{font-size:12px;font-weight:700;color:var(--blue-main);text-transform:uppercase;letter-spacing:1px}
+.roadmap-item h4{font-size:16px;font-weight:700;color:var(--text-dark);margin:4px 0}
+.roadmap-item p{font-size:13px;color:var(--text-mid)}
+.roadmap-item .rm-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.roadmap-item .rm-tag{font-size:11px;padding:2px 8px;background:var(--blue-light);color:var(--blue-main);border-radius:8px}
+
+/* Advantages */
+.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.adv-card{display:flex;gap:16px;padding:20px;border-radius:var(--radius);background:var(--blue-surface);border:1px solid var(--border-light)}
+.adv-card .adv-num{font-size:32px;font-weight:800;color:var(--blue-bright);flex-shrink:0;min-width:40px}
+.adv-card h4{font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:4px}
+.adv-card p{font-size:13px;color:var(--text-mid);line-height:1.5}
+
+/* Social Value */
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+.value-col{background:var(--blue-surface);border-radius:var(--radius);padding:24px;border-top:4px solid var(--blue-main)}
+.value-col h4{font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:12px;text-align:center}
+.value-col ul{list-style:none}
+.value-col li{font-size:13px;color:var(--text-mid);padding:4px 0;padding-left:16px;position:relative}
+.value-col li::before{content:'✓';position:absolute;left:0;color:var(--accent-green)}
+
+/* Highlights */
+.highlight-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.highlight-card{padding:20px;border-radius:var(--radius);background:linear-gradient(135deg,var(--blue-light),white);border:1px solid var(--border-light)}
+.highlight-card .hl-num{font-size:28px;font-weight:800;color:var(--blue-main);margin-bottom:4px}
+.highlight-card h4{font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:6px}
+.highlight-card p{font-size:13px;color:var(--text-mid)}
+
+/* BP Summary Quote */
+.bp-quote{
+  text-align:center;padding:32px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));
+  color:white;border-radius:var(--radius);margin-top:32px;
+}
+.bp-quote p{font-size:18px;font-weight:600;color:white;opacity:0.95}
+.bp-quote .bp-quote-highlight{font-size:20px;color:#6BC5F0;font-weight:700;margin-top:8px}
+
+/* BP Download */
+.bp-download-section{text-align:center;padding:48px;background:white;border-radius:20px;box-shadow:var(--shadow);margin-top:32px}
+
+/* ==================== PLAN IFRAME EMBED ==================== */
+.plan-embed-section{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:32px}
+.plan-embed-header{padding:24px 32px 16px;border-bottom:1px solid var(--border-light)}
+.plan-embed-header .pe-chapter{font-size:13px;font-weight:700;color:var(--blue-main);letter-spacing:1px;margin-bottom:6px}
+.plan-embed-header h3{font-size:20px;font-weight:800;color:var(--text-dark);margin-bottom:6px}
+.plan-embed-header p{font-size:14px;color:var(--text-light)}
+.plan-embed-body{padding:0;height:600px;overflow:hidden}
+.plan-embed-body iframe{width:100%;height:100%;border:none}
+.plan-embed-footer{padding:12px 32px;background:var(--blue-surface);display:flex;justify-content:space-between;align-items:center}
+.plan-embed-footer .pe-note{font-size:12px;color:var(--text-light)}
+.plan-embed-footer .pe-open-btn{font-size:13px;font-weight:600;color:var(--blue-main);text-decoration:none;cursor:pointer}
+.bp-download-section h3{font-size:24px;font-weight:800;color:var(--text-dark);margin-bottom:12px}
+.bp-download-section p{font-size:15px;color:var(--text-mid);margin-bottom:24px}
+.btn-download-bp{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:50px;
+  background:var(--blue-main);color:white;font-size:15px;font-weight:700;border:none;
+  cursor:pointer;transition:all .25s;text-decoration:none;
+}
+.btn-download-bp:hover{background:var(--blue-deep);transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+
+/* ==================== ECO SUMMARY SECTIONS ==================== */
+.eco-section{padding:64px 0}
+.eco-section-header{text-align:center;margin-bottom:40px}
+.eco-section-header h2{font-size:28px;font-weight:800;color:var(--text-dark);margin-bottom:8px}
+.eco-section-header p{font-size:15px;color:var(--text-mid);max-width:640px;margin:0 auto}
+.eco-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px}
+.eco-kpi-card{background:white;border-radius:16px;padding:22px 18px;text-align:center;border:1px solid var(--border-light);transition:transform .2s,box-shadow .2s}
+.eco-kpi-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.eco-kpi-card .kpi-num{font-size:36px;font-weight:800;margin-bottom:4px;line-height:1.1}
+.eco-kpi-card .kpi-num.t{color:var(--accent-teal)}
+.eco-kpi-card .kpi-num.g{color:var(--accent-green)}
+.eco-kpi-card .kpi-num.p{color:var(--accent-purple)}
+.eco-kpi-card .kpi-num.a{color:var(--accent-amber)}
+.eco-kpi-card .kpi-name{font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:2px}
+.eco-kpi-card .kpi-desc{font-size:11px;color:var(--text-light)}
+.eco-modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.eco-module-mini{border-radius:14px;padding:22px 18px;border:1.5px solid;position:relative;overflow:hidden}
+.eco-module-mini.m1{background:linear-gradient(135deg,#E8FBF6,#F0FFFC);border-color:#4ecdc4}
+.eco-module-mini.m2{background:linear-gradient(135deg,#EDF8EE,#F5FDF5);border-color:var(--accent-green)}
+.eco-module-mini.m3{background:linear-gradient(135deg,#FFF6E3,#FFFBF0);border-color:var(--accent-amber)}
+.eco-module-mini.m4{background:linear-gradient(135deg,#F0EEFE,#F8F7FF);border-color:var(--accent-purple)}
+.eco-module-mini .mod-num{font-size:24px;font-weight:800;margin-bottom:8px}
+.eco-module-mini.m1 .mod-num{color:var(--accent-teal)}
+.eco-module-mini.m2 .mod-num{color:var(--accent-green)}
+.eco-module-mini.m3 .mod-num{color:var(--accent-amber)}
+.eco-module-mini.m4 .mod-num{color:var(--accent-purple)}
+.eco-module-mini h4{font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:6px}
+.eco-module-mini p{font-size:12px;color:var(--text-mid);line-height:1.6;margin:0}
+.eco-flow-mini{background:white;border-radius:16px;padding:32px;text-align:center;border:1px solid var(--border-light);margin-bottom:32px}
+.eco-flow-mini .flow-title{font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:24px}
+.eco-flow-nodes{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.eco-flow-node{padding:12px 18px;border-radius:10px;font-size:12px;font-weight:700;color:white;white-space:nowrap}
+.eco-flow-node.t{background:var(--accent-teal)}
+.eco-flow-node.g{background:var(--accent-green)}
+.eco-flow-node.a{background:var(--accent-amber)}
+.eco-flow-node.p{background:var(--accent-purple)}
+.eco-flow-node.w{background:var(--blue-main)}
+.eco-flow-arr{font-size:18px;color:var(--text-light);font-weight:300}
+.eco-flow-label{font-size:11px;color:var(--text-light);margin-top:16px}
+.eco-three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.eco-col-card{background:white;border-radius:14px;padding:24px;border:1px solid var(--border-light);border-top:3px solid}
+.eco-col-card.t{border-top-color:var(--accent-teal)}
+.eco-col-card.g{border-top-color:var(--accent-green)}
+.eco-col-card.p{border-top-color:var(--accent-purple)}
+.eco-col-card .col-badge{display:inline-block;padding:2px 10px;border-radius:8px;font-size:10px;font-weight:700;margin-bottom:10px;letter-spacing:.5px}
+.eco-col-card.t .col-badge{background:#E1F5EE;color:var(--accent-teal)}
+.eco-col-card.g .col-badge{background:#EAF3DE;color:var(--accent-green)}
+.eco-col-card.p .col-badge{background:#EEEDFE;color:var(--accent-purple)}
+.eco-col-card h4{font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.eco-col-card ul{list-style:none;padding:0;font-size:12px;color:var(--text-mid)}
+.eco-col-card ul li{padding:4px 0;padding-left:16px;position:relative}
+.eco-col-card ul li::before{content:'•';position:absolute;left:2px;color:var(--blue-main)}
+.eco-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.eco-stat-card{background:white;border-radius:16px;padding:20px;text-align:center;border:1px solid var(--border-light)}
+.eco-stat-card .stat-num{font-size:32px;font-weight:800;color:var(--blue-deep);margin-bottom:4px}
+.eco-stat-card .stat-label{font-size:12px;color:var(--text-mid);line-height:1.5}
+.eco-view-link{text-align:center;margin-top:8px}
+.eco-view-link a{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:24px;background:var(--blue-light);color:var(--blue-main);font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
+.eco-view-link a:hover{background:var(--blue-main);color:white}
+.eco-divider{height:1px;background:var(--border-light);max-width:200px;margin:48px auto}
+@media(max-width:900px){.eco-kpi-strip,.eco-modules-grid,.eco-three-col,.eco-stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.eco-kpi-strip,.eco-modules-grid,.eco-three-col,.eco-stats-grid{grid-template-columns:1fr}}
+
+/* ==================== BOTTOM ENTRY BOXES ==================== */
+.bottom-entries{padding:60px 0;text-align:center}
+.bottom-entries .section-title{margin-bottom:12px}
+.bottom-motto{font-size:22px;font-style:italic;color:var(--blue-main);font-weight:600;margin-bottom:32px}
+.entry-boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+.entry-box{
+  display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 10px;
+  background:white;border-radius:var(--radius);border:1px solid var(--border-light);
+  box-shadow:var(--shadow);cursor:pointer;transition:all .3s;text-decoration:none;
+}
+.entry-box:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--blue-main)}
+.entry-box .entry-icon{font-size:28px;transition:transform .3s}
+.entry-box:hover .entry-icon{transform:scale(1.2)}
+.entry-box .entry-label{font-size:12px;font-weight:600;color:var(--text-dark);text-align:center}
+.entry-box .entry-sub{font-size:10px;color:var(--text-light)}
+
+/* ==================== FOOTER ==================== */
+.footer{
+  background:var(--blue-deep);color:rgba(255,255,255,0.7);padding:48px 32px 32px;
+}
+.footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-brand strong{display:block;font-size:18px;color:white;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.8}
+.footer-brand .motto{font-size:16px;color:#6BC5F0;font-style:italic;margin:12px 0;font-weight:600}
+.footer-col h4{font-size:14px;color:white;margin-bottom:12px;font-weight:600}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:6px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:#6BC5F0}
+.footer-bottom{text-align:center;padding-top:24px;margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);font-size:12px;color:rgba(255,255,255,0.4)}
+
+/* ==================== MODAL ==================== */
+.modal-overlay{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+}
+.modal-overlay.active{display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{
+  background:white;border-radius:16px;width:100%;max-width:900px;max-height:90vh;
+  overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.15);
+}
+.modal-header{
+  position:sticky;top:0;background:white;border-bottom:1px solid var(--border-light);
+  padding:16px 24px;display:flex;align-items:center;justify-content:space-between;z-index:10;
+  border-radius:16px 16px 0 0;
+}
+.modal-header h3{font-size:18px;font-weight:700;color:var(--text-dark)}
+.modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-light);padding:4px 8px}
+.modal-close:hover{color:var(--text-dark)}
+.modal-body{padding:24px}
+
+/* Plan Display Modal */
+.plan-modal-section{margin-bottom:24px}
+.plan-modal-section h4{font-size:16px;font-weight:700;color:var(--blue-deep);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--blue-light)}
+.plan-modal-section p{font-size:14px;color:var(--text-mid);line-height:1.8}
+.plan-modal-section ul{margin:8px 0 8px 20px}
+.plan-modal-section li{font-size:14px;color:var(--text-mid);padding:3px 0}
+.plan-modal-highlight{background:var(--blue-light);padding:16px;border-radius:var(--radius);margin:12px 0}
+.plan-modal-highlight p{font-size:14px;color:var(--blue-deep);font-weight:500}
+
+/* Demo Modal (iframe) */
+.demo-modal{max-width:100%;max-height:95vh;border-radius:12px;overflow:hidden}
+.demo-modal .modal-body{padding:0;height:85vh}
+.demo-iframe{width:100%;height:100%;border:none}
+.demo-modal .modal-header{padding:10px 16px}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes floatSlow{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-6px) rotate(1deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 8px rgba(0,94,184,0.15)}50%{box-shadow:0 0 24px rgba(0,94,184,0.3)}}
+@keyframes dotPulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.5);opacity:1}}
+.animate-in{animation:fadeInUp .6s ease forwards}
+.float-card{animation:float 4s ease-in-out infinite}
+.float-card-slow{animation:floatSlow 6s ease-in-out infinite}
+.shimmer-card{position:relative;overflow:hidden}
+.shimmer-card::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.3) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 3s infinite;pointer-events:none}
+
+/* Compact icon-row */
+.icon-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.icon-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;transition:all .25s;cursor:default}
+.icon-chip:hover{transform:translateY(-2px)}
+.icon-chip.t{background:#E1F6F4;color:var(--accent-teal)}
+.icon-chip.g{background:#E4F7EB;color:var(--accent-green)}
+.icon-chip.a{background:#FFF2D6;color:var(--accent-amber)}
+.icon-chip.p{background:#EFEAFF;color:var(--accent-purple)}
+.icon-chip.blue{background:var(--blue-light);color:var(--blue-main)}
+
+/* Step flow horizontal */
+.step-flow{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding:8px 0}
+.step-node{flex:1;min-width:140px;text-align:center;position:relative;padding:0 8px}
+.step-node::after{content:'→';position:absolute;right:-6px;top:28px;font-size:18px;color:var(--blue-bright);z-index:1}
+.step-node:last-child::after{display:none}
+.step-dot{width:40px;height:40px;border-radius:50%;background:white;border:3px solid var(--blue-main);display:inline-flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--blue-main);margin-bottom:8px;transition:all .3s}
+.step-node:hover .step-dot{background:var(--blue-main);color:white;transform:scale(1.1)}
+.step-node h4{font-size:14px;font-weight:700;color:var(--text-dark);margin:4px 0}
+.step-node p{font-size:11px;color:var(--text-mid);line-height:1.5}
+
+/* Mini stat rings */
+.stat-ring{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;background:white;border:1px solid var(--border-light)}
+.stat-ring .sr-num{font-size:18px;font-weight:800}
+.stat-ring .sr-num.blue{color:var(--blue-main)}
+.stat-ring .sr-num.green{color:var(--accent-green)}
+.stat-ring .sr-num.red{color:var(--accent-red)}
+.stat-ring .sr-label{font-size:12px;color:var(--text-light)}
+
+/* Glass card */
+.glass-card{background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);border:1px solid rgba(0,51,141,0.08);border-radius:var(--radius);padding:24px;transition:all .3s}
+.glass-card:hover{background:rgba(255,255,255,0.95);box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+
+/* Compact list with checkmarks */
+.check-list{list-style:none}
+.check-list li{font-size:12px;color:var(--text-mid);padding:3px 0 3px 18px;position:relative}
+.check-list li::before{content:'✓';position:absolute;left:0;color:var(--accent-green);font-weight:700;font-size:11px}
+
+/* Hover glow */
+.hover-glow{transition:all .3s}
+.hover-glow:hover{box-shadow:0 0 24px rgba(0,94,184,0.2),0 4px 16px rgba(0,51,141,0.1);border-color:var(--blue-bright)}
+
+/* Ripple button */
+.btn-ripple{position:relative;overflow:hidden}
+.btn-ripple::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.3);transform:translate(-50%,-50%);transition:width .6s,height .6s}
+.btn-ripple:active::after{width:300px;height:300px}
+
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:968px){
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:white;flex-direction:column;padding:16px;box-shadow:var(--shadow-hover);border-top:1px solid var(--border-light)}
+  .nav-links.active{display:flex}
+  .nav-dropdown-menu{position:static;box-shadow:none;border:none;padding:0 0 0 16px}
+  .menu-toggle{display:block}
+  .cover h1{font-size:36px}
+  .cover .cover-sub{font-size:18px}
+  .cover-desc{font-size:14px}
+  .cover-kpi-row{gap:20px}
+  .cover-kpi-item strong{font-size:22px}
+  .section{padding:48px 0}
+  .section-title{font-size:24px}
+  .arch-modules{grid-template-columns:repeat(2,1fr)}
+  .gov-dashboard{grid-template-columns:1fr}
+  .value-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr;gap:24px}
+  .biz-model-chart{grid-template-columns:repeat(2,1fr)}
+  .entry-boxes{grid-template-columns:repeat(2,1fr)}
+  .bg-grid{grid-template-columns:repeat(2,1fr)}
+  .scenarios-grid{grid-template-columns:repeat(2,1fr)}
+  .gov-grid{grid-template-columns:repeat(2,1fr)}
+  .adv-grid{grid-template-columns:repeat(2,1fr)}
+  .highlight-grid{grid-template-columns:repeat(2,1fr)}
+  .bp-section,.arch-section{padding:24px}
+  .what-section{padding:24px;margin-top:-40px}
+}
+@media(max-width:480px){
+  .cover{padding:80px 20px 96px}
+  .cover h1{font-size:28px}
+  .cover .cover-sub{font-size:16px}
+  .cover-desc{font-size:13px}
+  .cover-kpi-item strong{font-size:20px}
+  .main{padding:0 16px}
+  .biz-model-chart{grid-template-columns:1fr}
+  .entry-boxes{grid-template-columns:1fr}
+  .scenarios-grid{grid-template-columns:1fr}
+  .bg-grid{grid-template-columns:1fr}
+  .gov-grid{grid-template-columns:1fr}
+  .adv-grid{grid-template-columns:1fr}
+  .highlight-grid{grid-template-columns:1fr}
+  .arch-modules{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .animate-in{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#cover" class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#00338D"/><path d="M8 20L16 8L24 20" stroke="#0091DA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="22" r="2.5" fill="#6BC5F0"/></svg>
+      学海伴舟 ✖️ 学海共治
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#background">项目背景</a></li>
+      <li><a href="#pain-points">市场痛点</a></li>
+      <li class="nav-dropdown" id="navDropdownScenario">
+        <button class="nav-dropdown-toggle" onclick="toggleNavDropdown('navDropdownScenario')">四大场景 ▾</button>
+        <div class="nav-dropdown-menu">
+          <div class="dropdown-label">方案展示</div>
+          <a href="javascript:void(0)" onclick="openPlanModal('noise')">宿舍声环境公约</a>
+          <a href="javascript:void(0)" onclick="openPlanModal('green')">绿分行动库</a>
+          <a href="javascript:void(0)" onclick="openPlanModal('food')">餐桌透明档案</a>
+          <a href="javascript:void(0)" onclick="openPlanModal('task')">校园社会创新微任务</a>
+          <div class="dropdown-label" style="margin-top:8px">产品体验</div>
+          <a href="javascript:void(0)" onclick="openDemoModal('noise')">体验静界</a>
+          <a href="javascript:void(0)" onclick="openDemoModal('green')">体验绿分行动库</a>
+          <a href="javascript:void(0)" onclick="openDemoModal('food')">体验透明校园餐桌</a>
+          <a href="javascript:void(0)" onclick="openDemoModal('task')">体验心翼微任务</a>
+        </div>
+      </li>
+      <li><a href="#architecture">产品架构</a></li>
+      <li><a href="#governance">学海共治</a></li>
+      <li><a href="#commercial-plan">商业计划书</a></li>
+    </ul>
+    <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="cover-inner">
+    <div class="cover-badge float-card-slow">益优青年 × 毕马威 · 工科女生赋能大赛 · 02组</div>
+    <h1>学海伴舟<span class="brand-x">✖️</span>学海共治</h1>
+    <div class="cover-sub">智慧校园治理平台</div>
+    <div class="cover-concept">
+      <strong>学海伴舟</strong>，陪伴学生成长；<strong>学海共治</strong>，推动校园改变。<br>
+      连接学生服务与学校治理，让每一次反馈都走向解决。
+    </div>
+    <div class="cover-motto">「你关心什么，就去改变什么。」</div>
+    <div class="cover-desc">
+      全国首个以<strong>校园生活治理</strong>为核心的智慧校园平台。围绕宿舍声环境、垃圾分类、食品安全、校园实践四大高频场景，
+      打造<strong>统一入口 + AI 智能体协同 + 数据中台 + 行动激励闭环</strong>的全链路数字化解决方案。
+      让 AI 不只是问答，而是真正帮助学生完成校园事务、帮助学校实现数据驱动的精细化治理。
+    </div>
+    <div class="cover-btns">
+      <a href="#pain-points" class="btn-cover-primary btn-ripple">了解市场痛点</a>
+      <a href="#commercial-plan" class="btn-cover-secondary btn-ripple">查看商业计划书</a>
+    </div>
+    <div class="cover-kpi-row">
+      <div class="cover-kpi-item"><strong>4,000万+</strong><span>高校住宿生总量</span></div>
+      <div class="cover-kpi-item"><strong>8+</strong><span>独立系统数据孤岛</span></div>
+      <div class="cover-kpi-item"><strong>82%</strong><span>学生受宿舍噪音困扰</span></div>
+      <div class="cover-kpi-item"><strong>6大</strong><span>AI 智能模块协同</span></div>
+    </div>
+  </div>
+  <a href="#background" class="cover-scroll-indicator">
+    <span>向下滚动了解详情</span>
+    <div class="cover-scroll-arrow"></div>
+  </a>
+</section>
+
+<div class="main">
+
+<!-- ==================== BACKGROUND ==================== -->
+<section class="section" id="background">
+  <div class="section-label">WHY · 项目背景</div>
+  <h2 class="section-title">高校数字化建设的价值鸿沟</h2>
+  <p class="section-sub">高校每年投入数百万建设智慧校园，但学生仍然在6个以上平台间疲于切换。系统越多，真正高频使用的校园入口反而越难形成。我们梳理出<strong>四个共性问题</strong>——它们不是技术缺陷，而是"系统建设"与"有效使用"之间的价值鸿沟。</p>
+  <div class="bg-grid">
+    <div class="bg-card float-card">
+      <div class="bg-num">🔗</div>
+      <h3>入口碎片化</h3>
+      <p>教务系统、微信公众号、校园APP、QQ群、企业微信、各学院通知——学生查课程、找活动、申请事务、反馈问题时，需要在多个平台之间反复切换。系统越多，信息越碎，学生体验反而越差。</p>
+      <div class="bg-tags"><span class="bg-tag">6+平台</span><span class="bg-tag">信息碎片</span><span class="bg-tag">反复切换</span></div>
+    </div>
+    <div class="bg-card float-card" style="animation-delay:0.5s">
+      <div class="bg-num">📋</div>
+      <h3>服务被动</h3>
+      <p>奖学金不知道开始申请，社团活动错过报名，就业信息常常看不到，垃圾分类不知道怎么分、投哪里、做对也没有反馈。学生只有"知道去哪里"，才能找到对应服务；系统不会主动提醒、不会主动匹配，也无法把日常行为转化为可沉淀的数据。</p>
+      <div class="bg-tags"><span class="bg-tag">被动触发</span><span class="bg-tag">无行为沉淀</span><span class="bg-tag">无主动匹配</span></div>
+    </div>
+    <div class="bg-card float-card" style="animation-delay:1s">
+      <div class="bg-num">🤖</div>
+      <h3>AI 止于问答</h3>
+      <p>目前多数学校的AI只是ChatGPT或DeepSeek的问答界面，能回答"图书馆几点开门""怎么请假"，但不能真正帮学生完成校园事务——不能提交申请、不能生成公约、不能沉淀数据、不能形成行动闭环。校园AI的价值远不只是问答，而是成为连接学生需求、校园事务与治理决策的数据中台。</p>
+      <div class="bg-tags"><span class="bg-tag">仅问答</span><span class="bg-tag">无事务能力</span><span class="bg-tag">无闭环</span></div>
+    </div>
+    <div class="bg-card float-card" style="animation-delay:1.5s">
+      <div class="bg-num">🔄</div>
+      <h3>缺少行动闭环</h3>
+      <p>教务、一卡通、图书馆、宿舍、后勤、食堂——数据各自为政，无法联动。学生的反馈没有系统接收，学校的管理缺乏全局视角。我们需要的不是一个"万能查询入口"，而是一个能把学生的每一次行动都转化为学校可治理、可复盘、可展示的数据资产的行动中台。</p>
+      <div class="bg-tags"><span class="bg-tag">数据孤岛</span><span class="bg-tag">缺数据中台</span><span class="bg-tag">缺治理闭环</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAIN POINTS ==================== -->
+<section class="section" id="pain-points">
+  <div class="section-label">PAIN POINT · 市场痛点</div>
+  <h2 class="section-title">双视角痛点分析</h2>
+  <p class="section-sub">从学生端和高校端两个维度，全面剖析校园治理中的核心痛点</p>
+
+  <div class="pain-side-toggle">
+    <button class="pain-side-btn active" onclick="switchPainSide('student')">学生端痛点</button>
+    <button class="pain-side-btn" onclick="switchPainSide('university')">高校端痛点 <span class="badge">重点</span></button>
+  </div>
+
+  <!-- Student Pain Points -->
+  <div class="pain-content active" id="pain-student">
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:24px">学习 · 生活 · 就业 · 心理 · 社交 · 行政 — 校园生活治理可拆解为四类高频痛点</p>
+    <div class="pain-grid">
+      <div class="pain-card float-card">
+        <div class="pain-icon">🔊</div>
+        <h3>宿舍噪音 — 不敢说，只能忍</h3>
+        <p>缺数据依据时沟通变情绪对抗</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">82%</div><div class="pain-data-label">受困扰比例</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">18%</div><div class="pain-data-label">敢沟通</div></div>
+        </div>
+        <div class="pain-summary">缺数据依据和温和沟通机制</div>
+        <div class="progress-mini"><div class="progress-mini-fill red" style="width:82%"></div></div>
+      </div>
+      <div class="pain-card float-card" style="animation-delay:0.5s">
+        <div class="pain-icon">♻️</div>
+        <h3>垃圾分类 — 分不准、没反馈</h3>
+        <p>判断成本高 + 点位信息缺 + 反馈弱</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">73%</div><div class="pain-data-label">分类卡点率</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">低</div><div class="pain-data-label">即时反馈</div></div>
+        </div>
+        <div class="pain-summary">需判断、点位、反馈、运营系统</div>
+        <div class="progress-mini"><div class="progress-mini-fill amber" style="width:73%"></div></div>
+      </div>
+      <div class="pain-card float-card" style="animation-delay:1s">
+        <div class="pain-icon">🍽️</div>
+        <h3>校园餐桌 — 看得见评分，看不见来源</h3>
+        <p>食材来源、检测、证照不够透明</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">42/100</div><div class="pain-data-label">透明指数</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">缺</div><div class="pain-data-label">溯源入口</div></div>
+        </div>
+        <div class="pain-summary">缺溯源、检测、反馈统一入口</div>
+        <div class="progress-mini"><div class="progress-mini-fill amber" style="width:42%"></div></div>
+      </div>
+      <div class="pain-card float-card" style="animation-delay:1.5s">
+        <div class="pain-icon">🤝</div>
+        <h3>校园实践 — 想做但找不到，做了也白做</h3>
+        <p>入口分散、成果难确认、能力难沉淀</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">68%</div><div class="pain-data-label">参与意愿</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">缺</div><div class="pain-data-label">能力凭证</div></div>
+        </div>
+        <div class="pain-summary">缺真实任务+确认+凭证沉淀</div>
+        <div class="progress-mini"><div class="progress-mini-fill blue" style="width:68%"></div></div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:20px;background:var(--blue-surface);border-radius:var(--radius);border-left:4px solid var(--blue-bright)">
+      <h4 style="font-size:14px;font-weight:700;color:var(--blue-deep);margin-bottom:10px">📍 延展痛点</h4>
+      <div class="icon-grid">
+        <div class="icon-grid-item">💼 <strong>就业成长：</strong>简历·岗位·能力画像·经历沉淀</div>
+        <div class="icon-grid-item">💚 <strong>心理健康：</strong>压力·冲突·焦虑·发现滞后</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- University Pain Points -->
+  <div class="pain-content" id="pain-university">
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:24px">"投入多、使用弱、管理难" — 六大核心治理挑战</p>
+    <div class="pain-grid">
+      <div class="pain-card highlight float-card">
+        <div class="pain-icon">🔗</div>
+        <h3>① 系统林立，缺统一入口</h3>
+        <p>教务·OA·一卡通·图书馆·就业·心理·后勤 — 独立运行</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">8+</div><div class="pain-data-label">独立系统</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">＜30%</div><div class="pain-data-label">使用率</div></div>
+        </div>
+        <div class="pain-summary">不缺系统，缺高频统一智能入口</div>
+      </div>
+      <div class="pain-card highlight float-card" style="animation-delay:0.5s">
+        <div class="pain-icon">📋</div>
+        <h3>② 行政重复，管理成本高</h3>
+        <p>选课·请假·奖学金·宿舍协调 — 60%重复事务</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">60%</div><div class="pain-data-label">重复事务</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">3h+</div><div class="pain-data-label">日均耗时</div></div>
+        </div>
+        <div class="pain-summary">降低重复沟通，提高行政效率</div>
+      </div>
+      <div class="pain-card highlight float-card" style="animation-delay:1s">
+        <div class="pain-icon">📊</div>
+        <h3>③ 服务分散，满意度难提</h3>
+        <p>信息散·流程杂·反馈慢 — 影响评估与声誉</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">↓</div><div class="pain-data-label">满意度</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">慢</div><div class="pain-data-label">反馈</div></div>
+        </div>
+        <div class="pain-summary">更便捷即时服务提升满意度</div>
+      </div>
+      <div class="pain-card highlight float-card" style="animation-delay:1.5s">
+        <div class="pain-icon">🎓</div>
+        <h3>④ 就业压力大，指导不精准</h3>
+        <p>岗位信息散·指导泛·进度难追踪</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">↑</div><div class="pain-data-label">就业压力</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">低</div><div class="pain-data-label">精准度</div></div>
+        </div>
+        <div class="pain-summary">需精准智能就业服务工具</div>
+      </div>
+      <div class="pain-card highlight float-card" style="animation-delay:2s">
+        <div class="pain-icon">🛡️</div>
+        <h3>⑤ 安全风险依赖事后处理</h3>
+        <p>心理·宿舍·食品 — 人工观察，发现滞后</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">事后</div><div class="pain-data-label">处理模式</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">不足</div><div class="pain-data-label">预警</div></div>
+        </div>
+        <div class="pain-summary">从"事后处理"转向"提前预警"</div>
+      </div>
+      <div class="pain-card highlight float-card" style="animation-delay:2.5s">
+        <div class="pain-icon">🏝️</div>
+        <h3>⑥ 数据孤岛，决策缺全局视角</h3>
+        <p>教务·宿舍·后勤·餐饮 — 分散无联动</p>
+        <div class="pain-data">
+          <div class="pain-data-item"><div class="pain-data-num">8+</div><div class="pain-data-label">数据孤岛</div></div>
+          <div class="pain-data-item"><div class="pain-data-num">无</div><div class="pain-data-label">全局视角</div></div>
+        </div>
+        <div class="pain-summary">数据可视化·可分析·可决策</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOLUTION ==================== -->
+<section class="section" id="solution">
+  <div class="section-label">WHAT · 解决方案</div>
+  <h2 class="section-title">Campus AI · 智慧校园平台</h2>
+  <p class="section-sub">我们提供的不是又一个AI聊天机器人，而是一套<strong>"统一入口 + AI智能体协同 + 校园数据中台 + 行动激励闭环"</strong>的智慧校园治理操作系统。围绕校园真实生活痛点，设置四个核心行动模块——每个模块都为学生提供<strong>方案展示</strong>和<strong>产品体验</strong>双入口。</p>
+  <div class="solution-hero float-card-slow">
+    <h2>让 AI 成为每位学生的校园智能助手</h2>
+    <p>它不是聊天机器人，而是连接整个校园的数据中台。学生的一次安静行动、一次分类查询、一次餐桌反馈、一次校内微任务，都会沉淀为宿舍和谐指数、绿色积分、餐桌透明线索或能力凭证——然后这些数据再回流成宿舍弹性权益、志愿时长、荣誉证书、绿色岗位资格和学校管理报告。</p>
+    <div class="solution-quote">「学生的每一个'利己'行为，都可以自然地为'公共系统'做贡献。」</div>
+  </div>
+
+  <h3 style="font-size:22px;font-weight:700;text-align:center;margin-bottom:32px">四大核心场景 · 双入口体验</h3>
+  <div class="icon-row" style="margin-bottom:32px">
+    <div class="stat-ring"><span class="sr-num blue">方案</span><span class="sr-label">了解方案</span></div>
+    <span style="color:var(--blue-bright);font-size:20px">+</span>
+    <div class="stat-ring"><span class="sr-num green">产品</span><span class="sr-label">Demo体验</span></div>
+    <span style="color:var(--text-light);font-size:13px;align-self:center">每个场景两个入口</span>
+  </div>
+
+  <div class="scenarios-grid">
+    <!-- Scenario 1: Noise -->
+    <div class="scenario-card float-card">
+      <div class="scenario-head">
+        <span class="scenario-tag teal">公约协商</span>
+        <h3>宿舍声环境公约</h3>
+        <p class="scenario-desc">从"噪音消除"升级为"宿舍自治公约"。宿舍噪音问题的核心不是"能不能彻底消音"，而是学生缺少低压力、可协商、可复盘的沟通机制。通过低敏噪音数据、公约机制和匿名温和反馈，帮助宿舍从情绪冲突转向数据协商。</p>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-tags">
+          <span class="scenario-tag-pill s">AI 噪音感知</span>
+          <span class="scenario-tag-pill s">公约生成器</span>
+          <span class="scenario-tag-pill s">和谐指数仪表盘</span>
+          <span class="scenario-tag-pill s">匿名温和反馈</span>
+          <span class="scenario-tag-pill s">弹性权限激励</span>
+        </div>
+        <div class="stat-inline">
+          <div class="stat-dot">📊 <strong>87%</strong> 和谐指数</div>
+          <div class="stat-dot">📉 <strong>↓45%</strong> 冲突投诉</div>
+        </div>
+        <div class="progress-mini"><div class="progress-mini-fill blue" style="width:87%"></div></div>
+        <div class="scenario-actions" style="margin-top:14px">
+          <button class="btn-scenario-plan" onclick="openPlanModal('noise')">方案展示</button>
+          <button class="btn-scenario-demo" onclick="openDemoModal('noise')">产品体验</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 2: Green Score -->
+    <div class="scenario-card float-card" style="animation-delay:0.5s">
+      <div class="scenario-head">
+        <span class="scenario-tag green">绿色积分</span>
+        <h3>绿分行动库</h3>
+        <p class="scenario-desc">从单一垃圾分类查询升级为"校园垃圾分类全链路数字化系统"。学生不是不愿意分类，而是行动链路经常卡住——分不准、找不到点位、做对了没反馈。我们提供AI分类助手、回收地图、投放点指引、游戏学习和积分激励，让每一次分类都有反馈、可沉淀。</p>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-tags">
+          <span class="scenario-tag-pill g">AI 分类识别</span>
+          <span class="scenario-tag-pill g">回收地图导航</span>
+          <span class="scenario-tag-pill g">绿色积分中心</span>
+          <span class="scenario-tag-pill g">游戏学习乐园</span>
+          <span class="scenario-tag-pill g">后勤数据看板</span>
+        </div>
+        <div class="stat-inline">
+          <div class="stat-dot">✅ <strong>92%</strong> 分类准确率</div>
+          <div class="stat-dot">♻️ <strong>1.2t</strong> 月回收量</div>
+        </div>
+        <div class="progress-mini"><div class="progress-mini-fill green" style="width:92%"></div></div>
+        <div class="scenario-actions" style="margin-top:14px">
+          <button class="btn-scenario-plan" onclick="openPlanModal('green')">方案展示</button>
+          <button class="btn-scenario-demo" onclick="openDemoModal('green')">产品体验</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 3: Food Transparency -->
+    <div class="scenario-card float-card" style="animation-delay:1s">
+      <div class="scenario-head">
+        <span class="scenario-tag amber">食安共建</span>
+        <h3>餐桌透明档案</h3>
+        <p class="scenario-desc">从"看评分"升级为"看溯源、看检测、会反馈"。学生关心食堂能不能放心吃，但食材来源、安全检测、证照状态、价格构成等信息不够透明。我们把餐饮档案结构化，让学生可以查、可以关注、可以用AI生成标准化反馈信——帮助后勤从无序投诉转向结构化复盘。</p>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-tags">
+          <span class="scenario-tag-pill a">食材溯源链路</span>
+          <span class="scenario-tag-pill a">安全检测证照</span>
+          <span class="scenario-tag-pill a">价格构成透明</span>
+          <span class="scenario-tag-pill a">AI 标准反馈</span>
+          <span class="scenario-tag-pill a">透明指数仪表盘</span>
+        </div>
+        <div class="stat-inline">
+          <div class="stat-dot">🔍 <strong>95%</strong> 溯源完整率</div>
+          <div class="stat-dot">📉 <strong>↓60%</strong> 投诉量</div>
+        </div>
+        <div class="progress-mini"><div class="progress-mini-fill amber" style="width:95%"></div></div>
+        <div class="scenario-actions" style="margin-top:14px">
+          <button class="btn-scenario-plan" onclick="openPlanModal('food')">方案展示</button>
+          <button class="btn-scenario-demo" onclick="openDemoModal('food')">产品体验</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 4: Social Innovation -->
+    <div class="scenario-card float-card" style="animation-delay:1.5s">
+      <div class="scenario-head">
+        <span class="scenario-tag purple">能力凭证</span>
+        <h3>校园社会创新微任务</h3>
+        <p class="scenario-desc">把校园公共事务拆解为可报名、可完成、可确认、可沉淀的轻量任务。学生想参与但找不到入口，做了也无法形成记录——微任务市场 + 智能匹配 + 成果确认 + 能力凭证链，让每一次参与都能转化为综测材料、简历表达和就业画像，让社会问题参与不再停留在口号。</p>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-tags">
+          <span class="scenario-tag-pill p">微任务市场</span>
+          <span class="scenario-tag-pill p">智能匹配引擎</span>
+          <span class="scenario-tag-pill p">成果确认机制</span>
+          <span class="scenario-tag-pill p">能力凭证链</span>
+          <span class="scenario-tag-pill p">服务记录中心</span>
+        </div>
+        <div class="stat-inline">
+          <div class="stat-dot">📋 <strong>320+</strong> 已完成任务</div>
+          <div class="stat-dot">👥 <strong>85%</strong> 参与率</div>
+        </div>
+        <div class="progress-mini"><div class="progress-mini-fill blue" style="width:85%"></div></div>
+        <div class="scenario-actions" style="margin-top:14px">
+          <button class="btn-scenario-plan" onclick="openPlanModal('task')">方案展示</button>
+          <button class="btn-scenario-demo" onclick="openDemoModal('task')">产品体验</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ARCHITECTURE ==================== -->
+<section class="section" id="architecture">
+  <div class="section-label">ARCHITECTURE · 产品架构</div>
+  <h2 class="section-title">六大 AI 模块协同</h2>
+  <p class="section-sub">Campus AI 不是一个聊天机器人，而是由六个专业智能体协同组成的校园数据中台。学习、生活、就业、心理、事务、数据——六位一体，覆盖学生全周期校园场景，打通教务、一卡通、图书馆、宿舍、后勤、食堂、心理和就业系统。</p>
+  <div class="arch-section">
+    <div class="arch-top">
+      <div class="arch-core shimmer-card">Campus AI 数据中台</div>
+    </div>
+    <div class="arch-flow">
+      <div class="arch-flow-node">📚 学习</div><span class="arch-flow-arrow">↔</span>
+      <div class="arch-flow-node">🏡 生活</div><span class="arch-flow-arrow">↔</span>
+      <div class="arch-flow-node">💼 就业</div><span class="arch-flow-arrow">↔</span>
+      <div class="arch-flow-node">💚 心理</div><span class="arch-flow-arrow">↔</span>
+      <div class="arch-flow-node">📝 事务</div><span class="arch-flow-arrow">↔</span>
+      <div class="arch-flow-node">📊 数据</div>
+    </div>
+    <div class="arch-modules">
+      <div class="arch-module hover-glow">
+        <div class="am-icon">📚</div>
+        <div class="am-name">AI 学习助手</div>
+        <div class="am-desc">课程总结 · 实验报告 · AI PPT · 思维导图 · 论文格式检查 · 考试复习计划 · 公式解释。不只是资料生成工具，而是把课程学习、项目实践和校园调研成果沉淀为可复盘的学习成果。</div>
+      </div>
+      <div class="arch-module life hover-glow">
+        <div class="am-icon">🏡</div>
+        <div class="am-name">AI 校园生活助手</div>
+        <div class="am-desc">核心承载板块。基础服务（找空教室、查校车、食堂推荐、宿舍报修）+ 四大治理场景（声环境公约、绿分行动、餐桌透明、微任务）。不只服务学生，更为学校提供可治理的数据资产。</div>
+      </div>
+      <div class="arch-module hover-glow">
+        <div class="am-icon">💼</div>
+        <div class="am-name">AI 就业成长中心</div>
+        <div class="am-desc">简历优化 · 模拟面试 · 职业测评 · 岗位推荐 · 个人能力画像。接入微任务能力凭证，自动把"任务内容、技能维度、完成质量"转化为简历项目经历。</div>
+      </div>
+      <div class="arch-module hover-glow">
+        <div class="am-icon">💚</div>
+        <div class="am-name">AI 心理健康中心</div>
+        <div class="am-desc">每日情绪检测 · AI 陪伴 · 压力指数 · 心理预约 · 危机预警。不做诊断，只做陪伴、筛查和提醒，发现异常后立即推送学校心理中心或辅导员。</div>
+      </div>
+      <div class="arch-module hover-glow">
+        <div class="am-icon">📝</div>
+        <div class="am-name">AI 校园事务中心</div>
+        <div class="am-desc">自动请假 · 活动报名 · 奖学金提醒 · 成绩分析 · 学分提醒 · 毕业审核 · 智能问答 · 自动填写申请。减少辅导员和行政部门的重复沟通成本。</div>
+      </div>
+      <div class="arch-module hover-glow">
+        <div class="am-icon">📊</div>
+        <div class="am-name">AI 校园数据中台</div>
+        <div class="am-desc">连接教务 · 一卡通 · 图书馆 · 宿舍 · 后勤 · 食堂 · 心理 · 就业。形成校园数字生态，产出治理驾驶舱：和谐指数、绿色报告、透明指数、参与率趋势、高频问题热力图。</div>
+      </div>
+    </div>
+    <div class="arch-note">
+      <strong>核心设计原则：</strong>数据脱敏 · 权限控制 · 不上传原始隐私信息 · AI 不替代专业判断 · 心理和风险类信息需由专业人员介入 · <strong>学生的每一次校园行动，都在为治理系统贡献数据。</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GOVERNANCE ==================== -->
+<section class="section" id="governance">
+  <div class="section-label">GOVERNANCE · 学海共治</div>
+  <h2 class="section-title">学校治理端 · 四大治理板块</h2>
+  <p class="section-sub">连接学生服务与学校治理，让每一次反馈都走向解决。学校管理层可通过数据驾驶舱实时掌握：宿舍和谐指数趋势、绿色校园报告、餐桌透明指数、学生参与率变化、高频问题热力图。从"投入多、使用弱、管理难"转向"降本增效 + 治理数据 + 满意度提升"。</p>
+  <div class="gov-grid">
+    <div class="gov-card float-card">
+      <div class="gov-icon">🔊</div>
+      <h3>宿舍声环境治理</h3>
+      <p>噪音数据辅助调解 + 公约降低管理介入。通过和谐指数仪表盘、楼层噪音热力图和匿名温和反馈，将宿舍冲突从"事后处理"转向"提前协商"，为文明宿舍评比提供数据依据。</p>
+      <div class="gov-data">
+        <div class="gov-data-item"><div class="gov-data-num">87%</div><div class="gov-data-label">和谐指数</div></div>
+        <div class="gov-data-item"><div class="gov-data-num">↓45%</div><div class="gov-data-label">投诉</div></div>
+      </div>
+    </div>
+    <div class="gov-card float-card" style="animation-delay:0.5s">
+      <div class="gov-icon">♻️</div>
+      <h3>绿色校园治理</h3>
+      <p>可统计 · 可复盘 · 可申报的绿色治理数据。AI查询热词、点位扫码记录、回收量、宿舍参与率、碳减排估算——让绿色行动从宣传活动升级为有据可查的治理成果。</p>
+      <div class="gov-data">
+        <div class="gov-data-item"><div class="gov-data-num">92%</div><div class="gov-data-label">准确率</div></div>
+        <div class="gov-data-item"><div class="gov-data-num">1.2t</div><div class="gov-data-label">月回收</div></div>
+      </div>
+    </div>
+    <div class="gov-card float-card" style="animation-delay:1s">
+      <div class="gov-icon">🍽️</div>
+      <h3>食品安全治理</h3>
+      <p>从无序投诉到结构化复盘。食材溯源完整率、检测公开率、证照状态、反馈处理率——帮助后勤精准定位问题窗口和供应商，提升校园餐饮透明度和学生信任度。</p>
+      <div class="gov-data">
+        <div class="gov-data-item"><div class="gov-data-num">95%</div><div class="gov-data-label">完整率</div></div>
+        <div class="gov-data-item"><div class="gov-data-num">↓60%</div><div class="gov-data-label">投诉</div></div>
+      </div>
+    </div>
+    <div class="gov-card float-card" style="animation-delay:1.5s">
+      <div class="gov-icon">🤝</div>
+      <h3>公共实践治理</h3>
+      <p>报名 · 完成 · 确认 · 沉淀。让校园公共事务参与从零散活动升级为有据可查的实践系统，生成的能力凭证可同步至就业画像和综测材料，真正做到"做事有记录、成长有凭证"。</p>
+      <div class="gov-data">
+        <div class="gov-data-item"><div class="gov-data-num">320+</div><div class="gov-data-label">已完成</div></div>
+        <div class="gov-data-item"><div class="gov-data-num">85%</div><div class="gov-data-label">参与率</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Governance Dashboard -->
+  <div class="gov-dashboard">
+    <div class="gov-panel">
+      <h4>📊 月度学生参与率趋势（演示数据）</h4>
+      <div class="bar-chart" id="barChart">
+        <div class="bar-item"><div class="bar-fill" style="height:45%"></div><div class="bar-value">45%</div><div class="bar-label">1月</div></div>
+        <div class="bar-item"><div class="bar-fill" style="height:52%"></div><div class="bar-value">52%</div><div class="bar-label">2月</div></div>
+        <div class="bar-item"><div class="bar-fill" style="height:61%"></div><div class="bar-value">61%</div><div class="bar-label">3月</div></div>
+        <div class="bar-item"><div class="bar-fill" style="height:68%"></div><div class="bar-value">68%</div><div class="bar-label">4月</div></div>
+        <div class="bar-item"><div class="bar-fill" style="height:75%"></div><div class="bar-value">75%</div><div class="bar-label">5月</div></div>
+        <div class="bar-item"><div class="bar-fill" style="height:82%"></div><div class="bar-value">82%</div><div class="bar-label">6月</div></div>
+        <div class="bar-item"><div class="bar-fill" style="height:88%"></div><div class="bar-value">88%</div><div class="bar-label">7月</div></div>
+      </div>
+    </div>
+    <div class="gov-panel">
+      <h4>🔥 高频问题分布热力图（演示数据）</h4>
+      <div class="heatmap" id="heatmap"></div>
+      <div class="heat-legend">
+        <span>低</span>
+        <div class="heat-legend-bar"></div>
+        <span>高</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gov-panel" style="margin-top:24px">
+    <h4>📋 待处理任务列表（演示数据）</h4>
+    <ul class="task-list">
+      <li class="task-item">
+        <div class="task-status urgent"></div>
+        <div class="task-content">
+          <div class="task-title">3号宿舍楼噪音投诉 · 需生成公约建议</div>
+          <div class="task-meta">来源：宿舍声环境 · 2小时前</div>
+        </div>
+        <span class="task-action">处理 →</span>
+      </li>
+      <li class="task-item">
+        <div class="task-status urgent"></div>
+        <div class="task-content">
+          <div class="task-title">第二食堂食材溯源信息缺失 · 需补充</div>
+          <div class="task-meta">来源：餐桌透明档案 · 5小时前</div>
+        </div>
+        <span class="task-action">处理 →</span>
+      </li>
+      <li class="task-item">
+        <div class="task-status normal"></div>
+        <div class="task-content">
+          <div class="task-title">北区回收点位溢满 · 需安排清运</div>
+          <div class="task-meta">来源：绿分行动库 · 1天前</div>
+        </div>
+        <span class="task-action">处理 →</span>
+      </li>
+      <li class="task-item">
+        <div class="task-status normal"></div>
+        <div class="task-content">
+          <div class="task-title">5个微任务待负责人确认 · 积分待发放</div>
+          <div class="task-meta">来源：社会创新微任务 · 2天前</div>
+        </div>
+        <span class="task-action">处理 →</span>
+      </li>
+      <li class="task-item">
+        <div class="task-status done"></div>
+        <div class="task-content">
+          <div class="task-title">1号宿舍楼公约执行报告 · 已生成</div>
+          <div class="task-meta">来源：宿舍声环境 · 已完成</div>
+        </div>
+        <span class="task-action">查看 →</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== COMMERCIAL PLAN ==================== -->
+<section class="section" id="commercial-plan">
+  <div class="section-label">BUSINESS PLAN · 商业计划书</div>
+  <h2 class="section-title">商业计划书概览</h2>
+  <p class="section-sub">以下为「学海伴舟 ✖️ 学海共治」商业策划书的高度概括展示。学校购买的本质上不是AI聊天工具，而是一套能够<strong>降低管理成本、提高治理效率、提升学生满意度、沉淀校园数据资产</strong>的智慧校园解决方案。采用B2B2C模式——学校付费采购，学生免费使用。</p>
+
+  <!-- Business Model -->
+  <div class="bp-section">
+    <div class="bp-chapter">第六章 · 商业模式</div>
+    <h3 style="font-size:22px;font-weight:800;color:var(--text-dark);margin-bottom:16px">六大盈利模式</h3>
+    <div class="biz-model-chart">
+      <div class="biz-model-item">
+        <div class="biz-icon">🏫</div>
+        <div class="biz-title">B 端收费</div>
+        <div class="biz-desc">学校按学生人数采购平台</div>
+        <div class="biz-price">约100元/人/年</div>
+      </div>
+      <div class="biz-model-item">
+        <div class="biz-icon">📦</div>
+        <div class="biz-title">SaaS 订阅</div>
+        <div class="biz-desc">系统维护+模型升级+数据分析+驾驶舱</div>
+        <div class="biz-price">年度付费</div>
+      </div>
+      <div class="biz-model-item">
+        <div class="biz-icon">🚀</div>
+        <div class="biz-title">场景部署服务</div>
+        <div class="biz-desc">四大场景系统独立部署+年度维护</div>
+        <div class="biz-price">首期+年度</div>
+      </div>
+      <div class="biz-model-item">
+        <div class="biz-icon">💡</div>
+        <div class="biz-title">增值+数据服务</div>
+        <div class="biz-desc">企业招聘+商城+品牌合作+校园画像</div>
+        <div class="biz-price">生态收益</div>
+      </div>
+    </div>
+    <div class="bp-card" style="margin-top:20px;text-align:center">
+      <h4>📌 商业模式本质</h4>
+      <p>学校购买的不是AI聊天工具，而是降低行政管理成本、提升学生服务效率、增强校园风险预警能力的智能化治理方案。核心价值在于推动学校数字化建设从"系统建设"走向"有效使用"。</p>
+    </div>
+  </div>
+
+  <!-- Competitive Advantage -->
+  <div class="bp-section">
+    <div class="bp-chapter">竞争优势</div>
+    <h3 style="font-size:22px;font-weight:800;color:var(--text-dark);margin-bottom:16px">Campus AI OS 与传统方案对比</h3>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px">
+        <thead>
+          <tr style="background:var(--blue-deep);color:white">
+            <th style="padding:12px 16px;text-align:left;font-weight:600">对比维度</th>
+            <th style="padding:12px 16px;text-align:center;font-weight:600">传统校园APP</th>
+            <th style="padding:12px 16px;text-align:center;font-weight:600">单点AI工具</th>
+            <th style="padding:12px 16px;text-align:center;font-weight:600;background:var(--blue-bright)">Campus AI OS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border-light)">
+            <td style="padding:10px 16px;font-weight:600">服务方式</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">只能查询</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">能问答</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--blue-main);font-weight:600;background:var(--blue-light)">主动服务 + 行动完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light)">
+            <td style="padding:10px 16px;font-weight:600">系统入口</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">多个系统分散</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">单个聊天入口</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--blue-main);font-weight:600;background:var(--blue-light)">一个校园AI入口</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light)">
+            <td style="padding:10px 16px;font-weight:600">数据状态</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">信息分散</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">对话数据孤立</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--blue-main);font-weight:600;background:var(--blue-light)">数据中台统一沉淀</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-light)">
+            <td style="padding:10px 16px;font-weight:600">激励机制</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">缺少激励</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">无闭环</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--blue-main);font-weight:600;background:var(--blue-light)">积分·凭证·权益·报告闭环</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 16px;font-weight:600">学校价值</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">使用率低</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--text-mid)">管理价值弱</td>
+            <td style="padding:10px 16px;text-align:center;color:var(--blue-main);font-weight:600;background:var(--blue-light)">降本增效 + 治理数据 + 满意度提升</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Implementation Roadmap -->
+  <div class="bp-section">
+    <div class="bp-chapter">第八章 · 实施路线</div>
+    <h3 style="font-size:22px;font-weight:800;color:var(--text-dark);margin-bottom:8px">五阶段落地路线</h3>
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:24px">从MVP验证到全面打通，五个阶段循序渐进——优先验证四大生活治理场景，在1-2个校内场景试点后打通积分·凭证·权益闭环，再延展就业与心理模块，最终连接校园全部系统形成完整的Campus AI数据中台。</p>
+    <div class="step-flow">
+      <div class="step-node">
+        <div class="step-dot">1</div>
+        <h4>MVP验证</h4>
+        <p>四大场景原型与问卷验证</p>
+      </div>
+      <div class="step-node">
+        <div class="step-dot">2</div>
+        <h4>小范围试点</h4>
+        <p>1-2 个校内场景实测</p>
+      </div>
+      <div class="step-node">
+        <div class="step-dot">3</div>
+        <h4>打通积分·凭证·权益</h4>
+        <p>场景互相流动，激励闭环</p>
+      </div>
+      <div class="step-node">
+        <div class="step-dot">4</div>
+        <h4>延展就业·心理</h4>
+        <p>能力画像 + 心理预警</p>
+      </div>
+      <div class="step-node">
+        <div class="step-dot">5</div>
+        <h4>智慧校园全面打通</h4>
+        <p>一入口 · 多AI · 数据驾驶舱</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Highlights -->
+  <div class="bp-section">
+    <div class="bp-chapter">核心优势 & 项目亮点</div>
+    <h3 style="font-size:22px;font-weight:800;color:var(--text-dark);margin-bottom:16px">七大核心优势</h3>
+    <div class="icon-row" style="margin-top:16px;margin-bottom:24px">
+      <div class="icon-chip blue">🏫 B2B2C · 校付生免</div>
+      <div class="icon-chip g">🤖 多模块 AI 协同</div>
+      <div class="icon-chip t">🎯 四大场景支撑</div>
+      <div class="icon-chip blue">📊 校园数据中台</div>
+      <div class="icon-chip p">💎 商业+社会价值</div>
+      <div class="icon-chip a">🚀 SaaS 可复制</div>
+      <div class="icon-chip g">🔄 治理→成长闭环</div>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-num">01</div>
+        <div>
+          <h4>学校付费，学生免费</h4>
+          <p>明确B2B2C商业模式，学校作为采购方、学生作为使用者，提高产品落地可行性。以1万人学校为例，年均费用约100万元，远低于自建智慧校园的千万级投入。</p>
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">02</div>
+        <div>
+          <h4>AI 智能体架构</h4>
+          <p>不是单一聊天机器人，而是学习、生活、就业、心理、事务、数据六个智能体协同工作。每个智能体负责一个校园核心领域，符合生成式AI与Agent协同的发展趋势。</p>
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">03</div>
+        <div>
+          <h4>从生活治理到成长系统</h4>
+          <p>先解决高频校园生活与实践问题，再延展就业和心理模块，形成"生活治理 → 实践凭证 → 就业成长 → 心理支持 → 数据治理"的完整闭环。不做空中楼阁。</p>
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">04</div>
+        <div>
+          <h4>SaaS 可复制可规模化</h4>
+          <p>标准化产品架构，可快速复制到不同高校、职业院校、国际学校甚至海外高校。未来可升级为AI+数字孪生校园、AI+校园数字身份、AI+ESG绿色校园报告等2.0方向。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Value -->
+  <div class="bp-section">
+    <div class="bp-chapter">社会价值</div>
+    <h3 style="font-size:22px;font-weight:800;color:var(--text-dark);margin-bottom:8px">三重社会价值</h3>
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:24px">校园可持续行动力生态的社会价值不在于做四个分散工具，而在于建立一套可持续运行的公共行动激励系统——宿舍声环境公约推动"安静权"意识，绿分行动库建设绿色校园数据基座，餐桌透明档案照亮校园食品安全信息，校园社会创新微任务培养学生公民行动力。</p>
+    <div class="value-grid">
+      <div class="value-col">
+        <h4>🎓 对学生</h4>
+        <ul class="check-list">
+          <li>学习效率↑ 信息焦虑↓</li>
+          <li>就业竞争力提升</li>
+          <li>宿舍沟通有数据依据</li>
+          <li>分类更快·更准·有反馈</li>
+          <li>餐桌选择更透明</li>
+          <li>实践可沉淀为能力凭证</li>
+        </ul>
+      </div>
+      <div class="value-col">
+        <h4>🏫 对学校</h4>
+        <ul class="check-list">
+          <li>数字治理水平↑</li>
+          <li>行政成本↓ 满意度↑</li>
+          <li>宿舍治理有数据</li>
+          <li>垃圾分类有看板</li>
+          <li>餐桌反馈有线索</li>
+          <li>实践·就业·心理有画像</li>
+        </ul>
+      </div>
+      <div class="value-col">
+        <h4>🌍 对社会</h4>
+        <ul class="check-list">
+          <li>推动教育数字化</li>
+          <li>促进 AI 教育普及</li>
+          <li>提升人才培养质量</li>
+          <li>建设智慧教育生态</li>
+          <li>培养公共参与意识</li>
+          <li>推动绿色可持续发展</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Quote -->
+  <div class="bp-quote">
+    <p>学校买的不是 AI 聊天工具，而是一套能够降低管理成本、提高治理效率、提升学生满意度、沉淀校园数据资产的智慧校园平台。</p>
+    <div class="bp-quote-highlight">学海伴舟，陪伴学生成长；学海共治，推动校园改变。</div>
+  </div>
+
+  <!-- ========== ECO SUMMARY 1: 四合一整合方案 ========== -->
+  <div class="eco-section">
+    <div class="eco-section-header">
+      <h2>校园可持续行动力生态 · 四合一整合方案</h2>
+      <p>四大模块互为支撑、数据互通、激励叠加，形成校内自循环闭环</p>
+    </div>
+
+    <!-- KPI Strip -->
+    <div class="eco-kpi-strip">
+      <div class="eco-kpi-card">
+        <div class="kpi-num t">82%</div>
+        <div class="kpi-name">宿舍声环境困扰</div>
+        <div class="kpi-desc">Demo 模拟 · 需数据协商机制</div>
+      </div>
+      <div class="eco-kpi-card">
+        <div class="kpi-num g">73%</div>
+        <div class="kpi-name">分类行动链路卡点</div>
+        <div class="kpi-desc">Demo 模拟 · 需即时反馈</div>
+      </div>
+      <div class="eco-kpi-card">
+        <div class="kpi-num a">42/100</div>
+        <div class="kpi-name">餐桌透明指数</div>
+        <div class="kpi-desc">Demo 模拟 · 溯源与检测待补</div>
+      </div>
+      <div class="eco-kpi-card">
+        <div class="kpi-num p">68%</div>
+        <div class="kpi-name">微任务参与意愿</div>
+        <div class="kpi-desc">Demo 模拟 · 缺入口与凭证</div>
+      </div>
+    </div>
+
+    <!-- 4 Module Mini Cards -->
+    <div class="eco-modules-grid">
+      <div class="eco-module-mini m1">
+        <div class="mod-num">01</div>
+        <h4>🏠 宿舍声环境公约</h4>
+        <p>AI辅助生成个性化公约，噪音合规率×公约执行率×室友满意度 → 宿舍和谐指数</p>
+      </div>
+      <div class="eco-module-mini m2">
+        <div class="mod-num">02</div>
+        <h4>♻️ 绿分行动库</h4>
+        <p>AI分类助手 + 回收地图 + 游戏学习 + 绿色积分 → 校园绿色治理数据</p>
+      </div>
+      <div class="eco-module-mini m3">
+        <div class="mod-num">03</div>
+        <h4>🍽️ 餐桌透明档案</h4>
+        <p>食材溯源链 + 检测记录 + 价格构成 + AI标准反馈 → 餐桌透明指数</p>
+      </div>
+      <div class="eco-module-mini m4">
+        <div class="mod-num">04</div>
+        <h4>🤝 社会创新微任务</h4>
+        <p>真实校内任务发布 → 完成确认 → 能力凭证生成 → 兑换校内岗位资格</p>
+      </div>
+    </div>
+
+    <!-- Mini Flow Diagram -->
+    <div class="eco-flow-mini">
+      <div class="flow-title">「校园可持续行动力生态」四模块数据流转</div>
+      <div class="eco-flow-nodes">
+        <div class="eco-flow-node t">宿舍公约</div>
+        <div class="eco-flow-arr">+</div>
+        <div class="eco-flow-node g">绿分行动</div>
+        <div class="eco-flow-arr">+</div>
+        <div class="eco-flow-node a">餐桌透明</div>
+        <div class="eco-flow-arr">+</div>
+        <div class="eco-flow-node p">微任务</div>
+      </div>
+      <div class="eco-flow-label">第一层：学生行为</div>
+      <div style="font-size:20px;color:var(--text-light);margin:8px 0">↓</div>
+      <div class="eco-flow-nodes">
+        <div class="eco-flow-node t">和谐指数</div>
+        <div class="eco-flow-arr">+</div>
+        <div class="eco-flow-node g">绿色积分</div>
+        <div class="eco-flow-arr">+</div>
+        <div class="eco-flow-node a">透明指数</div>
+        <div class="eco-flow-arr">+</div>
+        <div class="eco-flow-node p">能力凭证</div>
+      </div>
+      <div class="eco-flow-label">第二层：数据产出</div>
+      <div style="font-size:20px;color:var(--text-light);margin:8px 0">↓</div>
+      <div class="eco-flow-nodes">
+        <div class="eco-flow-node w">积分 ↔ 权限</div>
+        <div class="eco-flow-arr">⇄</div>
+        <div class="eco-flow-node w">凭证 ↔ 岗位</div>
+      </div>
+      <div class="eco-flow-label">第三层：激励回流 → 校内自循环闭环</div>
+    </div>
+
+    <div class="eco-view-link">
+      <a href="javascript:void(0)" onclick="openFullPlanModal('eco')">📋 查看完整四合一整合方案 →</a>
+    </div>
+  </div>
+
+  <div class="eco-divider"></div>
+
+  <!-- ========== ECO SUMMARY 2: 噪音消除核心方案 ========== -->
+  <div class="eco-section" style="padding-top:0">
+    <div class="eco-section-header">
+      <h2>校园可持续行动力生态 · 以噪音消除为核心的整合方案</h2>
+      <p>以 DormNoise Guardian 声环境治理系统为核心引擎，延展碳普惠回收地图 × 社会创新微任务</p>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="eco-stats-grid">
+      <div class="eco-stat-card">
+        <div class="stat-num">4,000万+</div>
+        <div class="stat-label">中国高校住宿生总数</div>
+      </div>
+      <div class="eco-stat-card">
+        <div class="stat-num" style="color:var(--accent-red)">82%</div>
+        <div class="stat-label">受宿舍噪音困扰比例</div>
+      </div>
+      <div class="eco-stat-card">
+        <div class="stat-num">58-75dB</div>
+        <div class="stat-label">夜间实测噪音区间</div>
+      </div>
+      <div class="eco-stat-card">
+        <div class="stat-num" style="color:var(--accent-purple)">仅 18%</div>
+        <div class="stat-label">敢开口沟通的学生比例</div>
+      </div>
+    </div>
+
+    <!-- 3-Column Architecture -->
+    <div class="eco-three-col">
+      <div class="eco-col-card t">
+        <div class="col-badge">核心引擎</div>
+        <h4>⚙️ DormNoise Guardian<br>声环境治理系统</h4>
+        <ul>
+          <li>YAMNet实时噪音分类（人声/施工/电器/动物）</li>
+          <li>自适应白噪音掩蔽 + 智能睡眠辅助</li>
+          <li>宿舍声环境公约生成器 + 和谐指数</li>
+          <li>匿名温和反馈 + 楼层噪音热力图</li>
+          <li>弹性权限激励（如多1小时游戏时间）</li>
+        </ul>
+      </div>
+      <div class="eco-col-card g">
+        <div class="col-badge">延展模块</div>
+        <h4>🔗 碳普惠回收地图<br>+ 社会创新微任务</h4>
+        <ul>
+          <li><strong>模块A：</strong>AI分类识别 + 回收点导航 + 绿色积分引擎</li>
+          <li>积分 → 兑换核心方案"弹性权限"</li>
+          <li><strong>模块B：</strong>微任务市场 + 智能匹配 + 能力凭证链</li>
+          <li>凭证 → 兑换"宿舍调解员"资格</li>
+        </ul>
+      </div>
+      <div class="eco-col-card p">
+        <div class="col-badge">激励闭环</div>
+        <h4>🔄 自循环飞轮<br>零外部补贴</h4>
+        <ul>
+          <li>弹性权限对学校边际成本为零</li>
+          <li>积分锚定真实校园需求，不会通胀</li>
+          <li>调解员改善宿舍 → 和谐指数↑ → 更多权限释放</li>
+          <li>管理员提升分类率 → 更多积分流入 → 系统活力↑</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Key Differentiators -->
+    <div class="eco-modules-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="eco-module-mini m1" style="text-align:left">
+        <h4>🔬 技术验证</h4>
+        <p>YAMNet移动端推理 &lt;100ms；ResNet分类准确率 &gt;92%；全部开源工具栈 + 本地处理，零隐私上传</p>
+      </div>
+      <div class="eco-module-mini m2" style="text-align:left">
+        <h4>📊 调研基础</h4>
+        <p>1,247份问卷 + 38间宿舍实勘 + 24人深度访谈 + 3个回收点观察 · 覆盖5所高校、3个社区、2家公益组织</p>
+      </div>
+    </div>
+
+    <div class="eco-view-link">
+      <a href="javascript:void(0)" onclick="openFullPlanModal('noise')">📋 查看完整噪音消除核心方案 →</a>
+    </div>
+  </div>
+
+  <div class="eco-divider"></div>
+
+  <!-- BP Download -->
+  <div class="bp-download-section">
+    <h3>📄 查看完整商业计划书</h3>
+    <p>点击下方按钮下载完整版「学海伴舟 ✖️ 学海共治」商业策划书（DOCX格式）</p>
+    <a href="demos/学海伴舟_商业策划书.docx" download class="btn-download-bp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      下载商业计划书 DOCX
+    </a>
+  </div>
+</section>
+
+</div><!-- /main -->
+
+<!-- ==================== BOTTOM ENTRY BOXES ==================== -->
+<section class="bottom-entries" id="bottom-entries">
+  <h2 class="section-title" style="text-align:center">你关心什么，就去改变什么</h2>
+  <div class="bottom-motto">选择一个入口，开始体验</div>
+  <div class="entry-boxes">
+    <a href="demos/学海伴舟_商业策划书.docx" download class="entry-box">
+      <div class="entry-icon">📄</div>
+      <div class="entry-label">下载商业计划书</div>
+      <div class="entry-sub">完整 DOCX 文件</div>
+    </a>
+    <div class="entry-box" onclick="openDemoModal('green')">
+      <div class="entry-icon">♻️</div>
+      <div class="entry-label">体验绿分行动库</div>
+      <div class="entry-sub">垃圾分类全链路</div>
+    </div>
+    <div class="entry-box" onclick="openDemoModal('noise')">
+      <div class="entry-icon">🔇</div>
+      <div class="entry-label">体验静界</div>
+      <div class="entry-sub">宿舍声环境公约</div>
+    </div>
+    <div class="entry-box" onclick="openDemoModal('food')">
+      <div class="entry-icon">🍽️</div>
+      <div class="entry-label">体验透明校园餐桌</div>
+      <div class="entry-sub">食材溯源与反馈</div>
+    </div>
+    <div class="entry-box" onclick="openDemoModal('task')">
+      <div class="entry-icon">🤝</div>
+      <div class="entry-label">体验心翼微任务</div>
+      <div class="entry-sub">校园社会创新</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="footer-inner" style="display:flex;justify-content:center;flex-wrap:wrap;gap:32px;text-align:center">
+    <div style="flex:1;min-width:200px">
+      <strong style="display:block;font-size:17px;color:white;margin-bottom:6px">学海伴舟 ✖️ 学海共治</strong>
+      <p style="font-size:12px;line-height:1.8">益优青年 × 毕马威 · 工科女生赋能大赛 · 02组</p>
+      <div style="font-size:13px;color:#6BC5F0;font-style:italic;margin:8px 0;font-weight:600">「陪伴学生成长，推动校园改变。」</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 学海伴舟 ✖️ 学海共治 · 益优青年 × 毕马威工科女生赋能大赛 02组 · 演示数据
+  </div>
+</footer>
+
+<!-- ==================== MODAL: Plan Display ==================== -->
+<div class="modal-overlay" id="planModalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="planModalTitle">方案展示</h3>
+      <button class="modal-close" onclick="closePlanModal()">✕</button>
+    </div>
+    <div class="modal-body" id="planModalBody"></div>
+  </div>
+</div>
+
+<!-- ==================== MODAL: Product Demo (iframe) ==================== -->
+<div class="modal-overlay" id="demoModalOverlay">
+  <div class="modal demo-modal">
+    <div class="modal-header">
+      <h3 id="demoModalTitle">产品体验</h3>
+      <button class="modal-close" onclick="closeDemoModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="demoIframe" class="demo-iframe" src="" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODAL: Food Transparency (inline demo) ==================== -->
+<div class="modal-overlay" id="foodModalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🍽️ 透明校园餐桌 · 产品体验</h3>
+      <button class="modal-close" onclick="closeFoodModal()">✕</button>
+    </div>
+    <div class="modal-body" id="foodModalBody"></div>
+  </div>
+</div>
+
+<script>
+// ==================== NAVIGATION ====================
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+function toggleMobileMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+
+function toggleNavDropdown(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active'));
+  }
+});
+
+// ==================== PAIN POINTS TOGGLE ====================
+function switchPainSide(side) {
+  document.querySelectorAll('.pain-side-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.pain-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('pain-' + side).classList.add('active');
+}
+
+// ==================== HEATMAP ====================
+(function generateHeatmap() {
+  const container = document.getElementById('heatmap');
+  if (!container) return;
+  const labels = ['宿舍','分类','餐桌','任务','就业','心理','行政'];
+  const intensity = [0.85, 0.72, 0.65, 0.55, 0.45, 0.38, 0.30];
+  for (let row = 0; row < 5; row++) {
+    for (let col = 0; col < 7; col++) {
+      const cell = document.createElement('div');
+      cell.className = 'heat-cell';
+      const val = Math.max(0.1, intensity[col] - row * 0.12 + Math.random() * 0.15);
+      const r = Math.round(0 + val * 0);
+      const g = Math.round(51 + val * 103);
+      const b = Math.round(141 + val * 77);
+      cell.style.background = `rgba(${r},${g},${b},${val})`;
+      cell.style.color = val > 0.5 ? '#fff' : 'var(--text-light)';
+      cell.textContent = Math.round(val * 100);
+      container.appendChild(cell);
+    }
+  }
+  // Add labels row
+  const labelRow = document.createElement('div');
+  labelRow.style.cssText = 'display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px';
+  labels.forEach(l => {
+    const el = document.createElement('div');
+    el.style.cssText = 'text-align:center;font-size:11px;color:var(--text-light)';
+    el.textContent = l;
+    labelRow.appendChild(el);
+  });
+  container.parentNode.appendChild(labelRow);
+})();
+
+// ==================== PLAN MODAL ====================
+const planContent = {
+  noise: {
+    title: '🔊 宿舍声环境公约 · 方案展示',
+    html: `
+      <div class="plan-modal-section">
+        <h4>产品定位</h4>
+        <p>从"噪音消除"升级为"宿舍自治公约"。通过低敏噪音数据、公约机制和匿名温和反馈，帮助宿舍从情绪冲突转向数据协商。</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>核心功能</h4>
+        <ul>
+          <li><strong>AI 噪音感知：</strong>识别分贝区间与噪音类型标签，不上传原始音频</li>
+          <li><strong>宿舍公约生成器：</strong>根据高噪声时段和宿舍习惯，生成个性化宿舍公约</li>
+          <li><strong>和谐指数仪表盘：</strong>综合噪音合规率、公约执行率、室友满意度和反馈处理率</li>
+          <li><strong>匿名温和反馈：</strong>系统代发提醒，避免当面冲突</li>
+          <li><strong>公约弹性权限：</strong>和谐指数达标后可解锁弹性权益</li>
+        </ul>
+      </div>
+      <div class="plan-modal-highlight">
+        <p><strong>数据产出：</strong>宿舍和谐指数</p>
+        <p><strong>学校价值：</strong>辅助宿舍冲突调解、文明宿舍评比和后勤管理复盘</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>场景示例</h4>
+        <p><strong>学生：</strong>"最近晚上宿舍太吵，但我不敢直接说。"</p>
+        <p><strong>AI：</strong>读取低敏噪音记录，生成高噪声时段摘要，辅助宿舍生成温和版公约提醒，不上传原始音频，不公开个人隐私。</p>
+      </div>
+    `
+  },
+  green: {
+    title: '♻️ 绿分行动库 · 方案展示',
+    html: `
+      <div class="plan-modal-section">
+        <h4>产品定位</h4>
+        <p>从单一垃圾分类查询工具升级为"校园垃圾分类全链路数字化系统"。</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>核心功能</h4>
+        <ul>
+          <li><strong>AI 分类助手：</strong>智能识别垃圾类型</li>
+          <li><strong>校园回收地图：</strong>定位最近回收点</li>
+          <li><strong>投放点指引：</strong>导航到最近投放点</li>
+          <li><strong>绿分游戏乐园：</strong>趣味答题闯关</li>
+          <li><strong>绿色积分中心：</strong>积分兑换权益</li>
+          <li><strong>宿舍源头分流：</strong>宿舍层面分类管理</li>
+          <li><strong>校园绿色榜单：</strong>宿舍/个人排名</li>
+          <li><strong>绿色岗位：</strong>凭证兑换岗位资格</li>
+          <li><strong>后勤数据看板：</strong>分类数据可视化</li>
+          <li><strong>绿色校园报告：</strong>定期生成报告</li>
+        </ul>
+      </div>
+      <div class="plan-modal-highlight">
+        <p><strong>数据流：</strong>学生 AI 查询 / 地图扫码 / 游戏答题 / 宿舍打卡 / 投放点巡查 → 进入绿分数据中枢 → 沉淀分类知识库、点位库、热词库 → 反向更新 AI 答案、地图提示、小游戏题目、后勤建议和绿色校园报告</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>数据产出</h4>
+        <p>AI 查询热词、点位扫码记录、回收量、碳减排估算、积分行为、宿舍参与率、巡查反馈、绿色校园报告</p>
+        <p><strong>学校价值：</strong>帮助学校把绿色行动从宣传活动升级为可统计、可复盘、可申报的绿色治理数据。</p>
+      </div>
+    `
+  },
+  food: {
+    title: '🍽️ 餐桌透明档案 · 方案展示',
+    html: `
+      <div class="plan-modal-section">
+        <h4>产品定位</h4>
+        <p>从"看评分"升级为"看溯源、看检测、会反馈"。把食材来源、安全检测、证照状态、价格构成和标准化反馈整理成可查询档案。</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>核心功能</h4>
+        <ul>
+          <li><strong>搜索摊贩、食堂窗口、外卖店名</strong></li>
+          <li><strong>查看食材溯源链路</strong></li>
+          <li><strong>查看安全检测与证照状态</strong></li>
+          <li><strong>查看价格构成与品类说明</strong></li>
+          <li><strong>关注商家并获得餐桌侦探积分</strong></li>
+          <li><strong>AI 生成标准化反馈信</strong></li>
+          <li><strong>餐桌透明指数仪表盘</strong></li>
+        </ul>
+      </div>
+      <div class="plan-modal-highlight">
+        <p><strong>数据产出：</strong>餐桌透明指数、食材溯源完整率、安全检测公开率、证照状态、价格构成、关注人数、反馈线索</p>
+        <p><strong>学校价值：</strong>帮助后勤从无序投诉转向结构化复盘，提升校园餐饮透明度和学生信任度</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>场景示例</h4>
+        <p><strong>学生：</strong>"这个食堂窗口能不能放心吃？"</p>
+        <p><strong>AI：</strong>调取餐饮档案，展示食材来源、证照状态、检测记录、价格构成和历史反馈处理状态。</p>
+      </div>
+    `
+  },
+  task: {
+    title: '🤝 校园社会创新微任务 · 方案展示',
+    html: `
+      <div class="plan-modal-section">
+        <h4>产品定位</h4>
+        <p>把校园公共事务拆解为轻量任务，学生完成后获得服务记录和能力凭证。不是普通活动报名，而是可报名、可完成、可确认、可沉淀的实践系统。</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>核心功能</h4>
+        <ul>
+          <li><strong>微任务市场：</strong>后勤、宿管、社团或项目组发布真实校园公共事务需求</li>
+          <li><strong>智能匹配引擎：</strong>根据学生专业、技能标签、地理位置和兴趣推荐任务</li>
+          <li><strong>成果提交与负责人确认：</strong>避免"水活动"</li>
+          <li><strong>能力凭证链：</strong>记录任务类型、完成内容、时长、反馈和确认人</li>
+          <li><strong>凭证兑换岗位：</strong>能力凭证可兑换宿舍调解员、绿色岗位、食安共建任务资格</li>
+          <li><strong>服务记录中心：</strong>用于综测、实践证明、简历和就业画像</li>
+        </ul>
+      </div>
+      <div class="plan-modal-highlight">
+        <p><strong>价值：</strong>减少学校行政工作量。把校园公共事务从零散活动升级为可报名、可完成、可确认、可沉淀的实践系统。让社会问题参与不再停留在口号，而是进入学生真实成长路径。</p>
+      </div>
+      <div class="plan-modal-section">
+        <h4>微任务连接就业</h4>
+        <p>学生在宿舍协商、绿色岗位、餐桌共建、校园巡查等任务中形成的能力凭证，可进一步进入个人能力画像、综测材料和简历项目经历。AI 简历优化时，可自动把"任务内容、技能维度、完成质量、负责人评价"转化为简历项目经历。</p>
+      </div>
+    `
+  }
+};
+
+// Plan iframe sources — embed full HTML files
+const planIframeSources = {
+  noise: { title: '🔊 宿舍声环境公约 · 方案展示', src: 'demos/大学宿舍噪音防治方案.html' },
+  green: { title: '♻️ 绿分行动库 · 方案展示', src: 'demos/绿分行动库_校园版Demo.html' },
+  task: { title: '🤝 心翼校园社会创新 · 方案展示', src: 'demos/心翼展示页.html' }
+};
+
+function openPlanModal(scenario) {
+  // If scenario has an iframe source, open it as an embedded iframe
+  if (planIframeSources[scenario]) {
+    const data = planIframeSources[scenario];
+    document.getElementById('demoModalTitle').textContent = data.title;
+    const iframe = document.getElementById('demoIframe');
+    iframe.style.opacity = '0';
+    iframe.src = data.src;
+    document.getElementById('demoModalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+  // Fall back to text modal for food (no HTML file provided)
+  const data = planContent[scenario];
+  if (!data) return;
+  document.getElementById('planModalTitle').textContent = data.title;
+  document.getElementById('planModalBody').innerHTML = data.html;
+  document.getElementById('planModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePlanModal() {
+  document.getElementById('planModalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ==================== DEMO MODAL (iframe) ====================
+const demoSources = {
+  noise: { title: '🔇 静界 NoiseGuard · 产品体验', src: 'demos/静界_NoiseGuard_Campus.html' },
+  green: { title: '♻️ 绿分行动库 · 产品体验', src: 'demos/绿分行动库_校园版Demo_产品版.html' },
+  food: { title: '🍽️ 透明校园餐桌 · 产品体验', src: '' }, // inline demo
+  task: { title: '🤝 心翼校园社会创新 · 产品体验', src: 'demos/xinyi-platform.html' }
+};
+
+function openDemoModal(scenario) {
+  const data = demoSources[scenario];
+  if (!data) return;
+
+  if (scenario === 'food') {
+    // Open inline food demo
+    openFoodModal();
+    return;
+  }
+
+  document.getElementById('demoModalTitle').textContent = data.title;
+  const iframe = document.getElementById('demoIframe');
+  iframe.style.opacity = '0';
+  iframe.src = data.src;
+  document.getElementById('demoModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDemoModal() {
+  document.getElementById('demoModalOverlay').classList.remove('active');
+  document.getElementById('demoIframe').src = '';
+  document.body.style.overflow = '';
+}
+
+// ==================== FULL PLAN MODAL ====================
+const fullPlanSources = {
+  eco: { title: '📋 校园可持续行动力生态 · 四合一整合方案', src: 'demos/四合一整合方案.html' },
+  noise: { title: '📋 噪音消除为核心的整合方案', src: 'demos/噪音消除核心方案.html' }
+};
+
+function openFullPlanModal(planKey) {
+  const data = fullPlanSources[planKey];
+  if (!data) return;
+  document.getElementById('demoModalTitle').textContent = data.title;
+  const iframe = document.getElementById('demoIframe');
+  iframe.style.opacity = '0';
+  iframe.src = data.src;
+  document.getElementById('demoModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// ==================== FOOD INLINE DEMO ====================
+function openFoodModal() {
+  document.getElementById('foodModalBody').innerHTML = `
+    <style>
+      .food-demo { font-family:'PingFang SC',sans-serif; }
+      .food-search-bar { display:flex;gap:8px;margin-bottom:20px }
+      .food-search-input { flex:1;padding:12px 16px;border:1px solid #E2E8F0;border-radius:8px;font-size:14px }
+      .food-search-btn { padding:12px 24px;background:#005EB8;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600 }
+      .food-vendor-card { background:#F4F8FC;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #E2E8F0 }
+      .food-vendor-card h4 { font-size:16px;color:#10233F;margin-bottom:8px }
+      .food-vendor-card .vendor-meta { display:flex;gap:12px;margin-bottom:12px }
+      .food-vendor-card .vendor-tag { font-size:12px;padding:3px 10px;border-radius:12px }
+      .food-vendor-card .vendor-tag.green { background:#E4F7EB;color:#1D9E75 }
+      .food-vendor-card .vendor-tag.amber { background:#FFF2D6;color:#D4940E }
+      .food-vendor-card .vendor-tag.red { background:#FFE7E7;color:#A32D2D }
+      .food-info-row { display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #E2E8F0;font-size:13px }
+      .food-info-row:last-child { border-bottom:none }
+      .food-info-label { color:#718096 }
+      .food-info-value { color:#10233F;font-weight:600 }
+      .food-transparency-score { text-align:center;padding:16px;background:#EAF3FA;border-radius:8px;margin-top:12px }
+      .food-transparency-score .score-num { font-size:32px;font-weight:800;color:#005EB8 }
+      .food-transparency-score .score-label { font-size:13px;color:#4A5568 }
+      .food-feedback-btn { display:block;width:100%;padding:12px;background:#005EB8;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-top:12px }
+    </style>
+    <div class="food-demo">
+      <div class="food-search-bar">
+        <input class="food-search-input" placeholder="搜索食堂窗口、摊贩、外卖店..." value="第二食堂 3号窗口">
+        <button class="food-search-btn">搜索</button>
+      </div>
+      <div class="food-vendor-card">
+        <h4>🍽️ 第二食堂 · 3号窗口（黄焖鸡米饭）</h4>
+        <div class="vendor-meta">
+          <span class="vendor-tag green">证照齐全</span>
+          <span class="vendor-tag green">检测合格</span>
+          <span class="vendor-tag amber">溯源待完善</span>
+        </div>
+        <div class="food-info-row"><span class="food-info-label">食材来源</span><span class="food-info-value">山东寿光蔬菜基地 → 校园冷链</span></div>
+        <div class="food-info-row"><span class="food-info-label">肉类供应商</span><span class="food-info-value">双汇集团（证照编号：SH-2024-0156）</span></div>
+        <div class="food-info-row"><span class="food-info-label">安全检测</span><span class="food-info-value">2026.07.10 合格（农残/微生物/重金属）</span></div>
+        <div class="food-info-row"><span class="food-info-label">价格构成</span><span class="food-info-value">食材 58% · 加工 22% · 运营 20%</span></div>
+        <div class="food-info-row"><span class="food-info-label">关注人数</span><span class="food-info-value">326 人</span></div>
+        <div class="food-info-row"><span class="food-info-label">历史反馈</span><span class="food-info-value">12 条 · 已处理 10 条</span></div>
+        <div class="food-transparency-score">
+          <div class="score-num">85</div>
+          <div class="score-label">餐桌透明指数（满分100）</div>
+        </div>
+        <button class="food-feedback-btn">✉️ AI 生成标准化反馈信</button>
+      </div>
+      <div class="food-vendor-card">
+        <h4>🍽️ 第一食堂 · 5号窗口（兰州拉面）</h4>
+        <div class="vendor-meta">
+          <span class="vendor-tag green">证照齐全</span>
+          <span class="vendor-tag green">检测合格</span>
+          <span class="vendor-tag green">溯源完整</span>
+        </div>
+        <div class="food-info-row"><span class="food-info-label">食材来源</span><span class="food-info-value">宁夏清真食材直供 → 校园冷链</span></div>
+        <div class="food-info-row"><span class="food-info-label">安全检测</span><span class="food-info-value">2026.07.09 合格</span></div>
+        <div class="food-info-row"><span class="food-info-label">关注人数</span><span class="food-info-value">512 人</span></div>
+        <div class="food-transparency-score">
+          <div class="score-num">93</div>
+          <div class="score-label">餐桌透明指数（满分100）</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:#718096;text-align:center;margin-top:16px">演示数据 · Demo Data</p>
+    </div>
+  `;
+  document.getElementById('foodModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFoodModal() {
+  document.getElementById('foodModalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ==================== MODAL CLOSE ====================
+document.getElementById('planModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closePlanModal();
+});
+document.getElementById('demoModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDemoModal();
+});
+document.getElementById('foodModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeFoodModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closePlanModal();
+    closeDemoModal();
+    closeFoodModal();
+  }
+});
+
+// ==================== NAV LINK ACTIVE STATE ====================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) current = section.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+// ==================== ANIMATE ON SCROLL ====================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate-in');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.bg-card, .pain-card, .scenario-card, .arch-module, .gov-card, .bp-card, .adv-card, .value-col, .highlight-card, .entry-box').forEach(el => {
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
