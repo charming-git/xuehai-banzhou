@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DormNoise Guardian — 大学生宿舍噪音治理AI解决方案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #F8F7F4; color: #2C2C2A; line-height: 1.7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 32px; }
+  
+  /* Cover */
+  .cover { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 64px 48px; border-radius: 16px; margin-bottom: 40px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; border-radius: 50%; background: rgba(255,255,255,0.03); }
+  .cover-tag { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 20px; padding: 4px 16px; font-size: 12px; margin-bottom: 24px; letter-spacing: 1px; }
+  .cover h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .cover h1 span { color: #4ecdc4; }
+  .cover-sub { font-size: 16px; opacity: 0.75; margin-bottom: 32px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover-meta-item { font-size: 13px; opacity: 0.7; }
+  .cover-meta-item strong { display: block; font-size: 20px; opacity: 1; color: #4ecdc4; margin-bottom: 2px; }
+  
+  /* Section */
+  .section { background: white; border-radius: 16px; padding: 40px 44px; margin-bottom: 28px; border: 1px solid rgba(0,0,0,0.06); }
+  .section-num { font-size: 11px; font-weight: 600; color: #4ecdc4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .section-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #1a1a2e; }
+  .section-sub { font-size: 14px; color: #888780; margin-bottom: 28px; }
+  .section-body { font-size: 14.5px; color: #444441; }
+  
+  /* Typography */
+  h3 { font-size: 17px; font-weight: 600; color: #1a1a2e; margin: 28px 0 12px; padding-left: 12px; border-left: 3px solid #4ecdc4; }
+  h4 { font-size: 15px; font-weight: 600; color: #2C2C2A; margin: 20px 0 8px; }
+  p { margin-bottom: 14px; }
+  ul, ol { padding-left: 20px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  strong { color: #1a1a2e; }
+  
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0; }
+  .card { background: #F8F7F4; border-radius: 12px; padding: 20px; border: 1px solid rgba(0,0,0,0.05); }
+  .card-icon { font-size: 28px; margin-bottom: 8px; }
+  .card h4 { margin: 0 0 8px; font-size: 15px; }
+  .card p { font-size: 13px; color: #5F5E5A; margin: 0; }
+  
+  /* Pain table */
+  .pain-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  .pain-table th { background: #1a1a2e; color: white; padding: 12px 14px; text-align: left; font-weight: 500; }
+  .pain-table th:first-child { border-radius: 8px 0 0 0; }
+  .pain-table th:last-child { border-radius: 0 8px 0 0; }
+  .pain-table td { padding: 11px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .pain-table tr:nth-child(even) td { background: #FAFAFA; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 500; }
+  .tag-red { background: #FCEBEB; color: #A32D2D; }
+  .tag-amber { background: #FAEEDA; color: #854F0B; }
+  .tag-green { background: #EAF3DE; color: #3B6D11; }
+  .tag-blue { background: #E6F1FB; color: #185FA5; }
+  .tag-purple { background: #EEEDFE; color: #534AB7; }
+  
+  /* Stack bar */
+  .stack-bar { margin: 16px 0; }
+  .stack-bar-label { font-size: 13px; margin-bottom: 6px; color: #5F5E5A; }
+  .stack-bar-track { height: 22px; background: #eee; border-radius: 6px; overflow: hidden; display: flex; }
+  .stack-bar-fill { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; font-weight: 500; min-width: 32px; }
+  
+  /* Quote */
+  .quote { background: #F0F7FF; border-left: 4px solid #4ecdc4; border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 20px 0; font-style: italic; color: #2C2C2A; font-size: 14px; }
+  .quote-author { font-style: normal; font-size: 12px; color: #888780; margin-top: 8px; }
+  
+  /* Architecture diagram */
+  .arch-box { background: #F8F7F4; border: 1.5px solid #ddd; border-radius: 10px; padding: 16px; margin: 12px 0; }
+  .arch-box h4 { margin-top: 0; }
+  
+  /* Roadmap */
+  .roadmap { position: relative; padding-left: 32px; margin: 24px 0; }
+  .roadmap::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #4ecdc4; }
+  .roadmap-item { position: relative; margin-bottom: 28px; }
+  .roadmap-item::before { content: ''; position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #4ecdc4; border: 2px solid white; box-shadow: 0 0 0 2px #4ecdc4; }
+  .roadmap-item.done::before { background: #1a1a2e; box-shadow: 0 0 0 2px #1a1a2e; }
+  .roadmap-date { font-size: 12px; color: #4ecdc4; font-weight: 600; margin-bottom: 4px; }
+  .roadmap-title { font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+  .roadmap-desc { font-size: 13px; color: #5F5E5A; }
+  
+  /* Metric */
+  .metrics { display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0; }
+  .metric { flex: 1; min-width: 140px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px; padding: 20px; text-align: center; }
+  .metric-num { font-size: 32px; font-weight: 700; color: #1a1a2e; }
+  .metric-label { font-size: 12px; color: #5F5E5A; margin-top: 4px; }
+  
+  /* Persona */
+  .persona { display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+  .persona-card { flex: 1; min-width: 240px; background: #F8F7F4; border-radius: 14px; padding: 24px; border: 1px solid rgba(0,0,0,0.06); }
+  .persona-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+  .persona-name { font-size: 16px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+  .persona-tag { font-size: 12px; color: #888780; margin-bottom: 12px; }
+  .persona-story { font-size: 13px; color: #444441; line-height: 1.6; }
+  
+  /* Footer */
+  .footer { text-align: center; padding: 32px 0; color: #B4B2A9; font-size: 12px; }
+  
+  /* Highlight */
+  .hl { background: linear-gradient(transparent 60%, rgba(78,205,196,0.25) 60%); font-weight: 500; }
+  
+  /* Divider */
+  .divider { height: 1px; background: #eee; margin: 28px 0; }
+  
+  /* Badge row */
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+  .badge { padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .badge-teal { background: #E1F5EE; color: #0F6E56; }
+  .badge-red { background: #FCEBEB; color: #A32D2D; }
+  .badge-amber { background: #FAEEDA; color: #854F0B; }
+  .badge-purple { background: #EEEDFE; color: #534AB7; }
+  .badge-blue { background: #E6F1FB; color: #185FA5; }
+  
+  /* Comparison table */
+  .cmp-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  .cmp-table th { background: #1a1a2e; color: white; padding: 10px 12px; text-align: center; font-weight: 500; font-size: 12px; }
+  .cmp-table td { padding: 10px 12px; border-bottom: 1px solid #eee; text-align: center; vertical-align: middle; }
+  .cmp-table tr:nth-child(even) td { background: #FAFAFA; }
+  .cmp-table td:first-child { text-align: left; font-weight: 500; color: #1a1a2e; }
+  .check { color: #1D9E75; font-weight: 700; }
+  .cross { color: #E24B4A; font-weight: 700; }
+  .partial { color: #BA7517; font-weight: 500; }
+  
+  @media print { body { background: white; } .section { box-shadow: none; border: 1px solid #ddd; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-tag">AI FOR SOCIAL GOOD · 大学生创新创业项目</div>
+  <h1><span>DormNoise Guardian</span><br>大学生宿舍噪音治理AI解决方案</h1>
+  <p class="cover-sub">让每一个大学生都拥有安静的休息权</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><strong>4000万+</strong>高校住宿生潜在用户</div>
+    <div class="cover-meta-item"><strong>5大</strong>系统性痛点维度</div>
+    <div class="cover-meta-item"><strong>3层</strong>技术架构闭环</div>
+    <div class="cover-meta-item"><strong>0</strong>现有方案真正解决问题</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 1 ===== -->
+<div class="section">
+  <div class="section-num">Step 01</div>
+  <h2 class="section-title">问题发现 — 我们真正要解决什么？</h2>
+  <p class="section-sub">Why · 你关心什么？为什么这件事值得做？</p>
+  <div class="section-body">
+
+    <h3>1.1 一句话问题定义</h3>
+    <div class="quote">
+      大学生宿舍噪音是一个<strong>"高频发生、多维伤害、现有方案全面失效"</strong>的真实痛点。核心矛盾是<strong>"个人安静权"与"集体生活噪音"</strong>之间缺乏技术调解手段。
+    </div>
+
+    <h3>1.2 三大噪音源全景分析</h3>
+
+    <table class="pain-table">
+      <thead>
+        <tr><th>噪音类型</th><th>具体场景</th><th>声压级</th><th>频次</th><th>可控性</th><th>痛点烈度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-red">人为噪音</span></td>
+          <td>室友游戏开麦/外放、深夜视频通话、串门聊天、作息不同步</td>
+          <td>55-75 dB</td>
+          <td>每天</td>
+          <td>低（碍于面子）</td>
+          <td>★★★★★</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-amber">装修/环境</span></td>
+          <td>校内装修施工、走廊脚步/摔门、电梯机械、水管共鸣</td>
+          <td>60-100 dB</td>
+          <td>周期性集中</td>
+          <td>极低（无法干预）</td>
+          <td>★★★★★</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-green">动物/突发</span></td>
+          <td>违规宠物、流浪猫狗、虫鸣、突发警报</td>
+          <td>45-90 dB</td>
+          <td>低频突发</td>
+          <td>极低</td>
+          <td>★★★☆☆</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>1.3 四大痛点维度深度拆解</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h4>生理影响（最严重）</h4>
+        <p><strong>入睡潜伏期</strong>从正常 10-15 分钟延长至 30-60 分钟；<strong>深睡（N3）占比</strong>从 15-20% 降至 8-12%；夜间觉醒次数从 1-2 次增至 4-8 次。长期后果：皮质醇升高→免疫力下降、头痛、耳鸣。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">😰</div>
+        <h4>心理影响</h4>
+        <p><strong>"忍耐→爆发"循环</strong>：第一天忍→第三天烦躁→第七天爆发→关系破裂→后悔→再忍。个别案例发展为<strong>噪音敏感症（misophonia）</strong>，听到特定声音就极度烦躁。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h4>社交影响</h4>
+        <p>中国大学生<strong>面子文化陷阱</strong>：不好意思直说，选择暗示而非直接沟通，对方根本没意识到。冲突升级路径：暗示→被动攻击→正面冲突→冷战→申请换宿。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h4>学业影响</h4>
+        <p>睡眠不足导致第二天课堂<strong>专注力下降 30-40%</strong>；深睡期是记忆巩固关键窗口，被打断后学习效率打折；考试期噪音敏感度放大，形成恶性循环。</p>
+      </div>
+    </div>
+
+    <h3>1.4 现有方案为什么全面失效？</h3>
+
+    <table class="cmp-table">
+      <thead>
+        <tr><th>方案</th><th>成本</th><th>主要失效原因</th><th>实际解决率</th><th>结论</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>海绵耳塞</td><td>¥10-30</td><td>低频穿透、佩戴不适、漏听闹钟、耳道炎</td><td class="partial">~40%</td><td class="cross">治标不治本</td></tr>
+        <tr><td>降噪耳机</td><td>¥800-2500</td><td>无法侧睡佩戴、突发音效果差、成本高</td><td class="partial">~25%</td><td class="cross">无法睡眠使用</td></tr>
+        <tr><td>白噪音App</td><td>免费-¥50</td><td>固定频段、无法适配实际噪音、掩盖闹钟</td><td class="partial">~30%</td><td class="cross">被动掩蔽</td></tr>
+        <tr><td>沟通协调</td><td>免费</td><td>面子顾虑、对方不改、关系恶化</td><td class="partial">~20%</td><td class="cross">依赖他人配合</td></tr>
+        <tr><td>找宿管/辅导员</td><td>免费</td><td>流程慢、装修无法干预、被视为"小事"</td><td class="partial">~15%</td><td class="cross">响应滞后</td></tr>
+        <tr><td>申请换宿舍</td><td>时间成本</td><td>名额有限、治标不治本、社交成本高</td><td class="partial">~10%</td><td class="cross">逃避而非解决</td></tr>
+        <tr style="background: #E1F5EE !important;"><td><strong>DormNoise Guardian</strong></td><td><strong>免费起</strong></td><td><strong>主动感知+智能应对+社区协作</strong></td><td><strong class="check">目标 80%+</strong></td><td><strong class="check">系统性解决</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3>1.5 典型用户画像 — 谁最需要这个解决方案？</h3>
+
+    <div class="persona">
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#E1F5EE; color:#0F6E56;">😴</div>
+        <div class="persona-name">"早睡党" 小林</div>
+        <div class="persona-tag">大二 · 22:30 想睡 · 室友熬夜到 2:00</div>
+        <div class="persona-story">每天被室友游戏声音吵到无法入睡，平均少睡 <strong>2.5 小时</strong>。不敢开口提醒，忍了半年后申请换宿失败，开始出现焦虑症状。核心痛点：<strong>不敢说，只能忍</strong>。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#FAEEDA; color:#854F0B;">📖</div>
+        <div class="persona-name">"备考党" 小赵</div>
+        <div class="persona-tag">大三 · 考研冲刺 · 楼下装修持续一个月</div>
+        <div class="persona-story">考研冲刺期楼下装修，电钻声穿透楼板，午休根本无法入睡。投诉无果，被迫每天去图书馆趴桌睡，<strong>颈椎出问题</strong>。核心痛点：<strong>不可控，无处可逃</strong>。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#EEEDFE; color:#534AB7;">🐱</div>
+        <div class="persona-name">"敏感型" 小陈</div>
+        <div class="persona-tag">大一 · 浅睡眠体质 · 窗外流浪猫</div>
+        <div class="persona-story">任何轻微声音都会惊醒，凌晨 3 点窗外流浪猫发情叫声让她彻夜难眠。室友觉得"没那么严重"，她感到<strong>无助且不被理解</strong>。核心痛点：<strong>无人理解的孤独感</strong>。</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>1.6 市场规模与问题严重程度</h3>
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">4000万+</div><div class="metric-label">中国高校住宿生总数</div></div>
+      <div class="metric"><div class="metric-num">82%</div><div class="metric-label">受宿舍噪音困扰的学生比例（调查估算）</div></div>
+      <div class="metric"><div class="metric-num">6.2h</div><div class="metric-label">受影响学生平均实际睡眠时长（低于健康标准7-9h）</div></div>
+      <div class="metric"><div class="metric-num">¥0</div><div class="metric-label">现有真正有效的系统性解决方案</div></div>
+    </div>
+
+    <div class="quote">
+      这不是一个小众需求。这是 4000 万大学生每天晚上都在经历的集体困境。<br>
+      <span class="quote-author">—— 问题不是"有没有"，而是"为什么还没有人真正解决"</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 2 ===== -->
+<div class="section">
+  <div class="section-num">Step 02</div>
+  <h2 class="section-title">开源AI工具与经验复用 — 站在巨人肩膀上</h2>
+  <p class="section-sub">What · 不需要从零造轮子，这些开源工具可以直接复用</p>
+  <div class="section-body">
+
+    <h3>2.1 技术选型总览</h3>
+    <div class="badge-row">
+      <span class="badge badge-teal">✓ 全部开源免费</span>
+      <span class="badge badge-blue">✓ 社区活跃</span>
+      <span class="badge badge-purple">✓ 可商用</span>
+      <span class="badge badge-amber">✓ 有移动端部署方案</span>
+    </div>
+
+    <h3>2.2 音频AI工具栈</h3>
+
+    <table class="pain-table">
+      <thead>
+        <tr><th>工具/框架</th><th>用途</th><th>成熟度</th><th>移动端部署</th><th>开源协议</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>OpenAI Whisper</strong>（tiny/base）</td>
+          <td>噪音类型语音识别（区分人声/非人声）</td>
+          <td>★★★★★</td>
+          <td>✓ CoreML 导出</td>
+          <td>MIT</td>
+        </tr>
+        <tr>
+          <td><strong>PyTorch Audio / torchaudio</strong></td>
+          <td>音频特征提取（MFCC/mel-spectrogram）</td>
+          <td>★★★★★</td>
+          <td>✓ PyTorch Mobile</td>
+          <td>BSD-3</td>
+        </tr>
+        <tr>
+          <td><strong>librosa</strong></td>
+          <td>音频分析（节拍、音调、分贝估算）</td>
+          <td>★★★★☆</td>
+          <td>部分（用C++重写核心）</td>
+          <td>ISC</td>
+        </tr>
+        <tr>
+          <td><strong>萤石/FxLMS自适应滤波</strong></td>
+          <td>主动降噪算法（软件级）</td>
+          <td>★★★★☆</td>
+          <td>✓ C++ 实现</td>
+          <td>无（自研）</td>
+        </tr>
+        <tr>
+          <td><strong>YAMNet</strong>（Google）</td>
+          <td>预训练音频事件分类（521类声音）</td>
+          <td>★★★★★</td>
+          <td>✓ TFLite 量化</td>
+          <td>Apache 2.0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2.3 睡眠科学与白噪音资源</h3>
+
+    <table class="pain-table">
+      <thead>
+        <tr><th>资源</th><th>内容</th><th>用途</th><th>获取方式</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>sleep-data（GitHub）</strong></td>
+          <td>公开睡眠数据集（加速度计/心率/环境音）</td>
+          <td>睡眠周期建模训练数据</td>
+          <td>开源数据集</td>
+        </tr>
+        <tr>
+          <td><strong>PhysioNet Sleep</strong></td>
+          <td>专业睡眠多导数据（EEG/EOG/EMG）</td>
+          <td>深睡期检测算法验证</td>
+          <td>免费学术使用</td>
+        </tr>
+        <tr>
+          <td><strong>myNoise（算法参考）</strong></td>
+          <td>粉红噪音/棕噪音/白噪音生成算法</td>
+          <td>自适应掩蔽音频生成</td>
+          <td>开源参考实现</td>
+        </tr>
+        <tr>
+          <td><strong>AudioSet（Google）</strong></td>
+          <td>210万条带标注音频片段</td>
+          <td>噪音分类模型预训练</td>
+          <td>免费下载</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2.4 IoT & 硬件方案（低成本部署路径）</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h4>纯软件方案（优先）</h4>
+        <p>仅用手机麦克风+算力，无需额外硬件。覆盖 <strong>80%</strong> 功能。入门门槛为 <strong>0</strong>。适合 MVP 快速验证。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔊</div>
+        <h4>智能音箱联动</h4>
+        <p>对接小爱/天猫精灵，播放自适应白噪音。硬件成本 <strong>¥0</strong>（用户已有）。API 对接成本低。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📟</div>
+        <h4>ESP32 分贝计节点</h4>
+        <p>自研低成本噪音传感器（INMP441 麦克风 + ESP32）。硬件成本 <strong>&lt;¥50</strong>。可部署在宿舍固定位置持续监测。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h4>智能灯控联动</h4>
+        <p>检测到睡眠时段+高噪音 → 自动调暗灯光作为提醒。HomeKit/米家 API 对接。硬件成本 <strong>¥30-80</strong>。</p>
+      </div>
+    </div>
+
+    <h3>2.5 前端技术栈</h3>
+
+    <table class="cmp-table">
+      <thead>
+        <tr><th>层级</th><th>推荐技术</th><th>理由</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>小程序端</td><td>微信小程序（uni-app 跨端）</td><td>中国大学生100%覆盖，无需安装</td></tr>
+        <tr><td>App端</td><td>React Native / Flutter</td><td>后台音频处理、推送通知能力更强</td></tr>
+        <tr><td>数据可视化</td><td>Chart.js / ECharts</td><td>噪音趋势图表、睡眠报告</td></tr>
+        <tr><td>后端API</td><td>Python FastAPI + PostgreSQL</td><td>AI模型部署、用户数据管理</td></tr>
+        <tr><td>AI模型部署</td><td>ONNX Runtime / TensorFlow Lite</td><td>移动端推理，延迟 &lt;100ms</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      核心技术障碍不在于"能不能做"，而在于<strong>"如何在保护隐私的前提下，让AI在本地高效运行"</strong>。<br>
+      答案是：所有音频处理均在手机端完成，只上传<strong>特征向量</strong>（非原始音频），彻底消除隐私顾虑。
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 3 ===== -->
+<div class="section">
+  <div class="section-num">Step 03</div>
+  <h2 class="section-title">产品方案 — DormNoise Guardian</h2>
+  <p class="section-sub">How · 是谁的AI产品？→ 大学生自己的产品，服务大学生</p>
+  <div class="section-body">
+
+    <h3>3.1 产品定位</h3>
+    <p><span class="hl">DormNoise Guardian 不是一款"降噪耳机"或"耳塞"，而是一个以AI为核心的宿舍睡眠环境管理系统</span>——它感知、理解、应对、并协调宿舍噪音问题，是每位大学生的"睡眠守护助手"。</p>
+
+    <div class="badge-row">
+      <span class="badge badge-teal">隐私优先（本地处理）</span>
+      <span class="badge badge-blue">大学生自制</span>
+      <span class="badge badge-purple">公益起步</span>
+      <span class="badge badge-amber">开放共建</span>
+    </div>
+
+    <h3>3.2 三大核心功能模块</h3>
+
+    <!-- Module 1 -->
+    <div class="arch-box" style="border-color: #E24B4A;">
+      <h4 style="color: #A32D2D;">📊 模块一：实时噪音检测与理解</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>手机麦克风实时监听（可设置静默时段）</li>
+            <li>AI自动分类：人声 / 施工 / 电器 / 动物 / 其他</li>
+            <li>分贝等级实时显示 + 超阈值震动提醒</li>
+            <li>噪音事件时间轴记录</li>
+            <li>每周/每月噪音报告生成</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">技术实现：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>YAMNet 模型（TFLite 量化）→ 噪音分类</li>
+            <li>分贝估算：短时能量 RMS → dB SPL 校准</li>
+            <li>本地推理 &lt;100ms，零隐私上传</li>
+            <li>电量优化：自适应采样频率</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="arch-box" style="border-color: #1D9E75;">
+      <h4 style="color: #0F6E56;">🌙 模块二：智能睡眠辅助</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>自适应白噪音掩蔽（不是固定播放）</li>
+            <li>根据环境噪音频谱动态匹配掩蔽音频</li>
+            <li>深睡期检测到突发高噪 → 自动增强</li>
+            <li>渐进式智能唤醒（浅睡窗口内唤醒）</li>
+            <li>睡眠质量评分 + 改善建议</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">技术实现：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>粉红噪音/棕噪音自适应生成算法</li>
+            <li>睡眠周期预测（基于历史数据 + 加速度计）</li>
+            <li>智能音量调节（不惊醒，只掩蔽）</li>
+            <li>与闹钟联动，确保唤醒成功率</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="arch-box" style="border-color: #7F77DD;">
+      <h4 style="color: #534AB7;">🤝 模块三：社区协作（差异化亮点）</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li><strong>楼层噪音热力图</strong>（匿名聚合）</li>
+            <li>室友作息协调工具（共享安静时段）</li>
+            <li>匿名温和反馈（系统代发提醒）</li>
+            <li>宿管端数据对接（B端价值）</li>
+            <li>选宿舍噪音参考（新生福利）</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">为什么这是亮点？</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>噪音矛盾本质是<strong>社交问题</strong>，不是纯技术问题</li>
+            <li>用数据代替争吵（"系统显示此时噪音超标"）</li>
+            <li>匿名反馈避免当面冲突</li>
+            <li>社区数据产生网络效应（越多人用越准确）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>3.3 产品使用流程（用户旅程）</h3>
+
+    <div class="roadmap">
+      <div class="roadmap-item done">
+        <div class="roadmap-date">第1天</div>
+        <div class="roadmap-title">安装 &amp; 校准</div>
+        <div class="roadmap-desc">下载小程序/App → 设置睡眠时段 → 麦克风校准（5分钟环境音采集建立基线）</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">第1-3天</div>
+        <div class="roadmap-title">数据采集期</div>
+        <div class="roadmap-desc">AI学习你的睡眠模式 + 宿舍噪音特征 → 生成初步噪音报告 → 自适应白噪音开始工作</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">第7天</div>
+        <div class="roadmap-title">首份睡眠报告</div>
+        <div class="roadmap-desc">查看本周噪音热力图 → 发现"每晚23:00-01:00噪音最高" → 系统建议与室友协调作息</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">第14天</div>
+        <div class="roadmap-title">社区功能激活</div>
+        <div class="roadmap-desc">加入楼栋噪音地图 → 发现"3楼比5楼安静" → 匿名发送噪音提醒给室友 → 收到室友作息协调请求</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">第30天</div>
+        <div class="roadmap-title">睡眠质量显著提升</div>
+        <div class="roadmap-desc">月度报告显示深睡时长增加35% → 白天精力评分提升 → 愿意推荐给同学（口碑传播）</div>
+      </div>
+    </div>
+
+    <h3>3.4 隐私保护设计（核心信任基础）</h3>
+
+    <table class="cmp-table">
+      <thead>
+        <tr><th>风险点</th><th>我们的方案</th><th>用户可选</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>麦克风监听隐私</td><td><strong>本地处理</strong>，原始音频不出手机，只上传特征向量</td><td>可随时关闭监听</td></tr>
+        <tr><td>数据泄露</td><td>端到端加密，服务端只存<strong>匿名聚合数据</strong></td><td>可选择不贡献社区数据</td></tr>
+        <tr><td>被室友发现"告密"</td><td>匿名反馈机制，系统代发，<strong>不暴露是谁举报的</strong></td><td>可关闭社区功能</td></tr>
+        <tr><td>学校监控学生</td><td>社区数据<strong>去中心化存储</strong>，学校端仅获取脱敏聚合报告</td><td>严格权限控制</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 4 ===== -->
+<div class="section">
+  <div class="section-num">Step 04</div>
+  <h2 class="section-title">可持续性路径 — 从公益到商业化</h2>
+  <p class="section-sub">How to sustain · 公益起步，商业扩展，社会价值与商业价值并重</p>
+  <div class="section-body">
+
+    <h3>4.1 总体路径规划</h3>
+
+    <div style="background: linear-gradient(135deg, #EEEDFE 0%, #E1F5EE 100%); border-radius: 14px; padding: 28px; margin: 20px 0;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:200px; text-align:center; padding:16px; background:white; border-radius:10px;">
+          <div style="font-size:11px; color:#534AB7; font-weight:600; margin-bottom:4px;">阶段一（0-12个月）</div>
+          <div style="font-size:18px; font-weight:700; color:#1a1a2e;">校园公益 MVP</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">免费 · 开源 · 口碑</div>
+        </div>
+        <div style="font-size:24px; color:#7F77DD;">→</div>
+        <div style="flex:1; min-width:200px; text-align:center; padding:16px; background:white; border-radius:10px;">
+          <div style="font-size:11px; color:#0F6E56; font-weight:600; margin-bottom:4px;">阶段二（12-36个月）</div>
+          <div style="font-size:18px; font-weight:700; color:#1a1a2e;">商业化扩展</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">订阅 · 硬件 · SaaS</div>
+        </div>
+        <div style="font-size:24px; color:#1D9E75;">→</div>
+        <div style="flex:1; min-width:200px; text-align:center; padding:16px; background:white; border-radius:10px;">
+          <div style="font-size:11px; color:#854F0B; font-weight:600; margin-bottom:4px;">阶段三（36个月+）</div>
+          <div style="font-size:18px; font-weight:700; color:#1a1a2e;">社会企业</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">影响力投资 · 标准制定</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>4.2 阶段一：校园公益 MVP（0-12个月）</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>目标用户</h4>
+        <p>1-2 所高校试点，1000-5000 名种子用户</p>
+      </div>
+      <div class="card">
+        <h4>核心策略</h4>
+        <p>免费完全开放 + 校园KOL推广 + 开源核心算法吸引开发者贡献</p>
+      </div>
+      <div class="card">
+        <h4>关键指标</h4>
+        <p>DAU、睡眠质量改善率、NPS净推荐值、口碑传播系数</p>
+      </div>
+      <div class="card">
+        <h4>成本来源</h4>
+        <p>大学生创新创业基金、学校资助、开源社区赞助</p>
+      </div>
+    </div>
+
+    <h3>4.3 阶段二：商业化扩展（12-36个月）</h3>
+
+    <table class="pain-table">
+      <thead>
+        <tr><th>收入来源</th><th>产品形态</th><th>定价策略</th><th>预估年收入（成熟期）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>C端订阅</strong></td>
+          <td>Pro版：高级睡眠分析 + 硬件联动 + 优先客服</td>
+          <td>¥9.9/月 或 ¥79/年</td>
+          <td>¥500万（50万付费用户）</td>
+        </tr>
+        <tr>
+          <td><strong>硬件套装</strong></td>
+          <td>DormNoise 智能睡眠灯 + 分贝传感器</td>
+          <td>¥199-299/套</td>
+          <td>¥1000万（5万套）</td>
+        </tr>
+        <tr>
+          <td><strong>B端 SaaS</strong></td>
+          <td>学校/公寓噪音管理系统（整栋楼数据）</td>
+          <td>¥5-20万/年/校</td>
+          <td>¥1000万（100所学校）</td>
+        </tr>
+        <tr>
+          <td><strong>品牌合作</strong></td>
+          <td>耳塞/床垫/助眠品牌植入推荐</td>
+          <td>CPC/CPA 分成</td>
+          <td>¥200万</td>
+        </tr>
+        <tr style="background:#E1F5EE !important; font-weight:600;">
+          <td>合计</td>
+          <td>—</td>
+          <td>—</td>
+          <td>¥2700万/年</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.4 竞争格局分析</h3>
+
+    <table class="cmp-table">
+      <thead>
+        <tr><th>竞品</th><th>方向</th><th>优势</th><th>劣势</th><th>我们的差异化</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>白噪音App（小睡眠等）</td>
+          <td>助眠音频</td>
+          <td>内容丰富</td>
+          <td>被动掩蔽，不感知环境</td>
+          <td><strong>自适应 + 主动感知</strong></td>
+        </tr>
+        <tr>
+          <td>降噪耳机（Sony/Bose）</td>
+          <td>硬件降噪</td>
+          <td>降噪效果好</td>
+          <td>贵、不能戴着睡</td>
+          <td><strong>软件方案 + 睡眠场景专用</strong></td>
+        </tr>
+        <tr>
+          <td>睡眠监测App（AutoSleep等）</td>
+          <td>睡眠跟踪</td>
+          <td>数据分析好</td>
+          <td>不解决噪音问题</td>
+          <td><strong>监测 + 应对一体</strong></td>
+        </tr>
+        <tr style="background:#E1F5EE !important;">
+          <td><strong>DormNoise Guardian</strong></td>
+          <td><strong>噪音治理+睡眠辅助</strong></td>
+          <td><strong>宿舍场景深度定制</strong></td>
+          <td>品牌知名度0（初期）</td>
+          <td><strong>社区协作 + 社交调解</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.5 关键风险与应对</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>⚠️ 风险：隐私质疑</h4>
+        <p><strong>应对</strong>：开源音频处理代码，接受第三方安全审计；所有处理本地化；隐私政策透明化。</p>
+      </div>
+      <div class="card">
+        <h4>⚠️ 风险：学校禁用</h4>
+        <p><strong>应对</strong>：主动对接学校后勤部门，展示噪音数据对宿舍管理的价值；提供免费B端工具换取准入。</p>
+      </div>
+      <div class="card">
+        <h4>⚠️ 风险：竞品抄袭</h4>
+        <p><strong>应对</strong>：社区数据网络效应是护城河；持续迭代；开源核心建立开发者生态。</p>
+      </div>
+      <div class="card">
+        <h4>⚠️ 风险：用户增长慢</h4>
+        <p><strong>应对</strong>：种子用户深度运营；校园大使计划；与学校心理健康中心合作推广。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 5 ===== -->
+<div class="section">
+  <div class="section-num">Step 05</div>
+  <h2 class="section-title">价值观与影响力 — 关心睡眠，就去改变噪音</h2>
+  <p class="section-sub">Values · 全民共建AI生活 · 社会应用 · 学生创业/就业</p>
+  <div class="section-body">
+
+    <div class="quote" style="font-size:16px; padding:24px 28px; background: linear-gradient(135deg, #E1F5EE 0%, #EEEDFE 100%); border-color: #1D9E75;">
+      "你关心什么，就去改变什么。"<br>
+      这句话来自白板底部的灵魂提问——它也应该是每个参与这个项目的大学生的座右铭。<br><br>
+      <strong>DormNoise Guardian 不只是一个产品，它是一次证明：<br>
+      AI 不只是大公司的玩具，普通大学生也能用它解决身边真实的问题。</strong>
+    </div>
+
+    <h3>5.1 社会价值</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h4>推动"安静权"意识觉醒</h4>
+        <p>将宿舍安静权从"可有可无的福利"提升为"应当保障的基本权益"，推动高校宿舍噪音管理标准化。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💚</div>
+        <h4>改善大学生身心健康</h4>
+        <p>直接改善 4000 万住宿生的睡眠质量，间接降低因睡眠不足引发的心理问题、学业问题。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h4>减少宿舍矛盾冲突</h4>
+        <p>用数据代替争吵，用系统代替人际摩擦，让宿舍关系更和谐。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📢</div>
+        <h4>为高校管理提供数据支撑</h4>
+        <p>噪音热力图为学校宿舍分配、施工时间管理、文明宿舍评比提供数据依据。</p>
+      </div>
+    </div>
+
+    <h3>5.2 对学生参与者的价值（全民共建AI生活）</h3>
+
+    <div class="roadmap">
+      <div class="roadmap-item done">
+        <div class="roadmap-date">AI工程师方向</div>
+        <div class="roadmap-title">音频AI + 移动端部署实战</div>
+        <div class="roadmap-desc">YAMNet迁移学习、TFLite量化、On-device AI优化——这些是大厂AI岗的核心技能，在课堂上学不到，在项目中能实战。</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">产品经理方向</div>
+        <div class="roadmap-title">从0到1的完整产品历练</div>
+        <div class="roadmap-desc">需求分析→原型设计→用户访谈→数据驱动迭代，一个校园产品就能跑完完整闭环。</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">运营/市场方向</div>
+        <div class="roadmap-title">校园场景增长实战</div>
+        <div class="roadmap-desc">校园KOL合作、种子用户运营、口碑传播机制设计——低成本的校园增长比互联网大厂的投放更有学习价值。</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">所有人</div>
+        <div class="roadmap-title">一份真正有分量的简历项目</div>
+        <div class="roadmap-desc">"参与开发了一款服务 10 万+ 大学生的AI产品"——这比十个课堂作业更有说服力。</div>
+      </div>
+    </div>
+
+    <h3>5.3 社会应用场景延展</h3>
+
+    <table class="pain-table">
+      <thead>
+        <tr><th>场景</th><th>问题</th><th>DormNoise技术迁移路径</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>医院病房</strong></td>
+          <td>仪器噪音+人员走动影响病人休息</td>
+          <td>噪音监测+自适应白噪音+护士站提醒</td>
+        </tr>
+        <tr>
+          <td><strong>共享办公空间</strong></td>
+          <td>开放式办公环境噪音干扰</td>
+          <td>个人噪音评分+团队安静协调</td>
+        </tr>
+        <tr>
+          <td><strong>养老院</strong></td>
+          <td>老人对噪音更敏感，睡眠质量差</td>
+          <td>简化版App+硬件套装</td>
+        </tr>
+        <tr>
+          <td><strong>长途交通（高铁/飞机）</strong></td>
+          <td>旅途噪音影响休息</td>
+          <td>离线版白噪音生成器</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:16px; font-size:14px; color:#5F5E5A; font-style:italic;">一个宿舍里诞生的想法，最终可能改善所有需要安静的场景。</p>
+
+    <h3>5.4 影响力衡量指标</h3>
+
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">10万+</div><div class="metric-label">第一年目标服务用户数</div></div>
+      <div class="metric"><div class="metric-num">+35%</div><div class="metric-label">用户深睡时长平均提升</div></div>
+      <div class="metric"><div class="metric-num">500+</div><div class="metric-label">参与项目的学生开发者</div></div>
+      <div class="metric"><div class="metric-num">100+</div><div class="metric-label">合作高校/机构</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== IMPLEMENTATION ROADMAP ===== -->
+<div class="section">
+  <div class="section-num">附录</div>
+  <h2 class="section-title">实施路线图 — 从想法到产品</h2>
+  <p class="section-sub">详细的时间节点与里程碑规划</p>
+  <div class="section-body">
+
+    <table class="pain-table">
+      <thead>
+        <tr><th>时间</th><th>里程碑</th><th>交付物</th><th>团队规模</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>第1-2月</strong></td>
+          <td>需求验证 + 技术预研</td>
+          <td>用户调研报告、技术可行性验证、原型设计稿</td>
+          <td>3-5人</td>
+        </tr>
+        <tr>
+          <td><strong>第3-4月</strong></td>
+          <td>MVP开发（小程序版）</td>
+          <td>噪音检测+白噪音播放+基础报告，内测版上线</td>
+          <td>5-8人</td>
+        </tr>
+        <tr>
+          <td><strong>第5-6月</strong></td>
+          <td>校园试点 + 迭代</td>
+          <td>1所高校500人试用，收集反馈，快速迭代3个版本</td>
+          <td>8-10人</td>
+        </tr>
+        <tr>
+          <td><strong>第7-9月</strong></td>
+          <td>社区功能 + App版开发</td>
+          <td>楼层噪音地图、匿名反馈、室友协调功能上线</td>
+          <td>10-15人</td>
+        </tr>
+        <tr>
+          <td><strong>第10-12月</strong></td>
+          <td>扩展至5所高校 + 准备商业化</td>
+          <td>用户达1万+，完成商业模式验证，启动融资</td>
+          <td>15-20人</td>
+        </tr>
+        <tr style="background:#EEEDFE !important;">
+          <td><strong>第13-24月</strong></td>
+          <td>商业化扩展</td>
+          <td>Pro版上线、硬件套装发布、B端SaaS签约</td>
+          <td>20-40人</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3>团队构成建议（学生创业团队）</h3>
+
+    <div class="card-grid">
+      <div class="card"><h4>技术负责人（1人）</h4><p>AI模型部署 + 后端架构，计算机/AI专业</p></div>
+      <div class="card"><h4>前端/小程序开发（2人）</h4><p>微信小程序 + App开发，计算机专业</p></div>
+      <div class="card"><h4>产品设计（1人）</h4><p>UI/UX + 用户研究，设计专业优先</p></div>
+      <div class="card"><h4>运营/校园推广（2人）</h4><p>校园渠道拓展 + 社群运营，市场营销专业</p></div>
+      <div class="card"><h4>数据分析（1人）</h4><p>睡眠质量模型 + A/B测试，统计/数据科学专业</p></div>
+      <div class="card"><h4>硬件（可选，1人）</h4><p>ESP32开发 + 传感器选型，物联网专业</p></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="section" style="text-align:center; padding:32px 44px;">
+  <div style="font-size:15px; font-weight:600; color:#1a1a2e; margin-bottom:12px;">DormNoise Guardian</div>
+  <p style="font-size:13px; color:#888780; margin-bottom:16px;">让每一个大学生都拥有安静的休息权</p>
+  <div class="badge-row" style="justify-content:center;">
+    <span class="badge badge-teal">GitHub: github.com/dormnoise</span>
+    <span class="badge badge-blue">联系: team@dormnoise.ai</span>
+    <span class="badge badge-purple">微信公众号: DormNoise</span>
+  </div>
+</div>
+
+<div class="footer">
+  DormNoise Guardian 项目方案 v1.0 · 2026年6月 · 内部讨论稿<br>
+  由 AI 辅助生成，供项目团队讨论使用
+</div>
+
+</div>
+</body>
+</html>
