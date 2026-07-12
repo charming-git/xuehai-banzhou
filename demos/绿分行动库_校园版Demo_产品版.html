@@ -1,0 +1,3073 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绿分行动库｜校园绿色行动工作台</title>
+  <style>
+    :root {
+      --bg: #f5faf7;
+      --paper: #ffffff;
+      --paper-soft: #f0f7f4;
+      --ink: #132d28;
+      --muted: #61746e;
+      --line: #d9e8e2;
+      --green: #13845b;
+      --green-dark: #0c5d43;
+      --mint: #dff4e9;
+      --blue: #276cae;
+      --blue-soft: #e7f1fb;
+      --amber: #b86c12;
+      --amber-soft: #fff1d6;
+      --red: #c85237;
+      --red-soft: #ffe8df;
+      --purple: #6756b5;
+      --purple-soft: #eeeaff;
+      --teal: #0f807a;
+      --shadow: 0 18px 44px rgba(20, 86, 61, 0.11);
+      --shadow-soft: 0 10px 24px rgba(20, 86, 61, 0.07);
+      --radius: 8px;
+      --max: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      line-height: 1.55;
+      background:
+        linear-gradient(90deg, rgba(19, 132, 91, .045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(39, 108, 174, .045) 1px, transparent 1px),
+        linear-gradient(180deg, #fbfdf9 0%, #f3faf7 42%, #eef7f8 100%);
+      background-size: 34px 34px, 34px 34px, auto;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(19, 132, 91, .14);
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 30px rgba(25, 92, 69, .07);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 176px;
+      border: 0;
+      background: transparent;
+      color: var(--green-dark);
+      text-align: left;
+      padding: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: 0 9px 18px rgba(19, 132, 91, .22);
+    }
+
+    .brand-title {
+      display: block;
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1.05;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .desktop-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-button {
+      min-height: 38px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      background: transparent;
+      color: #3a5d55;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0;
+      white-space: nowrap;
+      transition: background .18s ease, border-color .18s ease, color .18s ease;
+    }
+
+    .nav-button:hover,
+    .nav-button.is-active {
+      color: var(--green-dark);
+      background: var(--mint);
+      border-color: rgba(19, 132, 91, .18);
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 172px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 7px 10px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #e9fbf1, #e6f1fb);
+      color: var(--green-dark);
+      font-weight: 900;
+      border: 1px solid rgba(19, 132, 91, .2);
+    }
+
+    .user-pill strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .user-pill span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 20px 84px;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.is-active {
+      display: block;
+      animation: rise .2s ease both;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin: 0 0 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(28px, 5vw, 46px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+      font-size: clamp(22px, 3vw, 31px);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+      line-height: 1.24;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .94);
+      box-shadow: var(--shadow-soft);
+      padding: 16px;
+    }
+
+    .panel.is-strong {
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .panel-title h3 {
+      margin: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .btn {
+      min-height: 40px;
+      border: 1px solid rgba(19, 132, 91, .18);
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green), var(--teal));
+      padding: 9px 13px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0;
+      box-shadow: 0 10px 20px rgba(19, 132, 91, .18);
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(19, 132, 91, .23);
+    }
+
+    .btn.secondary {
+      color: var(--green-dark);
+      background: #fff;
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .btn.blue {
+      background: linear-gradient(135deg, var(--blue), #348fc9);
+      border-color: rgba(39, 108, 174, .22);
+    }
+
+    .btn.amber {
+      color: #603607;
+      background: linear-gradient(135deg, #ffe4aa, #ffd06a);
+      border-color: rgba(184, 108, 18, .25);
+    }
+
+    .btn.red {
+      background: linear-gradient(135deg, var(--red), #d96d55);
+      border-color: rgba(200, 82, 55, .24);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 24px;
+      background: rgba(19, 132, 91, .12);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .btn .icon {
+      background: rgba(255, 255, 255, .18);
+      color: inherit;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 9px;
+      align-items: stretch;
+    }
+
+    .input {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      outline: 0;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .input:focus {
+      border-color: rgba(19, 132, 91, .55);
+      box-shadow: 0 0 0 4px rgba(19, 132, 91, .1);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #31564f;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0;
+      min-height: 34px;
+    }
+
+    .chip:hover,
+    .chip.is-active {
+      border-color: rgba(19, 132, 91, .3);
+      background: var(--mint);
+      color: var(--green-dark);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      background: var(--paper-soft);
+      color: #335b52;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .tag.green {
+      background: var(--mint);
+      color: var(--green-dark);
+    }
+
+    .tag.blue {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .tag.amber {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .tag.red {
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .tag.purple {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0 0;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .78);
+      padding: 13px;
+      min-height: 86px;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--green-dark);
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero-workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      min-height: 360px;
+      padding: 22px;
+      border: 1px solid rgba(19, 132, 91, .2);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(223, 244, 233, .94), rgba(231, 241, 251, .86) 56%, rgba(255, 241, 214, .82));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      width: 190px;
+      height: 120px;
+      border: 1px solid rgba(19, 132, 91, .16);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(19,132,91,.11) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(39,108,174,.12) 1px, transparent 1px),
+        rgba(255,255,255,.38);
+      background-size: 22px 22px;
+      opacity: .85;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .quick-action {
+      min-height: 86px;
+      border: 1px solid rgba(19, 132, 91, .16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .86);
+      color: var(--ink);
+      padding: 12px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      justify-content: space-between;
+    }
+
+    .quick-action strong {
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .quick-action span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .today-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .task-row,
+    .detail-row,
+    .issue-row,
+    .record-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 10px;
+      min-height: 58px;
+    }
+
+    .task-check {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: transparent;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .task-row.is-done .task-check {
+      border-color: rgba(19, 132, 91, .3);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .progress {
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      background: #e4eee9;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      width: var(--value, 0%);
+      transition: width .2s ease;
+    }
+
+    .result-card {
+      border: 1px solid rgba(19, 132, 91, .18);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 16px;
+      min-height: 236px;
+    }
+
+    .result-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 25px 1fr;
+      gap: 8px;
+      align-items: start;
+      color: #31564f;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .steps b {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--paper-soft);
+      color: var(--green-dark);
+      font-size: 12px;
+    }
+
+    .campus-map {
+      min-height: 440px;
+      border: 1px solid rgba(19, 132, 91, .18);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(19,132,91,.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(39,108,174,.08) 1px, transparent 1px),
+        linear-gradient(135deg, #eff9f3, #eaf4fb 56%, #fff8e8);
+      background-size: 28px 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .map-zone {
+      position: absolute;
+      border: 1px solid rgba(19, 132, 91, .14);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .55);
+      color: rgba(19, 45, 40, .55);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .zone-dorm {
+      left: 8%;
+      top: 12%;
+      width: 22%;
+      height: 31%;
+    }
+
+    .zone-food {
+      left: 42%;
+      top: 9%;
+      width: 24%;
+      height: 22%;
+    }
+
+    .zone-library {
+      right: 8%;
+      top: 34%;
+      width: 24%;
+      height: 28%;
+    }
+
+    .zone-express {
+      left: 18%;
+      bottom: 12%;
+      width: 28%;
+      height: 22%;
+    }
+
+    .map-pin {
+      position: absolute;
+      min-width: 136px;
+      border: 1px solid rgba(19, 132, 91, .22);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .94);
+      color: var(--ink);
+      padding: 9px 10px;
+      text-align: left;
+      box-shadow: 0 10px 22px rgba(20, 86, 61, .12);
+      transition: transform .16s ease, border-color .16s ease;
+    }
+
+    .map-pin:hover,
+    .map-pin.is-active {
+      transform: translateY(-2px);
+      border-color: rgba(19, 132, 91, .55);
+    }
+
+    .map-pin strong,
+    .point-card strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .map-pin span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .pin-dorm {
+      left: 14%;
+      top: 28%;
+    }
+
+    .pin-food {
+      left: 48%;
+      top: 24%;
+    }
+
+    .pin-express {
+      left: 28%;
+      bottom: 20%;
+    }
+
+    .pin-battery {
+      right: 14%;
+      top: 48%;
+    }
+
+    .pin-recycle {
+      right: 32%;
+      bottom: 18%;
+    }
+
+    .point-list {
+      display: grid;
+      gap: 10px;
+      max-height: 440px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .point-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 12px;
+      text-align: left;
+      display: grid;
+      gap: 8px;
+    }
+
+    .point-card.is-active {
+      border-color: rgba(19, 132, 91, .45);
+      background: #fbfffd;
+    }
+
+    .status-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .scan-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .qr-box {
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, var(--ink) 10px, transparent 10px) 0 0 / 34px 34px,
+        linear-gradient(180deg, var(--ink) 10px, transparent 10px) 0 0 / 34px 34px,
+        #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .qr-box::before,
+    .qr-box::after {
+      content: "";
+      position: absolute;
+      width: 76px;
+      height: 76px;
+      border: 13px solid #fff;
+      box-shadow: inset 0 0 0 12px var(--ink);
+      background: var(--ink);
+    }
+
+    .qr-box::before {
+      left: 24px;
+      top: 24px;
+    }
+
+    .qr-box::after {
+      right: 24px;
+      bottom: 24px;
+    }
+
+    .scanner-line {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 28%;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, #20d78c, transparent);
+      box-shadow: 0 0 16px rgba(32, 215, 140, .8);
+      animation: scan 2.3s ease-in-out infinite;
+    }
+
+    @keyframes scan {
+      0%,
+      100% {
+        transform: translateY(-52px);
+      }
+      50% {
+        transform: translateY(142px);
+      }
+    }
+
+    .step-track {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0 16px;
+    }
+
+    .step-pill {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--muted);
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .step-pill.is-active,
+    .step-pill.is-done {
+      background: var(--mint);
+      color: var(--green-dark);
+      border-color: rgba(19, 132, 91, .28);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .choice {
+      min-height: 64px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      padding: 10px;
+      text-align: left;
+      font-weight: 850;
+    }
+
+    .choice span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .choice:hover,
+    .choice.is-selected {
+      border-color: rgba(19, 132, 91, .46);
+      background: var(--mint);
+      color: var(--green-dark);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .table th,
+    .table td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .table th {
+      color: var(--muted);
+      background: var(--paper-soft);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .reward-card,
+    .job-card,
+    .game-card,
+    .account-tile,
+    .rank-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+      display: grid;
+      gap: 9px;
+      min-height: 134px;
+    }
+
+    .reward-card button,
+    .job-card button {
+      justify-self: start;
+    }
+
+    .game-stage {
+      min-height: 322px;
+      border: 1px solid rgba(39, 108, 174, .16);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #ffffff, #eef7ff);
+      padding: 18px;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .answer {
+      min-height: 66px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      padding: 12px;
+      text-align: left;
+      font-weight: 900;
+    }
+
+    .answer.is-correct {
+      border-color: rgba(19, 132, 91, .45);
+      background: var(--mint);
+      color: var(--green-dark);
+    }
+
+    .answer.is-wrong {
+      border-color: rgba(200, 82, 55, .35);
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .feedback-box {
+      min-height: 54px;
+      border: 1px dashed rgba(19, 132, 91, .28);
+      border-radius: var(--radius);
+      background: rgba(223, 244, 233, .45);
+      padding: 12px;
+      color: #2d594f;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .member-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .member-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 10px;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: #e5eee9;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: var(--value, 50%);
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+
+    .ops-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .issue-row {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+
+    .issue-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: flex-end;
+    }
+
+    .report-canvas {
+      border: 1px solid rgba(39, 108, 174, .2);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(231, 241, 251, .92), rgba(255, 255, 255, .96) 52%, rgba(255, 241, 214, .72));
+      padding: 18px;
+    }
+
+    .report-lines {
+      display: grid;
+      gap: 9px;
+      margin: 14px 0;
+    }
+
+    .report-line {
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      color: #31564f;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 12px;
+      align-items: start;
+      border-left: 3px solid rgba(19, 132, 91, .2);
+      padding-left: 12px;
+    }
+
+    .timeline-item time {
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      z-index: 100;
+      transform: translateX(-50%) translateY(24px);
+      min-width: min(420px, calc(100vw - 32px));
+      border: 1px solid rgba(19, 132, 91, .22);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .97);
+      color: var(--ink);
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(10, 30, 25, .46);
+    }
+
+    .modal.is-visible {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: min(720px, 100%);
+      max-height: min(760px, calc(100vh - 40px));
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: none;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(16px);
+    }
+
+    .mobile-nav button {
+      min-height: 58px;
+      border: 0;
+      border-right: 1px solid rgba(217, 232, 226, .72);
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .mobile-nav button.is-active {
+      color: var(--green-dark);
+      background: var(--mint);
+    }
+
+    @media (max-width: 1100px) {
+      .topbar-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .user-pill {
+        display: none;
+      }
+
+      .hero-workbench,
+      .scan-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid.four {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .desktop-nav {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding: 18px 14px 84px;
+      }
+
+      .page-head {
+        flex-direction: column;
+      }
+
+      .grid.two,
+      .grid.three,
+      .grid.four,
+      .ops-board {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-strip,
+      .action-grid,
+      .choice-grid,
+      .answer-grid,
+      .step-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .campus-map {
+        min-height: 360px;
+      }
+
+      .map-pin {
+        min-width: 118px;
+        padding: 8px;
+      }
+
+      .report-line {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-nav {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .topbar-inner {
+        padding: 11px 14px;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .hero-card {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .stat-strip,
+      .action-grid,
+      .choice-grid,
+      .answer-grid,
+      .step-track {
+        grid-template-columns: 1fr;
+      }
+
+      .task-row,
+      .detail-row,
+      .record-row,
+      .member-row {
+        grid-template-columns: 1fr;
+      }
+
+      .campus-map {
+        min-height: 430px;
+      }
+
+      .map-zone {
+        display: none;
+      }
+
+      .pin-dorm {
+        left: 7%;
+        top: 10%;
+      }
+
+      .pin-food {
+        left: 48%;
+        top: 25%;
+      }
+
+      .pin-express {
+        left: 10%;
+        bottom: 22%;
+      }
+
+      .pin-battery {
+        right: 8%;
+        top: 52%;
+      }
+
+      .pin-recycle {
+        right: 28%;
+        bottom: 8%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="brand" type="button" data-nav="home" aria-label="返回首页">
+        <span class="brand-mark">分</span>
+        <span>
+          <span class="brand-title">绿分行动库</span>
+          <span class="brand-subtitle">Campus Eco OS</span>
+        </span>
+      </button>
+      <nav class="desktop-nav" aria-label="主导航">
+        <button class="nav-button is-active" type="button" data-nav="home">首页</button>
+        <button class="nav-button" type="button" data-nav="assistant">AI 分类</button>
+        <button class="nav-button" type="button" data-nav="map">回收地图</button>
+        <button class="nav-button" type="button" data-nav="points">绿色积分</button>
+        <button class="nav-button" type="button" data-nav="game">游戏乐园</button>
+        <button class="nav-button" type="button" data-nav="dorm">宿舍分流</button>
+        <button class="nav-button" type="button" data-nav="jobs">绿色岗位</button>
+        <button class="nav-button" type="button" data-nav="ops">后勤端</button>
+        <button class="nav-button" type="button" data-nav="school">校方端</button>
+        <button class="nav-button" type="button" data-nav="account">我的账户</button>
+      </nav>
+      <button class="user-pill" type="button" data-nav="account" aria-label="进入我的账户">
+        <span class="avatar">林</span>
+        <span>
+          <strong>林同学</strong>
+          <span><b class="js-points">328</b> 绿色积分</span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="view is-active" data-view="home">
+      <div class="hero-workbench">
+        <div class="hero-card">
+          <div class="hero-content">
+            <p class="eyebrow">学生工作台</p>
+            <h1>今天想分什么？</h1>
+            <p class="lead">拍一下、问一句、扫一下，分类结果、最近点位和绿色积分都会同步到你的校园行动账户。</p>
+            <div class="stat-strip">
+              <div class="stat"><span>当前积分</span><strong class="js-points">328</strong></div>
+              <div class="stat"><span>今日任务</span><strong><b id="todayDone">2</b>/5</strong></div>
+              <div class="stat"><span>连续打卡</span><strong id="streakDays">7</strong></div>
+              <div class="stat"><span>待复核</span><strong id="pendingPoints">14</strong></div>
+            </div>
+            <div class="action-grid">
+              <button class="quick-action" type="button" data-nav="assistant">
+                <span class="icon">AI</span>
+                <strong>开始分类</strong>
+                <span>文字或拍照识别</span>
+              </button>
+              <button class="quick-action" type="button" data-nav="scan">
+                <span class="icon">QR</span>
+                <strong>扫码确认投放</strong>
+                <span>记录行为与积分</span>
+              </button>
+              <button class="quick-action" type="button" data-nav="points">
+                <span class="icon">+</span>
+                <strong>查看我的任务</strong>
+                <span>积分明细与权益</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="panel is-strong">
+            <div class="panel-title">
+              <h3>AI 快速分类</h3>
+              <span class="tag green">可得 1 分</span>
+            </div>
+            <div class="form-row">
+              <input class="input" id="homeQuery" type="text" placeholder="请输入垃圾名称，例如「奶茶杯」">
+              <button class="btn" type="button" id="homeClassifyBtn"><span class="icon">AI</span>识别</button>
+            </div>
+            <div class="chip-row" id="homeQuickItems"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-title">
+              <h3>最近投放点</h3>
+              <span class="tag blue" id="homePointStatus">正常</span>
+            </div>
+            <div class="detail-row">
+              <span class="icon">80m</span>
+              <div>
+                <strong id="homePointName">宿舍 A 栋楼下四分类点</strong>
+                <div class="mini" id="homePointMeta">可投：可回收物、其他垃圾、有害垃圾小件</div>
+              </div>
+              <button class="btn secondary" type="button" data-nav="map">导航</button>
+            </div>
+            <div class="chip-row">
+              <button class="btn" type="button" data-nav="scan"><span class="icon">QR</span>扫码确认投放</button>
+              <button class="btn secondary" type="button" data-feedback-point="dorm">反馈问题</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="grid three" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title">
+            <h3>今日可完成任务</h3>
+            <span class="mini" id="todayProgressText">完成 2 项</span>
+          </div>
+          <div class="today-list" id="todayTasks"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h3>我的绿色反馈</h3>
+            <span class="tag amber">本周更新</span>
+          </div>
+          <div class="grid two">
+            <div class="stat"><span>今日减少碳排</span><strong id="carbonToday">1.8</strong><span>kgCO2e</span></div>
+            <div class="stat"><span>累计回收次数</span><strong id="recycleTimes">23</strong></div>
+            <div class="stat"><span>学院排名</span><strong>18</strong></div>
+            <div class="stat"><span>待到账积分</span><strong id="pendingPointsMini">14</strong></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h3>校园行动账户</h3>
+            <span class="tag purple">四合一联动</span>
+          </div>
+          <div class="record-row">
+            <span class="icon">证</span>
+            <div>
+              <strong>社会微任务凭证</strong>
+              <div class="mini">社区服务、活动组织、数据记录经验可用于岗位报名</div>
+            </div>
+            <button class="btn secondary" type="button" data-nav="account">查看</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="assistant">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">AI 分类助手</p>
+          <h2>输入垃圾名称，得到分类、处理步骤和最近点位</h2>
+          <p class="lead">校园本地规则会把“怎么分”转成“去哪投、怎么处理、能拿多少积分”。</p>
+        </div>
+        <button class="btn secondary" type="button" data-nav="map">查看回收地图</button>
+      </div>
+
+      <div class="grid two">
+        <article class="panel is-strong">
+          <div class="panel-title">
+            <h3>今天想分什么？</h3>
+            <span class="tag green">查询到账</span>
+          </div>
+          <div class="form-row">
+            <input class="input" id="assistantQuery" type="text" placeholder="例如：奶茶杯、外卖盒、快递纸箱、电池">
+            <button class="btn" type="button" id="assistantClassifyBtn"><span class="icon">AI</span>识别</button>
+            <button class="btn secondary" type="button" id="photoBtn"><span class="icon">相</span>拍照识别</button>
+            <input id="photoInput" type="file" accept="image/*" hidden>
+          </div>
+          <div class="chip-row" id="assistantQuickItems"></div>
+          <div class="feedback-box" style="margin-top:12px" id="assistantHint">常问垃圾会自动进入错题本和校园热词库。</div>
+        </article>
+
+        <article class="result-card" id="assistantResult"></article>
+      </div>
+
+      <div class="grid three" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>常问垃圾</h3><span class="tag blue">校园热词</span></div>
+          <div class="chip-row" id="hotQueryChips"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><h3>收藏夹</h3><span class="tag green" id="favCount">0 项</span></div>
+          <div id="favoritesList" class="today-list"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><h3>本地规则提醒</h3><span class="tag amber">宿舍场景</span></div>
+          <ul class="steps">
+            <li><b>1</b><span>液体先倒掉，污染餐盒和纸巾不要投可回收物。</span></li>
+            <li><b>2</b><span>快递纸箱压平后送到纸箱集中点，面单先撕掉。</span></li>
+            <li><b>3</b><span>电池、药品、实验耗材按学校特殊垃圾规则处理。</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="map">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">碳普惠回收地图</p>
+          <h2>找到最近点位，查看状态、开放时间和积分规则</h2>
+          <p class="lead">学生看投放点，后勤看异常，绿色岗位人员维护地图与巡查记录。</p>
+        </div>
+        <button class="btn" type="button" data-nav="scan"><span class="icon">QR</span>扫码确认投放</button>
+      </div>
+
+      <div class="chip-row" id="mapFilters" style="margin-bottom:14px"></div>
+      <div class="grid two">
+        <div class="campus-map" aria-label="校园回收地图">
+          <div class="map-zone zone-dorm">宿舍区</div>
+          <div class="map-zone zone-food">饭堂</div>
+          <div class="map-zone zone-library">图书馆</div>
+          <div class="map-zone zone-express">快递站</div>
+          <button class="map-pin pin-dorm is-active" type="button" data-point="dorm"><strong>宿舍 A 栋楼下</strong><span>80m  正常</span></button>
+          <button class="map-pin pin-food" type="button" data-point="food"><strong>南区饭堂出口</strong><span>210m  拥挤</span></button>
+          <button class="map-pin pin-express" type="button" data-point="express"><strong>快递站纸箱角</strong><span>360m  可得积分</span></button>
+          <button class="map-pin pin-battery" type="button" data-point="battery"><strong>图书馆有害垃圾箱</strong><span>420m  需巡查</span></button>
+          <button class="map-pin pin-recycle" type="button" data-point="recycle"><strong>教学楼可回收点</strong><span>260m  正常</span></button>
+        </div>
+        <article class="panel is-strong">
+          <div class="panel-title">
+            <h3>点位详情</h3>
+            <span class="tag green" id="pointStatusTag">正常</span>
+          </div>
+          <div id="pointDetail"></div>
+        </article>
+      </div>
+
+      <div class="grid three" style="margin-top:16px" id="pointList"></div>
+    </section>
+
+    <section class="view" data-view="scan">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">扫码投放</p>
+          <h2>扫描点位二维码，确认本次投放并同步积分</h2>
+          <p class="lead">低价值行为直接到账，高价值回收进入待复核，由后勤或绿色岗位人员确认。</p>
+        </div>
+        <button class="btn secondary" type="button" data-nav="points">查看积分明细</button>
+      </div>
+
+      <div class="scan-grid">
+        <article class="panel">
+          <div class="panel-title">
+            <h3>点位二维码</h3>
+            <span class="tag blue" id="scanStatusTag">已识别</span>
+          </div>
+          <div class="qr-box" aria-label="点位二维码视觉组件"><span class="scanner-line"></span></div>
+          <button class="btn" type="button" style="width:100%;margin-top:12px" id="scanAgainBtn"><span class="icon">QR</span>重新识别点位</button>
+        </article>
+
+        <article class="panel is-strong">
+          <div class="step-track">
+            <span class="step-pill is-active" data-scan-step="1">识别点位</span>
+            <span class="step-pill" data-scan-step="2">选择投放物</span>
+            <span class="step-pill" data-scan-step="3">完成投放</span>
+            <span class="step-pill" data-scan-step="4">积分记录</span>
+          </div>
+          <div id="scanPanel"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="points">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">我的积分账户</p>
+          <h2>绿色积分、待复核积分和可兑换权益集中管理</h2>
+          <p class="lead">权益由学校资源、后勤经费、校园商家、回收收益池和勤工助学体系共同支持。</p>
+        </div>
+        <button class="btn amber" type="button" data-nav="account"><span class="icon">账</span>校园行动账户</button>
+      </div>
+
+      <div class="grid four">
+        <div class="stat"><span>当前绿色积分</span><strong class="js-points">328</strong></div>
+        <div class="stat"><span>本周新增</span><strong id="weekPoints">86</strong></div>
+        <div class="stat"><span>待复核积分</span><strong id="pendingPointsLarge">14</strong></div>
+        <div class="stat"><span>可兑换权益</span><strong>8</strong></div>
+      </div>
+
+      <div class="grid two" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>积分明细</h3><span class="tag green">实时更新</span></div>
+          <table class="table">
+            <thead><tr><th>来源</th><th>积分</th><th>状态</th><th>时间</th></tr></thead>
+            <tbody id="pointsLedger"></tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>兑换商城</h3><span class="tag amber">校园权益</span></div>
+          <div class="grid two" id="rewardsGrid"></div>
+        </article>
+      </div>
+
+      <div class="grid three" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>四合一权益流转</h3><span class="tag purple">跨模块</span></div>
+          <div class="today-list">
+            <div class="record-row"><span class="icon">舍</span><div><strong>宿舍公约弹性权益</strong><div class="mini">可用 120 分兑换晚归报备便利 1 次</div></div><span class="tag green">可用</span></div>
+            <div class="record-row"><span class="icon">活</span><div><strong>绿色活动优先报名</strong><div class="mini">连续打卡满 7 天已解锁</div></div><span class="tag blue">已解锁</span></div>
+            <div class="record-row"><span class="icon">岗</span><div><strong>绿色岗位资格</strong><div class="mini">积分 300 分以上可报名巡查岗位</div></div><span class="tag green">已达标</span></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>排行榜</h3><span class="tag blue">本周</span></div>
+          <div class="today-list">
+            <div class="rank-card"><strong>1. 低碳先锋宿舍 5-218</strong><span class="mini">624 分，连续打卡 12 天</span></div>
+            <div class="rank-card"><strong>2. 公共管理学院</strong><span class="mini">参与率 81%，回收量 126kg</span></div>
+            <div class="rank-card"><strong>18. 林同学</strong><span class="mini">328 分，本周新增 86 分</span></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>兑换记录</h3><span class="tag green">已到账</span></div>
+          <div class="timeline">
+            <div class="timeline-item"><time>周三</time><div><strong>饭堂饮品券</strong><div class="mini">消耗 60 分，校园商家支持</div></div></div>
+            <div class="timeline-item"><time>周一</time><div><strong>绿色徽章</strong><div class="mini">连续打卡权益，学校活动中心发放</div></div></div>
+            <div class="timeline-item"><time>上周</time><div><strong>志愿时长证明</strong><div class="mini">岗位任务复核通过后生成</div></div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="game">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">绿分游戏乐园</p>
+          <h2>用 30 秒快问快答，把高频错投变成可练习的小任务</h2>
+          <p class="lead">答题结果会进入错题本，并同步到积分账户和校园热词库。</p>
+        </div>
+        <button class="btn" type="button" id="startGameBtn"><span class="icon">▶</span>开始挑战</button>
+      </div>
+
+      <div class="grid two">
+        <article class="game-stage">
+          <div class="panel-title">
+            <h3 id="gameTitle">今日分类挑战</h3>
+            <span class="tag blue" id="gameProgress">0/3</span>
+          </div>
+          <h2 id="gameQuestion">点击开始，进入第一题</h2>
+          <div class="answer-grid" id="gameAnswers"></div>
+          <div class="feedback-box" style="margin-top:14px" id="gameFeedback">答对可获得积分，答错会进入错题本。</div>
+          <button class="btn secondary" type="button" style="margin-top:12px" id="nextGameBtn">下一题</button>
+        </article>
+
+        <div class="grid">
+          <article class="panel">
+            <div class="panel-title"><h3>今日玩法</h3><span class="tag green">轻量任务</span></div>
+            <div class="grid two">
+              <div class="game-card"><strong>30 秒快问快答</strong><span class="mini">答 3 题可得积分</span></div>
+              <div class="game-card"><strong>容易分错垃圾闯关</strong><span class="mini">奶茶杯、餐盒、电池</span></div>
+              <div class="game-card"><strong>宿舍分类 PK</strong><span class="mini">本周楼栋挑战</span></div>
+              <div class="game-card"><strong>学院挑战榜</strong><span class="mini">学院参与率排名</span></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-title"><h3>错题本</h3><span class="tag red" id="wrongCount">0 项</span></div>
+            <div id="wrongBook" class="today-list"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" data-view="dorm">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">宿舍源头分流</p>
+          <h2>先在宿舍分好，楼下才不会乱</h2>
+          <p class="lead">宿舍打卡、成员贡献和公约权益一起进入绿色行动档案。</p>
+        </div>
+        <button class="btn" type="button" id="dormCheckBtn"><span class="icon">打</span>宿舍分流打卡</button>
+      </div>
+
+      <div class="grid three">
+        <article class="panel is-strong">
+          <div class="panel-title"><h3>A2-318 今日状态</h3><span class="tag green" id="dormStatusTag">待打卡</span></div>
+          <div class="stat-strip" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0">
+            <div class="stat"><span>完成度</span><strong id="dormCompletion">72%</strong></div>
+            <div class="stat"><span>宿舍积分</span><strong id="dormPoints">218</strong></div>
+            <div class="stat"><span>楼栋排名</span><strong>6</strong></div>
+            <div class="stat"><span>连续打卡</span><strong>4</strong></div>
+          </div>
+          <div class="feedback-box" style="margin-top:12px">一桶一袋提醒：纸箱和饮料瓶先集中放入可回收袋，湿垃圾不要污染纸类。</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>成员贡献</h3><span class="tag blue">本周</span></div>
+          <div class="member-list" id="memberList"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>高频错投提醒</h3><span class="tag red">宿舍场景</span></div>
+          <div class="today-list">
+            <div class="record-row"><span class="icon">1</span><div><strong>带汤外卖盒</strong><div class="mini">汤水倒掉后，污染盒投其他垃圾</div></div><span class="tag amber">高频</span></div>
+            <div class="record-row"><span class="icon">2</span><div><strong>纸巾和尘土</strong><div class="mini">不要放入可回收袋</div></div><span class="tag red">易错</span></div>
+            <div class="record-row"><span class="icon">3</span><div><strong>电池和药品</strong><div class="mini">送至有害垃圾暂存点</div></div><span class="tag blue">特殊</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid two" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>本周宿舍任务</h3><span class="tag green">可得 18 分</span></div>
+          <div class="today-list" id="dormTasks"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><h3>宿舍公约权益入口</h3><span class="tag purple">跨模块</span></div>
+          <div class="record-row">
+            <span class="icon">权</span>
+            <div>
+              <strong>弹性权益申请资格</strong>
+              <div class="mini">宿舍连续 7 天完成源头分流，可兑换公约弹性权益。</div>
+            </div>
+            <button class="btn secondary" type="button" data-nav="account">查看权益</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="jobs">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">绿色岗位中心</p>
+          <h2>岗位人员参与巡查、错投记录、地图维护和题库更新</h2>
+          <p class="lead">绿色岗位是系统运行的一部分，补贴、志愿时长和综测证明会进入行动账户。</p>
+        </div>
+        <button class="btn secondary" type="button" data-nav="account">查看岗位资格</button>
+      </div>
+
+      <div class="chip-row" id="jobFilters" style="margin-bottom:14px"></div>
+      <div class="grid three" id="jobsGrid"></div>
+
+      <div class="grid two" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>我的申请状态</h3><span class="tag blue" id="jobApplyCount">0 个申请</span></div>
+          <div id="myApplications" class="today-list"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><h3>我的排班</h3><span class="tag green">本周</span></div>
+          <div class="timeline">
+            <div class="timeline-item"><time>周二 18:30</time><div><strong>宿舍 A 栋桶站巡查</strong><div class="mini">记录满载状态和错投情况</div></div></div>
+            <div class="timeline-item"><time>周四 12:20</time><div><strong>饭堂出口分类引导</strong><div class="mini">高峰 30 分钟，引导餐后分离</div></div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="ops">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">后勤工作台</p>
+          <h2>今天要处理什么，一屏看清</h2>
+          <p class="lead">待复核投放、点位异常、巡查任务、学生反馈和宣传建议集中处理。</p>
+        </div>
+        <button class="btn blue" type="button" id="opsWeekReportBtn"><span class="icon">报</span>生成本周报告</button>
+      </div>
+
+      <div class="grid four">
+        <div class="stat"><span>今日待处理</span><strong id="opsTodoCount">6</strong></div>
+        <div class="stat"><span>待复核投放</span><strong id="reviewCount">3</strong></div>
+        <div class="stat"><span>点位异常</span><strong id="issueCount">4</strong></div>
+        <div class="stat"><span>高频咨询</span><strong>奶茶杯</strong></div>
+      </div>
+
+      <div class="ops-board" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>待复核投放</h3><span class="tag amber">高积分</span></div>
+          <div class="today-list" id="reviewList"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>点位异常</h3><span class="tag red">需处理</span></div>
+          <div class="today-list" id="issueList"></div>
+        </article>
+      </div>
+
+      <div class="grid three" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>高频咨询 Top 5</h3><span class="tag blue">近 7 天</span></div>
+          <div class="today-list">
+            <div class="record-row"><span class="icon">1</span><div><strong>奶茶杯</strong><div class="mini">查询 186 次，建议食堂和宿舍区提示</div></div><span class="tag amber">高频</span></div>
+            <div class="record-row"><span class="icon">2</span><div><strong>外卖盒</strong><div class="mini">查询 143 次，夜间错投较多</div></div><span class="tag red">易错</span></div>
+            <div class="record-row"><span class="icon">3</span><div><strong>快递纸箱</strong><div class="mini">快递站周一满载</div></div><span class="tag green">可回收</span></div>
+            <div class="record-row"><span class="icon">4</span><div><strong>纸巾</strong><div class="mini">常被误投可回收桶</div></div><span class="tag red">易错</span></div>
+            <div class="record-row"><span class="icon">5</span><div><strong>电池</strong><div class="mini">图书馆点位咨询上升</div></div><span class="tag blue">特殊</span></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>绿色岗位排班</h3><span class="tag purple">本周</span></div>
+          <div class="timeline">
+            <div class="timeline-item"><time>今晚</time><div><strong>宿舍桶站巡查 4 人</strong><div class="mini">A 栋、B 栋、C 栋、研究生楼</div></div></div>
+            <div class="timeline-item"><time>周三</time><div><strong>快递纸箱整理 3 人</strong><div class="mini">联动快递站回收收益池</div></div></div>
+            <div class="timeline-item"><time>周五</time><div><strong>题库更新 2 人</strong><div class="mini">根据热词更新游戏题目</div></div></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>宣传建议生成</h3><span class="tag green">AI 辅助</span></div>
+          <div class="feedback-box" id="opsAdvice">宿舍区晚间错投集中在奶茶杯和外卖盒，建议今晚 19:00 后在 A 栋桶站增加液体倒空提示。</div>
+          <div class="chip-row">
+            <button class="btn" type="button" id="genAdviceBtn"><span class="icon">文</span>生成提醒文案</button>
+            <button class="btn secondary" type="button" id="dispatchPatrolBtn">派发巡查任务</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="school">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">校方管理端</p>
+          <h2>绿色治理成果、学生参与数据和报告材料集中生成</h2>
+          <p class="lead">管理者看到的是运行结果、资源流向、学生成长和可持续行动档案。</p>
+        </div>
+        <button class="btn blue" type="button" id="schoolReportBtn"><span class="icon">报</span>生成本周报告</button>
+      </div>
+
+      <div class="grid four">
+        <div class="stat"><span>参与学生人数</span><strong>2,846</strong></div>
+        <div class="stat"><span>分类查询次数</span><strong>18,420</strong></div>
+        <div class="stat"><span>回收量估算</span><strong>1.82t</strong></div>
+        <div class="stat"><span>碳减排估算</span><strong>624kg</strong></div>
+      </div>
+
+      <div class="grid two" style="margin-top:16px">
+        <article class="report-canvas">
+          <div class="panel-title">
+            <h3>校园绿色行动报告</h3>
+            <span class="tag green">本周</span>
+          </div>
+          <div class="report-lines">
+            <div class="report-line"><span>宿舍参与率</span><div class="progress"><span style="--value:78%"></span></div><strong>78%</strong></div>
+            <div class="report-line"><span>学院覆盖率</span><div class="progress"><span style="--value:92%"></span></div><strong>92%</strong></div>
+            <div class="report-line"><span>积分到账率</span><div class="progress"><span style="--value:86%"></span></div><strong>86%</strong></div>
+            <div class="report-line"><span>异常处理率</span><div class="progress"><span style="--value:71%"></span></div><strong>71%</strong></div>
+          </div>
+          <div class="chip-row">
+            <button class="btn" type="button" id="monthReportBtn">生成本月报告</button>
+            <button class="btn secondary" type="button" id="exportMaterialBtn">导出项目申报材料</button>
+            <button class="btn secondary" type="button" id="operationAdviceBtn">查看运营建议</button>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>学院排名</h3><span class="tag blue">参与率</span></div>
+          <table class="table">
+            <thead><tr><th>学院</th><th>参与率</th><th>绿色积分</th></tr></thead>
+            <tbody>
+              <tr><td>公共管理学院</td><td>81%</td><td>18,420</td></tr>
+              <tr><td>外国语学院</td><td>76%</td><td>16,880</td></tr>
+              <tr><td>信息工程学院</td><td>73%</td><td>15,930</td></tr>
+              <tr><td>商学院</td><td>68%</td><td>13,520</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <div class="grid three" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>绿色岗位情况</h3><span class="tag purple">实践育人</span></div>
+          <div class="stat-strip" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0">
+            <div class="stat"><span>参与人数</span><strong>84</strong></div>
+            <div class="stat"><span>志愿时长</span><strong>612</strong></div>
+            <div class="stat"><span>综测凭证</span><strong>128</strong></div>
+            <div class="stat"><span>完成率</span><strong>91%</strong></div>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><h3>宿舍参与情况</h3><span class="tag green">源头分流</span></div>
+          <div class="today-list">
+            <div class="record-row"><span class="icon">A</span><div><strong>A 栋</strong><div class="mini">参与率 83%，纸箱回收提升 24%</div></div><span class="tag green">优秀</span></div>
+            <div class="record-row"><span class="icon">B</span><div><strong>B 栋</strong><div class="mini">参与率 72%，晚间错投偏高</div></div><span class="tag amber">关注</span></div>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><h3>部署与运营状态</h3><span class="tag blue">校级</span></div>
+          <div class="timeline">
+            <div class="timeline-item"><time>当前</time><div><strong>18 个点位在线</strong><div class="mini">宿舍、饭堂、快递站、图书馆、教学楼</div></div></div>
+            <div class="timeline-item"><time>下周</time><div><strong>新增 3 个特殊垃圾点</strong><div class="mini">实验楼、医务室、社团活动中心</div></div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="account">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">校园行动账户</p>
+          <h2>你的积分、志愿时长、综测凭证和跨模块权益都在这里</h2>
+          <p class="lead">绿分行动库与宿舍公约、绿色活动、社会创新微任务和岗位中心联动，形成可持续行动档案。</p>
+        </div>
+        <button class="btn" type="button" data-nav="jobs"><span class="icon">岗</span>查看绿色岗位</button>
+      </div>
+
+      <div class="grid four">
+        <div class="stat"><span>绿色积分</span><strong class="js-points">328</strong></div>
+        <div class="stat"><span>志愿时长</span><strong>12.5h</strong></div>
+        <div class="stat"><span>综测凭证</span><strong>3</strong></div>
+        <div class="stat"><span>绿色岗位资格</span><strong>2</strong></div>
+      </div>
+
+      <div class="grid three" style="margin-top:16px">
+        <article class="account-tile">
+          <div class="panel-title"><h3>宿舍公约权益</h3><span class="tag green">可兑换</span></div>
+          <p class="muted">A2-318 连续分流 4 天，距离弹性权益还差 3 天。</p>
+          <button class="btn secondary" type="button" data-nav="dorm">查看宿舍分流</button>
+        </article>
+        <article class="account-tile">
+          <div class="panel-title"><h3>社会微任务凭证</h3><span class="tag purple">已同步</span></div>
+          <p class="muted">社区服务 1 次、活动组织 1 次、数据记录经验 2 次，可作为岗位筛选条件。</p>
+          <button class="btn secondary" type="button" data-nav="jobs">匹配岗位</button>
+        </article>
+        <article class="account-tile">
+          <div class="panel-title"><h3>可持续成长档案</h3><span class="tag blue">本学期</span></div>
+          <p class="muted">分类查询、投放记录、宿舍分流、岗位实践和绿色活动已形成记录。</p>
+          <button class="btn secondary" type="button" id="profileBtn">生成档案摘要</button>
+        </article>
+      </div>
+
+      <div class="grid two" style="margin-top:16px">
+        <article class="panel">
+          <div class="panel-title"><h3>本学期绿色行动记录</h3><span class="tag green">已更新</span></div>
+          <div class="timeline">
+            <div class="timeline-item"><time>今天</time><div><strong>完成奶茶杯分类查询</strong><div class="mini">AI 分类助手 +1 分</div></div></div>
+            <div class="timeline-item"><time>周三</time><div><strong>宿舍源头分流打卡</strong><div class="mini">A2-318 宿舍积分 +8</div></div></div>
+            <div class="timeline-item"><time>周二</time><div><strong>点位巡查任务</strong><div class="mini">志愿时长 +0.5h，综测凭证待生成</div></div></div>
+            <div class="timeline-item"><time>上周</time><div><strong>社会创新微任务</strong><div class="mini">完成校园回收地图标注</div></div></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title"><h3>跨模块能力凭证</h3><span class="tag purple">岗位可用</span></div>
+          <table class="table">
+            <thead><tr><th>凭证</th><th>来源</th><th>状态</th></tr></thead>
+            <tbody>
+              <tr><td>数据记录经验</td><td>社会创新微任务</td><td><span class="tag green">可用</span></td></tr>
+              <tr><td>志愿服务经历</td><td>社区服务</td><td><span class="tag green">可用</span></td></tr>
+              <tr><td>活动组织凭证</td><td>绿色活动</td><td><span class="tag blue">已同步</span></td></tr>
+              <tr><td>传播协作经验</td><td>学院活动</td><td><span class="tag amber">待确认</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <button class="is-active" type="button" data-nav="home">首页</button>
+    <button type="button" data-nav="assistant">分类</button>
+    <button type="button" data-nav="map">地图</button>
+    <button type="button" data-nav="scan">扫码</button>
+    <button type="button" data-nav="account">账户</button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow" id="modalEyebrow">提示</p>
+          <h3 id="modalTitle">操作结果</h3>
+        </div>
+        <button class="close-btn" type="button" id="modalClose" aria-label="关闭">×</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const quickItems = ["奶茶杯", "外卖盒", "快递纸箱", "电池", "塑料瓶", "餐厨垃圾", "纸巾", "一次性餐具"];
+    const categories = ["可回收物", "厨余垃圾", "其他垃圾", "有害垃圾"];
+    const appState = {
+      points: 328,
+      weekPoints: 86,
+      pendingPoints: 14,
+      todayDone: new Set(["classify", "game"]),
+      currentPoint: "dorm",
+      currentFilter: "全部",
+      selectedScanItem: "奶茶杯",
+      scanStep: 1,
+      favorites: [],
+      wrongBook: [],
+      gameStarted: false,
+      gameIndex: 0,
+      gameScore: 0,
+      dormChecked: false,
+      jobFilter: "全部",
+      applications: [],
+      ledger: [
+        { title: "AI 分类查询", points: 1, status: "已到账", time: "刚刚" },
+        { title: "宿舍源头分流", points: 8, status: "已到账", time: "今天 08:12" },
+        { title: "纸箱集中回收", points: 12, status: "待复核", time: "昨天 18:40" },
+        { title: "饭堂优惠兑换", points: -60, status: "已兑换", time: "周三" }
+      ],
+      reviews: [
+        { id: "r1", student: "陈同学", item: "快递纸箱 4 个", point: "快递站纸箱角", points: 12, status: "待复核" },
+        { id: "r2", student: "林同学", item: "废旧电池 2 节", point: "图书馆有害垃圾箱", points: 10, status: "待复核" },
+        { id: "r3", student: "张同学", item: "大件塑料瓶 8 个", point: "教学楼可回收点", points: 9, status: "待复核" }
+      ],
+      issues: [
+        { id: "i1", title: "南区饭堂厨余桶拥挤", level: "拥挤", detail: "12:00-13:00 投放高峰，建议增派引导员。", status: "待处理" },
+        { id: "i2", title: "图书馆有害垃圾箱需巡查", level: "需巡查", detail: "学生反馈电池盒标识不清。", status: "待处理" },
+        { id: "i3", title: "宿舍 A 栋奶茶杯错投", level: "高频错投", detail: "连续 3 天出现液体未倒空。", status: "待处理" },
+        { id: "i4", title: "快递站纸箱角接近满载", level: "已满", detail: "建议安排今晚纸箱整理岗位。", status: "待处理" }
+      ]
+    };
+
+    const itemRules = {
+      "奶茶杯": {
+        name: "奶茶杯",
+        category: "其他垃圾 / 可回收部分需拆分",
+        type: "其他垃圾",
+        process: ["倒掉剩余液体", "吸管、杯盖和杯身分开", "污染杯身投其他垃圾，干净杯身按学校规则回收"],
+        point: "宿舍 A 栋楼下四分类点",
+        score: 2,
+        note: "有剩余液体时不要直接投入可回收桶。"
+      },
+      "外卖盒": {
+        name: "外卖盒",
+        category: "其他垃圾 / 干净餐盒可回收",
+        type: "其他垃圾",
+        process: ["倒掉汤水和残渣", "未污染餐盒可投可回收物", "油污明显的餐盒投其他垃圾"],
+        point: "南区饭堂出口餐后投放点",
+        score: 3,
+        note: "带汤外卖盒是宿舍区高频错投物。"
+      },
+      "快递纸箱": {
+        name: "快递纸箱",
+        category: "可回收物",
+        type: "可回收物",
+        process: ["撕掉面单", "拆除胶带和塑料填充物", "压平后送至纸箱集中点"],
+        point: "快递站纸箱回收角",
+        score: 8,
+        note: "纸箱集中回收属于高价值行为，可能进入待复核。"
+      },
+      "电池": {
+        name: "电池",
+        category: "有害垃圾",
+        type: "有害垃圾",
+        process: ["确认无鼓包漏液", "单独放入电池暂存盒", "鼓包或漏液电池联系后勤处理"],
+        point: "图书馆一楼有害垃圾回收箱",
+        score: 10,
+        note: "电池投放进入待复核，复核通过后发放高积分。"
+      },
+      "塑料瓶": {
+        name: "塑料瓶",
+        category: "可回收物",
+        type: "可回收物",
+        process: ["倒空液体", "简单压扁", "投入可回收物桶或饮料瓶回收点"],
+        point: "教学楼可回收物点",
+        score: 4,
+        note: "连续投放可解锁绿色习惯徽章。"
+      },
+      "餐厨垃圾": {
+        name: "餐厨垃圾",
+        category: "厨余垃圾",
+        type: "厨余垃圾",
+        process: ["去除包装袋", "沥干汤水", "投入厨余垃圾桶"],
+        point: "南区饭堂厨余回收点",
+        score: 3,
+        note: "餐后分离能减少其他垃圾污染。"
+      },
+      "纸巾": {
+        name: "纸巾",
+        category: "其他垃圾",
+        type: "其他垃圾",
+        process: ["普通使用后纸巾投其他垃圾", "被油污污染的纸类不要投可回收", "清洁纸张另行回收"],
+        point: "宿舍 A 栋楼下四分类点",
+        score: 1,
+        note: "纸巾不是可回收纸类，是宿舍常见错投物。"
+      },
+      "一次性餐具": {
+        name: "一次性餐具",
+        category: "其他垃圾",
+        type: "其他垃圾",
+        process: ["去除剩余食物", "简单沥干", "投其他垃圾桶"],
+        point: "南区饭堂出口投放点",
+        score: 2,
+        note: "餐具和餐厨垃圾要分开投放。"
+      }
+    };
+
+    const points = {
+      dorm: {
+        name: "宿舍 A 栋楼下四分类点",
+        status: "正常",
+        tags: ["可回收物", "其他垃圾", "有害垃圾", "离我最近", "可获得积分"],
+        hours: "06:30-23:30",
+        distance: "80m",
+        reward: "扫码投放 1-8 分",
+        task: "晚间奶茶杯错投提醒",
+        note: "液体倒空后再投放，纸箱请压平送至快递站集中点。"
+      },
+      food: {
+        name: "南区饭堂出口餐后投放点",
+        status: "拥挤",
+        tags: ["厨余垃圾", "其他垃圾", "可获得积分", "需要巡查"],
+        hours: "10:30-13:40 / 16:30-19:30",
+        distance: "210m",
+        reward: "餐后分离 3-5 分",
+        task: "午餐高峰引导",
+        note: "餐厨垃圾和一次性餐具分开，汤水先倒入指定桶。"
+      },
+      express: {
+        name: "快递站纸箱回收角",
+        status: "已满",
+        tags: ["纸箱回收", "可回收物", "可获得积分", "需要巡查"],
+        hours: "09:00-21:30",
+        distance: "360m",
+        reward: "纸箱整理 5-12 分",
+        task: "今晚安排纸箱整理岗位",
+        note: "纸箱压平，面单撕掉，胶带和泡沫分开处理。"
+      },
+      battery: {
+        name: "图书馆一楼有害垃圾回收箱",
+        status: "需巡查",
+        tags: ["有害垃圾", "特殊垃圾", "需要巡查"],
+        hours: "08:00-22:00",
+        distance: "420m",
+        reward: "复核通过 8-12 分",
+        task: "电池暂存盒标识更新",
+        note: "鼓包、漏液电池不要自行挤压，联系后勤处理。"
+      },
+      recycle: {
+        name: "教学楼可回收物点",
+        status: "正常",
+        tags: ["可回收物", "其他垃圾", "可获得积分"],
+        hours: "07:00-22:30",
+        distance: "260m",
+        reward: "饮料瓶投放 2-4 分",
+        task: "教学楼午后巡查",
+        note: "塑料瓶倒空压扁，污染纸杯和纸巾投其他垃圾。"
+      }
+    };
+
+    const tasks = [
+      { id: "classify", title: "查询一次垃圾分类", reward: "+1", view: "assistant" },
+      { id: "scan", title: "完成一次扫码投放", reward: "+2", view: "scan" },
+      { id: "game", title: "完成 3 道小游戏", reward: "+6", view: "game" },
+      { id: "dorm", title: "宿舍源头分流打卡", reward: "+8", view: "dorm" },
+      { id: "feedback", title: "提交一次点位反馈", reward: "+2", view: "map" }
+    ];
+
+    const gameQuestions = [
+      {
+        item: "喝剩的奶茶杯",
+        answer: "其他垃圾",
+        explain: "先倒掉液体，吸管和杯盖分开处理，污染杯身不要直接投可回收桶。"
+      },
+      {
+        item: "压平后的快递纸箱",
+        answer: "可回收物",
+        explain: "纸箱撕掉面单并压平后送到纸箱集中点，可获得较高积分。"
+      },
+      {
+        item: "废旧纽扣电池",
+        answer: "有害垃圾",
+        explain: "电池进入有害垃圾暂存点，复核通过后发放高积分。"
+      }
+    ];
+
+    const jobs = [
+      {
+        id: "patrol",
+        title: "点位巡查员",
+        place: "宿舍区、快递站",
+        time: "18:30-20:00",
+        content: "记录点位状态、错投问题和满载提醒。",
+        reward: "补贴 20 元 / 志愿 1h / 综测证明",
+        need: "绿色积分 300 分以上，具备数据记录经验",
+        type: "巡查"
+      },
+      {
+        id: "guide",
+        title: "分类引导员",
+        place: "南区饭堂出口",
+        time: "11:50-12:30",
+        content: "引导餐后分离，收集高频问题。",
+        reward: "志愿 0.5h / 岗位积分 8 分",
+        need: "完成今日分类挑战，沟通表达良好",
+        type: "引导"
+      },
+      {
+        id: "data",
+        title: "绿色数据反馈员",
+        place: "线上工作台",
+        time: "每周三",
+        content: "整理热词、错投趋势和后勤建议。",
+        reward: "综测证明 / 志愿 1h",
+        need: "拥有社会微任务数据记录凭证",
+        type: "数据"
+      },
+      {
+        id: "dormObserver",
+        title: "宿舍分流观察员",
+        place: "A2、B1 宿舍楼",
+        time: "周二、周四晚间",
+        content: "观察源头分流完成度，更新宿舍提醒。",
+        reward: "补贴 15 元 / 志愿 0.5h",
+        need: "宿舍分流连续打卡 5 天",
+        type: "宿舍"
+      },
+      {
+        id: "map",
+        title: "校园回收地图维护员",
+        place: "全校点位",
+        time: "弹性排班",
+        content: "更新点位开放时间、状态和投放注意事项。",
+        reward: "岗位积分 12 分 / 综测证明",
+        need: "拥有地图标注或活动组织凭证",
+        type: "地图"
+      },
+      {
+        id: "activity",
+        title: "绿色活动助理",
+        place: "学生活动中心",
+        time: "周末活动日",
+        content: "协助绿色活动报名、签到和物料回收。",
+        reward: "志愿 1.5h / 活动组织凭证",
+        need: "参与过绿色活动或社区服务",
+        type: "活动"
+      }
+    ];
+
+    const rewards = [
+      { title: "饭堂优惠券", cost: 60, source: "校园商家支持" },
+      { title: "校园文创", cost: 120, source: "学校资源支持" },
+      { title: "绿色徽章", cost: 80, source: "活动中心发放" },
+      { title: "志愿时长证明", cost: 150, source: "勤工助学体系确认" }
+    ];
+
+    function $(selector, root = document) {
+      return root.querySelector(selector);
+    }
+
+    function $$(selector, root = document) {
+      return Array.from(root.querySelectorAll(selector));
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("is-visible"), 2300);
+    }
+
+    function openModal(title, body, eyebrow = "操作结果") {
+      $("#modalTitle").textContent = title;
+      $("#modalEyebrow").textContent = eyebrow;
+      $("#modalBody").innerHTML = body;
+      $("#modal").classList.add("is-visible");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeModal() {
+      $("#modal").classList.remove("is-visible");
+      document.body.classList.remove("modal-open");
+    }
+
+    function navigate(view) {
+      $$(".view").forEach(section => section.classList.toggle("is-active", section.dataset.view === view));
+      $$("[data-nav]").forEach(button => button.classList.toggle("is-active", button.dataset.nav === view));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (view === "map") renderMap();
+      if (view === "scan") renderScan();
+      if (view === "points") renderLedger();
+      if (view === "jobs") renderJobs();
+      if (view === "ops") renderOps();
+    }
+
+    function updateStats() {
+      $$(".js-points").forEach(node => node.textContent = appState.points);
+      $("#pendingPoints").textContent = appState.pendingPoints;
+      $("#pendingPointsMini").textContent = appState.pendingPoints;
+      $("#pendingPointsLarge").textContent = appState.pendingPoints;
+      $("#weekPoints").textContent = appState.weekPoints;
+      $("#todayDone").textContent = appState.todayDone.size;
+      $("#todayProgressText").textContent = `完成 ${appState.todayDone.size} 项`;
+      renderTasks();
+    }
+
+    function addPoints(amount, title, status = "已到账") {
+      if (status === "待复核") {
+        appState.pendingPoints += amount;
+      } else {
+        appState.points += amount;
+        appState.weekPoints += Math.max(amount, 0);
+      }
+      appState.ledger.unshift({ title, points: amount, status, time: "刚刚" });
+      updateStats();
+      renderLedger();
+      showToast(status === "待复核" ? `${title} 已进入待复核 +${amount}` : `${title} +${amount} 绿色积分`);
+    }
+
+    function completeTask(id) {
+      appState.todayDone.add(id);
+      updateStats();
+    }
+
+    function findRule(rawValue) {
+      const value = String(rawValue || "").trim();
+      if (!value) return itemRules["奶茶杯"];
+      const exact = itemRules[value];
+      if (exact) return exact;
+      const hit = Object.keys(itemRules).find(key => value.includes(key) || key.includes(value));
+      return hit ? itemRules[hit] : {
+        name: value,
+        category: "需按校园本地规则确认",
+        type: "其他垃圾",
+        process: ["确认是否有污染或液体", "拆分包装、内容物和可回收部分", "不确定时在投放点扫码查看规则"],
+        point: "宿舍 A 栋楼下四分类点",
+        score: 1,
+        note: "已记录为新热词，后勤可在知识库中补充规则。"
+      };
+    }
+
+    function renderResult(rule) {
+      $("#assistantResult").innerHTML = `
+        <div class="result-top">
+          <div>
+            <p class="eyebrow">识别结果</p>
+            <h3>${escapeHtml(rule.name)}</h3>
+          </div>
+          <span class="tag ${tagClass(rule.type)}">${escapeHtml(rule.category)}</span>
+        </div>
+        <ul class="steps">
+          ${rule.process.map((step, index) => `<li><b>${index + 1}</b><span>${escapeHtml(step)}</span></li>`).join("")}
+        </ul>
+        <div class="detail-row">
+          <span class="icon">点</span>
+          <div>
+            <strong>${escapeHtml(rule.point)}</strong>
+            <div class="mini">完成扫码投放可获得 ${rule.score} 分</div>
+          </div>
+          <button class="btn secondary" type="button" data-nav="map">地图</button>
+        </div>
+        <div class="feedback-box" style="margin-top:12px">${escapeHtml(rule.note)}</div>
+        <div class="chip-row">
+          <button class="btn" type="button" data-result-scan="${escapeHtml(rule.name)}"><span class="icon">QR</span>扫码确认投放</button>
+          <button class="btn secondary" type="button" data-favorite="${escapeHtml(rule.name)}">收藏到常问垃圾</button>
+        </div>
+      `;
+    }
+
+    function classifyFromInput(inputId) {
+      const input = $(`#${inputId}`);
+      const rule = findRule(input.value);
+      input.value = rule.name;
+      renderResult(rule);
+      completeTask("classify");
+      addPoints(1, "AI 分类查询");
+      navigate("assistant");
+    }
+
+    function tagClass(type) {
+      if (type.includes("可回收")) return "green";
+      if (type.includes("厨余")) return "blue";
+      if (type.includes("有害")) return "red";
+      return "amber";
+    }
+
+    function renderQuickItems(containerId, inputId) {
+      $(`#${containerId}`).innerHTML = quickItems.map(item => `<button class="chip" type="button" data-fill="${escapeHtml(item)}" data-input="${inputId}">${escapeHtml(item)}</button>`).join("");
+    }
+
+    function renderHotQueries() {
+      $("#hotQueryChips").innerHTML = quickItems.slice(0, 6).map(item => `<button class="chip" type="button" data-fill="${escapeHtml(item)}" data-input="assistantQuery">${escapeHtml(item)}</button>`).join("");
+    }
+
+    function renderFavorites() {
+      $("#favCount").textContent = `${appState.favorites.length} 项`;
+      $("#favoritesList").innerHTML = appState.favorites.length
+        ? appState.favorites.map(item => `
+          <div class="record-row">
+            <span class="icon">藏</span>
+            <div><strong>${escapeHtml(item)}</strong><div class="mini">已加入常问垃圾</div></div>
+            <button class="btn secondary" type="button" data-fill="${escapeHtml(item)}" data-input="assistantQuery">识别</button>
+          </div>
+        `).join("")
+        : `<div class="feedback-box">还没有收藏，识别后可加入常问垃圾。</div>`;
+    }
+
+    function renderTasks() {
+      $("#todayTasks").innerHTML = tasks.map(task => {
+        const done = appState.todayDone.has(task.id);
+        return `
+          <button class="task-row ${done ? "is-done" : ""}" type="button" data-nav="${task.view}">
+            <span class="task-check">✓</span>
+            <span><strong>${escapeHtml(task.title)}</strong><span class="mini">${done ? "已完成" : "待完成"}</span></span>
+            <span class="tag ${done ? "green" : "blue"}">${task.reward}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderMap() {
+      const filters = ["全部", "可回收物", "厨余垃圾", "其他垃圾", "有害垃圾", "纸箱回收", "特殊垃圾", "离我最近", "可获得积分", "需要巡查"];
+      $("#mapFilters").innerHTML = filters.map(filter => `<button class="chip ${appState.currentFilter === filter ? "is-active" : ""}" type="button" data-map-filter="${filter}">${filter}</button>`).join("");
+      const pointEntries = Object.entries(points).filter(([, point]) => appState.currentFilter === "全部" || point.tags.includes(appState.currentFilter));
+      $("#pointList").innerHTML = pointEntries.map(([key, point]) => `
+        <button class="point-card ${appState.currentPoint === key ? "is-active" : ""}" type="button" data-point-card="${key}">
+          <div class="status-line">
+            <strong>${escapeHtml(point.name)}</strong>
+            <span class="tag ${statusClass(point.status)}">${escapeHtml(point.status)}</span>
+          </div>
+          <span class="mini">${escapeHtml(point.tags.slice(0, 4).join(" / "))}</span>
+          <span class="mini">${escapeHtml(point.hours)} · ${escapeHtml(point.distance)} · ${escapeHtml(point.reward)}</span>
+        </button>
+      `).join("");
+      renderPointDetail(appState.currentPoint);
+    }
+
+    function statusClass(status) {
+      if (status === "正常") return "green";
+      if (status === "拥挤") return "amber";
+      if (status === "已满" || status === "需巡查") return "red";
+      return "blue";
+    }
+
+    function renderPointDetail(key) {
+      appState.currentPoint = key;
+      const point = points[key];
+      $$(".map-pin").forEach(pin => pin.classList.toggle("is-active", pin.dataset.point === key));
+      $$(".point-card").forEach(card => card.classList.toggle("is-active", card.dataset.pointCard === key));
+      $("#pointStatusTag").textContent = point.status;
+      $("#pointStatusTag").className = `tag ${statusClass(point.status)}`;
+      $("#homePointName").textContent = point.name;
+      $("#homePointMeta").textContent = `可投：${point.tags.filter(tag => categories.includes(tag)).join("、") || "场景回收"}`;
+      $("#homePointStatus").textContent = point.status;
+      $("#homePointStatus").className = `tag ${statusClass(point.status)}`;
+      $("#pointDetail").innerHTML = `
+        <h3>${escapeHtml(point.name)}</h3>
+        <div class="status-line">
+          ${point.tags.map(tag => `<span class="tag ${tagClass(tag)}">${escapeHtml(tag)}</span>`).join("")}
+        </div>
+        <ul class="steps">
+          <li><b>时</b><span>开放时间：${escapeHtml(point.hours)}</span></li>
+          <li><b>距</b><span>距离你：${escapeHtml(point.distance)}</span></li>
+          <li><b>分</b><span>积分规则：${escapeHtml(point.reward)}</span></li>
+          <li><b>任</b><span>当前任务：${escapeHtml(point.task)}</span></li>
+        </ul>
+        <div class="feedback-box">${escapeHtml(point.note)}</div>
+        <div class="chip-row">
+          <button class="btn" type="button" data-nav="scan"><span class="icon">QR</span>扫码确认投放</button>
+          <button class="btn secondary" type="button" data-navigate-point="${key}">导航到这里</button>
+          <button class="btn secondary" type="button" data-feedback-point="${key}">反馈问题</button>
+        </div>
+      `;
+    }
+
+    function renderScan() {
+      const point = points[appState.currentPoint];
+      $$("[data-scan-step]").forEach(node => {
+        const step = Number(node.dataset.scanStep);
+        node.classList.toggle("is-active", step === appState.scanStep);
+        node.classList.toggle("is-done", step < appState.scanStep);
+      });
+      const rule = findRule(appState.selectedScanItem);
+      $("#scanPanel").innerHTML = `
+        <div class="panel-title">
+          <div>
+            <h3>${escapeHtml(point.name)}</h3>
+            <p class="mini">${escapeHtml(point.hours)} · ${escapeHtml(point.distance)}</p>
+          </div>
+          <span class="tag ${statusClass(point.status)}">${escapeHtml(point.status)}</span>
+        </div>
+        <div class="status-line">
+          ${point.tags.filter(tag => categories.includes(tag) || tag.includes("纸箱") || tag.includes("特殊")).map(tag => `<span class="tag ${tagClass(tag)}">${escapeHtml(tag)}</span>`).join("")}
+        </div>
+        <div class="feedback-box" style="margin:12px 0">${escapeHtml(point.note)}</div>
+        <h3>本次投放物</h3>
+        <div class="choice-grid">
+          ${quickItems.map(item => {
+            const selected = appState.selectedScanItem === item;
+            const scanRule = findRule(item);
+            return `<button class="choice ${selected ? "is-selected" : ""}" type="button" data-scan-item="${escapeHtml(item)}">${escapeHtml(item)}<span>${escapeHtml(scanRule.type)} · ${scanRule.score} 分</span></button>`;
+          }).join("")}
+        </div>
+        <div class="detail-row" style="margin-top:12px">
+          <span class="icon">投</span>
+          <div>
+            <strong>${escapeHtml(rule.name)}：${escapeHtml(rule.category)}</strong>
+            <div class="mini">${escapeHtml(rule.process.join("；"))}</div>
+          </div>
+          <span class="tag ${tagClass(rule.type)}">${rule.score} 分</span>
+        </div>
+        <div class="chip-row">
+          <button class="btn" type="button" id="finishScanBtn"><span class="icon">✓</span>我已完成投放</button>
+          <button class="btn secondary" type="button" data-nav="points">查看积分明细</button>
+        </div>
+      `;
+    }
+
+    function completeScan() {
+      const rule = findRule(appState.selectedScanItem);
+      const highValue = rule.score >= 8 || rule.type === "有害垃圾";
+      appState.scanStep = 4;
+      completeTask("scan");
+      if (highValue) {
+        addPoints(rule.score, `${rule.name}扫码投放`, "待复核");
+        openModal("已进入待复核", `
+          <p>本次投放为高价值或特殊垃圾，绿色岗位人员或后勤复核后发放高积分。</p>
+          <div class="detail-row">
+            <span class="icon">待</span>
+            <div><strong>${escapeHtml(rule.name)}</strong><div class="mini">待复核积分 +${rule.score}</div></div>
+            <span class="tag amber">待复核</span>
+          </div>
+        `, "扫码确认投放");
+      } else {
+        addPoints(rule.score, `${rule.name}扫码投放`);
+        openModal("你的绿色积分已到账", `
+          <p>本次投放已记录，积分已同步到我的积分账户。</p>
+          <div class="detail-row">
+            <span class="icon">分</span>
+            <div><strong>${escapeHtml(rule.name)}</strong><div class="mini">已到账积分 +${rule.score}</div></div>
+            <span class="tag green">已到账</span>
+          </div>
+        `, "扫码确认投放");
+      }
+      renderScan();
+    }
+
+    function renderLedger() {
+      $("#pointsLedger").innerHTML = appState.ledger.map(item => `
+        <tr>
+          <td>${escapeHtml(item.title)}</td>
+          <td>${item.points > 0 ? "+" : ""}${item.points}</td>
+          <td><span class="tag ${ledgerClass(item.status)}">${escapeHtml(item.status)}</span></td>
+          <td>${escapeHtml(item.time)}</td>
+        </tr>
+      `).join("");
+      $("#rewardsGrid").innerHTML = rewards.map(reward => `
+        <div class="reward-card">
+          <div class="panel-title">
+            <h3>${escapeHtml(reward.title)}</h3>
+            <span class="tag amber">${reward.cost} 分</span>
+          </div>
+          <span class="mini">${escapeHtml(reward.source)}</span>
+          <button class="btn secondary" type="button" data-exchange="${escapeHtml(reward.title)}" data-cost="${reward.cost}">兑换</button>
+        </div>
+      `).join("");
+    }
+
+    function ledgerClass(status) {
+      if (status === "已到账") return "green";
+      if (status === "待复核") return "amber";
+      if (status === "已兑换") return "purple";
+      return "red";
+    }
+
+    function renderGame() {
+      const question = gameQuestions[appState.gameIndex];
+      $("#gameProgress").textContent = `${Math.min(appState.gameIndex + (appState.gameStarted ? 1 : 0), 3)}/3`;
+      if (!appState.gameStarted) {
+        $("#gameQuestion").textContent = "点击开始，进入第一题";
+        $("#gameAnswers").innerHTML = "";
+        $("#gameFeedback").textContent = "答对可获得积分，答错会进入错题本。";
+        return;
+      }
+      $("#gameQuestion").textContent = `这件物品应该投到哪里：${question.item}`;
+      $("#gameAnswers").innerHTML = categories.map(category => `<button class="answer" type="button" data-game-answer="${category}">${category}</button>`).join("");
+      $("#gameFeedback").textContent = "选择一个答案，系统会给出原因。";
+    }
+
+    function handleGameAnswer(answer) {
+      const question = gameQuestions[appState.gameIndex];
+      const correct = answer === question.answer;
+      $$("[data-game-answer]").forEach(btn => {
+        btn.disabled = true;
+        btn.classList.toggle("is-correct", btn.dataset.gameAnswer === question.answer);
+        btn.classList.toggle("is-wrong", btn.dataset.gameAnswer === answer && !correct);
+      });
+      if (correct) {
+        appState.gameScore += 1;
+        $("#gameFeedback").textContent = `回答正确。${question.explain}`;
+      } else {
+        appState.wrongBook.unshift({ item: question.item, answer: question.answer, explain: question.explain });
+        $("#gameFeedback").textContent = `这题应为「${question.answer}」。${question.explain}`;
+        renderWrongBook();
+      }
+    }
+
+    function nextGame() {
+      if (!appState.gameStarted) return;
+      if (appState.gameIndex < gameQuestions.length - 1) {
+        appState.gameIndex += 1;
+        renderGame();
+        return;
+      }
+      const score = appState.gameScore;
+      const reward = score * 2;
+      completeTask("game");
+      if (reward > 0) addPoints(reward, "完成小游戏挑战");
+      openModal("本局结算", `
+        <p>答对 ${score} / ${gameQuestions.length} 题，获得 ${reward} 积分。错题已进入错题本。</p>
+        <div class="feedback-box">高频提醒：液体先倒掉，污染餐盒和纸巾不要直接丢可回收物。</div>
+      `, "游戏乐园");
+      appState.gameStarted = false;
+      appState.gameIndex = 0;
+      appState.gameScore = 0;
+      renderGame();
+    }
+
+    function renderWrongBook() {
+      $("#wrongCount").textContent = `${appState.wrongBook.length} 项`;
+      $("#wrongBook").innerHTML = appState.wrongBook.length
+        ? appState.wrongBook.map(item => `
+          <div class="record-row">
+            <span class="icon">错</span>
+            <div><strong>${escapeHtml(item.item)}</strong><div class="mini">正确答案：${escapeHtml(item.answer)}。${escapeHtml(item.explain)}</div></div>
+            <span class="tag red">复习</span>
+          </div>
+        `).join("")
+        : `<div class="feedback-box">暂无错题。</div>`;
+    }
+
+    function renderDorm() {
+      const members = [
+        { name: "林同学", value: 92, score: 68 },
+        { name: "周同学", value: 76, score: 54 },
+        { name: "陈同学", value: 65, score: 42 },
+        { name: "吴同学", value: 58, score: 36 }
+      ];
+      $("#memberList").innerHTML = members.map(member => `
+        <div class="member-row">
+          <span class="avatar">${escapeHtml(member.name.slice(0, 1))}</span>
+          <div>
+            <strong>${escapeHtml(member.name)}</strong>
+            <div class="bar" style="margin-top:6px"><span style="--value:${member.value}%"></span></div>
+          </div>
+          <span class="tag green">${member.score} 分</span>
+        </div>
+      `).join("");
+      const dormTasks = [
+        { title: "纸箱压平集中回收", done: true },
+        { title: "电池送至有害垃圾点", done: false },
+        { title: "外卖盒倒空后处理", done: true },
+        { title: "更新一桶一袋提醒", done: false }
+      ];
+      $("#dormTasks").innerHTML = dormTasks.map((task, index) => `
+        <button class="task-row ${task.done || appState.dormChecked ? "is-done" : ""}" type="button" data-dorm-task="${index}">
+          <span class="task-check">✓</span>
+          <span><strong>${escapeHtml(task.title)}</strong><span class="mini">${task.done || appState.dormChecked ? "已完成" : "待完成"}</span></span>
+          <span class="tag green">+${index + 2}</span>
+        </button>
+      `).join("");
+    }
+
+    function completeDorm() {
+      if (appState.dormChecked) {
+        showToast("今日宿舍分流已经打卡");
+        return;
+      }
+      appState.dormChecked = true;
+      $("#dormStatusTag").textContent = "已打卡";
+      $("#dormStatusTag").className = "tag green";
+      $("#dormCompletion").textContent = "86%";
+      $("#dormPoints").textContent = "226";
+      completeTask("dorm");
+      addPoints(8, "宿舍源头分流打卡");
+      renderDorm();
+    }
+
+    function renderJobs() {
+      const filters = ["全部", "巡查", "引导", "数据", "宿舍", "地图", "活动"];
+      $("#jobFilters").innerHTML = filters.map(filter => `<button class="chip ${appState.jobFilter === filter ? "is-active" : ""}" type="button" data-job-filter="${filter}">${filter}</button>`).join("");
+      const list = jobs.filter(job => appState.jobFilter === "全部" || job.type === appState.jobFilter);
+      $("#jobsGrid").innerHTML = list.map(job => {
+        const applied = appState.applications.includes(job.id);
+        return `
+          <article class="job-card">
+            <div class="panel-title">
+              <h3>${escapeHtml(job.title)}</h3>
+              <span class="tag purple">${escapeHtml(job.type)}</span>
+            </div>
+            <span class="mini">${escapeHtml(job.place)} · ${escapeHtml(job.time)}</span>
+            <p class="muted">${escapeHtml(job.content)}</p>
+            <span class="tag green">${escapeHtml(job.reward)}</span>
+            <span class="mini">条件：${escapeHtml(job.need)}</span>
+            <button class="btn ${applied ? "secondary" : ""}" type="button" data-apply-job="${job.id}" ${applied ? "disabled" : ""}>${applied ? "审核中" : "报名"}</button>
+          </article>
+        `;
+      }).join("");
+      renderApplications();
+    }
+
+    function renderApplications() {
+      $("#jobApplyCount").textContent = `${appState.applications.length} 个申请`;
+      $("#myApplications").innerHTML = appState.applications.length
+        ? appState.applications.map(id => {
+          const job = jobs.find(item => item.id === id);
+          return `
+            <div class="record-row">
+              <span class="icon">岗</span>
+              <div><strong>${escapeHtml(job.title)}</strong><div class="mini">${escapeHtml(job.time)} · ${escapeHtml(job.place)}</div></div>
+              <span class="tag amber">审核中</span>
+            </div>
+          `;
+        }).join("")
+        : `<div class="feedback-box">还没有岗位申请。绿色积分和社会微任务凭证可作为筛选条件。</div>`;
+    }
+
+    function renderOps() {
+      $("#reviewList").innerHTML = appState.reviews.map(item => `
+        <div class="issue-row">
+          <div>
+            <strong>${escapeHtml(item.student)} · ${escapeHtml(item.item)}</strong>
+            <div class="mini">${escapeHtml(item.point)} · +${item.points} 分 · ${escapeHtml(item.status)}</div>
+          </div>
+          <div class="issue-actions">
+            <button class="btn secondary" type="button" data-review-pass="${item.id}">复核通过</button>
+            <button class="btn secondary" type="button" data-review-fail="${item.id}">不通过</button>
+          </div>
+        </div>
+      `).join("") || `<div class="feedback-box">待复核投放已处理完。</div>`;
+      $("#issueList").innerHTML = appState.issues.map(item => `
+        <div class="issue-row">
+          <div>
+            <strong>${escapeHtml(item.title)}</strong>
+            <div class="mini">${escapeHtml(item.detail)}</div>
+            <span class="tag ${statusClass(item.level)}" style="margin-top:8px">${escapeHtml(item.level)}</span>
+          </div>
+          <div class="issue-actions">
+            <button class="btn secondary" type="button" data-issue-done="${item.id}">标记已处理</button>
+            <button class="btn secondary" type="button" data-issue-dispatch="${item.id}">派发巡查</button>
+          </div>
+        </div>
+      `).join("") || `<div class="feedback-box">点位异常已处理完。</div>`;
+      $("#reviewCount").textContent = appState.reviews.length;
+      $("#issueCount").textContent = appState.issues.length;
+      $("#opsTodoCount").textContent = appState.reviews.length + appState.issues.length;
+    }
+
+    function reviewItem(id, passed) {
+      const item = appState.reviews.find(review => review.id === id);
+      if (!item) return;
+      appState.reviews = appState.reviews.filter(review => review.id !== id);
+      if (passed) {
+        appState.points += item.points;
+        appState.pendingPoints = Math.max(0, appState.pendingPoints - item.points);
+        appState.ledger.unshift({ title: `${item.item}复核通过`, points: item.points, status: "已到账", time: "刚刚" });
+        showToast(`${item.student} 的投放已复核通过`);
+      } else {
+        appState.ledger.unshift({ title: `${item.item}复核未通过`, points: 0, status: "未通过", time: "刚刚" });
+        showToast(`${item.student} 的投放已标记为未通过`);
+      }
+      updateStats();
+      renderOps();
+    }
+
+    function resolveIssue(id, dispatch = false) {
+      const item = appState.issues.find(issue => issue.id === id);
+      if (!item) return;
+      appState.issues = appState.issues.filter(issue => issue.id !== id);
+      renderOps();
+      showToast(dispatch ? "巡查任务已派发给绿色岗位人员" : `${item.title} 已标记处理`);
+    }
+
+    function reportBody(scope = "本周") {
+      return `
+        <div class="report-canvas">
+          <h3>${scope}绿色行动报告摘要</h3>
+          <p>本周期覆盖宿舍区、饭堂、快递站、图书馆和教学楼 18 个点位，学生绿色行动持续增加。</p>
+          <div class="grid two">
+            <div class="stat"><span>参与学生</span><strong>2,846</strong></div>
+            <div class="stat"><span>回收量</span><strong>1.82t</strong></div>
+            <div class="stat"><span>碳减排</span><strong>624kg</strong></div>
+            <div class="stat"><span>志愿时长</span><strong>612h</strong></div>
+          </div>
+          <div class="feedback-box" style="margin-top:12px">建议开展宿舍纸箱回收周，并在饭堂出口增加餐后投放指引；后勤可优先处理快递站满载和图书馆有害垃圾标识。</div>
+        </div>
+      `;
+    }
+
+    function bindEvents() {
+      document.addEventListener("click", event => {
+        const nav = event.target.closest("[data-nav]");
+        if (nav) {
+          navigate(nav.dataset.nav);
+          return;
+        }
+        const fill = event.target.closest("[data-fill]");
+        if (fill) {
+          const input = $(`#${fill.dataset.input}`);
+          input.value = fill.dataset.fill;
+          renderResult(findRule(fill.dataset.fill));
+          completeTask("classify");
+          addPoints(1, "AI 分类快捷查询");
+          navigate("assistant");
+          return;
+        }
+        const scanResult = event.target.closest("[data-result-scan]");
+        if (scanResult) {
+          appState.selectedScanItem = scanResult.dataset.resultScan;
+          appState.scanStep = 2;
+          navigate("scan");
+          return;
+        }
+        const favorite = event.target.closest("[data-favorite]");
+        if (favorite) {
+          if (!appState.favorites.includes(favorite.dataset.favorite)) {
+            appState.favorites.push(favorite.dataset.favorite);
+            renderFavorites();
+          }
+          showToast("已加入常问垃圾");
+          return;
+        }
+        const pointPin = event.target.closest("[data-point]");
+        if (pointPin) {
+          renderPointDetail(pointPin.dataset.point);
+          return;
+        }
+        const pointCard = event.target.closest("[data-point-card]");
+        if (pointCard) {
+          renderPointDetail(pointCard.dataset.pointCard);
+          return;
+        }
+        const mapFilter = event.target.closest("[data-map-filter]");
+        if (mapFilter) {
+          appState.currentFilter = mapFilter.dataset.mapFilter;
+          renderMap();
+          return;
+        }
+        const feedbackPoint = event.target.closest("[data-feedback-point]");
+        if (feedbackPoint) {
+          completeTask("feedback");
+          addPoints(2, "提交点位反馈");
+          openModal("点位反馈已提交", `<p>后勤工作台会收到这条反馈，绿色岗位人员可在巡查任务中继续处理。</p>`, "回收地图");
+          return;
+        }
+        const navigatePoint = event.target.closest("[data-navigate-point]");
+        if (navigatePoint) {
+          showToast(`已为你规划到 ${points[navigatePoint.dataset.navigatePoint].name} 的路线`);
+          return;
+        }
+        const scanItem = event.target.closest("[data-scan-item]");
+        if (scanItem) {
+          appState.selectedScanItem = scanItem.dataset.scanItem;
+          appState.scanStep = 2;
+          renderScan();
+          return;
+        }
+        const exchange = event.target.closest("[data-exchange]");
+        if (exchange) {
+          const cost = Number(exchange.dataset.cost);
+          const title = exchange.dataset.exchange;
+          if (appState.points < cost) {
+            showToast("当前积分不足，先完成今日任务吧");
+            return;
+          }
+          appState.points -= cost;
+          appState.ledger.unshift({ title, points: -cost, status: "已兑换", time: "刚刚" });
+          updateStats();
+          renderLedger();
+          showToast(`${title} 已兑换`);
+          return;
+        }
+        const gameAnswer = event.target.closest("[data-game-answer]");
+        if (gameAnswer) {
+          handleGameAnswer(gameAnswer.dataset.gameAnswer);
+          return;
+        }
+        const dormTask = event.target.closest("[data-dorm-task]");
+        if (dormTask) {
+          showToast("宿舍任务状态已同步");
+          return;
+        }
+        const jobFilter = event.target.closest("[data-job-filter]");
+        if (jobFilter) {
+          appState.jobFilter = jobFilter.dataset.jobFilter;
+          renderJobs();
+          return;
+        }
+        const applyJob = event.target.closest("[data-apply-job]");
+        if (applyJob) {
+          if (!appState.applications.includes(applyJob.dataset.applyJob)) {
+            appState.applications.push(applyJob.dataset.applyJob);
+            renderJobs();
+            showToast("岗位申请已提交，等待审核");
+          }
+          return;
+        }
+        const reviewPass = event.target.closest("[data-review-pass]");
+        if (reviewPass) {
+          reviewItem(reviewPass.dataset.reviewPass, true);
+          return;
+        }
+        const reviewFail = event.target.closest("[data-review-fail]");
+        if (reviewFail) {
+          reviewItem(reviewFail.dataset.reviewFail, false);
+          return;
+        }
+        const issueDone = event.target.closest("[data-issue-done]");
+        if (issueDone) {
+          resolveIssue(issueDone.dataset.issueDone);
+          return;
+        }
+        const issueDispatch = event.target.closest("[data-issue-dispatch]");
+        if (issueDispatch) {
+          resolveIssue(issueDispatch.dataset.issueDispatch, true);
+        }
+      });
+
+      $("#homeClassifyBtn").addEventListener("click", () => classifyFromInput("homeQuery"));
+      $("#assistantClassifyBtn").addEventListener("click", () => classifyFromInput("assistantQuery"));
+      $("#homeQuery").addEventListener("keydown", event => {
+        if (event.key === "Enter") classifyFromInput("homeQuery");
+      });
+      $("#assistantQuery").addEventListener("keydown", event => {
+        if (event.key === "Enter") classifyFromInput("assistantQuery");
+      });
+      $("#photoBtn").addEventListener("click", () => $("#photoInput").click());
+      $("#photoInput").addEventListener("change", () => {
+        $("#assistantQuery").value = "塑料瓶";
+        renderResult(itemRules["塑料瓶"]);
+        completeTask("classify");
+        addPoints(1, "拍照识别分类");
+        $("#assistantHint").textContent = "已读取图片，识别为塑料瓶。请倒空液体后投放。";
+      });
+      $("#scanAgainBtn").addEventListener("click", () => {
+        appState.scanStep = 1;
+        $("#scanStatusTag").textContent = "已识别";
+        renderScan();
+        showToast("已识别当前点位二维码");
+      });
+      document.addEventListener("click", event => {
+        if (event.target && event.target.id === "finishScanBtn") completeScan();
+      });
+      $("#startGameBtn").addEventListener("click", () => {
+        appState.gameStarted = true;
+        appState.gameIndex = 0;
+        appState.gameScore = 0;
+        renderGame();
+      });
+      $("#nextGameBtn").addEventListener("click", nextGame);
+      $("#dormCheckBtn").addEventListener("click", completeDorm);
+      $("#genAdviceBtn").addEventListener("click", () => {
+        $("#opsAdvice").textContent = "今晚 19:00-20:30 请优先在宿舍 A 栋桶站提醒：奶茶杯先倒掉液体，吸管和杯盖分开投放；快递纸箱请压平后送到快递站集中点。";
+        showToast("提醒文案已生成");
+      });
+      $("#dispatchPatrolBtn").addEventListener("click", () => showToast("巡查任务已派发给点位巡查员"));
+      $("#opsWeekReportBtn").addEventListener("click", () => openModal("本周后勤周报", reportBody("本周"), "后勤工作台"));
+      $("#schoolReportBtn").addEventListener("click", () => openModal("本周绿色行动报告", reportBody("本周"), "校方管理端"));
+      $("#monthReportBtn").addEventListener("click", () => openModal("本月绿色行动报告", reportBody("本月"), "校方管理端"));
+      $("#exportMaterialBtn").addEventListener("click", () => showToast("项目申报材料已生成摘要"));
+      $("#operationAdviceBtn").addEventListener("click", () => openModal("运营建议", `<div class="today-list">
+        <div class="record-row"><span class="icon">1</span><div><strong>宿舍纸箱回收周</strong><div class="mini">快递站纸箱满载频率上升，适合与宿舍公约权益联动。</div></div><span class="tag green">优先</span></div>
+        <div class="record-row"><span class="icon">2</span><div><strong>饭堂餐后分离提示</strong><div class="mini">午餐高峰咨询集中，建议增派分类引导员。</div></div><span class="tag amber">本周</span></div>
+      </div>`, "校方管理端"));
+      $("#profileBtn").addEventListener("click", () => openModal("可持续成长档案摘要", `
+        <p>本学期你完成分类查询 38 次、扫码投放 23 次、宿舍分流打卡 18 次、绿色岗位任务 2 次，已获得志愿时长 12.5h。</p>
+        <div class="feedback-box">可用于绿色岗位报名、综测证明和绿色活动优先报名。</div>
+      `, "校园行动账户"));
+      $("#modalClose").addEventListener("click", closeModal);
+      $("#modal").addEventListener("click", event => {
+        if (event.target.id === "modal") closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closeModal();
+      });
+    }
+
+    function init() {
+      renderQuickItems("homeQuickItems", "homeQuery");
+      renderQuickItems("assistantQuickItems", "assistantQuery");
+      renderHotQueries();
+      renderFavorites();
+      renderResult(itemRules["奶茶杯"]);
+      renderMap();
+      renderScan();
+      renderLedger();
+      renderGame();
+      renderWrongBook();
+      renderDorm();
+      renderJobs();
+      renderOps();
+      renderTasks();
+      updateStats();
+      bindEvents();
+    }
+
+    init();
+  </script>
+</body>
+</html>
