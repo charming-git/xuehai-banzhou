@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大学生创新创业支持生态数据库</title>
+  <style>
+    :root {
+      --deep-purple: #17132f;
+      --dark-purple: #241b4d;
+      --primary-purple: #6c5ce7;
+      --dream-purple: #8b7cf6;
+      --light-purple-bg: #f3f0ff;
+      --soft-purple-card: #f8f6ff;
+      --mint: #4ecdc4;
+      --soft-pink-purple: #d8b4fe;
+      --amber: #f5a623;
+      --rose-purple: #d4567b;
+      --green: #1d9e75;
+      --ink: #1a1a2e;
+      --muted: #73728a;
+      --line: #ded9f6;
+      --paper: #f8f7fb;
+      --white: #ffffff;
+      --shadow: 0 14px 32px rgba(80, 64, 180, .10);
+      --shadow-hover: 0 18px 42px rgba(108, 92, 231, .16);
+      --radius: 8px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(108, 92, 231, .18), transparent 32%),
+        radial-gradient(circle at top right, rgba(216, 180, 254, .22), transparent 30%),
+        linear-gradient(180deg, #f8f6ff 0%, #f5f6fa 100%);
+      line-height: 1.55;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .database-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      color: white;
+      background:
+        radial-gradient(circle at 78% 22%, rgba(78, 205, 196, .28), transparent 26%),
+        radial-gradient(circle at 12% 80%, rgba(216, 180, 254, .20), transparent 28%),
+        linear-gradient(135deg, #17132f 0%, #3d2c8d 45%, #6c5ce7 100%);
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    .database-hero::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      bottom: 22px;
+      width: 230px;
+      height: 160px;
+      opacity: .14;
+      background:
+        linear-gradient(90deg, transparent 0 47%, #fff 47% 53%, transparent 53%),
+        linear-gradient(0deg, transparent 0 47%, #fff 47% 53%, transparent 53%);
+      background-size: 38px 38px;
+      transform: rotate(-8deg);
+    }
+    .database-hero > * { position: relative; z-index: 1; }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #bdfcf4;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.15;
+    }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 15px;
+    }
+    .database-hero .sub { color: #ded9ff; font-size: 16px; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--ink);
+      padding: 9px 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-weight: 800;
+      font-size: 13px;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .btn:hover { transform: translateY(-1px) scale(1.01); box-shadow: var(--shadow); }
+    .btn.primary {
+      color: white;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--primary-purple), var(--dream-purple));
+    }
+    .btn.mint {
+      color: #123a3b;
+      border-color: transparent;
+      background: linear-gradient(135deg, #8bf0e5, var(--mint));
+    }
+    .btn.amber {
+      color: #3e2c0a;
+      border-color: transparent;
+      background: linear-gradient(135deg, #ffd783, var(--amber));
+    }
+    .btn.ghost {
+      color: var(--primary-purple);
+      border-color: rgba(108, 92, 231, .26);
+      background: transparent;
+    }
+    .btn.hero-ghost {
+      color: #f1eeff;
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.08);
+    }
+    .btn.small { min-height: 32px; padding: 7px 10px; font-size: 12px; }
+
+    .section {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(108, 92, 231, .12);
+      background: rgba(255, 255, 255, .88);
+      box-shadow: var(--shadow);
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .connection-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .connection-card, .stat-card, .resource-card, .favorite-card, .match-card, .rule-card {
+      border-radius: var(--radius);
+      border: 1px solid rgba(108, 92, 231, .12);
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 32px rgba(80, 64, 180, .08);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .connection-card, .stat-card { padding: 18px; }
+    .resource-card, .favorite-card, .match-card, .rule-card { padding: 16px; }
+    .resource-card:hover, .favorite-card:hover, .rule-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(108, 92, 231, .28);
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .meta {
+      border-radius: var(--radius);
+      background: var(--soft-purple-card);
+      padding: 11px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .meta strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      margin-bottom: 3px;
+      overflow-wrap: anywhere;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #0b6a61;
+      background: rgba(78, 205, 196, .16);
+      border: 1px solid rgba(78, 205, 196, .28);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--mint);
+      box-shadow: 0 0 0 4px rgba(78, 205, 196, .16);
+    }
+    .syncing .status-dot { animation: pulse 1s ease infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(.8); opacity: .6; }
+      50% { transform: scale(1); opacity: 1; }
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .stat-card strong { display: block; font-size: 30px; line-height: 1; margin-bottom: 7px; }
+    .stat-card span { color: var(--muted); font-size: 12px; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .field, .select, .textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--ink);
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+    .field:focus, .select:focus, .textarea:focus {
+      border-color: var(--primary-purple);
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, .12);
+    }
+    .textarea { min-height: 110px; resize: vertical; }
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: white;
+      color: #514b74;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .chip:hover { transform: translateY(-1px); border-color: var(--primary-purple); }
+    .chip.active { background: var(--primary-purple); border-color: var(--primary-purple); color: white; }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .resource-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background: var(--light-purple-bg);
+      color: var(--primary-purple);
+      font-size: 22px;
+      flex: 0 0 auto;
+    }
+    .resource-card h3 { margin: 0 0 7px; font-size: 17px; }
+    .resource-card p { margin: 0 0 10px; color: var(--muted); font-size: 13px; }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 900;
+      background: var(--light-purple-bg);
+      color: #5542bf;
+      border: 1px solid rgba(108, 92, 231, .16);
+      white-space: nowrap;
+    }
+    .tag.mint { background: rgba(78,205,196,.15); color: #08736f; border-color: rgba(78,205,196,.28); }
+    .tag.amber { background: rgba(245,166,35,.16); color: #81520d; border-color: rgba(245,166,35,.28); }
+    .tag.rose { background: rgba(212,86,123,.13); color: #a2365a; border-color: rgba(212,86,123,.22); }
+    .tag.gray { background: #f1f1f6; color: #6f7080; border-color: #e1e1eb; }
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .matcher-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .form-grid { display: grid; gap: 10px; }
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .match-output {
+      display: grid;
+      gap: 10px;
+    }
+    .match-row {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--soft-purple-card);
+      padding: 12px;
+    }
+    .match-row strong { display: block; margin-bottom: 6px; }
+
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .rule-card {
+      cursor: pointer;
+      text-align: left;
+      border: 1px solid rgba(108,92,231,.12);
+    }
+    .rule-card strong { display: block; margin-bottom: 6px; }
+    .rule-card span { color: var(--muted); font-size: 12px; }
+
+    .favorite-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .favorite-card h3 { margin: 0 0 8px; font-size: 15px; }
+    .favorite-card p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
+
+    .insight {
+      border: 1px solid rgba(78,205,196,.24);
+      background: linear-gradient(135deg, rgba(243,240,255,.9), rgba(232,252,249,.82));
+    }
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      border: 1px dashed rgba(108, 92, 231, .36);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.62);
+      padding: 28px;
+      color: var(--muted);
+    }
+    .empty-icon { font-size: 30px; margin-bottom: 8px; }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(19, 16, 42, .5);
+      padding: 18px;
+      z-index: 80;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      width: min(820px, 100%);
+      max-height: min(86vh, 780px);
+      overflow: auto;
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 28px 72px rgba(23,19,47,.28);
+      opacity: 0;
+      transform: scale(.96);
+      animation: modalIn .18s ease forwards;
+    }
+    @keyframes modalIn { to { opacity: 1; transform: scale(1); } }
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding: 16px 18px;
+      background: white;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .modal-head h3 { margin: 0; }
+    .modal-body { padding: 18px; }
+    .modal-close {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius);
+      border: 0;
+      background: var(--light-purple-bg);
+      color: var(--primary-purple);
+      font-weight: 900;
+    }
+    pre.json-box {
+      max-height: 430px;
+      overflow: auto;
+      border-radius: var(--radius);
+      background: #17132f;
+      color: #e8e4ff;
+      padding: 14px;
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .toast {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 100;
+      max-width: min(380px, calc(100vw - 36px));
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      color: white;
+      background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
+      box-shadow: var(--shadow);
+      transform: translateY(-14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .18s ease, opacity .18s ease;
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .connection-grid, .matcher-grid { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .shell { padding: 14px; }
+      .database-hero, .section { padding: 18px; }
+      .section-head { flex-direction: column; align-items: stretch; }
+      .meta-grid, .stat-grid, .two { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="database-hero">
+      <div class="eyebrow">XINYI RESOURCE DATABASE</div>
+      <h1>大学生创新创业支持生态数据库</h1>
+      <p class="sub">把分散的 AI 工具、课程、公益组织、CSR 项目、基金入口统一到一个可搜索、可匹配的资源库。</p>
+      <div class="hero-actions">
+        <button class="btn mint" id="openTencentDocHero">打开腾讯文档</button>
+        <button class="btn hero-ghost" id="syncHero">同步数据库</button>
+        <button class="btn hero-ghost" data-scroll="#matcher">开始匹配资源</button>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="connection-grid">
+        <div class="connection-card" id="connectionCard">
+          <div class="section-head" style="margin-bottom:0;">
+            <div>
+              <div class="eyebrow">Database Link</div>
+              <h2>数据库连接</h2>
+              <p class="sub">前端模拟同步，正式版需接入文档 API 或后台数据接口。</p>
+            </div>
+            <span class="status-pill"><span class="status-dot"></span><span id="syncStatus">已连接</span></span>
+          </div>
+          <div class="meta-grid">
+            <div class="meta"><strong>大学生创新创业支持生态数据库</strong>数据库名称</div>
+            <div class="meta"><strong>腾讯文档</strong>数据来源</div>
+            <div class="meta"><strong id="resourceCount">0</strong>资源数量</div>
+            <div class="meta"><strong id="lastSync">Demo 模拟时间</strong>最近同步</div>
+            <div class="meta" style="grid-column:1/-1;"><strong>https://docs.qq.com/markdown/DY0RJeWZxdU94Ykhu</strong>数据库链接</div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn primary" id="openTencentDoc">打开腾讯文档</button>
+            <button class="btn mint" id="syncDatabase">同步数据库</button>
+            <button class="btn ghost" id="importResource">导入资源</button>
+            <button class="btn amber" id="exportJson">导出当前资源 JSON</button>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card"><strong id="statAi">0</strong><span>AI 工具</span></div>
+          <div class="stat-card"><strong id="statCourse">0</strong><span>高校 AI 公开课</span></div>
+          <div class="stat-card"><strong id="statSupport">0</strong><span>公益 / CSR / 基金</span></div>
+          <div class="stat-card"><strong id="statFavorites">0</strong><span>我的收藏</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Search & Filter</div>
+          <h2>资源数据库</h2>
+          <p class="sub">搜索 DeepSeek、AI公开课、CSR、创业贷款、环保、作品集等关键词，实时筛选资源卡片。</p>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input class="field" id="resourceSearch" type="search" placeholder="搜索资源：DeepSeek / AI公开课 / 公益 / CSR / 创业贷款 / 环保">
+        <button class="btn ghost" id="clearSearch">清空搜索</button>
+      </div>
+      <div class="chip-group" id="categoryChips"></div>
+      <div class="resource-grid" id="resourceList"></div>
+    </section>
+
+    <section class="section" id="matcher">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Resource Matcher</div>
+          <h2>资源匹配器</h2>
+          <p class="sub">输入你关心的问题、地区、专业和项目阶段，自动推荐 AI 工具、课程、公益组织、CSR 支持与基金入口。</p>
+        </div>
+      </div>
+      <div class="matcher-grid">
+        <div class="connection-card">
+          <div class="form-grid">
+            <select class="select" id="matchIssue"></select>
+            <select class="select" id="matchRegion"></select>
+            <select class="select" id="matchMajor"></select>
+            <select class="select" id="matchStage"></select>
+            <button class="btn primary" id="runMatcher">开始匹配资源</button>
+          </div>
+        </div>
+        <div class="connection-card">
+          <h3>匹配结果</h3>
+          <div class="match-output" id="matchOutput">
+            <div class="empty">
+              <div class="empty-icon">🧭</div>
+              <strong>还没有匹配结果</strong>
+              <p>选择条件后点击“开始匹配资源”。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-grid" id="ruleCards"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">My Resources</div>
+          <h2>我的收藏资源</h2>
+          <p class="sub">收藏适合你的 AI 工具、课程、项目支持入口，方便后续申报、学习或做作品集。</p>
+        </div>
+      </div>
+      <div class="favorite-grid" id="favoriteList"></div>
+    </section>
+
+    <section class="section insight">
+      <div class="eyebrow">Core Insight</div>
+      <h2>核心洞察</h2>
+      <p>不是资源太少，而是资源入口太分散、匹配成本太高。一个大学生要在就业市场中被看见，需要同时知道：什么赛事适合自己、哪里能申请创业贷款、哪些公益组织在资助同类项目、哪家公司 CSR 部门在征集方案、所在地有没有政策红利。心翼把这些入口统一成一个“输入你关心的事 → 自动匹配资源”的入口。</p>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">详情</h3>
+        <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const TENCENT_DOC_URL = "https://docs.qq.com/markdown/DY0RJeWZxdU94Ykhu";
+    const categories = ["全部资源", "AI工具", "高校AI公开课", "公益组织与社会企业", "企业CSR与技术支持", "政府与高校基金会", "创新创业支持", "资源匹配逻辑"];
+    const matcherOptions = {
+      issue: ["环保", "食品安全", "宿舍共治", "社区服务", "AI学习", "创新创业", "职业发展", "社会调研", "公益项目"],
+      region: ["广州", "上海", "北京", "深圳", "杭州", "其他"],
+      major: ["文科", "理工科", "商科", "教育", "艺术传媒", "不确定"],
+      stage: ["只是想法", "已有小任务", "已有团队", "已有 Demo", "准备比赛 / 申报"]
+    };
+    const seedResources = [
+      { id: "ai-deepseek", name: "DeepSeek", category: "AI工具", icon: "🔵", provider: "DeepSeek", description: "适合代码生成、数学推理、长文本分析和学术研究的国产 AI 工具。", strengths: ["代码生成", "数学推理", "长文本分析", "学术研究"], freeInfo: "基础版完全免费", suitableFor: ["写代码", "做数据分析", "论文辅助", "深度思考"], supportType: "AI工具", tags: ["推荐", "代码", "数学", "论文", "数据分析", "长文本"], link: "", matchKeywords: ["代码", "数学", "长文本", "学术研究", "论文", "数据分析", "深度思考"], sourceNote: "图片整理内容" },
+      { id: "ai-doubao", name: "豆包（字节跳动）", category: "AI工具", icon: "🟣", provider: "字节跳动", description: "适合语音交互、日常问答、创意写作和 PPT 生成的国产 AI 工具。", strengths: ["语音交互", "日常问答", "创意写作", "PPT生成"], freeInfo: "完全免费", suitableFor: ["口语练习", "快速出文案", "做PPT初稿"], supportType: "AI工具", tags: ["语音", "问答", "创意写作", "PPT", "口语练习", "文案"], link: "", matchKeywords: ["语音", "问答", "创意写作", "PPT", "口语练习", "文案"], sourceNote: "图片整理内容" },
+      { id: "ai-kimi", name: "Kimi（月之暗面）", category: "AI工具", icon: "🌙", provider: "月之暗面", description: "适合超长文档阅读、文件分析和联网搜索。", strengths: ["超长文档阅读（20万+字）", "文件分析", "联网搜索"], freeInfo: "基础版免费", suitableFor: ["读论文/报告", "总结长文档", "查资料"], supportType: "AI工具", tags: ["长文档", "论文", "报告", "总结", "文件分析", "联网搜索"], link: "", matchKeywords: ["长文档", "论文", "报告", "总结", "文件分析", "联网搜索", "查资料"], sourceNote: "图片整理内容" },
+      { id: "ai-qwen", name: "通义千问（阿里）", category: "AI工具", icon: "🟠", provider: "阿里", description: "适合逻辑推理、代码能力、多模态理解和图像识别。", strengths: ["逻辑稳定", "代码能力", "多模态理解", "图像识别"], freeInfo: "Qwen3开源模型可本地部署", suitableFor: ["逻辑推理", "图片分析", "技术开发"], supportType: "AI工具", tags: ["逻辑推理", "代码", "多模态", "图像识别", "本地部署"], link: "", matchKeywords: ["逻辑推理", "代码", "多模态", "图像识别", "图片分析", "技术开发", "本地部署"], sourceNote: "图片整理内容" },
+      { id: "ai-wenxin", name: "文心一言（百度）", category: "AI工具", icon: "🔷", provider: "百度", description: "适合中文文案创作、古诗词理解和知识问答。", strengths: ["中文文案创作", "古诗词理解", "知识问答"], freeInfo: "基础版免费", suitableFor: ["写文章/公文", "中文创作", "百科问答"], supportType: "AI工具", tags: ["中文写作", "公文", "文章", "古诗词", "知识问答"], link: "", matchKeywords: ["中文写作", "公文", "文章", "古诗词", "知识问答", "百科"], sourceNote: "图片整理内容" },
+      { id: "ai-xinghuo", name: "讯飞星火（科大讯飞）", category: "AI工具", icon: "⭐", provider: "科大讯飞", description: "适合语音交互、多语种翻译和办公场景。", strengths: ["语音交互", "多语种翻译", "办公场景"], freeInfo: "基础版免费", suitableFor: ["会议记录", "语音转文字", "多语言场景"], supportType: "AI工具", tags: ["语音", "翻译", "会议记录", "语音转文字", "多语言", "办公"], link: "", matchKeywords: ["语音", "翻译", "会议记录", "语音转文字", "多语言", "办公"], sourceNote: "图片整理内容" },
+      { id: "course-smartedu-ai2026", name: "国家高等教育智慧教育平台 · AI2026专区", category: "高校AI公开课", icon: "🏛️", provider: "教育部官方平台", description: "教育部官方平台，聚合大量高校 AI 课程资源。", strengths: ["AI通识课", "AI+X交叉课", "国产大模型实战课", "名校公开课"], freeInfo: "全部免费", suitableFor: ["想系统学习AI", "了解AI通识", "AI+专业交叉学习的大学生"], supportType: "免费课程", tags: ["AI公开课", "智慧教育", "教育部", "免费课程", "AI2026"], link: "https://higher.smartedu.cn/ai2026", matchKeywords: ["AI公开课", "智慧教育", "教育部", "免费课程", "通识课", "AI2026"], sourceNote: "图片整理内容" },
+      { id: "course-ai-general", name: "AI通识课", category: "高校AI公开课", icon: "📚", provider: "国家高等教育智慧教育平台", description: "包含山东大学《信息社会与AI》、浙大《AI通识基础》、西电《AI导论》、南大《用Python玩转数据》、北大《人工智能原理》等。", strengths: ["AI基础认知", "Python数据", "人工智能原理", "信息社会与AI"], freeInfo: "全部免费", suitableFor: ["AI零基础", "想建立基本认知", "想补充通识能力的学生"], supportType: "免费课程", tags: ["通识课", "AI导论", "Python", "人工智能原理"], link: "https://higher.smartedu.cn/ai2026", matchKeywords: ["通识课", "AI导论", "Python", "人工智能原理", "信息社会与AI"], sourceNote: "图片整理内容" },
+      { id: "course-ai-x", name: "AI+X交叉课", category: "高校AI公开课", icon: "🔗", provider: "国家高等教育智慧教育平台", description: "包含复旦《面向文科的AI》、浙大《计算医疗》、上交《自动驾驶》、北航《目标探测》、北交《AI法学》等。", strengths: ["文科AI", "计算医疗", "自动驾驶", "AI法学", "跨学科应用"], freeInfo: "全部免费", suitableFor: ["文科学生", "跨专业学生", "想把AI应用到专业场景的学生"], supportType: "免费课程", tags: ["AI+X", "文科AI", "计算医疗", "自动驾驶", "AI法学"], link: "https://higher.smartedu.cn/ai2026", matchKeywords: ["AI+X", "文科AI", "计算医疗", "自动驾驶", "AI法学", "跨学科"], sourceNote: "图片整理内容" },
+      { id: "course-domestic-llm", name: "国产大模型实战课", category: "高校AI公开课", icon: "⚡", provider: "国家高等教育智慧教育平台", description: "包含清华《DeepSeek高效运用》、浙大《Kimi大模型》、百度《文心一言应用》、阿里《通义千问应用》、讯飞《星火实践》、华为《大模型部署》、腾讯《混元实战》等。", strengths: ["DeepSeek应用", "Kimi大模型", "文心一言", "通义千问", "星火实践", "大模型部署"], freeInfo: "全部免费", suitableFor: ["想学习国产大模型应用", "AI工具实操", "技术开发和部署的学生"], supportType: "免费课程", tags: ["DeepSeek", "Kimi", "文心一言", "通义千问", "星火", "大模型部署"], link: "https://higher.smartedu.cn/ai2026", matchKeywords: ["DeepSeek", "Kimi", "文心一言", "通义千问", "星火", "混元", "大模型部署"], sourceNote: "图片整理内容" },
+      { id: "course-famous-ai", name: "名校AI公开课", category: "高校AI公开课", icon: "🎬", provider: "国家高等教育智慧教育平台", description: "包含浙大《DeepSeek专题系列》、哈工大《解码智能时代》、北理工《AI公开课》、北邮《AI赋能社科研究》、清华MAIC全AI守护课堂等。", strengths: ["DeepSeek专题", "智能时代", "AI公开课", "AI赋能社科", "AI素养"], freeInfo: "全部免费", suitableFor: ["想拓宽AI视野", "提升AI素养", "理解智能时代变化的学生"], supportType: "免费课程", tags: ["名校公开课", "DeepSeek专题", "智能时代", "AI赋能社科"], link: "https://higher.smartedu.cn/ai2026", matchKeywords: ["名校公开课", "DeepSeek专题", "智能时代", "AI赋能社科", "AI素养"], sourceNote: "图片整理内容" },
+      { id: "course-tsinghua-library", name: "清华大学图书馆 · 信息素养微课堂", category: "高校AI公开课", icon: "📖", provider: "清华大学图书馆", description: "包含 DeepSeek 使用介绍、检索基础、常用资源、实操案例。", strengths: ["DeepSeek使用介绍", "检索基础", "常用资源", "实操案例"], freeInfo: "免费资源", suitableFor: ["查资料", "做论文", "学习检索", "提升信息素养的学生"], supportType: "免费课程 / 微课堂", tags: ["信息素养", "DeepSeek", "检索", "资料", "论文"], link: "https://mclass.lib.tsinghua.edu.cn", matchKeywords: ["信息素养", "DeepSeek", "检索", "资料", "论文", "实操案例"], sourceNote: "图片整理内容" },
+      { id: "ngo-chushan", name: "初善创投", category: "公益组织与社会企业", icon: "🌱", provider: "初善创投", description: "关注社会创新、公益项目孵化和影响力投资，适合寻找公益项目早期支持。", strengths: ["社会创新", "公益项目孵化", "影响力投资"], freeInfo: "项目支持需按具体招募申请", suitableFor: ["公益创业", "社会创新项目", "青年公益团队"], supportType: "公益资源 / 项目支持", tags: ["公益", "社会创新", "影响力投资", "项目孵化"], link: "", matchKeywords: ["公益", "社会创新", "公益创业", "影响力投资", "孵化"], sourceNote: "图片整理内容" },
+      { id: "ngo-yiyou", name: "益优青年", category: "公益组织与社会企业", icon: "🤝", provider: "益优青年", description: "面向青年公益行动和志愿服务成长，适合把校园议题转化为公益实践。", strengths: ["青年成长", "公益行动", "志愿服务"], freeInfo: "视项目活动而定", suitableFor: ["志愿服务", "校园公益项目", "青年成长"], supportType: "公益组织 / 青年行动", tags: ["青年", "公益", "志愿", "校园行动"], link: "", matchKeywords: ["青年成长", "公益", "志愿", "校园行动", "社区"], sourceNote: "图片整理内容" },
+      { id: "ngo-liying", name: "励媖中国", category: "公益组织与社会企业", icon: "♀️", provider: "励媖中国", description: "关注女性赋能、青年领导力和公益倡导，适合相关社会议题项目。", strengths: ["女性赋能", "青年领导力", "公益倡导"], freeInfo: "视项目活动而定", suitableFor: ["女性赋能项目", "青年领导力训练", "议题倡导"], supportType: "公益组织 / 能力支持", tags: ["女性赋能", "公益倡导", "青年领导力"], link: "", matchKeywords: ["女性赋能", "公益", "领导力", "青年成长", "倡导"], sourceNote: "图片整理内容" },
+      { id: "ngo-cgongyi", name: "C公益", category: "公益组织与社会企业", icon: "🧩", provider: "C公益", description: "提供公益项目传播、资源连接和公益行动入口。", strengths: ["公益传播", "资源连接", "项目展示"], freeInfo: "视项目活动而定", suitableFor: ["公益传播", "项目展示", "资源对接"], supportType: "公益平台 / 资源连接", tags: ["公益", "传播", "项目展示", "资源连接"], link: "", matchKeywords: ["公益", "传播", "资源连接", "项目展示"], sourceNote: "图片整理内容" },
+      { id: "ngo-lingdian-heipingguo", name: "零点青年 / 黑苹果", category: "公益组织与社会企业", icon: "🍏", provider: "零点青年 / 黑苹果", description: "关注青年社会调研、社区实践和公益创新，适合把调研转为行动方案。", strengths: ["社会调研", "社区实践", "青年公益创新"], freeInfo: "视项目活动而定", suitableFor: ["社会调研", "社区服务", "公益项目"], supportType: "公益组织 / 调研实践", tags: ["社会调研", "社区", "青年", "公益创新"], link: "", matchKeywords: ["社会调研", "社区服务", "公益", "青年", "实践"], sourceNote: "图片整理内容" },
+      { id: "ngo-npi", name: "恩派", category: "公益组织与社会企业", icon: "🏘️", provider: "恩派", description: "社会组织支持平台，关注社区治理、公益孵化和社会创新。", strengths: ["社会组织孵化", "社区治理", "公益创新"], freeInfo: "视项目活动而定", suitableFor: ["社区服务", "社会组织", "公益创业"], supportType: "社会企业 / 公益孵化", tags: ["社区治理", "公益孵化", "社会组织", "社会创新"], link: "", matchKeywords: ["社区", "公益孵化", "社会组织", "社会创新", "公益创业"], sourceNote: "图片整理内容" },
+      { id: "csr-tencent-light", name: "腾讯Light创造营", category: "企业CSR与技术支持", icon: "💡", provider: "腾讯", description: "面向青年创新、社会价值项目和技术公益方向的支持入口。", strengths: ["社会价值", "青年创新", "技术公益"], freeInfo: "视项目招募而定", suitableFor: ["社会价值项目", "青年创新团队", "数字公益项目"], supportType: "企业 CSR / 项目支持", tags: ["腾讯", "Light", "社会价值", "技术公益", "青年创新"], link: "", matchKeywords: ["腾讯", "Light", "CSR", "社会价值", "技术公益", "青年创新"], sourceNote: "图片整理内容" },
+      { id: "csr-tencent-cloud-startup", name: "腾讯云初创企业计划", category: "企业CSR与技术支持", icon: "☁️", provider: "腾讯云", description: "为初创团队提供云资源、技术支持和创业服务入口。", strengths: ["云资源", "技术支持", "创业服务"], freeInfo: "按申请规则提供云资源权益", suitableFor: ["已有 Demo", "初创团队", "技术项目"], supportType: "技术支持 / 云资源", tags: ["腾讯云", "创业", "云资源", "技术支持"], link: "", matchKeywords: ["腾讯云", "云资源", "初创", "技术支持", "Demo", "创业"], sourceNote: "图片整理内容" },
+      { id: "csr-meituan-qingshan", name: "美团青山计划 / 青山科技基金", category: "企业CSR与技术支持", icon: "⛰️", provider: "美团", description: "关注环保、低碳、包装减量和可持续消费相关项目。", strengths: ["环保", "低碳", "可持续消费", "绿色科技"], freeInfo: "视项目申请而定", suitableFor: ["环保项目", "可持续校园行动", "绿色科技方案"], supportType: "企业 CSR / 科技基金", tags: ["美团", "青山计划", "环保", "低碳", "可持续"], link: "", matchKeywords: ["环保", "低碳", "青山计划", "美团", "绿色", "可持续"], sourceNote: "图片整理内容" },
+      { id: "csr-ali-gongyi", name: "阿里公益", category: "企业CSR与技术支持", icon: "🧡", provider: "阿里", description: "阿里生态公益入口，适合公益传播、数字化公益和平台资源对接。", strengths: ["数字公益", "平台资源", "公益传播"], freeInfo: "视项目活动而定", suitableFor: ["数字公益", "公益传播", "社会创新项目"], supportType: "企业公益 / 资源支持", tags: ["阿里", "公益", "数字公益", "平台资源"], link: "", matchKeywords: ["阿里", "公益", "数字公益", "平台", "社会创新"], sourceNote: "图片整理内容" },
+      { id: "csr-bytedance-creator", name: "字节跳动青年创作者计划", category: "企业CSR与技术支持", icon: "🎥", provider: "字节跳动", description: "适合内容创作、青年表达、公益传播和作品集展示。", strengths: ["青年创作", "内容表达", "公益传播"], freeInfo: "视项目招募而定", suitableFor: ["新媒体传播", "公益短视频", "青年创作者"], supportType: "企业 CSR / 内容支持", tags: ["字节跳动", "青年创作者", "短视频", "公益传播"], link: "", matchKeywords: ["字节", "青年创作者", "短视频", "新媒体", "公益传播", "作品集"], sourceNote: "图片整理内容" },
+      { id: "fund-shanghai-efg", name: "上海市大学生科技创业基金会（EFG）", category: "政府与高校基金会", icon: "🏦", provider: "上海市大学生科技创业基金会", description: "面向大学生科技创业团队的基金与孵化支持入口。", strengths: ["创业基金", "孵化支持", "科技创业"], freeInfo: "按申报条件申请", suitableFor: ["上海", "科技创业", "已有 Demo 或团队"], supportType: "创业基金 / 孵化", tags: ["上海", "EFG", "大学生创业", "科技创业", "基金"], link: "", matchKeywords: ["上海", "创业基金", "科技创业", "大学生创业", "孵化"], sourceNote: "图片整理内容" },
+      { id: "fund-angel", name: "天使基金", category: "政府与高校基金会", icon: "🪽", provider: "政府 / 高校基金体系", description: "面向早期创业项目的资金支持入口，适合已有团队或 Demo 的项目。", strengths: ["早期资金", "创业支持", "项目申报"], freeInfo: "按申报条件申请", suitableFor: ["已有团队", "已有 Demo", "准备申报"], supportType: "创业基金", tags: ["天使基金", "创业", "早期资金", "申报"], link: "", matchKeywords: ["天使基金", "创业资金", "已有团队", "已有Demo", "申报"], sourceNote: "图片整理内容" },
+      { id: "fund-student-startup-service", name: "全国大学生创业服务网", category: "政府与高校基金会", icon: "🌐", provider: "大学生创业服务平台", description: "聚合大学生创新创业赛事、政策和服务入口。", strengths: ["创新创业赛事", "政策入口", "创业服务"], freeInfo: "免费查询", suitableFor: ["准备比赛", "了解政策", "创业项目申报"], supportType: "创新创业支持", tags: ["全国大学生", "创业服务", "赛事", "政策", "申报"], link: "", matchKeywords: ["全国大学生创业", "赛事", "政策", "申报", "创新创业"], sourceNote: "图片整理内容" },
+      { id: "fund-hrss-loan", name: "各省市人社创业担保贷款", category: "政府与高校基金会", icon: "💳", provider: "各地人社部门", description: "各省市人社部门面向创业者提供的创业担保贷款和政策支持。", strengths: ["创业贷款", "人社补贴", "本地政策"], freeInfo: "按地区政策申请", suitableFor: ["需要启动资金", "本地创业项目", "政策申报"], supportType: "创业贷款 / 政策支持", tags: ["创业贷款", "人社", "补贴", "本地政策"], link: "", matchKeywords: ["创业贷款", "人社", "补贴", "政策", "本地", "启动资金"], sourceNote: "图片整理内容" },
+      { id: "fund-university-incubator", name: "高校创新创业学院与孵化器", category: "政府与高校基金会", icon: "🏫", provider: "高校创新创业学院", description: "校内最直接的项目孵化、比赛指导、场地和导师资源入口。", strengths: ["校内孵化", "导师指导", "比赛辅导", "场地资源"], freeInfo: "校内资源通常免费或低成本", suitableFor: ["只是想法", "已有小任务", "准备比赛 / 申报"], supportType: "创新创业支持", tags: ["高校", "孵化器", "创新创业学院", "导师", "比赛"], link: "", matchKeywords: ["高校", "创新创业", "孵化器", "导师", "比赛", "作品集"], sourceNote: "图片整理内容" },
+      { id: "startup-competition", name: "大学生创新创业赛事入口", category: "创新创业支持", icon: "🏆", provider: "高校 / 政府 / 赛事平台", description: "用于把校内微任务、调研、Demo 和作品集整理为比赛申报材料。", strengths: ["赛事申报", "项目打磨", "路演表达"], freeInfo: "多数赛事免费报名", suitableFor: ["准备比赛 / 申报", "已有 Demo", "已有团队"], supportType: "赛事 / 项目申报", tags: ["创新创业", "赛事", "路演", "作品集", "申报"], link: "", matchKeywords: ["创新创业", "比赛", "赛事", "路演", "作品集", "申报"], sourceNote: "图片整理内容" },
+      { id: "startup-portfolio", name: "作品集与项目档案模板", category: "创新创业支持", icon: "📁", provider: "心翼资源库", description: "把任务记录、调研表、Demo 截图和反馈整理成可展示的项目档案。", strengths: ["作品集", "项目档案", "简历素材"], freeInfo: "Demo 模拟模板", suitableFor: ["职业发展", "作品集整理", "准备比赛 / 申报"], supportType: "作品集支持", tags: ["作品集", "简历", "项目档案", "Demo", "调研"], link: "", matchKeywords: ["作品集", "简历", "项目档案", "Demo", "调研", "职业发展"], sourceNote: "图片整理内容" },
+      { id: "match-rules", name: "心翼资源匹配逻辑", category: "资源匹配逻辑", icon: "🧭", provider: "心翼", description: "根据问题类型、地区、专业方向、公益属性和项目成熟度自动推荐资源入口。", strengths: ["问题匹配", "地区匹配", "专业匹配", "项目阶段匹配"], freeInfo: "前端 Demo 规则", suitableFor: ["不知道从哪里开始", "需要资源推荐", "项目路径规划"], supportType: "资源匹配规则", tags: ["资源匹配", "OPC政策", "CSR", "公益组织", "孵化器"], link: "", matchKeywords: ["匹配", "资源", "OPC", "CSR", "公益", "孵化器", "基金"], sourceNote: "图片整理内容" }
+    ];
+
+    const saved = loadState();
+    const state = {
+      resources: saved.resources?.length ? saved.resources : [...seedResources],
+      favorites: saved.favorites || [],
+      currentCategory: "全部资源",
+      query: "",
+      lastSync: saved.lastSync || "Demo 模拟时间"
+    };
+
+    function $(selector) { return document.querySelector(selector); }
+    function $all(selector) { return [...document.querySelectorAll(selector)]; }
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[ch]));
+    }
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem("xinyiResourceDatabase") || "{}");
+      } catch (error) {
+        return {};
+      }
+    }
+    function saveState() {
+      localStorage.setItem("xinyiResourceDatabase", JSON.stringify({
+        resources: state.resources,
+        favorites: state.favorites,
+        lastSync: state.lastSync
+      }));
+    }
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+    function openModal(title, body) {
+      $("#modalTitle").textContent = title;
+      $("#modalBody").innerHTML = body;
+      $("#modalBackdrop").classList.add("show");
+    }
+    function closeModal() {
+      $("#modalBackdrop").classList.remove("show");
+      $("#modalBody").innerHTML = "";
+    }
+    function copyText(text, message) {
+      const fallback = () => {
+        const input = document.createElement("textarea");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      };
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).catch(fallback);
+      else fallback();
+      showToast(message);
+    }
+    function openTencentDoc() {
+      window.open(TENCENT_DOC_URL, "_blank", "noopener,noreferrer");
+    }
+
+    function categoryClass(category) {
+      if (category.includes("AI工具")) return "";
+      if (category.includes("公开课")) return "mint";
+      if (category.includes("公益")) return "rose";
+      if (category.includes("CSR")) return "amber";
+      if (category.includes("基金")) return "mint";
+      return "gray";
+    }
+    function filteredResources() {
+      const q = state.query.trim().toLowerCase();
+      return state.resources.filter(resource => {
+        const matchCategory = state.currentCategory === "全部资源" || resource.category === state.currentCategory;
+        const haystack = [
+          resource.name, resource.category, resource.provider, resource.description,
+          resource.supportType, resource.freeInfo, resource.sourceNote,
+          ...resource.strengths, ...resource.suitableFor, ...resource.tags, ...resource.matchKeywords
+        ].join(" ").toLowerCase();
+        return matchCategory && (!q || haystack.includes(q));
+      });
+    }
+
+    function renderCategories() {
+      $("#categoryChips").innerHTML = categories.map(category => `
+        <button class="chip ${category === state.currentCategory ? "active" : ""}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
+      `).join("");
+    }
+    function renderResources() {
+      const list = filteredResources();
+      $("#resourceList").innerHTML = list.length ? list.map(resource => {
+        const favorited = state.favorites.includes(resource.id);
+        return `
+          <article class="resource-card">
+            <div class="resource-top">
+              <div>
+                <div class="tag-row">
+                  <span class="tag ${categoryClass(resource.category)}">${escapeHtml(resource.category)}</span>
+                  <span class="tag gray">${escapeHtml(resource.supportType)}</span>
+                </div>
+                <h3>${escapeHtml(resource.name)}</h3>
+              </div>
+              <div class="resource-icon">${escapeHtml(resource.icon)}</div>
+            </div>
+            <p>${escapeHtml(resource.description)}</p>
+            <div class="tag-row">${resource.tags.slice(0, 5).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+            <div class="resource-actions">
+              <button class="btn small ghost" data-detail="${resource.id}">查看详情</button>
+              <button class="btn small ${favorited ? "amber" : "primary"}" data-favorite="${resource.id}">${favorited ? "已收藏" : "收藏资源"}</button>
+              ${resource.link ? `<button class="btn small mint" data-open-link="${resource.id}">前往学习</button>` : ""}
+            </div>
+          </article>
+        `;
+      }).join("") : `
+        <div class="empty">
+          <div class="empty-icon">🔍</div>
+          <h3>没有找到相关资源</h3>
+          <p>换个关键词试试，或者点击同步数据库更新资源。</p>
+          <button class="btn primary" id="emptySync">同步数据库</button>
+        </div>
+      `;
+    }
+    function renderStats() {
+      $("#resourceCount").textContent = state.resources.length;
+      $("#lastSync").textContent = state.lastSync;
+      $("#statAi").textContent = state.resources.filter(item => item.category === "AI工具").length;
+      $("#statCourse").textContent = state.resources.filter(item => item.category === "高校AI公开课").length;
+      $("#statSupport").textContent = state.resources.filter(item => ["公益组织与社会企业", "企业CSR与技术支持", "政府与高校基金会"].includes(item.category)).length;
+      $("#statFavorites").textContent = state.favorites.length;
+    }
+    function renderFavorites() {
+      const favs = state.resources.filter(resource => state.favorites.includes(resource.id));
+      $("#favoriteList").innerHTML = favs.length ? favs.map(resource => `
+        <article class="favorite-card">
+          <div class="tag-row"><span class="tag ${categoryClass(resource.category)}">${escapeHtml(resource.category)}</span></div>
+          <h3>${escapeHtml(resource.icon)} ${escapeHtml(resource.name)}</h3>
+          <p>${escapeHtml(resource.description)}</p>
+          <div class="resource-actions">
+            <button class="btn small ghost" data-detail="${resource.id}">查看详情</button>
+            <button class="btn small amber" data-unfavorite="${resource.id}">取消收藏</button>
+          </div>
+        </article>
+      `).join("") : `
+        <div class="empty">
+          <div class="empty-icon">⭐</div>
+          <h3>你还没有收藏资源</h3>
+          <p>在资源数据库中收藏适合你的 AI 工具、课程或项目支持入口。</p>
+          <button class="btn primary" data-scroll="#resources">去浏览资源</button>
+        </div>
+      `;
+    }
+    function renderMatcherOptions() {
+      $("#matchIssue").innerHTML = matcherOptions.issue.map(v => `<option>${escapeHtml(v)}</option>`).join("");
+      $("#matchRegion").innerHTML = matcherOptions.region.map(v => `<option>${escapeHtml(v)}</option>`).join("");
+      $("#matchMajor").innerHTML = matcherOptions.major.map(v => `<option>${escapeHtml(v)}</option>`).join("");
+      $("#matchStage").innerHTML = matcherOptions.stage.map(v => `<option>${escapeHtml(v)}</option>`).join("");
+      const rules = [
+        { title: "问题类型 → 自动匹配赛事 / 基金入口", note: "适合从议题出发找资源", fill: ["创新创业", "上海", "商科", "已有 Demo"] },
+        { title: "所在地区 → 推荐本地政策与人社补贴", note: "适合需要资金或落地政策", fill: ["创新创业", "上海", "商科", "准备比赛 / 申报"] },
+        { title: "专业方向 → 对接企业真实问题 / CSR 项目", note: "适合把专业能力转成项目", fill: ["环保", "广州", "文科", "只是想法"] },
+        { title: "公益属性 → 连接公益组织资助方向", note: "适合社区、公益、志愿服务", fill: ["公益项目", "广州", "教育", "已有小任务"] },
+        { title: "项目成熟度 → 对接孵化器 / 投资 / 就业通道", note: "适合已有 Demo 或团队", fill: ["创新创业", "上海", "商科", "已有 Demo"] }
+      ];
+      $("#ruleCards").innerHTML = rules.map((rule, index) => `
+        <button class="rule-card" data-rule="${index}">
+          <strong>${escapeHtml(rule.title)}</strong>
+          <span>${escapeHtml(rule.note)}</span>
+        </button>
+      `).join("");
+      window.rulePresets = rules;
+    }
+    function renderAll() {
+      renderCategories();
+      renderResources();
+      renderStats();
+      renderFavorites();
+    }
+
+    function resourceById(id) {
+      return state.resources.find(resource => resource.id === id);
+    }
+    function openResourceDetail(id) {
+      const resource = resourceById(id);
+      if (!resource) return;
+      const favorited = state.favorites.includes(id);
+      openModal(resource.name, `
+        <div class="tag-row">
+          <span class="tag ${categoryClass(resource.category)}">${escapeHtml(resource.category)}</span>
+          <span class="tag gray">${escapeHtml(resource.supportType)}</span>
+          <span class="tag mint">${escapeHtml(resource.freeInfo)}</span>
+        </div>
+        <p>${escapeHtml(resource.description)}</p>
+        <div class="meta-grid">
+          <div class="meta"><strong>${escapeHtml(resource.provider)}</strong>资源提供方</div>
+          <div class="meta"><strong>${escapeHtml(resource.sourceNote)}</strong>来源说明</div>
+        </div>
+        <h3>擅长 / 支持方向</h3>
+        <div class="tag-row">${resource.strengths.map(item => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>
+        <h3>适合人群</h3>
+        <div class="tag-row">${resource.suitableFor.map(item => `<span class="tag mint">${escapeHtml(item)}</span>`).join("")}</div>
+        <h3>关键词标签</h3>
+        <div class="tag-row">${resource.tags.map(item => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>
+        ${resource.link ? `<p><strong>相关链接：</strong><a href="${escapeHtml(resource.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(resource.link)}</a></p>` : `<p><strong>相关链接：</strong>暂无公开链接，建议从腾讯文档数据库或官方渠道继续核验。</p>`}
+        <div class="resource-actions">
+          <button class="btn primary" data-favorite="${resource.id}">${favorited ? "已收藏" : "收藏资源"}</button>
+          <button class="btn mint" data-copy-resource="${resource.id}">复制资源信息</button>
+          ${resource.link ? `<button class="btn amber" data-open-link="${resource.id}">打开链接</button>` : ""}
+        </div>
+      `);
+    }
+    function toggleFavorite(id) {
+      if (state.favorites.includes(id)) return;
+      state.favorites.push(id);
+      saveState();
+      renderAll();
+      showToast("已收藏到我的资源");
+    }
+    function removeFavorite(id) {
+      state.favorites = state.favorites.filter(item => item !== id);
+      saveState();
+      renderAll();
+      showToast("已取消收藏");
+    }
+    function copyResource(id) {
+      const resource = resourceById(id);
+      if (!resource) return;
+      const text = `${resource.name}\n分类：${resource.category}\n提供方：${resource.provider}\n说明：${resource.description}\n适合：${resource.suitableFor.join("、")}\n关键词：${resource.tags.join("、")}\n链接：${resource.link || "暂无"}`;
+      copyText(text, "资源信息已复制");
+    }
+    function openResourceLink(id) {
+      const resource = resourceById(id);
+      if (resource?.link) window.open(resource.link, "_blank", "noopener,noreferrer");
+    }
+    function syncDatabase() {
+      const card = $("#connectionCard");
+      card.classList.add("syncing");
+      $("#syncStatus").textContent = "正在同步资源数据库……";
+      window.setTimeout(() => {
+        const now = new Date();
+        state.lastSync = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")} · Demo 模拟`;
+        card.classList.remove("syncing");
+        $("#syncStatus").textContent = "同步完成";
+        saveState();
+        renderStats();
+        showToast("资源数据库已同步");
+      }, 1000);
+    }
+    function exportJson() {
+      const json = JSON.stringify(state.resources, null, 2);
+      openModal("导出当前资源 JSON", `
+        <p>当前资源库 JSON 如下，可复制后用于后续接入数据库或后台接口。</p>
+        <pre class="json-box" id="jsonExport">${escapeHtml(json)}</pre>
+        <button class="btn primary" id="copyJson">复制 JSON</button>
+      `);
+    }
+    function importResource() {
+      openModal("导入资源", `
+        <p>粘贴一个资源对象或资源数组 JSON。字段建议包含 id、name、category、provider、description、tags。</p>
+        <textarea class="textarea" id="importJson" placeholder='{"id":"new-resource","name":"新资源","category":"创新创业支持",...}'></textarea>
+        <button class="btn primary" id="confirmImport">导入资源</button>
+      `);
+    }
+    function confirmImport() {
+      try {
+        const parsed = JSON.parse($("#importJson").value);
+        const items = Array.isArray(parsed) ? parsed : [parsed];
+        items.forEach(item => {
+          if (!item.id || !item.name) throw new Error("missing id or name");
+          const normalized = {
+            category: "创新创业支持",
+            icon: "✨",
+            provider: "用户导入",
+            description: "用户导入资源",
+            strengths: [],
+            freeInfo: "待核验",
+            suitableFor: [],
+            supportType: "导入资源",
+            tags: [],
+            link: "",
+            matchKeywords: [],
+            sourceNote: "用户导入 / 待试点核验",
+            ...item
+          };
+          const index = state.resources.findIndex(resource => resource.id === normalized.id);
+          if (index >= 0) state.resources[index] = normalized;
+          else state.resources.unshift(normalized);
+        });
+        saveState();
+        closeModal();
+        renderAll();
+        showToast("资源已导入");
+      } catch (error) {
+        showToast("导入失败，请检查 JSON 格式和 id/name 字段。");
+      }
+    }
+
+    function runMatcher() {
+      const issue = $("#matchIssue").value;
+      const region = $("#matchRegion").value;
+      const major = $("#matchMajor").value;
+      const stage = $("#matchStage").value;
+      const keywords = [issue, region, major, stage];
+      if (issue === "环保") keywords.push("环保", "绿色", "青山计划", "可持续");
+      if (issue === "AI学习") keywords.push("AI公开课", "DeepSeek", "Kimi", "通识课", "大模型");
+      if (issue === "创新创业") keywords.push("创业", "Demo", "基金", "孵化", "申报");
+      if (issue === "公益项目" || issue === "社区服务") keywords.push("公益", "社区", "志愿", "社会创新");
+      if (major === "文科") keywords.push("文科AI", "PPT", "写作", "调研");
+      if (region === "上海") keywords.push("上海", "EFG", "天使基金");
+      if (stage.includes("Demo") || stage.includes("申报")) keywords.push("Demo", "路演", "申报", "创业基金");
+
+      const scoreResource = resource => {
+        const text = [resource.name, resource.category, resource.provider, resource.description, ...resource.tags, ...resource.matchKeywords, ...resource.suitableFor].join(" ");
+        return keywords.reduce((sum, keyword) => sum + (text.includes(keyword) ? 1 : 0), 0);
+      };
+      const pick = (category, count = 2) => state.resources
+        .filter(resource => resource.category === category)
+        .map(resource => ({ resource, score: scoreResource(resource) }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, count)
+        .map(item => item.resource);
+      const groups = [
+        ["推荐 AI 工具", pick("AI工具", issue === "AI学习" ? 3 : 2)],
+        ["推荐课程", pick("高校AI公开课", issue === "AI学习" ? 3 : 2)],
+        ["推荐公益组织", pick("公益组织与社会企业", 2)],
+        ["推荐企业 CSR / 技术支持", pick("企业CSR与技术支持", 2)],
+        ["推荐政府 / 高校基金会", pick("政府与高校基金会", region === "上海" ? 3 : 2)]
+      ];
+      const nextStep = issue === "AI学习"
+        ? "先选择一个 AI 工具完成一次文档总结或 PPT 初稿，保存为作品集记录。"
+        : issue === "环保"
+          ? "先完成一个校内观察任务，沉淀为作品集素材，再匹配绿色 CSR 或公益资源。"
+          : stage.includes("Demo")
+            ? "整理商业计划书、Demo 截图和初步用户反馈，准备申报或路演。"
+            : "先用一个轻量微任务验证问题真实性，再整理为资源申请材料。";
+      $("#matchOutput").innerHTML = groups.map(([title, items]) => `
+        <div class="match-row">
+          <strong>${escapeHtml(title)}</strong>
+          <div class="tag-row">${items.map(item => `<button class="tag" data-detail="${item.id}">${escapeHtml(item.name)}</button>`).join("")}</div>
+        </div>
+      `).join("") + `
+        <div class="match-row">
+          <strong>推荐下一步行动</strong>
+          <p style="margin:0;color:var(--muted);">${escapeHtml(nextStep)}</p>
+        </div>
+      `;
+      showToast("已生成资源匹配结果");
+    }
+
+    function init() {
+      renderMatcherOptions();
+      renderAll();
+      $("#openTencentDoc").addEventListener("click", openTencentDoc);
+      $("#openTencentDocHero").addEventListener("click", openTencentDoc);
+      $("#syncDatabase").addEventListener("click", syncDatabase);
+      $("#syncHero").addEventListener("click", syncDatabase);
+      $("#exportJson").addEventListener("click", exportJson);
+      $("#importResource").addEventListener("click", importResource);
+      $("#clearSearch").addEventListener("click", () => {
+        state.query = "";
+        $("#resourceSearch").value = "";
+        renderResources();
+      });
+      $("#resourceSearch").addEventListener("input", event => {
+        state.query = event.target.value;
+        renderResources();
+      });
+      $("#runMatcher").addEventListener("click", runMatcher);
+      $("#modalClose").addEventListener("click", closeModal);
+      $("#modalBackdrop").addEventListener("click", event => {
+        if (event.target.id === "modalBackdrop") closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closeModal();
+      });
+      document.body.addEventListener("click", event => {
+        const category = event.target.closest("[data-category]");
+        if (category) {
+          state.currentCategory = category.dataset.category;
+          renderAll();
+        }
+        const detail = event.target.closest("[data-detail]");
+        if (detail) openResourceDetail(detail.dataset.detail);
+        const fav = event.target.closest("[data-favorite]");
+        if (fav) toggleFavorite(fav.dataset.favorite);
+        const unfav = event.target.closest("[data-unfavorite]");
+        if (unfav) removeFavorite(unfav.dataset.unfavorite);
+        const copy = event.target.closest("[data-copy-resource]");
+        if (copy) copyResource(copy.dataset.copyResource);
+        const link = event.target.closest("[data-open-link]");
+        if (link) openResourceLink(link.dataset.openLink);
+        const scroll = event.target.closest("[data-scroll]");
+        if (scroll) document.querySelector(scroll.dataset.scroll)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const emptySync = event.target.closest("#emptySync");
+        if (emptySync) syncDatabase();
+        const copyJson = event.target.closest("#copyJson");
+        if (copyJson) copyText($("#jsonExport").textContent, "JSON 已复制");
+        const confirm = event.target.closest("#confirmImport");
+        if (confirm) confirmImport();
+        const rule = event.target.closest("[data-rule]");
+        if (rule) {
+          const preset = window.rulePresets[Number(rule.dataset.rule)].fill;
+          $("#matchIssue").value = preset[0];
+          $("#matchRegion").value = preset[1];
+          $("#matchMajor").value = preset[2];
+          $("#matchStage").value = preset[3];
+          showToast("已填入匹配条件");
+        }
+      });
+    }
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
