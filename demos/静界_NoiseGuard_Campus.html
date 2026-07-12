@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>静界 NoiseGuard Campus｜宿舍噪音防治可持续平台</title>
+  <style>
+    :root {
+      --night: #071323;
+      --night-2: #0b1e33;
+      --ink: #dceffd;
+      --muted: #8ea7b8;
+      --mint: #68f5c8;
+      --mint-2: #1fcf9b;
+      --cyan: #60d8ff;
+      --aqua: #15b8c7;
+      --violet: #8d7cff;
+      --orange: #ffb15c;
+      --red: #ff6b72;
+      --line: rgba(151, 209, 229, 0.2);
+      --glass: rgba(9, 28, 48, 0.74);
+      --glass-2: rgba(13, 41, 69, 0.62);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+      --radius: 18px;
+      --max: 1180px;
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(25, 207, 155, 0.18), transparent 24rem),
+        radial-gradient(circle at 82% 12%, rgba(96, 216, 255, 0.13), transparent 26rem),
+        linear-gradient(180deg, #071323 0%, #0b1d31 44%, #071323 100%);
+      line-height: 1.6;
+      min-width: 320px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(104, 245, 200, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(104, 245, 200, 0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 82%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(7, 19, 35, 0.72), transparent 22%, transparent 78%, rgba(7, 19, 35, 0.72)),
+        radial-gradient(circle at 50% 0%, transparent, rgba(4, 12, 22, 0.74) 78%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(142, 167, 184, 0.14);
+      background: rgba(5, 18, 31, 0.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      min-height: 70px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #041321;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background:
+        linear-gradient(135deg, var(--mint), var(--cyan));
+      box-shadow: 0 0 24px rgba(104, 245, 200, 0.28);
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-sub {
+      margin-top: -2px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #bdd2df;
+      border: 1px solid transparent;
+      transition: 0.22s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #041321;
+      background: rgba(104, 245, 200, 0.92);
+      border-color: rgba(104, 245, 200, 0.45);
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 90px 22px;
+      position: relative;
+      scroll-margin-top: 86px;
+    }
+
+    .section.tight {
+      padding-top: 68px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(104, 245, 200, 0.28);
+      background: rgba(104, 245, 200, 0.08);
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 99px;
+      background: currentColor;
+      box-shadow: 0 0 18px currentColor;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 18px;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    h1 .shine {
+      color: transparent;
+      background: linear-gradient(90deg, #ffffff 0%, var(--mint) 47%, #cdeaff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      margin-bottom: 9px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .lead {
+      max-width: 710px;
+      color: #b8cedd;
+      font-size: 18px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 112px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(360px, 0.86fr);
+      align-items: center;
+      gap: 54px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 124px;
+      width: min(48vw, 560px);
+      height: min(48vw, 560px);
+      border: 1px solid rgba(96, 216, 255, 0.14);
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(circle, rgba(104, 245, 200, 0.13) 0 1px, transparent 1px 34px);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 18px;
+      color: #e9f7ff;
+      font-size: clamp(23px, 3vw, 34px);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .hero-desc {
+      max-width: 650px;
+      color: #aec5d4;
+      font-size: 18px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 26px 0 30px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #cdeeff;
+      border: 1px solid rgba(142, 167, 184, 0.2);
+      background: rgba(10, 34, 57, 0.68);
+      font-size: 13px;
+    }
+
+    .tag strong {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--mint);
+      box-shadow: 0 0 13px rgba(104, 245, 200, 0.62);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .btn.primary {
+      color: #041321;
+      background: linear-gradient(135deg, var(--mint), var(--cyan));
+      box-shadow: 0 16px 42px rgba(31, 207, 155, 0.23);
+    }
+
+    .btn.secondary {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(142, 167, 184, 0.24);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .mini-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 650px;
+    }
+
+    .proof-item {
+      min-height: 92px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(10, 34, 57, 0.55);
+      border: 1px solid rgba(142, 167, 184, 0.14);
+    }
+
+    .proof-num {
+      font-size: 26px;
+      color: var(--mint);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .proof-label {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .noise-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 22px;
+      min-height: 650px;
+      background:
+        linear-gradient(180deg, rgba(16, 54, 88, 0.82), rgba(7, 23, 40, 0.92)),
+        rgba(9, 28, 48, 0.74);
+      border: 1px solid rgba(142, 167, 184, 0.22);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .noise-panel::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(104, 245, 200, 0.12);
+      pointer-events: none;
+    }
+
+    .panel-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .panel-title {
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .panel-caption {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #071323;
+      background: var(--mint);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .live-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #071323;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.34; transform: scale(1.55); }
+    }
+
+    .dorm-visual {
+      position: relative;
+      z-index: 1;
+      min-height: 118px;
+      margin-bottom: 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(4, 15, 28, 0.55), rgba(4, 15, 28, 0.86)),
+        linear-gradient(90deg, rgba(96, 216, 255, 0.08), transparent);
+      border: 1px solid rgba(142, 167, 184, 0.16);
+    }
+
+    .moon {
+      position: absolute;
+      right: 32px;
+      top: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #dff8ff;
+      box-shadow: 0 0 34px rgba(223, 248, 255, 0.35);
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      right: -5px;
+      top: -2px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #061425;
+    }
+
+    .window-grid {
+      position: absolute;
+      left: 18px;
+      right: 100px;
+      bottom: 18px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .window-grid span {
+      height: 44px;
+      border-radius: 9px 9px 4px 4px;
+      border: 1px solid rgba(96, 216, 255, 0.18);
+      background: linear-gradient(180deg, rgba(96, 216, 255, 0.12), rgba(104, 245, 200, 0.05));
+    }
+
+    .window-grid span:nth-child(2),
+    .window-grid span:nth-child(5) {
+      background: linear-gradient(180deg, rgba(255, 177, 92, 0.42), rgba(255, 177, 92, 0.08));
+      box-shadow: 0 0 18px rgba(255, 177, 92, 0.12);
+    }
+
+    .sound-ring {
+      position: absolute;
+      left: 58%;
+      top: 62%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--mint);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 22px rgba(104, 245, 200, 0.35);
+    }
+
+    .sound-ring::before,
+    .sound-ring::after {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid rgba(104, 245, 200, 0.22);
+      animation: ripple 2.2s infinite;
+    }
+
+    .sound-ring::after {
+      inset: -34px;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes ripple {
+      0% { transform: scale(0.72); opacity: 0.9; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .dial-wrap {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+    }
+
+    .dial {
+      --angle: 142deg;
+      --risk-color: var(--orange);
+      width: 230px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 16px;
+      background:
+        conic-gradient(from 220deg, var(--risk-color) 0deg var(--angle), rgba(142, 167, 184, 0.13) var(--angle) 280deg, transparent 280deg 360deg);
+      filter: drop-shadow(0 0 22px rgba(104, 245, 200, 0.13));
+    }
+
+    .dial-inner {
+      height: 100%;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(96, 216, 255, 0.11), transparent 52%),
+        linear-gradient(180deg, #0b2239, #061526);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .db-value {
+      display: block;
+      font-size: 58px;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+    }
+
+    .db-unit {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .risk-pill {
+      margin-top: 12px;
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 10px;
+      color: #061425;
+      background: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-card {
+      padding: 13px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(142, 167, 184, 0.14);
+    }
+
+    .status-k {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status-v {
+      margin-top: 2px;
+      color: #f3fbff;
+      font-weight: 850;
+      font-size: 15px;
+    }
+
+    .spectrum {
+      position: relative;
+      z-index: 1;
+      height: 112px;
+      display: flex;
+      gap: 7px;
+      align-items: end;
+      margin: 24px 0 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(2, 13, 24, 0.32);
+      border: 1px solid rgba(142, 167, 184, 0.14);
+      overflow: hidden;
+    }
+
+    .spectrum::before {
+      content: "实时频谱";
+      position: absolute;
+      left: 16px;
+      top: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .bar {
+      flex: 1;
+      min-width: 4px;
+      height: var(--h, 48%);
+      border-radius: 999px 999px 3px 3px;
+      background: linear-gradient(180deg, var(--mint), rgba(96, 216, 255, 0.28));
+      box-shadow: 0 0 14px rgba(104, 245, 200, 0.2);
+      animation: bars 1.8s infinite ease-in-out;
+      animation-delay: calc(var(--i) * -0.07s);
+      transform-origin: bottom;
+      transition: height 0.8s ease;
+    }
+
+    @keyframes bars {
+      0%, 100% { transform: scaleY(0.74); opacity: 0.72; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    .panel-foot {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 18px;
+      color: #cfe7f7;
+      background: rgba(104, 245, 200, 0.07);
+      border: 1px solid rgba(104, 245, 200, 0.18);
+      font-size: 13px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section-head .lead {
+      margin-bottom: 0;
+      max-width: 520px;
+      font-size: 16px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card,
+    .glass-card {
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(17, 51, 82, 0.64), rgba(8, 28, 48, 0.72));
+      border: 1px solid rgba(142, 167, 184, 0.16);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+    }
+
+    .stat-card {
+      min-height: 134px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 14px 18px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--mint), transparent);
+      opacity: 0.55;
+    }
+
+    .stat-num {
+      color: #fff;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .stat-label {
+      margin-top: 12px;
+      color: #a9c0cf;
+      font-size: 13px;
+    }
+
+    .data-note {
+      margin-top: 8px;
+      color: #7892a5;
+      font-size: 12px;
+    }
+
+    .chain {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+    }
+
+    .chain-step {
+      position: relative;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(8, 28, 48, 0.7);
+      border: 1px solid rgba(142, 167, 184, 0.16);
+      min-height: 130px;
+      transition: 0.22s ease;
+    }
+
+    .chain-step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(104, 245, 200, 0.42);
+    }
+
+    .chain-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      width: 18px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(104, 245, 200, 0.7), rgba(96, 216, 255, 0.2));
+    }
+
+    .step-index {
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+    }
+
+    .step-title {
+      margin-top: 14px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .step-desc {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .source-card {
+      min-height: 320px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .source-card::before {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid rgba(104, 245, 200, 0.16);
+    }
+
+    .source-type {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #061425;
+      background: var(--mint);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .source-card h3 {
+      margin-top: 20px;
+      font-size: 25px;
+    }
+
+    .source-list {
+      padding: 0;
+      margin: 16px 0 20px;
+      list-style: none;
+      color: #bad0df;
+    }
+
+    .source-list li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      margin: 9px 0;
+    }
+
+    .source-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px rgba(96, 216, 255, 0.45);
+    }
+
+    .mini-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .mini-tags span {
+      border: 1px solid rgba(142, 167, 184, 0.18);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #cfe5f3;
+      font-size: 12px;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .module-card {
+      cursor: pointer;
+      min-height: 365px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(17, 51, 82, 0.64), rgba(8, 28, 48, 0.7));
+      border: 1px solid rgba(142, 167, 184, 0.16);
+      transition: 0.24s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(104, 245, 200, 0.16), transparent 42%);
+      opacity: 0;
+      transition: opacity 0.24s ease;
+      pointer-events: none;
+    }
+
+    .module-card:hover,
+    .module-card.active {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(104, 245, 200, 0.46);
+      box-shadow: 0 20px 60px rgba(31, 207, 155, 0.14);
+    }
+
+    .module-card:hover::after,
+    .module-card.active::after {
+      opacity: 1;
+    }
+
+    .module-num {
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+    }
+
+    .module-visual {
+      height: 96px;
+      margin: 16px 0 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(142, 167, 184, 0.14);
+      background:
+        linear-gradient(90deg, rgba(104, 245, 200, 0.08), rgba(96, 216, 255, 0.05)),
+        rgba(4, 16, 29, 0.38);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-visual.wave::before,
+    .module-visual.sleep::before {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: 48%;
+      height: 32px;
+      background:
+        radial-gradient(ellipse at 15% 50%, transparent 32%, rgba(104, 245, 200, 0.8) 34%, transparent 36%),
+        radial-gradient(ellipse at 35% 50%, transparent 32%, rgba(96, 216, 255, 0.62) 34%, transparent 36%),
+        radial-gradient(ellipse at 57% 50%, transparent 32%, rgba(104, 245, 200, 0.8) 34%, transparent 36%),
+        radial-gradient(ellipse at 78% 50%, transparent 32%, rgba(96, 216, 255, 0.62) 34%, transparent 36%);
+      animation: slide 3.4s linear infinite;
+    }
+
+    .module-visual.sleep::before {
+      opacity: 0.6;
+      animation-duration: 5.2s;
+    }
+
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(9%); }
+    }
+
+    .module-visual.chat::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: 48%;
+      height: 28px;
+      border-radius: 14px 14px 14px 4px;
+      background: rgba(104, 245, 200, 0.72);
+      box-shadow: 88px 36px 0 rgba(96, 216, 255, 0.36);
+    }
+
+    .module-visual.loop::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 9px solid rgba(104, 245, 200, 0.26);
+      border-top-color: var(--mint);
+      border-right-color: var(--cyan);
+      animation: spin 5s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .module-card h3 {
+      font-size: 20px;
+    }
+
+    .module-card ul {
+      padding: 0;
+      margin: 8px 0 0;
+      list-style: none;
+      color: #aecaDA;
+      font-size: 13px;
+    }
+
+    .module-card li {
+      margin: 9px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .module-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 7px;
+      height: 2px;
+      background: var(--mint);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .time-card {
+      padding: 20px;
+      min-height: 210px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .time-card::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 20px rgba(104, 245, 200, 0.5);
+    }
+
+    .time-date {
+      margin-left: 26px;
+      color: var(--mint);
+      font-weight: 950;
+      font-size: 13px;
+    }
+
+    .time-card h3 {
+      margin-top: 36px;
+      font-size: 19px;
+    }
+
+    .time-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    .loop-board {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.82fr) minmax(0, 1.18fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .loop-center {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 410px;
+      background:
+        linear-gradient(180deg, rgba(104, 245, 200, 0.13), rgba(8, 28, 48, 0.7)),
+        rgba(8, 28, 48, 0.8);
+    }
+
+    .loop-badge {
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #061425;
+      background: var(--mint);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .loop-center h3 {
+      margin: 22px 0 12px;
+      font-size: 32px;
+      line-height: 1.12;
+    }
+
+    .loop-center p {
+      color: #b8cedd;
+    }
+
+    .harmony-meter {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(5, 18, 31, 0.48);
+      border: 1px solid rgba(142, 167, 184, 0.14);
+    }
+
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #dff4ff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .meter-track {
+      height: 10px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: rgba(142, 167, 184, 0.18);
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      width: 82%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--mint), var(--cyan));
+      box-shadow: 0 0 16px rgba(104, 245, 200, 0.35);
+    }
+
+    .loop-paths {
+      display: grid;
+      gap: 14px;
+    }
+
+    .path-card {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .path-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .path-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      color: #cfe5f3;
+      font-size: 13px;
+    }
+
+    .path-flow span {
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(142, 167, 184, 0.14);
+    }
+
+    .path-flow b {
+      color: var(--mint);
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .privacy-card {
+      padding: 20px;
+      min-height: 190px;
+    }
+
+    .lock {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #061425;
+      background: linear-gradient(135deg, var(--mint), var(--cyan));
+      font-weight: 950;
+    }
+
+    .privacy-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .privacy-callout {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(104, 245, 200, 0.22);
+      background:
+        linear-gradient(90deg, rgba(104, 245, 200, 0.12), rgba(96, 216, 255, 0.05)),
+        rgba(8, 28, 48, 0.72);
+      font-size: 19px;
+      font-weight: 900;
+      color: #f5fbff;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .value-card {
+      padding: 24px;
+    }
+
+    .value-card h3 {
+      font-size: 28px;
+    }
+
+    .value-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 20px 0 0;
+      list-style: none;
+    }
+
+    .value-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(142, 167, 184, 0.13);
+      color: #cfe5f3;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #061425;
+      background: var(--mint);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 7px;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 16px;
+      background: rgba(5, 18, 31, 0.4);
+      border: 1px solid rgba(142, 167, 184, 0.14);
+    }
+
+    .heat {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      background: rgba(104, 245, 200, var(--a));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .cta {
+      text-align: center;
+      padding-bottom: 110px;
+    }
+
+    .cta-card {
+      padding: clamp(28px, 6vw, 58px);
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(104, 245, 200, 0.18), transparent 38%),
+        linear-gradient(180deg, rgba(16, 54, 88, 0.78), rgba(7, 23, 40, 0.88));
+      border: 1px solid rgba(142, 167, 184, 0.18);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::after {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(104, 245, 200, 0.8), transparent);
+    }
+
+    .cta h2 {
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta p {
+      max-width: 680px;
+      margin: 0 auto 28px;
+      color: #b8cedd;
+      font-size: 18px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 90;
+      min-width: min(420px, calc(100vw - 32px));
+      padding: 14px 18px;
+      border-radius: 16px;
+      color: #061425;
+      background: linear-gradient(135deg, var(--mint), var(--cyan));
+      box-shadow: 0 18px 56px rgba(0, 0, 0, 0.34);
+      font-weight: 900;
+      text-align: center;
+      opacity: 0;
+      transform: translate(-50%, 16px);
+      pointer-events: none;
+      transition: 0.22s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 1050px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 108px;
+      }
+
+      .noise-panel {
+        min-height: auto;
+      }
+
+      .stats-grid,
+      .timeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .module-grid,
+      .privacy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .source-grid,
+      .chain {
+        grid-template-columns: 1fr;
+      }
+
+      .chain-step:not(:last-child)::after {
+        right: auto;
+        left: 28px;
+        top: auto;
+        bottom: -9px;
+        width: 2px;
+        height: 18px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 16px;
+        gap: 10px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        max-width: 100%;
+      }
+
+      .nav-link {
+        padding: 6px 9px;
+        font-size: 12px;
+      }
+
+      .section {
+        padding: 72px 16px;
+        scroll-margin-top: 126px;
+      }
+
+      .hero {
+        padding-top: 154px;
+      }
+
+      .hero-desc,
+      .lead,
+      .cta p {
+        font-size: 16px;
+      }
+
+      .mini-proof,
+      .stats-grid,
+      .module-grid,
+      .timeline,
+      .privacy-grid,
+      .value-grid,
+      .loop-board {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .dial-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .dial {
+        width: min(230px, 100%);
+        margin: 0 auto;
+      }
+
+      .path-card {
+        grid-template-columns: 1fr;
+      }
+
+      .window-grid {
+        right: 74px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="主导航">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="返回首页">
+        <span class="brand-mark">静</span>
+        <span>
+          <span class="brand-title">静界 NoiseGuard Campus</span>
+          <span class="brand-sub">宿舍噪音防治可持续平台</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link active" href="#home">首页</a>
+        <a class="nav-link" href="#pain">痛点</a>
+        <a class="nav-link" href="#features">功能</a>
+        <a class="nav-link" href="#flow">流程</a>
+        <a class="nav-link" href="#loop">闭环</a>
+        <a class="nav-link" href="#privacy">隐私</a>
+        <a class="nav-link" href="#value">管理端</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Section 01: Hero -->
+    <section class="section hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">Campus Sound Governance</div>
+        <h1><span class="shine">静界 NoiseGuard Campus</span></h1>
+        <p class="hero-subtitle">宿舍噪音防治可持续平台</p>
+        <p class="hero-desc">让安静，不再靠忍耐。用 AI 听见噪音，用数据代替争吵，用公约守护安静。</p>
+        <div class="tag-row" aria-label="平台能力标签">
+          <span class="tag"><strong></strong>AI 声环境治理</span>
+          <span class="tag"><strong></strong>宿舍安静权</span>
+          <span class="tag"><strong></strong>匿名协作</span>
+          <span class="tag"><strong></strong>睡眠守护</span>
+          <span class="tag"><strong></strong>可持续校园</span>
+        </div>
+        <div class="actions">
+          <button class="btn primary" data-toast="已进入演示模式：实时噪音仪表盘正在模拟运行">进入噪音防治平台</button>
+          <button class="btn secondary" data-toast="已生成宿舍公约草案：23:00 后降低外放与开麦音量">生成宿舍公约</button>
+        </div>
+        <div class="mini-proof">
+          <div class="proof-item">
+            <div class="proof-num">本地</div>
+            <div class="proof-label">AI 推理，不上传原始录音</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">匿名</div>
+            <div class="proof-label">系统代发温和提醒，减少正面冲突</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">闭环</div>
+            <div class="proof-label">和谐指数接入绿色积分与微任务</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="noise-panel" aria-label="实时噪音仪表盘">
+        <div class="panel-top">
+          <div>
+            <div class="panel-title">实时噪音仪表盘</div>
+            <div class="panel-caption">示例数据，用于演示</div>
+          </div>
+          <div class="live-badge">LIVE</div>
+        </div>
+        <div class="dorm-visual" aria-hidden="true">
+          <div class="moon"></div>
+          <div class="window-grid">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="sound-ring"></div>
+        </div>
+        <div class="dial-wrap">
+          <div class="dial" id="noiseDial">
+            <div class="dial-inner">
+              <div>
+                <span class="db-value" id="dbValue">68</span>
+                <span class="db-unit">dB 当前噪音</span>
+                <div class="risk-pill" id="riskPill">影响入睡</div>
+              </div>
+            </div>
+          </div>
+          <div class="status-list">
+            <div class="status-card">
+              <div class="status-k">噪音类型</div>
+              <div class="status-v" id="noiseType">深夜人声 / 游戏开麦</div>
+            </div>
+            <div class="status-card">
+              <div class="status-k">风险等级</div>
+              <div class="status-v" id="riskText">睡眠受干扰</div>
+            </div>
+            <div class="status-card">
+              <div class="status-k">建议动作</div>
+              <div class="status-v" id="suggestion">启动柔和提醒 + 自适应白噪音</div>
+            </div>
+          </div>
+        </div>
+        <div class="spectrum" aria-label="动态频谱">
+          <span class="bar" style="--i:1;--h:34%"></span>
+          <span class="bar" style="--i:2;--h:58%"></span>
+          <span class="bar" style="--i:3;--h:72%"></span>
+          <span class="bar" style="--i:4;--h:48%"></span>
+          <span class="bar" style="--i:5;--h:86%"></span>
+          <span class="bar" style="--i:6;--h:62%"></span>
+          <span class="bar" style="--i:7;--h:42%"></span>
+          <span class="bar" style="--i:8;--h:76%"></span>
+          <span class="bar" style="--i:9;--h:54%"></span>
+          <span class="bar" style="--i:10;--h:66%"></span>
+          <span class="bar" style="--i:11;--h:31%"></span>
+          <span class="bar" style="--i:12;--h:46%"></span>
+          <span class="bar" style="--i:13;--h:78%"></span>
+          <span class="bar" style="--i:14;--h:51%"></span>
+          <span class="bar" style="--i:15;--h:38%"></span>
+        </div>
+        <div class="panel-foot">平台判断的是声音类型、分贝和持续时间，不记录你说了什么。</div>
+      </aside>
+    </section>
+
+    <!-- Section 02: Pain Points -->
+    <section class="section tight" id="pain">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Problem</div>
+          <h2>宿舍安静，为什么总是变成忍耐？</h2>
+        </div>
+        <p class="lead">噪音不是单纯的声音问题，它会变成睡眠问题、关系问题和宿舍治理问题。</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">82%</div><div class="stat-label">学生受宿舍噪音困扰</div></div>
+        <div class="stat-card"><div class="stat-num">58-75</div><div class="stat-label">夜间宿舍常见噪音 dB</div></div>
+        <div class="stat-card"><div class="stat-num">18%</div><div class="stat-label">学生敢直接沟通</div></div>
+        <div class="stat-card"><div class="stat-num">2.5h</div><div class="stat-label">平均少睡时长</div></div>
+        <div class="stat-card"><div class="stat-num">43%</div><div class="stat-label">宿管投诉与噪音相关</div></div>
+      </div>
+      <div class="data-note">注：以上为 demo 示例数据/调研估算，用于演示页面逻辑。</div>
+      <div class="chain" aria-label="忍耐升级链路">
+        <div class="chain-step"><div class="step-index">01</div><div class="step-title">忍一下</div><div class="step-desc">不好意思开口，先戴耳塞。</div></div>
+        <div class="chain-step"><div class="step-index">02</div><div class="step-title">开始烦躁</div><div class="step-desc">睡眠被打断，白天效率下降。</div></div>
+        <div class="chain-step"><div class="step-index">03</div><div class="step-title">被动攻击</div><div class="step-desc">摔门、冷脸、阴阳怪气。</div></div>
+        <div class="chain-step"><div class="step-index">04</div><div class="step-title">正面冲突</div><div class="step-desc">一次提醒变成整晚争吵。</div></div>
+        <div class="chain-step"><div class="step-index">05</div><div class="step-title">冷战 / 换宿</div><div class="step-desc">关系破裂，治理成本上升。</div></div>
+      </div>
+    </section>
+
+    <!-- Section 03: Noise Sources -->
+    <section class="section tight" id="sources">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Noise Map</div>
+          <h2>三类噪音源，不该只靠耳塞硬扛。</h2>
+        </div>
+        <p class="lead">平台先识别噪音类型，再匹配提醒、掩蔽、公约或学校端处理动作。</p>
+      </div>
+      <div class="source-grid">
+        <article class="glass-card source-card">
+          <span class="source-type">人为噪音</span>
+          <h3>室友行为触发</h3>
+          <ul class="source-list">
+            <li>游戏开麦</li>
+            <li>外放视频</li>
+            <li>深夜聊天</li>
+            <li>洗漱摔门</li>
+          </ul>
+          <div class="mini-tags"><span>高频</span><span>难开口</span><span>易冲突</span></div>
+        </article>
+        <article class="glass-card source-card">
+          <span class="source-type">环境噪音</span>
+          <h3>楼栋与公共空间</h3>
+          <ul class="source-list">
+            <li>装修施工</li>
+            <li>走廊脚步</li>
+            <li>电梯机械</li>
+            <li>水管共鸣</li>
+          </ul>
+          <div class="mini-tags"><span>不可控</span><span>周期性</span><span>影响午休</span></div>
+        </article>
+        <article class="glass-card source-card">
+          <span class="source-type">突发噪音</span>
+          <h3>临时事件干扰</h3>
+          <ul class="source-list">
+            <li>楼外活动</li>
+            <li>警报提示</li>
+            <li>临时搬运</li>
+            <li>夜间突发声源</li>
+          </ul>
+          <div class="mini-tags"><span>低频</span><span>突然</span><span>难预测</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 04: Core Features -->
+    <section class="section tight" id="features">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Core Modules</div>
+          <h2>不是让你忍，而是让系统帮你解决。</h2>
+        </div>
+        <p class="lead">从个人睡眠辅助，到室友协商，再到学校端治理，静界把噪音处理成可追踪、可协作的流程。</p>
+      </div>
+      <div class="module-grid">
+        <article class="module-card active" tabindex="0">
+          <div class="module-num">MODULE 01</div>
+          <div class="module-visual wave"></div>
+          <h3>AI 实时噪音识别</h3>
+          <ul>
+            <li>手机麦克风检测环境声音</li>
+            <li>不上传原始录音</li>
+            <li>识别人声、施工、电器、突发噪音</li>
+            <li>生成个人/宿舍/楼层噪音报告</li>
+          </ul>
+        </article>
+        <article class="module-card" tabindex="0">
+          <div class="module-num">MODULE 02</div>
+          <div class="module-visual sleep"></div>
+          <h3>智能睡眠辅助</h3>
+          <ul>
+            <li>生成白噪音、粉红噪音、棕噪音</li>
+            <li>高噪时自动增强掩蔽音</li>
+            <li>与闹钟联动，避免漏听闹钟</li>
+            <li>输出睡眠评分和改善建议</li>
+          </ul>
+        </article>
+        <article class="module-card" tabindex="0">
+          <div class="module-num">MODULE 03</div>
+          <div class="module-visual chat"></div>
+          <h3>匿名沟通与公约</h3>
+          <ul>
+            <li>系统代发温和提醒</li>
+            <li>室友共享安静时段</li>
+            <li>AI 生成宿舍声环境公约</li>
+            <li>电子确认，生成和谐指数</li>
+          </ul>
+        </article>
+        <article class="module-card" tabindex="0">
+          <div class="module-num">MODULE 04</div>
+          <div class="module-visual loop"></div>
+          <h3>可持续激励引擎</h3>
+          <ul>
+            <li>和谐指数达标后解锁弹性权限</li>
+            <li>绿色积分兑换文明宿舍权益</li>
+            <li>微任务凭证兑换调解员资格</li>
+            <li>噪音治理、垃圾分类、社区服务形成闭环</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 05: Flow -->
+    <section class="section tight" id="flow">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">User Journey</div>
+          <h2>从第 1 天校准，到第 30 天自循环。</h2>
+        </div>
+        <p class="lead">它不靠一次提醒解决所有问题，而是让宿舍逐步形成共同认可的声环境规则。</p>
+      </div>
+      <div class="timeline">
+        <article class="glass-card time-card">
+          <div class="time-date">第 1 天</div>
+          <h3>安装与校准</h3>
+          <p>设置睡眠时段，采集 5 分钟环境音建立基线。</p>
+        </article>
+        <article class="glass-card time-card">
+          <div class="time-date">第 1-3 天</div>
+          <h3>AI 学习</h3>
+          <p>识别宿舍噪音模式，生成初步噪音画像。</p>
+        </article>
+        <article class="glass-card time-card">
+          <div class="time-date">第 7 天</div>
+          <h3>报告与公约</h3>
+          <p>生成热力图，AI 辅助起草宿舍安静公约。</p>
+        </article>
+        <article class="glass-card time-card">
+          <div class="time-date">第 14 天</div>
+          <h3>社区协作</h3>
+          <p>开启匿名提醒、楼层热力图、宿舍和谐指数。</p>
+        </article>
+        <article class="glass-card time-card">
+          <div class="time-date">第 30 天</div>
+          <h3>持续激励</h3>
+          <p>接入绿色积分和微任务凭证，形成长期自循环。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 06: Sustainable Loop -->
+    <section class="section tight" id="loop">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Sustainable Loop</div>
+          <h2>噪音治理如何变成校园可持续行动？</h2>
+        </div>
+        <p class="lead">噪音是入口，积分和凭证是动力，宿舍关系改善是回流结果。</p>
+      </div>
+      <div class="loop-board">
+        <div class="glass-card loop-center">
+          <div class="loop-badge">四合一平台独立板块</div>
+          <h3>宿舍噪音防治平台</h3>
+          <p>把「没人愿意开口」的问题，转化成数据、提醒、公约和激励共同参与的治理机制。</p>
+          <div class="harmony-meter">
+            <div class="meter-label"><span>宿舍和谐指数</span><span>82 / 100</span></div>
+            <div class="meter-track"><div class="meter-fill"></div></div>
+          </div>
+        </div>
+        <div class="loop-paths">
+          <article class="glass-card path-card">
+            <div class="path-title">噪音治理</div>
+            <div class="path-flow"><span>识别噪音</span><b>→</b><span>和谐指数</span><b>→</b><span>弹性权限</span></div>
+          </article>
+          <article class="glass-card path-card">
+            <div class="path-title">垃圾分类</div>
+            <div class="path-flow"><span>正确分类</span><b>→</b><span>绿色积分</span><b>→</b><span>兑换权益</span></div>
+          </article>
+          <article class="glass-card path-card">
+            <div class="path-title">社会微任务</div>
+            <div class="path-flow"><span>完成任务</span><b>→</b><span>能力凭证</span><b>→</b><span>调解员资格</span></div>
+          </article>
+          <article class="glass-card path-card">
+            <div class="path-title">回流机制</div>
+            <div class="path-flow"><span>调解关系</span><b>→</b><span>指数提升</span><b>→</b><span>更多人参与</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 07: Privacy -->
+    <section class="section tight" id="privacy">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Privacy First</div>
+          <h2>我们只识别噪音，不偷听生活。</h2>
+        </div>
+        <p class="lead">宿舍场景的信任门槛很高，所以隐私保护必须是产品底层设计，而不是补丁。</p>
+      </div>
+      <div class="privacy-grid">
+        <article class="glass-card privacy-card">
+          <div class="lock">01</div>
+          <h3>原始音频不上传</h3>
+          <p>只在本地提取分贝、频段和声音类型等特征。</p>
+        </article>
+        <article class="glass-card privacy-card">
+          <div class="lock">02</div>
+          <h3>本地 AI 推理</h3>
+          <p>识别过程在设备端完成，降低敏感数据外流风险。</p>
+        </article>
+        <article class="glass-card privacy-card">
+          <div class="lock">03</div>
+          <h3>匿名特征数据</h3>
+          <p>楼层热力图只展示聚合趋势，不暴露个人身份。</p>
+        </article>
+        <article class="glass-card privacy-card">
+          <div class="lock">04</div>
+          <h3>随时关闭监听</h3>
+          <p>用户可暂停检测、退出社区数据贡献或关闭提醒。</p>
+        </article>
+      </div>
+      <div class="privacy-callout">平台判断的是声音类型、分贝和持续时间，不记录你说了什么。</div>
+    </section>
+
+    <!-- Section 08: Value -->
+    <section class="section tight" id="value">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Student & School</div>
+          <h2>学生少吵一架，学校多一份治理依据。</h2>
+        </div>
+        <p class="lead">同一套数据，给学生的是睡眠和沟通支持，给学校的是宿舍管理和公共空间优化依据。</p>
+      </div>
+      <div class="value-grid">
+        <article class="glass-card value-card">
+          <h3>学生端</h3>
+          <p class="muted">从「忍着」变成「有工具、有证据、有台阶」。</p>
+          <ul class="value-list">
+            <li><span class="check">✓</span>睡得更好，降低夜间噪音干扰</li>
+            <li><span class="check">✓</span>不用正面冲突，由系统发出温和提醒</li>
+            <li><span class="check">✓</span>有数据、有建议、有宿舍公约</li>
+            <li><span class="check">✓</span>参与绿色积分和社会微任务</li>
+          </ul>
+        </article>
+        <article class="glass-card value-card">
+          <h3>学校端</h3>
+          <p class="muted">从「凭感觉处理投诉」变成「看趋势优化管理」。</p>
+          <ul class="value-list">
+            <li><span class="check">✓</span>掌握楼栋噪音热力图</li>
+            <li><span class="check">✓</span>辅助宿舍管理和文明宿舍评比</li>
+            <li><span class="check">✓</span>优化施工和公共空间使用时间</li>
+            <li><span class="check">✓</span>建设绿色校园数据基座</li>
+          </ul>
+          <div class="heatmap" aria-label="示例楼栋噪音热力图">
+            <span class="heat" style="--a:.12"></span><span class="heat" style="--a:.34"></span><span class="heat" style="--a:.22"></span><span class="heat" style="--a:.58"></span><span class="heat" style="--a:.78"></span><span class="heat" style="--a:.32"></span><span class="heat" style="--a:.16"></span>
+            <span class="heat" style="--a:.2"></span><span class="heat" style="--a:.42"></span><span class="heat" style="--a:.88"></span><span class="heat" style="--a:.62"></span><span class="heat" style="--a:.36"></span><span class="heat" style="--a:.2"></span><span class="heat" style="--a:.48"></span>
+            <span class="heat" style="--a:.18"></span><span class="heat" style="--a:.28"></span><span class="heat" style="--a:.54"></span><span class="heat" style="--a:.74"></span><span class="heat" style="--a:.52"></span><span class="heat" style="--a:.26"></span><span class="heat" style="--a:.14"></span>
+            <span class="heat" style="--a:.26"></span><span class="heat" style="--a:.18"></span><span class="heat" style="--a:.4"></span><span class="heat" style="--a:.66"></span><span class="heat" style="--a:.92"></span><span class="heat" style="--a:.5"></span><span class="heat" style="--a:.22"></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 09: CTA -->
+    <section class="section cta" id="cta">
+      <div class="cta-card">
+        <div class="eyebrow">Start Quietly</div>
+        <h2>让安静成为一种校园公共服务。</h2>
+        <p>从一个宿舍的夜晚开始，重建大学生的睡眠权、沟通权和行动力。</p>
+        <div class="actions" style="justify-content:center;margin-bottom:0;">
+          <button class="btn primary" data-toast="已打开噪音防治平台演示入口">进入噪音防治平台</button>
+          <button class="btn secondary" data-toast="宿舍和谐指数示例：82 / 100，已达成本周安静公约">查看宿舍和谐指数</button>
+          <button class="btn secondary" data-toast="我的宿舍公约已生成：睡眠时段、开麦提醒、公共空间规则已写入">生成我的宿舍公约</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const dbValue = document.getElementById("dbValue");
+    const riskPill = document.getElementById("riskPill");
+    const riskText = document.getElementById("riskText");
+    const noiseType = document.getElementById("noiseType");
+    const suggestion = document.getElementById("suggestion");
+    const dial = document.getElementById("noiseDial");
+    const bars = Array.from(document.querySelectorAll(".bar"));
+    const toast = document.getElementById("toast");
+
+    const types = ["深夜人声 / 游戏开麦", "外放视频", "走廊脚步", "洗漱摔门", "施工余音", "电器低频声"];
+    let tick = 0;
+    let toastTimer = null;
+
+    function levelFor(db) {
+      if (db < 55) {
+        return {
+          label: "安静",
+          text: "适合入睡",
+          color: "#68f5c8",
+          action: "维持轻量监测，保留睡眠基线"
+        };
+      }
+      if (db < 65) {
+        return {
+          label: "偏高",
+          text: "可能影响浅睡眠",
+          color: "#60d8ff",
+          action: "开启低强度掩蔽音，记录发生时段"
+        };
+      }
+      return {
+        label: "影响入睡",
+        text: "睡眠受干扰",
+        color: "#ffb15c",
+        action: "启动柔和提醒 + 自适应白噪音"
+      };
+    }
+
+    function updateDashboard() {
+      tick += 1;
+      const wave = Math.sin(tick / 2.6) * 10 + Math.sin(tick / 5.4) * 5;
+      const db = Math.max(45, Math.min(75, Math.round(61 + wave + (Math.random() * 4 - 2))));
+      const risk = levelFor(db);
+      const angle = Math.round(((db - 45) / 30) * 280);
+
+      dbValue.textContent = db;
+      riskPill.textContent = risk.label;
+      riskPill.style.background = risk.color;
+      riskText.textContent = risk.text;
+      noiseType.textContent = types[tick % types.length];
+      suggestion.textContent = risk.action;
+      dial.style.setProperty("--angle", angle + "deg");
+      dial.style.setProperty("--risk-color", risk.color);
+
+      bars.forEach((bar, index) => {
+        const random = 18 + Math.round(Math.random() * 72);
+        const shaped = Math.round((random + db + index * 3) / 2.25);
+        bar.style.setProperty("--h", Math.min(96, Math.max(18, shaped)) + "%");
+      });
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    document.querySelectorAll("[data-toast]").forEach((button) => {
+      button.addEventListener("click", () => showToast(button.dataset.toast));
+    });
+
+    document.querySelectorAll(".module-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".module-card").forEach((item) => item.classList.remove("active"));
+        card.classList.add("active");
+        showToast(card.querySelector("h3").textContent + "已选中，可在真实产品中展开详情");
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const observedSections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: "-42% 0px -50% 0px", threshold: 0.01 });
+
+    observedSections.forEach((section) => observer.observe(section));
+
+    updateDashboard();
+    setInterval(updateDashboard, 1700);
+  </script>
+</body>
+</html>
