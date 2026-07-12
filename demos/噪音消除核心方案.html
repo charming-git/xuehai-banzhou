@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校园可持续行动力生态 — 以噪音消除为核心的整合方案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #F5F6FA; color: #2C2C2A; line-height: 1.75; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 24px 32px; }
+
+  /* Cover */
+  .cover { background: linear-gradient(135deg, #0D1B2A 0%, #1B3A4B 40%, #2D5A4E 100%); color: white; padding: 72px 52px; border-radius: 20px; margin-bottom: 40px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -30%; right: -15%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(78,205,196,0.08) 0%, transparent 70%); }
+  .cover::after { content: ''; position: absolute; bottom: -20%; left: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(83,74,183,0.06) 0%, transparent 70%); }
+  .cover-tag { display: inline-block; background: rgba(78,205,196,0.15); border: 1px solid rgba(78,205,196,0.3); border-radius: 20px; padding: 5px 18px; font-size: 12px; margin-bottom: 24px; letter-spacing: 1.5px; color: #4ecdc4; }
+  .cover h1 { font-size: 38px; font-weight: 800; margin-bottom: 14px; line-height: 1.25; position: relative; z-index: 1; }
+  .cover h1 .accent { background: linear-gradient(135deg, #4ecdc4, #6FE6B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .cover-sub { font-size: 17px; opacity: 0.8; margin-bottom: 36px; position: relative; z-index: 1; }
+  .cover-meta { display: flex; gap: 36px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .cover-meta-item { font-size: 13px; opacity: 0.75; }
+  .cover-meta-item strong { display: block; font-size: 26px; opacity: 1; margin-bottom: 2px; }
+  .cover-meta-item.teal strong { color: #4ecdc4; }
+  .cover-meta-item.green strong { color: #6FE6B8; }
+  .cover-meta-item.purple strong { color: #A8A0F0; }
+  .cover-meta-item.amber strong { color: #F2C36B; }
+
+  /* Section */
+  .section { background: white; border-radius: 18px; padding: 44px 48px; margin-bottom: 28px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+  .section-num { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .section-num.teal { color: #4ecdc4; }
+  .section-num.green { color: #1D9E75; }
+  .section-num.purple { color: #534AB7; }
+  .section-num.amber { color: #D4940E; }
+  .section-num.dark { color: #5F5E5A; }
+  .section-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: #1a1a2e; }
+  .section-sub { font-size: 14px; color: #888780; margin-bottom: 32px; }
+  .section-body { font-size: 14.5px; color: #444441; }
+
+  /* Typography */
+  h3 { font-size: 18px; font-weight: 700; color: #1a1a2e; margin: 32px 0 14px; padding-left: 14px; border-left: 4px solid #4ecdc4; }
+  h3.green { border-left-color: #1D9E75; }
+  h3.purple { border-left-color: #534AB7; }
+  h3.amber { border-left-color: #D4940E; }
+  h4 { font-size: 15.5px; font-weight: 600; color: #2C2C2A; margin: 22px 0 10px; }
+  p { margin-bottom: 14px; }
+  ul, ol { padding-left: 22px; margin-bottom: 14px; }
+  li { margin-bottom: 7px; }
+  strong { color: #1a1a2e; }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 24px 0; }
+  .card { background: #F8F9FC; border-radius: 14px; padding: 24px; border: 1px solid rgba(0,0,0,0.04); transition: transform 0.2s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .card-icon { font-size: 30px; margin-bottom: 10px; }
+  .card h4 { margin: 0 0 8px; font-size: 15px; }
+  .card p { font-size: 13px; color: #5F5E5A; margin: 0; }
+
+  /* Module Cards */
+  .module-card { border-radius: 16px; padding: 32px; margin: 24px 0; position: relative; overflow: hidden; }
+  .module-card.m1 { background: linear-gradient(135deg, #E8FBF6 0%, #F0FFFC 100%); border: 1.5px solid #4ecdc4; }
+  .module-card.m2 { background: linear-gradient(135deg, #EDF8EE 0%, #F5FDF5 100%); border: 1.5px solid #1D9E75; }
+  .module-card.m3 { background: linear-gradient(135deg, #F0EEFE 0%, #F8F7FF 100%); border: 1.5px solid #534AB7; }
+  .module-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .module-num { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white; flex-shrink: 0; }
+  .module-num.m1 { background: linear-gradient(135deg, #4ecdc4, #3DB5AC); }
+  .module-num.m2 { background: linear-gradient(135deg, #1D9E75, #15805F); }
+  .module-num.m3 { background: linear-gradient(135deg, #534AB7, #6B5FD0); }
+  .module-title { font-size: 19px; font-weight: 700; color: #1a1a2e; }
+  .module-data { font-size: 12px; color: #888780; margin-top: 2px; }
+  .module-data .data-tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+  .module-data .data-tag.m1 { background: #4ecdc4; color: white; }
+  .module-data .data-tag.m2 { background: #1D9E75; color: white; }
+  .module-data .data-tag.m3 { background: #534AB7; color: white; }
+  .module-badge { display: inline-block; font-size: 10px; padding: 2px 10px; border-radius: 8px; font-weight: 600; margin-left: 8px; vertical-align: middle; }
+  .module-badge.core { background: #E24B4A; color: white; }
+  .module-badge.ext { background: #888; color: white; }
+
+  .module-body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .module-col h5 { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px dashed #ccc; }
+  .module-col ul { font-size: 13px; padding-left: 18px; }
+  .module-col li { margin-bottom: 6px; color: #444; }
+
+  /* Table */
+  .data-table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 13px; border-radius: 10px; overflow: hidden; }
+  .data-table th { color: white; padding: 13px 16px; text-align: left; font-weight: 500; font-size: 12px; }
+  .data-table th.teal { background: #4ecdc4; }
+  .data-table th.dark { background: #1a1a2e; }
+  .data-table th.green { background: #1D9E75; }
+  .data-table th.purple { background: #534AB7; }
+  .data-table th.red { background: #A32D2D; }
+  .data-table td { padding: 12px 16px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: #FAFBFC; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+  .tag-red { background: #FCEBEB; color: #A32D2D; }
+  .tag-amber { background: #FAEEDA; color: #854F0B; }
+  .tag-green { background: #EAF3DE; color: #3B6D11; }
+  .tag-blue { background: #E6F1FB; color: #185FA5; }
+  .tag-purple { background: #EEEDFE; color: #534AB7; }
+  .tag-teal { background: #E1F5EE; color: #0F6E56; }
+
+  /* FABE */
+  .fabe-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; }
+  .fabe-card { border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+  .fabe-card::before { content: attr(data-letter); position: absolute; top: -10px; right: 10px; font-size: 80px; font-weight: 900; opacity: 0.08; }
+  .fabe-card.f-f { background: linear-gradient(135deg, #E8FBF6, #F0FFFC); border: 1.5px solid #4ecdc4; }
+  .fabe-card.f-a { background: linear-gradient(135deg, #EAF3DE, #F5FDF5); border: 1.5px solid #1D9E75; }
+  .fabe-card.f-b { background: linear-gradient(135deg, #FAEEDA, #FDF8EF); border: 1.5px solid #D4940E; }
+  .fabe-card.f-e { background: linear-gradient(135deg, #EEEDFE, #F8F7FF); border: 1.5px solid #534AB7; }
+  .fabe-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .fabe-card.f-f .fabe-label { color: #0F6E56; }
+  .fabe-card.f-a .fabe-label { color: #3B6D11; }
+  .fabe-card.f-b .fabe-label { color: #854F0B; }
+  .fabe-card.f-e .fabe-label { color: #534AB7; }
+  .fabe-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+  .fabe-body { font-size: 13px; color: #444; line-height: 1.7; }
+
+  /* Q&A */
+  .qa-item { background: #F8F9FC; border-radius: 14px; padding: 24px; margin: 16px 0; border-left: 4px solid #4ecdc4; }
+  .qa-item.amber { border-left-color: #D4940E; }
+  .qa-item.purple { border-left-color: #534AB7; }
+  .qa-item.green { border-left-color: #1D9E75; }
+  .qa-item.red { border-left-color: #E24B4A; }
+  .qa-question { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+  .qa-question .q-icon { color: #4ecdc4; flex-shrink: 0; }
+  .qa-answer { font-size: 13px; color: #444; padding-left: 24px; }
+  .qa-answer .a-icon { color: #1D9E75; font-weight: 700; margin-right: 6px; }
+  .qa-dimension { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 8px; margin-left: 8px; font-weight: 600; }
+
+  /* Quote */
+  .quote { background: linear-gradient(135deg, #F0F7FF 0%, #F8FBFF 100%); border-left: 4px solid #4ecdc4; border-radius: 0 12px 12px 0; padding: 20px 26px; margin: 22px 0; font-size: 14.5px; color: #2C2C2A; }
+  .quote.bold { background: linear-gradient(135deg, #E1F5EE 0%, #EEEDFE 100%); font-size: 16px; padding: 28px 32px; border-left-width: 5px; }
+  .quote-author { font-size: 12px; color: #888780; margin-top: 10px; }
+
+  /* Highlight */
+  .hl { background: linear-gradient(transparent 60%, rgba(78,205,196,0.25) 60%); font-weight: 500; }
+  .hl-green { background: linear-gradient(transparent 60%, rgba(29,158,117,0.2) 60%); font-weight: 500; }
+  .hl-purple { background: linear-gradient(transparent 60%, rgba(83,74,183,0.18) 60%); font-weight: 500; }
+
+  /* Divider */
+  .divider { height: 1px; background: #eee; margin: 32px 0; }
+
+  /* Flow diagram */
+  .flow-container { background: #F8F9FC; border-radius: 16px; padding: 36px; margin: 24px 0; }
+  .flow-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+  .flow-node { padding: 14px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; text-align: center; min-width: 140px; max-width: 220px; }
+  .flow-node.m1 { background: #4ecdc4; color: white; }
+  .flow-node.m2 { background: #1D9E75; color: white; }
+  .flow-node.m3 { background: #534AB7; color: white; }
+  .flow-node.reward { background: #F2C36B; color: #5C3D0B; }
+  .flow-node.credential { background: #E6F1FB; color: #185FA5; border: 1.5px solid #185FA5; }
+  .flow-node.core { background: #E24B4A; color: white; }
+  .flow-arrow { font-size: 20px; color: #aaa; font-weight: 300; }
+  .flow-label { font-size: 10px; color: #888; text-align: center; margin-top: 4px; }
+  .flow-loop-note { text-align: center; font-size: 13px; color: #5F5E5A; margin-top: 20px; font-style: italic; }
+
+  /* Metrics */
+  .metrics { display: flex; gap: 18px; flex-wrap: wrap; margin: 24px 0; }
+  .metric { flex: 1; min-width: 130px; border-radius: 14px; padding: 24px; text-align: center; }
+  .metric.teal { background: linear-gradient(135deg, #E8FBF6, #D0F5EE); }
+  .metric.green { background: linear-gradient(135deg, #EDF8EE, #D4F0D8); }
+  .metric.purple { background: linear-gradient(135deg, #F0EEFE, #E0DDF8); }
+  .metric.amber { background: linear-gradient(135deg, #FAEEDA, #F5E0C0); }
+  .metric.red { background: linear-gradient(135deg, #FCEBEB, #F5D5D5); }
+  .metric-num { font-size: 32px; font-weight: 800; color: #1a1a2e; }
+  .metric-label { font-size: 12px; color: #5F5E5A; margin-top: 6px; }
+
+  /* Speech structure */
+  .speech-timeline { position: relative; padding-left: 40px; margin: 28px 0; }
+  .speech-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, #4ecdc4, #1D9E75, #534AB7); border-radius: 2px; }
+  .speech-item { position: relative; margin-bottom: 28px; }
+  .speech-item::before { content: ''; position: absolute; left: -30px; top: 6px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid; background: white; z-index: 1; }
+  .speech-item.s1::before { border-color: #4ecdc4; }
+  .speech-item.s2::before { border-color: #1D9E75; }
+  .speech-item.s3::before { border-color: #534AB7; }
+  .speech-item.s4::before { border-color: #D4940E; }
+  .speech-item.s5::before { border-color: #1a1a2e; }
+  .speech-time { font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+  .speech-item.s1 .speech-time { color: #4ecdc4; }
+  .speech-item.s2 .speech-time { color: #1D9E75; }
+  .speech-item.s3 .speech-time { color: #534AB7; }
+  .speech-item.s4 .speech-time { color: #D4940E; }
+  .speech-item.s5 .speech-time { color: #1a1a2e; }
+  .speech-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  .speech-desc { font-size: 13.5px; color: #444; }
+  .speech-script { background: #F8F9FC; border-radius: 10px; padding: 14px 18px; margin-top: 10px; font-size: 13px; color: #555; font-style: italic; border-left: 3px solid #ddd; }
+
+  /* Badge */
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+  .badge { padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .badge-teal { background: #E1F5EE; color: #0F6E56; }
+  .badge-green { background: #EAF3DE; color: #3B6D11; }
+  .badge-purple { background: #EEEDFE; color: #534AB7; }
+  .badge-amber { background: #FAEEDA; color: #854F0B; }
+  .badge-blue { background: #E6F1FB; color: #185FA5; }
+  .badge-red { background: #FCEBEB; color: #A32D2D; }
+
+  /* Comparison table */
+  .cmp-table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 13px; }
+  .cmp-table th { background: #1a1a2e; color: white; padding: 11px 14px; text-align: center; font-weight: 500; font-size: 12px; }
+  .cmp-table td { padding: 11px 14px; border-bottom: 1px solid #eee; text-align: center; vertical-align: middle; }
+  .cmp-table tr:nth-child(even) td { background: #FAFBFC; }
+  .cmp-table td:first-child { text-align: left; font-weight: 500; color: #1a1a2e; }
+  .check { color: #1D9E75; font-weight: 700; }
+  .cross { color: #E24B4A; font-weight: 700; }
+  .partial { color: #BA7517; font-weight: 500; }
+
+  /* Roadmap */
+  .roadmap { position: relative; padding-left: 36px; margin: 28px 0; }
+  .roadmap::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #4ecdc4, #1D9E75, #534AB7); }
+  .roadmap-item { position: relative; margin-bottom: 30px; }
+  .roadmap-item::before { content: ''; position: absolute; left: -29px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: white; border: 3px solid #4ecdc4; box-shadow: 0 0 0 2px #4ecdc4; }
+  .roadmap-item.green::before { border-color: #1D9E75; box-shadow: 0 0 0 2px #1D9E75; }
+  .roadmap-item.purple::before { border-color: #534AB7; box-shadow: 0 0 0 2px #534AB7; }
+  .roadmap-date { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .roadmap-item .roadmap-date { color: #4ecdc4; }
+  .roadmap-item.green .roadmap-date { color: #1D9E75; }
+  .roadmap-item.purple .roadmap-date { color: #534AB7; }
+  .roadmap-title { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+  .roadmap-desc { font-size: 13px; color: #5F5E5A; }
+
+  /* Architecture box */
+  .arch-box { background: #F8F9FC; border: 1.5px solid #ddd; border-radius: 12px; padding: 20px; margin: 16px 0; }
+  .arch-box.m1 { border-color: #4ecdc4; }
+  .arch-box.m2 { border-color: #1D9E75; }
+  .arch-box.m3 { border-color: #534AB7; }
+  .arch-box.red { border-color: #E24B4A; }
+
+  /* Persona */
+  .persona { display: flex; gap: 18px; margin: 22px 0; flex-wrap: wrap; }
+  .persona-card { flex: 1; min-width: 260px; background: #F8F9FC; border-radius: 16px; padding: 26px; border: 1px solid rgba(0,0,0,0.04); }
+  .persona-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+  .persona-name { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+  .persona-tag { font-size: 12px; color: #888780; margin-bottom: 12px; }
+  .persona-story { font-size: 13px; color: #444; line-height: 1.7; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 36px 0; color: #B4B2A9; font-size: 12px; }
+
+  /* Value chain */
+  .value-chain { display: flex; align-items: stretch; gap: 0; margin: 24px 0; flex-wrap: wrap; }
+  .value-step { flex: 1; min-width: 140px; padding: 20px; text-align: center; position: relative; }
+  .value-step:nth-child(odd) { background: #F8F9FC; }
+  .value-step:nth-child(even) { background: #F0F2F8; }
+  .value-step:first-child { border-radius: 14px 0 0 14px; }
+  .value-step:last-child { border-radius: 0 14px 14px 0; }
+  .value-step-num { font-size: 11px; font-weight: 700; color: #aaa; margin-bottom: 6px; }
+  .value-step-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+  .value-step-desc { font-size: 11px; color: #888; }
+  .value-step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #ccc; z-index: 1; }
+
+  /* Highlight box */
+  .hl-box { border-radius: 14px; padding: 28px; margin: 24px 0; }
+  .hl-box.teal { background: linear-gradient(135deg, #E1F5EE, #E8FBF6); border: 1px solid #4ecdc4; }
+  .hl-box.green { background: linear-gradient(135deg, #EDF8EE, #EAF3DE); border: 1px solid #1D9E75; }
+  .hl-box.purple { background: linear-gradient(135deg, #F0EEFE, #EEEDFE); border: 1px solid #534AB7; }
+  .hl-box.red { background: linear-gradient(135deg, #FCEBEB, #FAE0E0); border: 1px solid #E24B4A; }
+  .hl-box-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px; }
+
+  /* Tech stack badge */
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 20px 0; }
+  .tech-item { background: #F8F9FC; border-radius: 12px; padding: 18px; border-left: 3px solid #4ecdc4; }
+  .tech-item h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #1a1a2e; }
+  .tech-item p { font-size: 12px; color: #5F5E5A; margin: 0; }
+  .tech-item .tech-role { font-size: 11px; color: #4ecdc4; font-weight: 600; margin-top: 4px; }
+
+  /* Audio spectrum viz */
+  .spectrum { display: flex; align-items: flex-end; gap: 4px; height: 80px; margin: 20px 0; padding: 12px; background: #0D1B2A; border-radius: 12px; }
+  .spectrum-bar { flex: 1; background: linear-gradient(to top, #4ecdc4, #6FE6B8); border-radius: 3px 3px 0 0; min-height: 4px; }
+
+  @media print { body { background: white; } .section { box-shadow: none; border: 1px solid #ddd; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-tag">CAMPUS SUSTAINABLE ACTION ECOLOGY · 以噪音消除为核心的整合方案</div>
+  <h1><span class="accent">校园可持续行动力生态</span><br>噪音消除驱动的三合一平台</h1>
+  <p class="cover-sub">DormNoise Guardian 声环境治理系统为核心<br>延展碳普惠回收地图 × 社会创新微任务，构建校内自循环闭环</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item teal"><strong>1</strong>核心引擎（噪音消除）</div>
+    <div class="cover-meta-item green"><strong>2</strong>延展模块</div>
+    <div class="cover-meta-item purple"><strong>3</strong>数据闭环</div>
+    <div class="cover-meta-item amber"><strong>0</strong>外部补贴</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 实地调研 — 噪音问题 ===== -->
+<div class="section">
+  <div class="section-num dark">Step 01 · 实地调研</div>
+  <h2 class="section-title">问题发现 — 4000万大学生的集体困境</h2>
+  <p class="section-sub">6周深度调研：5所高校、3个社区、2家公益组织，1,247份问卷 + 38间宿舍实勘 + 24人访谈</p>
+  <div class="section-body">
+
+    <div class="quote bold">
+      <strong>核心发现：</strong>宿舍噪音是大学生最普遍、最痛苦、最被忽视的校园问题。<br>
+      <strong>82%</strong>的学生受噪音困扰，但只有<strong>18%</strong>敢开口沟通——这不是"音量"问题，是"沟通机制"问题。
+    </div>
+
+    <h3>1.1 调研方法论</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">调研方法</th><th class="dark">样本规模</th><th class="dark">执行周期</th><th class="dark">核心发现</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>线上问卷</strong></td>
+          <td>1,247 份有效问卷（5所高校）</td>
+          <td>2026.5.10 - 5.25</td>
+          <td>82% 受噪音困扰；73% 不清楚垃圾分类标准；68% 想参与公益但找不到渠道</td>
+        </tr>
+        <tr>
+          <td><strong>宿舍实勘</strong></td>
+          <td>38 间宿舍（覆盖6个楼栋）</td>
+          <td>2026.5.15 - 5.30</td>
+          <td>夜间平均噪音 58-75 dB（WHO建议睡眠环境低于30 dB）；深夜冲突高发时段23:00-01:00</td>
+        </tr>
+        <tr>
+          <td><strong>深度访谈</strong></td>
+          <td>24人（学生12+宿管4+辅导员3+后勤2+社区工作者3）</td>
+          <td>2026.5.20 - 6.05</td>
+          <td>宿管："管不了，都是小事"；学生："想分类但不知道怎么分"；社区："缺人手，学生来不了"</td>
+        </tr>
+        <tr>
+          <td><strong>回收站观察</strong></td>
+          <td>3个校园回收点 + 2个社区回收站</td>
+          <td>2026.5.25 - 6.10</td>
+          <td>分类错误率67%；无人值守时段71%；可回收物混投率居高不下</td>
+        </tr>
+        <tr>
+          <td><strong>公益组织访谈</strong></td>
+          <td>2家（社区服务中心 + 环保NGO）</td>
+          <td>2026.6.01 - 6.10</td>
+          <td>"有真实任务需要人手，但没有稳定的对接渠道""学生来了又走，留不住"</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>1.2 噪音问题深度拆解 — "不敢说，只能忍"</h3>
+
+    <div class="hl-box red">
+      <div class="hl-box-title">震撼数据：宿舍噪音的真相</div>
+      <p style="font-size:14px;">在38间宿舍实勘中，夜间23:00后平均噪音达<strong>58-75 dB</strong>——相当于在床边开了一台洗衣机运转一整晚。WHO建议睡眠环境低于30 dB，我们的宿舍超标<strong>2-2.5倍</strong>。</p>
+    </div>
+
+    <div class="metrics">
+      <div class="metric red"><div class="metric-num">82%</div><div class="metric-label">受宿舍噪音困扰的学生比例</div></div>
+      <div class="metric teal"><div class="metric-num">58-75</div><div class="metric-label">夜间平均噪音分贝(dB)</div></div>
+      <div class="metric amber"><div class="metric-num">2.5h</div><div class="metric-label">受影响学生平均少睡时长</div></div>
+      <div class="metric purple"><div class="metric-num">43%</div><div class="metric-label">噪音投诉占宿管日常投诉比例</div></div>
+      <div class="metric green"><div class="metric-num">18%</div><div class="metric-label">敢开口沟通的学生比例</div></div>
+    </div>
+
+    <h4>噪音危害的三重影响</h4>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h4>心理影响</h4>
+        <p><strong>"忍耐→爆发"循环</strong>：第一天忍→第三天烦躁→第七天爆发→关系破裂→后悔→再忍。个别案例发展为<strong>噪音敏感症（misophonia）</strong>，听到特定声音就极度烦躁。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h4>社交影响</h4>
+        <p>中国大学生<strong>面子文化陷阱</strong>：不好意思直说，选择暗示而非直接沟通，对方根本没意识到。冲突升级路径：暗示→被动攻击→正面冲突→冷战→申请换宿。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h4>学业影响</h4>
+        <p>睡眠不足导致第二天课堂<strong>专注力下降30-40%</strong>；深睡期是记忆巩固关键窗口，被打断后学习效率打折；考试期噪音敏感度放大，形成恶性循环。</p>
+      </div>
+    </div>
+
+    <h4>"面子文化陷阱"的升级路径</h4>
+    <div class="value-chain">
+      <div class="value-step"><div class="value-step-num">第1天</div><div class="value-step-title">忍耐</div><div class="value-step-desc">"算了，不好意思说"</div></div>
+      <div class="value-step"><div class="value-step-num">第3天</div><div class="value-step-title">烦躁</div><div class="value-step-desc">被动攻击、摔门</div></div>
+      <div class="value-step"><div class="value-step-num">第7天</div><div class="value-step-title">爆发</div><div class="value-step-desc">正面冲突、关系破裂</div></div>
+      <div class="value-step"><div class="value-step-num">第14天</div><div class="value-step-title">换宿</div><div class="value-step-desc">申请调宿（成功率仅12%）</div></div>
+    </div>
+    <p>问卷数据显示：82%学生受噪音困扰，但仅18%尝试过沟通，其中<strong>76%的沟通以关系恶化收场</strong>。宿管反馈："噪音投诉占日常投诉的43%，但我们只能调解，没有数据依据，两头不讨好。"</p>
+
+    <h3>1.3 现有方案为什么全面失效？</h3>
+    <table class="cmp-table">
+      <thead>
+        <tr><th>方案</th><th>成本</th><th>主要失效原因</th><th>实际解决率</th><th>结论</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>海绵耳塞</td><td>¥10-30</td><td>低频穿透、佩戴不适、漏听闹钟、耳道炎</td><td class="partial">~40%</td><td class="cross">治标不治本</td></tr>
+        <tr><td>降噪耳机</td><td>¥800-2500</td><td>无法侧睡佩戴、突发音效果差、成本高</td><td class="partial">~25%</td><td class="cross">无法睡眠使用</td></tr>
+        <tr><td>白噪音App</td><td>免费-¥50</td><td>固定频段、无法适配实际噪音、掩盖闹钟</td><td class="partial">~30%</td><td class="cross">被动掩蔽</td></tr>
+        <tr><td>沟通协调</td><td>免费</td><td>面子顾虑、对方不改、关系恶化</td><td class="partial">~20%</td><td class="cross">依赖他人配合</td></tr>
+        <tr><td>找宿管/辅导员</td><td>免费</td><td>流程慢、被视为"小事"</td><td class="partial">~15%</td><td class="cross">响应滞后</td></tr>
+        <tr><td>申请换宿舍</td><td>时间成本</td><td>名额有限、逃避而非解决</td><td class="partial">~10%</td><td class="cross">治标不治本</td></tr>
+        <tr style="background:#E1F5EE !important;"><td><strong>DormNoise Guardian</strong></td><td><strong>免费起</strong></td><td><strong>主动感知+智能应对+公约治理+生态激励</strong></td><td><strong class="check">目标 80%+</strong></td><td><strong class="check">系统性解决</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3>1.4 市场规模 — 这不是小众需求</h3>
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">4000万+</div><div class="metric-label">中国高校住宿生总数</div></div>
+      <div class="metric red"><div class="metric-num">82%</div><div class="metric-label">受宿舍噪音困扰比例</div></div>
+      <div class="metric amber"><div class="metric-num">6.2h</div><div class="metric-label">受影响学生平均实际睡眠时长</div></div>
+      <div class="metric green"><div class="metric-num">¥0</div><div class="metric-label">现有真正有效的系统性解决方案</div></div>
+    </div>
+    <div class="quote">
+      这不是一个小众需求。这是4000万大学生每天晚上都在经历的集体困境。<br>
+      <span class="quote-author">—— 问题不是"有没有"，而是"为什么还没有人真正解决"</span>
+    </div>
+
+    <h3>1.5 典型用户画像</h3>
+    <div class="persona">
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#FCEBEB; color:#A32D2D;">😴</div>
+        <div class="persona-name">"早睡党" 小林</div>
+        <div class="persona-tag">大二 · 22:30想睡 · 室友熬夜到2:00</div>
+        <div class="persona-story">每天被室友游戏声吵到无法入睡，平均少睡<strong>2.5小时</strong>。不敢开口提醒，忍了半年后申请换宿失败，开始出现焦虑症状。核心痛点：<strong>不敢说，只能忍</strong>。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#FAEEDA; color:#854F0B;">📖</div>
+        <div class="persona-name">"备考党" 小赵</div>
+        <div class="persona-tag">大三 · 考研冲刺 · 楼下装修持续一个月</div>
+        <div class="persona-story">考研冲刺期楼下装修，电钻声穿透楼板，午休根本无法入睡。投诉无果，被迫每天去图书馆趴桌睡，<strong>颈椎出问题</strong>。核心痛点：<strong>不可控，无处可逃</strong>。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#EEEDFE; color:#534AB7;">🐱</div>
+        <div class="persona-name">"敏感型" 小陈</div>
+        <div class="persona-tag">大一 · 浅睡眠体质 · 窗外流浪猫</div>
+        <div class="persona-story">任何轻微声音都会惊醒，凌晨3点窗外流浪猫叫声让她彻夜难眠。室友觉得"没那么严重"，她感到<strong>无助且不被理解</strong>。核心痛点：<strong>无人理解的孤独感</strong>。</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 核心产品 — DormNoise Guardian ===== -->
+<div class="section">
+  <div class="section-num teal">Step 02 · 核心产品</div>
+  <h2 class="section-title">DormNoise Guardian — 宿舍声环境治理系统</h2>
+  <p class="section-sub">不是降噪耳机，不是耳塞，而是一个以AI为核心的宿舍声环境感知、应对、治理与激励平台</p>
+  <div class="section-body">
+
+    <h3>2.1 产品定位</h3>
+    <p><span class="hl">DormNoise Guardian不是一款"降噪耳机"或"耳塞"，而是一个以AI为核心的宿舍睡眠环境管理系统</span>——它感知、理解、应对、协调宿舍噪音问题，并延伸出公约治理和生态激励，是每位大学生的"睡眠守护助手"。</p>
+    <div class="badge-row">
+      <span class="badge badge-red">核心引擎</span>
+      <span class="badge badge-teal">隐私优先（本地处理）</span>
+      <span class="badge badge-blue">大学生自制</span>
+      <span class="badge badge-purple">公益起步</span>
+      <span class="badge badge-amber">开放共建</span>
+    </div>
+
+    <h3>2.2 四大核心功能模块</h3>
+
+    <!-- 功能模块一 -->
+    <div class="arch-box red">
+      <h4 style="color: #A32D2D;">📊 模块一：实时噪音检测与理解</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>手机麦克风实时监听（可设置静默时段）</li>
+            <li>AI自动分类：人声 / 施工 / 电器 / 动物 / 其他</li>
+            <li>分贝等级实时显示 + 超阈值震动提醒</li>
+            <li>噪音事件时间轴记录</li>
+            <li>每周/每月噪音报告生成</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">技术实现：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>YAMNet模型（TFLite量化）→ 噪音分类</li>
+            <li>分贝估算：短时能量RMS → dB SPL校准</li>
+            <li>本地推理&lt;100ms，零隐私上传</li>
+            <li>电量优化：自适应采样频率</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 噪音频谱可视化示意 -->
+    <div class="spectrum">
+      <div class="spectrum-bar" style="height:20%"></div>
+      <div class="spectrum-bar" style="height:35%"></div>
+      <div class="spectrum-bar" style="height:60%"></div>
+      <div class="spectrum-bar" style="height:85%"></div>
+      <div class="spectrum-bar" style="height:70%"></div>
+      <div class="spectrum-bar" style="height:90%"></div>
+      <div class="spectrum-bar" style="height:75%"></div>
+      <div class="spectrum-bar" style="height:55%"></div>
+      <div class="spectrum-bar" style="height:40%"></div>
+      <div class="spectrum-bar" style="height:65%"></div>
+      <div class="spectrum-bar" style="height:80%"></div>
+      <div class="spectrum-bar" style="height:50%"></div>
+      <div class="spectrum-bar" style="height:30%"></div>
+      <div class="spectrum-bar" style="height:45%"></div>
+      <div class="spectrum-bar" style="height:25%"></div>
+      <div class="spectrum-bar" style="height:15%"></div>
+    </div>
+    <p style="font-size:12px; color:#888; text-align:center; margin-top:-12px;">↑ 实时噪音频谱分析示意（AI识别噪音类型，非录制语音内容）</p>
+
+    <!-- 功能模块二 -->
+    <div class="arch-box m2">
+      <h4 style="color: #0F6E56;">🌙 模块二：智能睡眠辅助</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>自适应白噪音掩蔽（不是固定播放）</li>
+            <li>根据环境噪音频谱动态匹配掩蔽音频</li>
+            <li>深睡期检测到突发高噪 → 自动增强</li>
+            <li>渐进式智能唤醒（浅睡窗口内唤醒）</li>
+            <li>睡眠质量评分 + 改善建议</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">技术实现：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>粉红噪音/棕噪音自适应生成算法</li>
+            <li>睡眠周期预测（基于历史数据+加速度计）</li>
+            <li>智能音量调节（不惊醒，只掩蔽）</li>
+            <li>与闹钟联动，确保唤醒成功率</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 功能模块三 -->
+    <div class="arch-box m1">
+      <h4 style="color: #0F6E56;">🤝 模块三：社区协作与公约治理（差异化亮点）</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li><strong>楼层噪音热力图</strong>（匿名聚合）</li>
+            <li>室友作息协调工具（共享安静时段）</li>
+            <li>匿名温和反馈（系统代发提醒）</li>
+            <li><strong>宿舍声环境公约生成器</strong>：AI辅助生成个性化公约</li>
+            <li><strong>宿舍和谐指数</strong>：噪音合规率×公约执行率×室友满意度</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">为什么这是亮点？</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>噪音矛盾本质是<strong>社交问题</strong>，不是纯技术问题</li>
+            <li>用数据代替争吵（"系统显示此时噪音超标"）</li>
+            <li>匿名反馈避免当面冲突</li>
+            <li>公约机制提供执行框架，而非仅"提醒"</li>
+            <li><strong>和谐指数</strong>为生态激励提供数据基础</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 功能模块四 -->
+    <div class="arch-box m3">
+      <h4 style="color: #534AB7;">🏆 模块四：生态激励与积分引擎</h4>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">核心能力：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li><strong>和谐指数→弹性权限</strong>：达标宿舍解锁弹性权限</li>
+            <li>如"本周多1小时游戏时间""延迟熄灯申请权"</li>
+            <li>积分引擎：对接外部模块（垃圾分类、微任务）</li>
+            <li>调解员资格：由生态微任务凭证兑换</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; margin-bottom:6px; color:#444;">生态价值：</p>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>这是噪音消除方案<strong>连接生态的桥梁</strong></li>
+            <li>弹性权限的边际成本为零（学校只调规则）</li>
+            <li>积分锚定真实校园需求，不会通胀</li>
+            <li>驱动其他模块参与：想得积分→去分类→去服务</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>2.3 开源AI工具栈 — 站在巨人肩膀上</h3>
+    <div class="badge-row">
+      <span class="badge badge-teal">✓ 全部开源免费</span>
+      <span class="badge badge-blue">✓ 社区活跃</span>
+      <span class="badge badge-purple">✓ 可商用</span>
+      <span class="badge badge-amber">✓ 有移动端部署方案</span>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th class="teal">工具/框架</th><th class="teal">用途</th><th class="teal">成熟度</th><th class="teal">移动端部署</th><th class="teal">开源协议</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>YAMNet</strong>（Google）</td><td>预训练音频事件分类（521类声音）</td><td>★★★★★</td><td>✓ TFLite量化</td><td>Apache 2.0</td></tr>
+        <tr><td><strong>OpenAI Whisper</strong>（tiny/base）</td><td>噪音类型语音识别（区分人声/非人声）</td><td>★★★★★</td><td>✓ CoreML导出</td><td>MIT</td></tr>
+        <tr><td><strong>PyTorch Audio</strong></td><td>音频特征提取（MFCC/mel-spectrogram）</td><td>★★★★★</td><td>✓ PyTorch Mobile</td><td>BSD-3</td></tr>
+        <tr><td><strong>librosa</strong></td><td>音频分析（节拍、音调、分贝估算）</td><td>★★★★☆</td><td>部分（C++重写核心）</td><td>ISC</td></tr>
+        <tr><td><strong>AudioSet</strong>（Google）</td><td>210万条带标注音频片段</td><td>★★★★★</td><td>—</td><td>免费下载</td></tr>
+        <tr><td><strong>PhysioNet Sleep</strong></td><td>专业睡眠多导数据（EEG/EOG/EMG）</td><td>★★★★★</td><td>—</td><td>免费学术使用</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.4 IoT & 硬件方案（低成本部署路径）</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📱</div><h4>纯软件方案（优先）</h4><p>仅用手机麦克风+算力，无需额外硬件。覆盖<strong>80%</strong>功能。入门门槛为<strong>0</strong>。适合MVP快速验证。</p></div>
+      <div class="card"><div class="card-icon">🔊</div><h4>智能音箱联动</h4><p>对接小爱/天猫精灵，播放自适应白噪音。硬件成本<strong>¥0</strong>（用户已有）。</p></div>
+      <div class="card"><div class="card-icon">📟</div><h4>ESP32分贝计节点</h4><p>自研低成本噪音传感器（INMP441麦克风+ESP32）。硬件成本<strong>&lt;¥50</strong>。可部署在宿舍固定位置持续监测。</p></div>
+      <div class="card"><div class="card-icon">💡</div><h4>智能灯控联动</h4><p>检测到睡眠时段+高噪音 → 自动调暗灯光作为提醒。硬件成本<strong>¥30-80</strong>。</p></div>
+    </div>
+
+    <h3>2.5 隐私保护设计 — 核心信任基础</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th class="red">风险点</th><th class="red">我们的方案</th><th class="red">用户可选</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>麦克风监听隐私</td><td><strong>本地处理</strong>，原始音频不出手机，只上传特征向量</td><td>可随时关闭监听</td></tr>
+        <tr><td>数据泄露</td><td>端到端加密，服务端只存<strong>匿名聚合数据</strong></td><td>可选择不贡献社区数据</td></tr>
+        <tr><td>被室友发现"告密"</td><td>匿名反馈机制，系统代发，<strong>不暴露是谁举报的</strong></td><td>可关闭社区功能</td></tr>
+        <tr><td>学校监控学生</td><td>社区数据<strong>去中心化存储</strong>，学校端仅获取脱敏聚合报告</td><td>严格权限控制</td></tr>
+      </tbody>
+    </table>
+    <div class="quote">
+      核心技术障碍不在于"能不能做"，而在于<strong>"如何在保护隐私的前提下，让AI在本地高效运行"</strong>。<br>
+      答案是：所有音频处理均在手机端完成，只上传<strong>特征向量</strong>（非原始音频），彻底消除隐私顾虑。
+    </div>
+
+    <h3>2.6 产品使用流程（用户旅程）</h3>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-date">第1天</div>
+        <div class="roadmap-title">安装 & 校准</div>
+        <div class="roadmap-desc">下载小程序/App → 设置睡眠时段 → 麦克风校准（5分钟环境音采集建立基线）</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">第1-3天</div>
+        <div class="roadmap-title">数据采集期</div>
+        <div class="roadmap-desc">AI学习你的睡眠模式+宿舍噪音特征 → 生成初步噪音报告 → 自适应白噪音开始工作</div>
+      </div>
+      <div class="roadmap-item green">
+        <div class="roadmap-date">第7天</div>
+        <div class="roadmap-title">首份睡眠报告 + 公约生成</div>
+        <div class="roadmap-desc">查看本周噪音热力图 → 发现"每晚23:00-01:00噪音最高" → AI辅助生成宿舍公约 → 室友电子签约</div>
+      </div>
+      <div class="roadmap-item green">
+        <div class="roadmap-date">第14天</div>
+        <div class="roadmap-title">社区功能激活 + 和谐指数上线</div>
+        <div class="roadmap-desc">加入楼栋噪音地图 → 匿名发送噪音提醒给室友 → 宿舍和谐指数首次生成 → 达标解锁弹性权限</div>
+      </div>
+      <div class="roadmap-item purple">
+        <div class="roadmap-date">第30天</div>
+        <div class="roadmap-title">生态激励激活</div>
+        <div class="roadmap-desc">通过垃圾分类获得绿色积分 → 兑换弹性权限 → 通过微任务获得凭证 → 兑换调解员资格 → 睡眠质量显著提升</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 生态延展 — 两大支撑模块 ===== -->
+<div class="section">
+  <div class="section-num green">Step 03 · 生态延展</div>
+  <h2 class="section-title">从噪音消除到行动力生态 — 两大支撑模块</h2>
+  <p class="section-sub">噪音消除是核心引擎，如何让"安静宿舍"的学生行为自然延展到垃圾分类和社会服务？</p>
+  <div class="section-body">
+
+    <div class="quote bold">
+      <strong>延展逻辑：</strong>DormNoise Guardian解决了"不敢说"的问题，产出"宿舍和谐指数"。<br>
+      但仅有数据还不够——学生需要一个<strong>动力</strong>去遵守公约。我们用"弹性权限"作为激励锚点，让垃圾分类和社会服务自然成为获取积分和凭证的渠道——<strong>噪音消除方案由此生长为一个自循环生态</strong>。
+    </div>
+
+    <h3>3.1 支撑模块A：碳普惠回收地图 <span class="tag tag-green">积分供给端</span></h3>
+
+    <div class="module-card m2">
+      <div class="module-header">
+        <div class="module-num m2">A</div>
+        <div>
+          <div class="module-title">碳普惠回收地图 — 为噪音公约提供"积分燃料"</div>
+          <div class="module-data">分类追溯与资源循环可视化 · 产出 <span class="data-tag m2">校园碳减排</span> + <span class="data-tag m2">绿色积分</span></div>
+        </div>
+      </div>
+
+      <div class="hl-box green" style="margin:0 0 20px 0; padding:18px;">
+        <p style="font-size:13px; margin:0;"><strong>实地调研基础：</strong>3个校园回收点+2个社区回收站观察，分类错误率67%，无人值守时段71%。73%学生"想分但不会分"。环保NGO测算：正确分类率达80%可年减12吨CO₂。核心问题不在意识，在<strong>即时反馈和正向激励缺失</strong>。</p>
+      </div>
+
+      <div class="module-body">
+        <div class="module-col">
+          <h5>核心功能</h5>
+          <ul>
+            <li><strong>AI分类识别</strong>：回收点摄像头+ResNet图像识别，实时判断投放正确性</li>
+            <li><strong>碳普惠回收地图</strong>：校园所有回收点实时状态（满/空/故障），导航至最近可用点</li>
+            <li><strong>分类追溯链</strong>：每次正确投放生成区块链凭证</li>
+            <li><strong>绿色积分引擎</strong>：正确分类→即时积分（1塑料瓶=2积分，1纸箱=5积分）</li>
+            <li><strong>碳减排可视化</strong>：个人/宿舍/院系三级排行榜</li>
+          </ul>
+        </div>
+        <div class="module-col">
+          <h5>与核心方案的连接</h5>
+          <ul>
+            <li><strong>积分流向</strong>：绿色积分 → 兑换核心方案的"公约弹性权限"</li>
+            <li><strong>逻辑</strong>：学生想要"多1小时游戏时间" → 去分类回收 → 积分到账 → 兑换权限</li>
+            <li><strong>双向收益</strong>：噪音方案获得"激励燃料"，回收方案获得"参与动力"</li>
+            <li><strong>管理员对接</strong>：回收站管理员岗位由模块B的凭证兑换</li>
+            <li><strong>技术栈</strong>：ResNet + ESP32-CAM + 区块链轻节点 + 微信小程序</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:white; border-radius:10px; border:1px dashed #1D9E75;">
+        <p style="font-size:13px; margin:0;"><strong>运作机制：</strong>学生在回收点投放可回收物 → AI摄像头识别分类是否正确 → 正确则即时弹出积分到账通知 → 积分进入个人账户 → 可在噪音方案中兑换"本周多1小时游戏时间"等弹性权限。<strong>整个链路耗时&lt;10秒，即时反馈解决"分了也没人管"的痛点。</strong></p>
+      </div>
+    </div>
+
+    <h3>3.2 支撑模块B：社会创新微任务 <span class="tag tag-purple">凭证供给端</span></h3>
+
+    <div class="module-card m3">
+      <div class="module-header">
+        <div class="module-num m3">B</div>
+        <div>
+          <div class="module-title">社会创新微任务 — 为噪音公约提供"人才凭证"</div>
+          <div class="module-data">真实问题拆解与能力凭证 · 产出 <span class="data-tag m3">社会服务贡献</span> + <span class="data-tag m3">能力凭证</span></div>
+        </div>
+      </div>
+
+      <div class="hl-box purple" style="margin:0 0 20px 0; padding:18px;">
+        <p style="font-size:13px; margin:0;"><strong>实地调研基础：</strong>2家公益组织+1个社区服务中心访谈。68%学生想做公益但实际参与率仅23%。公益组织"有真实任务缺人手，学生来了又走"。核心问题在<strong>渠道断裂、凭证断裂、激励断裂</strong>。</p>
+      </div>
+
+      <div class="module-body">
+        <div class="module-col">
+          <h5>核心功能</h5>
+          <ul>
+            <li><strong>微任务市场</strong>：社区/公益组织发布真实需求，系统拆解为2-4小时微任务</li>
+            <li><strong>智能匹配引擎</strong>：根据专业、技能标签、地理位置推荐任务</li>
+            <li><strong>能力凭证链</strong>：完成任务→主办方确认→生成区块链凭证</li>
+            <li><strong>凭证兑换岗位</strong>：累积凭证兑换核心方案的"调解员"资格</li>
+            <li><strong>社会服务排行榜</strong>：与评优评先挂钩</li>
+          </ul>
+        </div>
+        <div class="module-col">
+          <h5>与核心方案的连接</h5>
+          <ul>
+            <li><strong>凭证流向</strong>：能力凭证 → 兑换核心方案"宿舍调解员"资格</li>
+            <li><strong>凭证流向</strong>：能力凭证 → 兑换模块A"回收站管理员"岗位</li>
+            <li><strong>逻辑</strong>：学生想做公益+攒简历 → 完成微任务 → 获得凭证 → 凭证兑换校园管理岗位</li>
+            <li><strong>调解员反哺核心</strong>：调解员改善宿舍关系 → 和谐指数↑ → 更多弹性权限释放</li>
+            <li><strong>技术栈</strong>：任务匹配算法 + 区块链凭证 + 微信小程序</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:white; border-radius:10px; border:1px dashed #534AB7;">
+        <p style="font-size:13px; margin:0;"><strong>运作机制：</strong>社区发布"周末回收站值守"微任务 → 系统推送给附近学生 → 学生完成2小时值守 → 获得"回收站管理"能力凭证 → 凭证累积后申请核心方案的"宿舍调解员"正式岗位 → <strong>从"一次性志愿者"升级为"持续性行动者"</strong>。调解员改善宿舍关系 → 和谐指数↑ → 更多弹性权限释放 → 吸引更多人参与。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 三合一数据流转与激励闭环 ===== -->
+<div class="section">
+  <div class="section-num amber">Step 04 · 激励闭环</div>
+  <h2 class="section-title">数据流转与激励闭环 — 噪音核心如何驱动生态自循环</h2>
+  <p class="section-sub">以噪音消除为引擎，两个支撑模块为燃料，形成不依赖外部补贴的自循环飞轮</p>
+  <div class="section-body">
+
+    <h3>4.1 平台全景架构 — 噪音核心驱动</h3>
+
+    <div class="flow-container">
+      <div style="text-align:center; font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:20px;">「校园可持续行动力生态」以噪音消除为核心引擎的数据流转图</div>
+
+      <!-- 核心引擎 -->
+      <div class="flow-row" style="margin-bottom:8px;">
+        <div class="flow-node core" style="min-width:340px; padding:20px;">⚙️ 核心引擎：DormNoise Guardian 声环境治理系统</div>
+      </div>
+      <div class="flow-label" style="margin-bottom:20px;">产出：宿舍和谐指数 → 驱动弹性权限释放</div>
+
+      <div style="text-align:center; margin:16px 0; font-size:20px; color:#E24B4A;">⇅ 需要积分和凭证作为"燃料" ⇅</div>
+
+      <!-- 两个支撑模块 -->
+      <div class="flow-row" style="gap:32px;">
+        <div style="flex:1; min-width:240px;">
+          <div class="flow-node m2" style="width:100%;">支撑模块A：碳普惠回收地图</div>
+          <div class="flow-label">产出：绿色积分 → 流向核心兑换弹性权限</div>
+        </div>
+        <div style="flex:1; min-width:240px;">
+          <div class="flow-node m3" style="width:100%;">支撑模块B：社会创新微任务</div>
+          <div class="flow-label">产出：能力凭证 → 流向核心兑换调解员资格</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin:24px 0; font-size:20px; color:#534AB7;">⇅ 调解员与管理员反哺核心系统 ⇅</div>
+
+      <!-- 反哺 -->
+      <div class="flow-row" style="gap:24px;">
+        <div style="flex:1; min-width:280px;">
+          <div class="flow-node m3" style="width:100%; background:#534AB7;">凭证→调解员 → 改善宿舍关系</div>
+          <div class="flow-label">和谐指数↑ → 更多弹性权限释放</div>
+        </div>
+        <div style="flex:1; min-width:280px;">
+          <div class="flow-node m2" style="width:100%; background:#1D9E75;">凭证→管理员 → 提升分类率</div>
+          <div class="flow-label">更多积分流通 → 系统活力↑</div>
+        </div>
+      </div>
+
+      <div class="flow-loop-note">↑ 核心引擎（噪音消除）提供"弹性权限"作为激励锚点<br>
+      ↑ 支撑模块A提供"绿色积分"作为权限兑换货币<br>
+      ↑ 支撑模块B提供"能力凭证"作为岗位准入资格<br>
+      ↑ 三者形成自循环：利己行为 → 公共贡献 → 激励叠加 → 更多参与<br><br>
+      <strong>噪音消除不是三个并列模块之一，而是整个生态的核心引擎和数据枢纽</strong></div>
+    </div>
+
+    <h3>4.2 完整激励流转链路</h3>
+
+    <div class="flow-container">
+      <div style="font-size:13px; font-weight:700; text-align:center; margin-bottom:24px; color:#1a1a2e;">激励闭环全景图：从"利己"行为到"公共系统"贡献</div>
+
+      <div class="flow-row" style="gap:14px; margin-bottom:12px;">
+        <div class="flow-node m2" style="min-width:150px;">学生正确分类回收</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:130px;">获得绿色积分</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node core" style="min-width:150px;">兑换宿舍公约弹性权限</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:150px;">本周多1小时游戏时间</div>
+      </div>
+      <div class="flow-label" style="margin-bottom:24px;">路径A：垃圾分类 → 积分 → 噪音公约弹性权限（利己行为驱动公约执行）</div>
+
+      <div class="flow-row" style="gap:14px; margin-bottom:12px;">
+        <div class="flow-node m3" style="min-width:150px;">学生完成社区微任务</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node credential" style="min-width:130px;">获得能力凭证</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node core" style="min-width:130px;">兑换调解员资格</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m2" style="min-width:150px;">兑换回收站管理员</div>
+      </div>
+      <div class="flow-label" style="margin-bottom:24px;">路径B：社会服务 → 凭证 → 核心方案岗位（凭证驱动公共岗位承担）</div>
+
+      <div class="flow-row" style="gap:14px; margin-bottom:12px;">
+        <div class="flow-node core" style="min-width:150px; background:#E24B4A;">调解员改善宿舍关系</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:150px;">宿舍和谐指数↑</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m2" style="min-width:150px;">管理员提升分类率</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:150px;">校园碳减排↑</div>
+      </div>
+      <div class="flow-label">路径C：岗位履职 → 核心数据提升 → 吸引更多人参与（正反馈飞轮）</div>
+    </div>
+
+    <h3>4.3 激励叠加效应分析</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">学生行为</th><th class="dark">直接收益（利己）</th><th class="dark">系统贡献（利他）</th><th class="dark">叠加效应</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>正确分类回收</td><td>获得绿色积分</td><td>校园碳减排数据↑</td><td>积分→弹性权限→宿舍关系改善→和谐指数↑</td></tr>
+        <tr><td>完成社区微任务</td><td>获得能力凭证</td><td>社会服务贡献值↑</td><td>凭证→调解员岗位→宿舍关系改善→和谐指数↑</td></tr>
+        <tr><td>担任宿舍调解员</td><td>管理权限+额外积分</td><td>宿舍和谐指数↑</td><td>和谐宿舍→更多弹性权限→正向循环</td></tr>
+        <tr><td>遵守宿舍声环境公约</td><td>获得弹性权限（游戏时间等）</td><td>室友睡眠质量↑</td><td>和谐指数↑→文明宿舍评比→学校支持↑</td></tr>
+        <tr style="background:#E1F5EE !important;"><td><strong>系统总效应</strong></td><td colspan="3"><strong>噪音消除是核心引擎——它产出"和谐指数"和"弹性权限"，让其他模块的行为有了兑换目标，驱动整个生态自循环</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.4 为什么能自循环？— 经济学逻辑</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">💰</div><h4>零外部补贴</h4><p>"弹性权限"（如多1小时游戏时间）对学校来说<strong>边际成本为零</strong>——学校不需要花钱，只需要调整管理规则。</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h4>激励内生循环</h4><p>积分锚定"公约弹性权限"这个<strong>真实校园需求</strong>。想打游戏的学生需要积分→去分类回收→分类率提升。</p></div>
+      <div class="card"><div class="card-icon">📈</div><h4>网络效应</h4><p>越多人参与，和谐指数越准确→公约越合理→更多人遵守→更多积分流通→回收站运营越好。</p></div>
+      <div class="card"><div class="card-icon">🏗️</div><h4>制度保障</h4><p>和谐指数→文明宿舍评比；碳减排→绿色校园考核；社会服务→综合素质评价。<strong>不另起炉灶</strong>。</p></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 5: FABE价值梳理 ===== -->
+<div class="section">
+  <div class="section-num teal">Step 05 · 方案价值梳理</div>
+  <h2 class="section-title">FABE模型 — 以噪音消除为核心的生态价值梳理</h2>
+  <p class="section-sub">Feature(特点) → Advantage(优势) → Benefit(好处) → Evidence(证据)</p>
+  <div class="section-body">
+
+    <div class="quote">
+      <strong>目标受众：</strong>全国交流大会评委（社会创新领域专家、企业CSR负责人、高校管理者）<br>
+      <strong>价值主张：</strong>我们以AI噪音消除为核心引擎，构建一个让校园可持续发展行为自循环的激励基础设施。
+    </div>
+
+    <div class="fabe-grid">
+      <div class="fabe-card f-f" data-letter="F">
+        <div class="fabe-label">FEATURE · 特点</div>
+        <div class="fabe-title">AI噪音消除为核心，生态激励为延展</div>
+        <div class="fabe-body">
+          <strong>功能特点：</strong>
+          <ul style="padding-left:16px; margin-top:6px;">
+            <li>核心：YAMNet+Whisper端侧AI噪音识别&lt;100ms</li>
+            <li>核心：自适应白噪音掩蔽+智能睡眠辅助</li>
+            <li>核心：宿舍声环境公约生成器+和谐指数</li>
+            <li>延展A：碳普惠回收地图+绿色积分</li>
+            <li>延展B：微任务市场+能力凭证链</li>
+            <li>激励桥：和谐指数→弹性权限→积分/凭证兑换</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fabe-card f-a" data-letter="A">
+        <div class="fabe-label">ADVANTAGE · 优势</div>
+        <div class="fabe-title">首个以噪音消除驱动的校园自循环系统</div>
+        <div class="fabe-body">
+          <strong>对比优势：</strong>
+          <ul style="padding-left:16px; margin-top:6px;">
+            <li>vs 耳塞/降噪耳机：从"被动消音"升级为"主动感知+公约治理"</li>
+            <li>vs 白噪音App：从"固定掩蔽"升级为"AI自适应+社区协作"</li>
+            <li>vs 传统垃圾分类：从"宣传海报"升级为"即时反馈+积分驱动"</li>
+            <li>vs 传统志愿服务：从"一次性活动"升级为"凭证+岗位"持续机制</li>
+            <li><strong>核心差异：</strong>噪音消除产出"弹性权限"作为激励锚点，驱动生态自循环</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fabe-card f-b" data-letter="B">
+        <div class="fabe-label">BENEFIT · 好处</div>
+        <div class="fabe-title">三方共赢的可量化收益</div>
+        <div class="fabe-body">
+          <strong>对学生：</strong>安静睡眠+游戏时间+简历凭证，利己行为自动产出公共价值<br><br>
+          <strong>对学校：</strong>宿舍投诉↓43%（预期）、分类正确率↑至80%+、ESG/绿色校园考核数据自动生成<br><br>
+          <strong>对社区/公益：</strong>稳定人手供给、任务快速对接、从"求人帮忙"变"积分吸引"<br><br>
+          <strong>对社会：</strong>年减12吨CO₂（单校）、培养具备公民行动力的青年、可复制推广至百所高校
+        </div>
+      </div>
+
+      <div class="fabe-card f-e" data-letter="E">
+        <div class="fabe-label">EVIDENCE · 证据</div>
+        <div class="fabe-title">实地调研数据 + 技术可行性验证</div>
+        <div class="fabe-body">
+          <strong>需求验证：</strong>1,247份问卷（82%受噪音困扰，73%想分类，68%想做公益）<br><br>
+          <strong>痛点验证：</strong>38间宿舍实勘（噪音58-75dB）、3个回收点观察（错误率67%）、24人深度访谈<br><br>
+          <strong>技术验证：</strong>YAMNet已在移动端实现&lt;100ms推理；ResNet分类准确率&gt;92%；区块链轻节点部署成本&lt;¥200/校<br><br>
+          <strong>专家背书：</strong>环保NGO确认碳减排测算；社区确认微任务需求真实；辅导员确认宿舍管理痛点<br><br>
+          <strong>对比数据：</strong>现有方案实际解决率15-40%，本方案目标80%+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 社会与商业价值最大化 ===== -->
+<div class="section">
+  <div class="section-num green">Step 06 · 价值最大化</div>
+  <h2 class="section-title">社会价值与商业价值 — 以噪音消除为入口的乘数效应</h2>
+  <p class="section-sub">噪音消除是最强入口需求（82%困扰率），以此为锚点撬动更大社会与商业价值</p>
+  <div class="section-body">
+
+    <h3>6.1 为什么以噪音消除为入口？— 最强需求锚点</h3>
+
+    <div class="hl-box red">
+      <div class="hl-box-title">关键洞察：噪音消除是整个生态的"获客引擎"</div>
+      <p style="font-size:14px;">垃圾分类和社会服务的需求是<strong>"弱需求"</strong>——学生"想做但不是必须做"。但噪音困扰是<strong>"强需求"</strong>——82%的学生每天都在经历痛苦，他们主动寻找解决方案。</p>
+      <p style="font-size:14px; margin-top:10px;">因此，DormNoise Guardian是整个生态的<strong>获客入口</strong>：学生为了解决噪音问题下载App → 使用后发现"遵守公约能得弹性权限" → "想得更多权限就去分类回收" → "想做调解员就去完成微任务"。<strong>噪音消除不是生态的一个模块，而是整个生态的增长飞轮起点。</strong></p>
+    </div>
+
+    <h3>6.2 社会价值最大化路径</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏠</div><h4>推动"安静权"意识觉醒</h4><p>将宿舍安静权从"可有可无"提升为"可量化、可公约、可执行"的基本权益。宿舍和谐指数成为高校宿舍管理新标准。<strong>目标：3年内推动10+高校采纳。</strong></p></div>
+      <div class="card"><div class="card-icon">♻️</div><h4>建设绿色校园数据基座</h4><p>碳减排追溯链为学校ESG报告、绿色校园考核提供<strong>自动化数据采集</strong>。单校年减12吨CO₂，百校年减1,200吨。</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h4>培养公民行动力青年</h4><p>能力凭证是<strong>公民参与的真实记录</strong>。学生在校园内完成"微任务→岗位→管理"的成长路径，毕业后自然成为社区参与积极力量。</p></div>
+      <div class="card"><div class="card-icon">🌐</div><h4>可复制的社会创新范式</h4><p>"噪音消除驱动的自循环"模式可迁移至<strong>社区、企业园区、军队营房</strong>等集体生活场景。</p></div>
+    </div>
+
+    <h3>6.3 商业价值最大化路径</h3>
+
+    <div style="background: linear-gradient(135deg, #F0EEFE 0%, #E1F5EE 100%); border-radius: 16px; padding: 32px; margin: 24px 0;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:white; border-radius:12px;">
+          <div style="font-size:11px; color:#E24B4A; font-weight:700; margin-bottom:4px;">阶段一（0-12月）</div>
+          <div style="font-size:17px; font-weight:800; color:#1a1a2e;">噪音消除MVP</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">免费运行 · 以噪音为入口获客</div>
+        </div>
+        <div style="font-size:22px; color:#7F77DD;">→</div>
+        <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:white; border-radius:12px;">
+          <div style="font-size:11px; color:#0F6E56; font-weight:700; margin-bottom:4px;">阶段二（12-24月）</div>
+          <div style="font-size:17px; font-weight:800; color:#1a1a2e;">生态SaaS</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">10-50校 · 三合一订阅</div>
+        </div>
+        <div style="font-size:22px; color:#1D9E75;">→</div>
+        <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:white; border-radius:12px;">
+          <div style="font-size:11px; color:#854F0B; font-weight:700; margin-bottom:4px;">阶段三（24月+）</div>
+          <div style="font-size:17px; font-weight:800; color:#1a1a2e;">社会企业</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">100+校 · 标准制定</div>
+        </div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">收入来源</th><th class="dark">产品形态</th><th class="dark">定价策略</th><th class="dark">成熟期年收入预估</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>C端噪音消除增值</strong></td><td>高级睡眠分析、个性化白噪音、睡眠医生AI咨询</td><td>¥9.9-29.9/月</td><td>¥300万</td></tr>
+        <tr><td><strong>B端学校SaaS</strong></td><td>三合一平台校园版（含数据看板、公约引擎、回收地图）</td><td>¥3-8万/年/校</td><td>¥500万（100校）</td></tr>
+        <tr><td><strong>B端社区对接</strong></td><td>微任务管理后台（社区/公益组织端）</td><td>¥0.5-2万/年/组织</td><td>¥100万</td></tr>
+        <tr><td><strong>数据服务</strong></td><td>ESG报告自动生成、绿色校园考核数据包</td><td>¥1-3万/年/校</td><td>¥200万</td></tr>
+        <tr><td><strong>碳普惠交易</strong></td><td>校园碳减排量进入碳交易市场</td><td>按吨CO₂交易</td><td>¥50万</td></tr>
+        <tr><td><strong>硬件销售</strong></td><td>ESP32分贝计节点、智能灯控联动设备</td><td>¥50-80/套</td><td>¥50万</td></tr>
+        <tr><td><strong>品牌合作</strong></td><td>环保品牌校园联合活动、企业CSR对接</td><td>项目制合作</td><td>¥100万</td></tr>
+        <tr style="background:#E1F5EE !important; font-weight:700;"><td>合计</td><td>—</td><td>—</td><td>¥1,300万/年</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.4 社会与商业价值的乘数效应</h3>
+    <div class="hl-box green">
+      <div class="hl-box-title">关键洞察：噪音消除做得越好，生态飞轮转得越快</div>
+      <p style="font-size:14px;">噪音消除是82%学生的<strong>刚需</strong>——这是最强的获客动力。当更多学生为了解决噪音问题进入生态：</p>
+      <ul style="font-size:13.5px; padding-left:20px; margin-top:10px;">
+        <li>更多用户 → 和谐指数数据更准确 → 公约更合理 → 更多学校采纳 → SaaS收入↑</li>
+        <li>更多用户 → 更多积分需求 → 更多垃圾分类参与 → 碳减排↑ → 碳交易收入↑</li>
+        <li>更多用户 → 更多微任务参与 → 社会影响力↑ → 政府/基金会资助↑</li>
+        <li>更多用户 → C端付费转化↑ → 硬件销售↑ → 品牌合作溢价↑</li>
+      </ul>
+      <p style="font-size:14px; margin-top:12px;"><strong>噪音消除不是"成本中心"，而是整个生态的"获客引擎"和"增长飞轮"。</strong>解决得越好，社会价值和商业价值同步增长。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 7: 预测评委提问 ===== -->
+<div class="section">
+  <div class="section-num purple">Step 07 · 预测评委提问</div>
+  <h2 class="section-title">预测评委提问与应急QA包</h2>
+  <p class="section-sub">用全局思维从 zoom in（细节）、zoom out（全系统）、利益关系人、时间维度系统性预判</p>
+  <div class="section-body">
+
+    <div class="badge-row">
+      <span class="badge badge-teal">🔍 Zoom In · 细节追问</span>
+      <span class="badge badge-green">🔭 Zoom Out · 全局质疑</span>
+      <span class="badge badge-purple">👥 利益关系人视角</span>
+      <span class="badge badge-amber">⏳ 时间维度</span>
+    </div>
+
+    <h3 class="green">7.1 Zoom In — 细节与技术追问</h3>
+
+    <div class="qa-item red">
+      <div class="qa-question"><span class="q-icon">Q1</span>噪音检测的隐私问题怎么解决？学生在宿舍装麦克风，会不会被滥用？<span class="qa-dimension tag-teal">隐私安全</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 所有音频处理<strong>100%在手机本地完成</strong>，使用YAMNet模型在端侧推理（&lt;100ms），只上传特征向量（非原始音频）。宿舍端ESP32传感器仅记录分贝值和噪音类型标签，不采集语音内容。隐私设计三重保障：①本地处理 ②匿名聚合 ③用户可随时关闭监听。我们已开源音频处理代码，接受第三方安全审计。</div>
+    </div>
+
+    <div class="qa-item red">
+      <div class="qa-question"><span class="q-icon">Q2</span>AI噪音分类的准确率是多少？误判了怎么办？<span class="qa-dimension tag-teal">技术可靠性</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> YAMNet模型在AudioSet数据集上训练，覆盖521类声音，在宿舍场景测试中分类准确率达<strong>89.5%</strong>。误判处理机制：①只对"持续高噪"事件记录，过滤瞬时噪音 ②用户可标记误判，模型持续优化 ③匿名反馈附带噪音类型标签（"昨晚23:30检测到游戏噪音"），让对方有据可查。我们的设计原则是<strong>"宁可漏判不可错判"</strong>——记录的是趋势而非单次事件。</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question"><span class="q-icon">Q3</span>绿色积分会不会通胀？弹性权限不够兑换怎么办？<span class="qa-dimension tag-teal">经济模型</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 积分不会通胀，因为<strong>积分锚定的是"管理规则调整权"而非"实物商品"</strong>。弹性权限（如多1小时游戏时间）的边际成本为零——学校只是调整管理规则。积分消耗量与权限供给量天然匹配：想打游戏的学生越多→分类回收参与率越高→学校管理改善越多→学校越愿意提供更多弹性权限。这是一个<strong>自平衡的经济系统</strong>。</div>
+    </div>
+
+    <h3 class="green">7.2 Zoom Out — 全系统与可持续性质疑</h3>
+
+    <div class="qa-item amber">
+      <div class="qa-question"><span class="q-icon">Q4</span>为什么不专注做噪音消除就好，要加垃圾分类和微任务？会不会分散精力？<span class="qa-dimension tag-amber">执行可行性</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 这个质疑非常好。答案是：<strong>纯噪音消除的天花板太低</strong>。调研中我们发现，噪音问题的根源是"缺乏激励闭环"——学生遵守公约没有好处，违反公约没有代价。如果只做噪音检测+白噪音，和现有降噪耳机没有本质区别。<strong>生态延展不是"分散精力"，而是"补全激励闭环"</strong>——垃圾分类提供积分燃料，微任务提供人才凭证，三者缺一不可。技术上三个模块共享60%技术栈（小程序+AI+后端），边际开发成本可控。执行上采用<strong>渐进耦合</strong>：先做核心噪音方案MVP，验证后再逐步接入延展模块。</div>
+    </div>
+
+    <div class="qa-item amber">
+      <div class="qa-question"><span class="q-icon">Q5</span>学校凭什么愿意配合？弹性权限需要学校管理规则调整，这很难推动吧？<span class="qa-dimension tag-amber">制度可行性</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 调研中我们已与2位辅导员、1位后勤主管深入沟通，发现<strong>学校有强烈的合作动机</strong>：①宿舍噪音投诉占日常投诉43%，消耗大量管理资源 ②绿色校园考核需要碳减排数据 ③社会服务数据是学校综合素质评价的硬指标。我们的策略是<strong>"先用数据打动学校，再推动规则调整"</strong>——MVP阶段只做数据采集，不涉及管理规则变更；当数据证明效果后，再协商弹性权限试点。弹性权限从"学校默许"的灰色地带切入（如熄灯后游戏本来就没人管），逐步正规化。</div>
+    </div>
+
+    <div class="qa-item amber">
+      <div class="qa-question"><span class="q-icon">Q6</span>这个模式能持续吗？毕业后谁运维？如何避免"项目周期结束就死"？<span class="qa-dimension tag-amber">长期可持续性</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 三层保障：①<strong>制度嵌入</strong>——和谐指数对接文明宿舍评比、碳减排对接绿色校园考核、社会服务对接综合素质评价，三模块数据已嵌入学校现有制度 ②<strong>社区/公益组织持续需求</strong>——微任务来自真实外部需求 ③<strong>交接机制</strong>——每年通过模块B培养新的管理员和调解员。商业化后，SaaS订阅覆盖运维成本。<strong>噪音消除是刚需，学校有动力持续使用</strong>。</div>
+    </div>
+
+    <h3 class="green">7.3 利益关系人视角 — 不同角色的质疑</h3>
+
+    <div class="qa-item purple">
+      <div class="qa-question"><span class="q-icon">Q7</span>【评委扮演学生】这个系统在监控我们，宿舍装麦克风，会不会侵犯隐私？<span class="qa-dimension tag-purple">学生接受度</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 设计上三重保障：①<strong>麦克风不传音频</strong>，只在本地提取分贝值和噪音类型 ②<strong>所有数据归属学生本人</strong>，可随时关闭、删除、导出 ③匿名反馈机制不暴露是谁举报的。调研中68%的学生在了解隐私设计后表示愿意使用——关键是<strong>透明和可控</strong>。而且，学生是<strong>主动使用</strong>这个工具来解决自己的问题，不是被学校强制安装。</div>
+    </div>
+
+    <div class="qa-item purple">
+      <div class="qa-question"><span class="q-icon">Q8</span>【评委扮演学校管理者】这个平台会不会增加我们的管理负担？<span class="qa-dimension tag-purple">学校接受度</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 恰恰相反，平台目标是<strong>减少管理负担</strong>。调研中宿管反馈"噪音投诉占日常投诉43%"。平台通过数据+公约让学生<strong>自治</strong>——和谐指数低的宿舍系统自动预警，调解员（学生担任）先行介入，只有升级案例才到宿管。学校端只需查看数据看板，从"被动灭火"转变为"数据预防"。</div>
+    </div>
+
+    <div class="qa-item purple">
+      <div class="qa-question"><span class="q-icon">Q9</span>【评委扮演公益组织】微任务质量怎么保证？学生来了做不好怎么办？<span class="qa-dimension tag-purple">公益组织接受度</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 三重质量保障：①<strong>任务拆解</strong>——系统将复杂需求拆解为2-4小时微任务，附带操作指南和验收标准 ②<strong>智能匹配</strong>——根据学生专业和技能标签推荐 ③<strong>双向评价</strong>——完成后主办方确认+学生互评。能力凭证采用<strong>区块链不可篡改</strong>记录，造假成本极高。</div>
+    </div>
+
+    <h3 class="green">7.4 时间维度 — 过去、现在、未来对比</h3>
+
+    <div class="qa-item green">
+      <div class="qa-question"><span class="q-icon">Q10</span>以前有没有类似噪音消除项目？你们跟它们有什么不同？<span class="qa-dimension tag-green">竞品对比</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 过去有三类尝试：①<strong>纯硬件降噪</strong>（耳塞/降噪耳机）——不解决社交矛盾 ②<strong>纯软件掩蔽</strong>（白噪音App）——固定频段无法适配 ③<strong>纯制度协调</strong>（宿管调解）——无数据依据。<strong>我们的不同在于"AI感知+公约治理+生态激励"三位一体</strong>——不只是消音，而是用数据建立沟通框架，用公约提供执行机制，用弹性权限激励遵守。更关键的是，噪音消除产出"和谐指数"成为整个生态的数据枢纽——这是过去没有人做过的。</div>
+    </div>
+
+    <div class="qa-item green">
+      <div class="qa-question"><span class="q-icon">Q11</span>推广到100所学校之后，会变成什么样？<span class="qa-dimension tag-green">未来愿景</span></div>
+      <div class="qa-answer"><span class="a-icon">A:</span> 三年愿景：①<strong>数据标准</strong>——"宿舍和谐指数"成为高校宿舍管理行业标准 ②<strong>碳交易接入</strong>——百校碳减排量打包进入碳普惠交易市场 ③<strong>青年行动力网络</strong>——10万+学生持有能力凭证 ④<strong>模式输出</strong>——从校园迁移至社区、企业园区。噪音消除是入口，但最终我们构建的是一个<strong>"让每一个利己行为自然产出公共价值"的社会基础设施</strong>。</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 8: 演讲逻辑结构 ===== -->
+<div class="section">
+  <div class="section-num dark">Step 08 · 路演设计</div>
+  <h2 class="section-title">6分钟路演逻辑结构</h2>
+  <p class="section-sub">采用 Problem → Solution → Impact 结构，以噪音消除为主线展开</p>
+  <div class="section-body">
+
+    <h3>8.1 路演结构设计（6分钟）</h3>
+
+    <div class="speech-timeline">
+      <div class="speech-item s1">
+        <div class="speech-time">0:00 - 0:45 · PROBLEM 开场</div>
+        <div class="speech-title">一个数据震惊全场</div>
+        <div class="speech-desc">以调研中最震撼的数据开场：38间宿舍实勘，夜间平均噪音58-75dB——相当于在床边开了一台洗衣机。82%的学生受困扰，但只有18%敢开口。</div>
+        <div class="speech-script">"我们在38间宿舍装了分贝计。深夜11点到凌晨1点，平均噪音58到75分贝——这是什么概念？相当于有人在你床边开了一台洗衣机运转一整晚。82%的学生深受其害，但只有18%敢开口沟通。这不是一个音量问题——这是一个沟通机制问题。"</div>
+      </div>
+
+      <div class="speech-item s2">
+        <div class="speech-time">0:45 - 1:30 · PROBLEM 痛点深化</div>
+        <div class="speech-title">"面子文化陷阱"与现有方案失效</div>
+        <div class="speech-desc">快速展示"忍耐→爆发"循环和现有方案（耳塞、降噪耳机、白噪音App）的失效对比。点明核心矛盾：噪音问题本质是社交问题，不是技术问题。</div>
+        <div class="speech-script">"中国大学生陷入'面子文化陷阱'——不好意思直说，选择暗示，对方根本没意识到。第一天忍，第三天烦躁，第七天爆发，第十四天申请换宿。耳塞40%解决率，降噪耳机25%，白噪音App30%——没有一个真正有效。因为它们都在'消音'，而没有解决'沟通'。"</div>
+      </div>
+
+      <div class="speech-item s3">
+        <div class="speech-time">1:30 - 3:30 · SOLUTION 方案展示</div>
+        <div class="speech-title">DormNoise Guardian — 从消音到生态</div>
+        <div class="speech-desc">核心展示：AI噪音感知+白噪音掩蔽+公约治理+和谐指数。然后讲清如何以噪音消除为入口，延展出垃圾分类和微任务的生态闭环。重点讲激励流转——学生分类→得积分→换游戏时间；做微任务→得凭证→换调解员岗位。</div>
+        <div class="speech-script">"我们的方案叫DormNoise Guardian。第一步，AI在手机本地实时识别噪音类型和分贝——不传音频，只传特征向量，隐私100%保护。第二步，自适应白噪音智能掩蔽。第三步，也是最重要的——AI辅助生成宿舍声环境公约，产出'宿舍和谐指数'。和谐指数达标的宿舍解锁'弹性权限'，比如本周多一小时游戏时间。而这个弹性权限，就是我们整个生态的激励锚点：学生想要游戏时间——去垃圾分类获得绿色积分——积分兑换弹性权限。学生想做调解员——去社区完成微任务——获得能力凭证——凭证兑换调解员资格。噪音消除是核心引擎，垃圾分类是积分燃料，微任务是人才凭证。三者形成自循环——不花学校一分钱。"</div>
+      </div>
+
+      <div class="speech-item s4">
+        <div class="speech-time">3:30 - 4:30 · EVIDENCE 调研佐证</div>
+        <div class="speech-title">用数据说话——这不是PPT设想，是实地验证</div>
+        <div class="speech-desc">展示调研规模和关键发现：1,247份问卷、38间宿舍实勘、24人访谈。用调研金句增强说服力。</div>
+        <div class="speech-script">"这不是一个PPT里的设想。我们花了6周时间，走访5所高校、3个社区、2家公益组织。1,247份问卷、38间宿舍实勘、24人深度访谈。宿管说：'噪音投诉占我日常工作的43%。'环保NGO确认：分类正确率达80%，单校年减12吨二氧化碳。社区主任说：'我们有十几个微任务需要人手，但没有稳定对接渠道。'——需求是真实的，痛点是验证过的。"</div>
+      </div>
+
+      <div class="speech-item s5">
+        <div class="speech-time">4:30 - 5:30 · IMPACT 价值与愿景</div>
+        <div class="speech-title">噪音消除是入口，生态是飞轮</div>
+        <div class="speech-desc">讲清乘数效应：噪音消除是82%学生的刚需，是最强获客引擎。做得越好，生态飞轮转得越快。三阶段路径：噪音MVP→生态SaaS→社会企业。</div>
+        <div class="speech-script">"为什么以噪音消除为入口？因为82%的学生每天都在经历噪音痛苦——这是最强的获客动力。学生为了解决噪音问题下载App，使用后发现遵守公约能得弹性权限，想得更多权限就去分类回收，想做调解员就去完成微任务。噪音消除不是成本中心，而是整个生态的获客引擎和增长飞轮。三年内，我们目标服务100所高校、10万学生、年减1,200吨CO₂。"</div>
+      </div>
+
+      <div class="speech-item s1">
+        <div class="speech-time">5:30 - 6:00 · CLOSING 收尾</div>
+        <div class="speech-title">回到开场——"你关心什么，就去改变什么"</div>
+        <div class="speech-desc">用小林的故事收尾，呼应开场，点明项目本质。</div>
+        <div class="speech-script">"最后讲一个故事。调研中遇到一个大二女生小林，受室友噪音困扰半年，出现焦虑症状。她对我们说：'我不需要降噪耳机，我需要的是一种不用吵架就能解决问题的办法。'这就是我们在做的事——不是消音，而是让每一个利己的行为，自然地成为公共的贡献。你关心什么，就去改变什么。谢谢。"</div>
+      </div>
+    </div>
+
+    <h3>8.2 演讲高光技巧应用</h3>
+    <div class="card-grid">
+      <div class="card"><h4>📊 强化视觉效果</h4><p>PPT以<strong>数据可视化</strong>为主：宿舍噪音热力图、噪音频谱动画、三模块数据流转图。避免大段文字。</p></div>
+      <div class="card"><h4>😱 数据对比震撼</h4><p>"58-75分贝=床边洗衣机"（类比）、"82%受困扰vs18%敢沟通"（对比）、"现有方案最高40%→目标80%+"（反差）。</p></div>
+      <div class="card"><h4>📖 真实故事共鸣</h4><p>小林的故事开场收尾——真实受访者+真实引语。<strong>真实案例比数据更能引起共鸣</strong>。</p></div>
+      <div class="card"><h4>🔁 重复核心主张</h4><p>全场重复：<strong>"噪音消除是核心引擎，让每一个利己行为自然产出公共价值"</strong>——开场、方案、收尾各一次。</p></div>
+    </div>
+
+    <h3>8.3 自信表达 — 3V要素</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">维度</th><th class="dark">要点</th><th class="dark">本方案应用</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Visual 视觉互动</strong></td><td>眼神交流、微笑、自然移动</td><td>讲数据时直视评委；讲方案时走向屏幕指引；讲故事时回到舞台中央</td></tr>
+        <tr><td><strong>Vocal 声音状态</strong></td><td>有起伏、加重音、适时暂停</td><td>"58到75分贝"后停顿2秒；"不花学校一分钱"加重音；讲小林故事时降低音量</td></tr>
+        <tr><td><strong>Verbal 口语表达</strong></td><td>说人话、避免口头禅、用逻辑词</td><td>用"第一、第二、第三"代替"然后"；用"床边开洗衣机"代替纯数字</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 9: 实施路线图 ===== -->
+<div class="section">
+  <div class="section-num amber">Step 09 · 实施路线</div>
+  <h2 class="section-title">实施路线图 — 以噪音消除为先导的渐进耦合</h2>
+  <p class="section-sub">先做核心噪音方案，验证后再接入生态模块，最后形成完整闭环</p>
+  <div class="section-body">
+
+    <h3>9.1 三阶段实施计划</h3>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-date">阶段一：噪音核心MVP（第1-6月）</div>
+        <div class="roadmap-title">DormNoise Guardian独立验证</div>
+        <div class="roadmap-desc">
+          <ul style="margin-top:8px; font-size:13px;">
+            <li><strong>核心功能</strong>：噪音检测+白噪音掩蔽+公约生成器+和谐指数</li>
+            <li><strong>试点规模</strong>：1所高校1栋宿舍楼（约200人）</li>
+            <li><strong>技术栈</strong>：YAMNet+Whisper+微信小程序+FastAPI</li>
+            <li><strong>关键指标</strong>：用户周留存>50%，和谐指数生成成功率>90%</li>
+            <li><strong>团队规模</strong>：6-8人（技术4+产品1+运营2+数据1）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="roadmap-item green">
+        <div class="roadmap-date">阶段二：生态模块接入（第7-12月）</div>
+        <div class="roadmap-title">垃圾分类+微任务接入，激励流转上线</div>
+        <div class="roadmap-desc">
+          <ul style="margin-top:8px; font-size:13px;">
+            <li><strong>模块A接入</strong>：2个回收点AI分类识别+绿色积分引擎</li>
+            <li><strong>模块B接入</strong>：对接1个社区服务中心，微任务发布+凭证</li>
+            <li><strong>激励打通</strong>：积分→弹性权限兑换通道；凭证→调解员兑换</li>
+            <li><strong>扩展规模</strong>：1所完整高校（5,000-10,000人）</li>
+            <li><strong>关键指标</strong>：月活>40%，积分流通率>60%，分类正确率↑至70%+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="roadmap-item purple">
+        <div class="roadmap-date">阶段三：复制扩展（第13-24月）</div>
+        <div class="roadmap-title">百校SaaS化 + 社会企业转型</div>
+        <div class="roadmap-desc">
+          <ul style="margin-top:8px; font-size:13px;">
+            <li>平台SaaS化，支持快速部署至新学校（1周内上线）</li>
+            <li>扩展至10-50所高校，覆盖5万+学生</li>
+            <li>碳减排量进入碳普惠交易市场</li>
+            <li>启动影响力融资，转型为社会企业</li>
+            <li><strong>关键指标</strong>：合作校50+，年收入500万+，碳减排600吨+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>9.2 团队构成建议</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🔧</div><h4>技术负责人（1人）</h4><p>AI模型部署+系统架构，计算机/AI专业</p></div>
+      <div class="card"><div class="card-icon">💻</div><h4>全栈开发（3人）</h4><p>小程序+后端+AI推理，分模块负责</p></div>
+      <div class="card"><div class="card-icon">🎨</div><h4>产品设计（1人）</h4><p>三模块统一UX+用户研究</p></div>
+      <div class="card"><div class="card-icon">📊</div><h4>数据分析（1人）</h4><p>激励模型+和谐指数算法+A/B测试</p></div>
+      <div class="card"><div class="card-icon">📢</div><h4>校园运营（2人）</h4><p>试点推广+社群运营+学校对接</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h4>社区对接（1人）</h4><p>公益组织/社区合作拓展+微任务审核</p></div>
+    </div>
+
+    <h3>9.3 关键风险与应对</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th class="red">风险</th><th class="red">概率</th><th class="red">影响</th><th class="red">应对策略</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>隐私争议（最大风险）</strong></td><td><span class="tag tag-red">高</span></td><td>高</td><td>100%本地处理；开源代码接受审计；用户随时关闭；匿名聚合数据；与学校签订数据保护协议</td></tr>
+        <tr><td><strong>学校不允许调整管理规则</strong></td><td><span class="tag tag-amber">中</span></td><td>高</td><td>先用数据打动学校；弹性权限从"学校默许"灰色地带切入（熄灯后游戏本来没人管）</td></tr>
+        <tr><td><strong>学生参与度不足</strong></td><td><span class="tag tag-amber">中</span></td><td>高</td><td>噪音消除是82%学生的刚需，天然有获客动力；从"最有痛点"群体切入；积分兑换的"游戏时间"是刚需</td></tr>
+        <tr><td><strong>三模块耦合复杂度</strong></td><td><span class="tag tag-amber">中</span></td><td>中</td><td>渐进耦合策略，先核心后延展；共享技术栈60%；模块化设计支持独立部署</td></tr>
+        <tr><td><strong>竞品抄袭</strong></td><td><span class="tag tag-blue">低</span></td><td>中</td><td>三合一自循环是核心壁垒——单模块容易被抄，但"噪音核心+生态激励"的系统设计极难复制；数据网络效应持续增强</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 10: 总结 ===== -->
+<div class="section" style="background: linear-gradient(135deg, #0D1B2A 0%, #1B3A4B 50%, #2D5A4E 100%); color: white; border: none;">
+  <div style="text-align: center; padding: 20px 0;">
+    <div style="font-size: 13px; letter-spacing: 2px; opacity: 0.6; margin-bottom: 12px;">SUMMARY</div>
+    <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 20px;">校园可持续行动力生态</h2>
+    <p style="font-size: 16px; opacity: 0.85; max-width: 600px; margin: 0 auto 28px; line-height: 1.8;">
+      以DormNoise Guardian噪音消除为核心引擎，<br>
+      延展碳普惠回收地图与社会创新微任务，<br>
+      让每一个"利己"行为，都在为"公共系统"做贡献。
+    </p>
+    <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin: 28px 0;">
+      <div><div style="font-size: 32px; font-weight: 800; color: #E24B4A;">1</div><div style="font-size: 12px; opacity: 0.6;">核心引擎（噪音消除）</div></div>
+      <div><div style="font-size: 32px; font-weight: 800; color: #6FE6B8;">2</div><div style="font-size: 12px; opacity: 0.6;">生态延展模块</div></div>
+      <div><div style="font-size: 32px; font-weight: 800; color: #A8A0F0;">3</div><div style="font-size: 12px; opacity: 0.6;">数据闭环</div></div>
+      <div><div style="font-size: 32px; font-weight: 800; color: #F2C36B;">0</div><div style="font-size: 12px; opacity: 0.6;">外部补贴</div></div>
+    </div>
+    <p style="font-size: 14px; opacity: 0.6; margin-top: 20px;">"你关心什么，就去改变什么。"</p>
+  </div>
+</div>
+
+<div class="footer">
+  校园可持续行动力生态 · 以噪音消除为核心的整合方案 v2.0 · 2026年7月<br>
+  基于实地调研（1,247份问卷 + 38间宿舍实勘 + 24人访谈）<br>
+  整合 FABE价值模型 · 评委提问预判 · Problem-Solution-Impact演讲结构<br>
+  供全国交流大会路演使用
+</div>
+
+</div>
+</body>
+</html>
