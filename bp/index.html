@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学海伴舟 × 学海共治 — 商业策划书</title>
+<style>
+  :root {
+    --primary: #1a56db;
+    --primary-dark: #1e40af;
+    --accent: #3b82f6;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --tag-blue: #dbeafe;
+    --tag-green: #dcfce7;
+    --tag-amber: #fef3c7;
+    --tag-rose: #ffe4e6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1a56db 100%);
+    color: #fff;
+    padding: 60px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(59,130,246,.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(16,185,129,.15) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+  .hero .badge {
+    display: inline-block; background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+    padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    letter-spacing: .5px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,.2);
+  }
+  .hero h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero h2 { font-size: 22px; font-weight: 400; opacity: .85; margin-bottom: 24px; }
+  .hero .meta {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px;
+  }
+  .hero .meta span {
+    background: rgba(255,255,255,.1); padding: 6px 16px; border-radius: 6px;
+    font-size: 13px; border: 1px solid rgba(255,255,255,.12);
+  }
+
+  /* ── Container ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── Section ── */
+  .section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-title {
+    font-size: 26px; font-weight: 800; color: var(--primary-dark);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-title .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff; font-size: 16px; font-weight: 700; flex-shrink: 0;
+  }
+  .section-subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
+
+  /* ── Cards ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px; transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.06); }
+  .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .card-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center;
+    justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .card-icon.blue { background: var(--tag-blue); color: var(--primary); }
+  .card-icon.green { background: var(--tag-green); color: #059669; }
+  .card-icon.amber { background: var(--tag-amber); color: #d97706; }
+  .card-icon.rose { background: var(--tag-rose); color: #e11d48; }
+  .card h3 { font-size: 17px; font-weight: 700; }
+  .card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── Pain Points ── */
+  .pain-block {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px; margin-bottom: 16px; border-left: 4px solid var(--primary);
+  }
+  .pain-block.orange { border-left-color: #f59e0b; }
+  .pain-block.green-block { border-left-color: #10b981; }
+  .pain-block.rose { border-left-color: #e11d48; }
+  .pain-block h4 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .pain-block .pain-summary {
+    display: inline-block; background: #fff7ed; color: #c2410c; padding: 3px 12px;
+    border-radius: 4px; font-size: 13px; font-weight: 600; margin-top: 8px;
+  }
+  .pain-block.green-block .pain-summary { background: #ecfdf5; color: #065f46; }
+  .pain-block.orange .pain-summary { background: #fffbeb; color: #92400e; }
+  .pain-block.rose .pain-summary { background: #fff1f2; color: #9f1239; }
+
+  /* ── Module Cards ── */
+  .module {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px; margin-bottom: 20px;
+  }
+  .module h3 { font-size: 20px; font-weight: 700; margin-bottom: 14px; color: var(--primary-dark); }
+  .module h4 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; color: var(--text); }
+  .module .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .module .tag {
+    display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 13px;
+    font-weight: 500; background: var(--tag-blue); color: var(--primary-dark);
+  }
+  .module .tag.green { background: var(--tag-green); color: #065f46; }
+  .module .tag.amber { background: var(--tag-amber); color: #92400e; }
+  .module .tag.rose { background: var(--tag-rose); color: #9f1239; }
+  .module ul { padding-left: 20px; margin: 8px 0; }
+  .module li { font-size: 14px; color: var(--text-muted); margin-bottom: 4px; line-height: 1.7; }
+
+  /* ── Scenario ── */
+  .scenario {
+    background: linear-gradient(135deg, #f0f9ff, #f8fafc); border: 1px solid #bae6fd;
+    border-radius: 12px; padding: 18px 22px; margin: 14px 0;
+  }
+  .scenario strong { color: var(--primary-dark); }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 20px 0; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead th {
+    background: linear-gradient(135deg, #1e3a5f, #1a56db); color: #fff;
+    padding: 12px 16px; text-align: left; font-weight: 600; white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 12px 0 0 0; }
+  thead th:last-child { border-radius: 0 12px 0 0; }
+  tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #f8fafc; }
+
+  /* ── Highlight Box ── */
+  .hl-box {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #93c5fd;
+    border-radius: 14px; padding: 24px; margin: 24px 0; text-align: center;
+  }
+  .hl-box p { font-size: 16px; font-weight: 700; color: var(--primary-dark); }
+
+  /* ── Quotes ── */
+  .quote {
+    border-left: 3px solid var(--primary); padding: 8px 0 8px 18px;
+    font-style: italic; color: var(--text-muted); margin: 16px 0; font-size: 15px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: #0f172a; color: rgba(255,255,255,.6); text-align: center;
+    padding: 40px 24px; font-size: 13px;
+  }
+  .footer strong { color: #fff; display: block; font-size: 20px; margin-bottom: 8px; }
+
+  /* ── Mobile ── */
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 28px; }
+    .hero h2 { font-size: 16px; }
+    .hero { padding: 40px 16px 56px; }
+    .section-title { font-size: 22px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 16px; }
+    .section { padding: 32px 0; }
+    .module { padding: 18px; }
+    table { font-size: 12px; }
+    thead th, tbody td { padding: 8px 10px; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 24px; }
+    .hero .meta span { font-size: 11px; padding: 4px 10px; }
+    .section-title { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge">全国工科女生赋能大赛 · 02组</div>
+    <h1>学海伴舟 ✖️ 学海共治</h1>
+    <h2>—— 基于 AI 技术的智慧校园生活操作系统</h2>
+    <div class="meta">
+      <span>🎓 客户：高校、职业院校、教育集团</span>
+      <span>👥 用户：全体学生、教师、辅导员</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 项目定位 ══════════ -->
+<div class="container">
+  <div class="hl-box" style="margin-top:-40px; position:relative; z-index:2;">
+    <p style="font-size:15px;font-weight:400;margin-bottom:4px;">项目定位</p>
+    <p>以 Campus AI 为统一入口，连接学习、生活、就业、心理、校园事务与数据治理，构建面向高校的智慧校园生活操作系统。</p>
+    <p style="font-size:14px;font-weight:400;margin-top:6px;color:#475569;">
+      核心场景：宿舍声环境公约 · 绿分行动库 · 餐桌透明档案 · 校园社会创新微任务<br>
+      延展场景：AI 就业成长中心 · AI 心理健康中心
+    </p>
+  </div>
+</div>
+
+<!-- ══════════ 一、项目背景 ══════════ -->
+<div class="container">
+<section class="section">
+  <div class="section-title"><span class="num">1</span> 项目背景（WHY）</div>
+  <p class="section-subtitle">高校数字化建设不断推进，但存在三大共同问题</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><div class="card-icon blue">📱</div><h3>系统多，入口碎片化</h3></div>
+      <p>学生平均需要使用教务系统、微信公众号、校园 APP、QQ 群、企业微信、各学院通知等多个平台。信息高度碎片化，系统越多，越难形成真正高频的校园入口。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon amber">⏳</div><h3>服务被动，缺少主动匹配</h3></div>
+      <p>学生只有知道去哪里才能找到服务。系统不会主动提醒、主动匹配，也不会把日常行为转化为可反馈、可沉淀的数据。奖学金、社团活动、就业信息常常被错过。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon green">🤖</div><h3>AI 没有真正进入校园</h3></div>
+      <p>目前多数学校 AI 只是 ChatGPT、问答机器人，只能回答"图书馆几点开门""怎么请假"，不能真正帮学生完成校园事务，也不能把行为转化为学校可管理的数据。</p>
+    </div>
+  </div>
+
+  <div class="hl-box">
+    <p>校园 AI 的价值不只是问答，而是行动闭环</p>
+    <p style="font-size:14px;font-weight:400;margin-top:6px;color:#475569;">
+      核心价值不是"让学生多一个聊天机器人"，而是让 AI 成为连接学生需求、校园事务、后勤管理、就业成长和学校治理的数据中台。
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 二、市场痛点 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">2</span> 市场痛点（Pain Point）</div>
+  <p class="section-subtitle">学生端四大高频治理痛点 × 高校端六大管理难题</p>
+
+  <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">🔵 学生端：四类校园生活治理痛点</h3>
+
+  <div class="pain-block">
+    <h4>A. 宿舍声环境：不敢说，只能忍</h4>
+    <p>学生长期被游戏声、外放声、聊天声影响，但担心直接提醒伤关系。没有数据时沟通变情绪对抗；有高噪声时段、噪音类型标签和宿舍公约，才更容易理性协商。</p>
+    <span class="pain-summary">痛点：宿舍治理缺少数据依据和温和沟通机制</span>
+  </div>
+
+  <div class="pain-block green-block">
+    <h4>B. 垃圾分类：分不准、找不到点位、做对了也没有反馈</h4>
+    <p>奶茶杯、外卖盒、快递纸箱、电池、餐厨垃圾等复杂垃圾分不准；不知道最近回收点；宿舍源头分流不足；做对后无反馈，做错后无低压力提醒。</p>
+    <span class="pain-summary">痛点：判断成本高、点位信息缺、即时反馈少、缺少系统协同</span>
+  </div>
+
+  <div class="pain-block orange">
+    <h4>C. 校园餐桌：评分很高，但来源和检测看不见</h4>
+    <p>学生关心食堂能否放心吃，但食材来源、安全检测、证照状态、价格构成、反馈处理状态等信息不够透明。发现问题后也不知道该如何规范反馈。</p>
+    <span class="pain-summary">痛点：缺少食材溯源、安全检测、价格透明和标准化反馈的统一入口</span>
+  </div>
+
+  <div class="pain-block rose">
+    <h4>D. 校园公共事务：想做但找不到，做了也白做</h4>
+    <p>垃圾分类宣传、投放点巡查、餐桌档案共建、宿舍调解协助等公共事务需要学生参与。但入口分散、任务不清、成果难确认、能力难沉淀。做了也只能说"我参加过活动"。</p>
+    <span class="pain-summary">痛点：缺少真实任务入口、负责人确认机制和能力凭证沉淀</span>
+  </div>
+
+  <h3 style="font-size:18px;font-weight:700;margin:32px 0 16px;">🔴 高校端：六大管理难题</h3>
+  <div class="card-grid">
+    <div class="card"><div class="card-head"><div class="card-icon blue">🔀</div><h3>系统多、缺统一入口</h3></div><p>教务、OA、一卡通、就业、心理、后勤各自独立，学生反复切换，使用率不高。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon amber">📋</div><h3>行政事务重复</h3></div><p>辅导员每天处理大量重复咨询，请假、奖学金、补考等标准化问题占用大量人力。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon rose">😞</div><h3>学生满意度难提升</h3></div><p>信息分散、流程复杂、反馈慢，影响学校整体服务评价和审核评估。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon blue">📉</div><h3>就业压力增大</h3></div><p>岗位信息分散、学生参与度低、指导不够精准，难以持续跟踪求职进度和能力短板。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon rose">⚠️</div><h3>安全风险管理压力</h3></div><p>心理危机、宿舍矛盾、异常行为依赖人工观察和事后处理，发现不及时、预警不充分。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon amber">🏝️</div><h3>数据孤岛严重</h3></div><p>教务、就业、心理、宿舍、后勤、餐饮数据分散，管理层难以全面掌握学生状态和校园运行问题。</p></div>
+  </div>
+</section>
+
+<!-- ══════════ 三、解决方案 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">3</span> 解决方案（WHAT）</div>
+  <div class="hl-box">
+    <p style="font-size:18px;">Campus AI — 让 AI 成为每位学生的校园智能助手</p>
+    <p style="font-size:14px;font-weight:400;margin-top:6px;color:#475569;">
+      它不是聊天机器人，而是连接整个校园的数据中台。我们提供"统一入口 + AI Agent + 校园数据中台 + 行动激励闭环"的智慧校园操作系统。
+    </p>
+  </div>
+
+  <h3 style="font-size:18px;font-weight:700;margin:24px 0 12px;">四大核心行动模块</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><div class="card-icon blue">🔇</div><h3>宿舍声环境公约</h3></div>
+      <p>从"噪音消除"升级为"宿舍自治公约"。AI 噪音感知、公约生成器、和谐指数仪表盘、匿名温和反馈、公约弹性权限。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon green">🌱</div><h3>绿分行动库</h3></div>
+      <p>从单一分类工具升级为全链路系统。AI 分类助手、校园回收地图、绿色积分中心、后勤看板、绿色校园报告。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon amber">🍽️</div><h3>餐桌透明档案</h3></div>
+      <p>从"看评分"升级为"看溯源、看检测、会反馈"。食材溯源链、安全检测与证照、AI 标准化反馈、透明指数仪表盘。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon rose">🎯</div><h3>校园社会创新微任务</h3></div>
+      <p>把公共事务拆解为轻量任务。微任务市场、智能匹配、负责人确认、能力凭证链、可沉淀为综测材料和就业画像。</p>
+    </div>
+  </div>
+
+  <div class="quote">
+    核心主张：学生的每一个"利己"行为，都可以自然地为"公共系统"做贡献。
+  </div>
+</section>
+
+<!-- ══════════ 四、产品架构 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">4</span> 产品架构</div>
+  <p class="section-subtitle">六大 AI Agent 协同，覆盖校园全场景</p>
+
+  <!-- 模块一 -->
+  <div class="module">
+    <h3>📚 模块一：AI 学习助手</h3>
+    <div class="tags">
+      <span class="tag">课程总结</span><span class="tag">课堂录音整理</span><span class="tag">实验报告生成</span>
+      <span class="tag">论文格式检查</span><span class="tag">考试复习计划</span><span class="tag">AI PPT</span><span class="tag">AI 思维导图</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-muted);">可为学生生成项目复盘、实践报告、绿色校园调研报告和微任务成果总结，让校园实践成果进入学习与成长记录。</p>
+  </div>
+
+  <!-- 模块二 -->
+  <div class="module">
+    <h3>🏫 模块二：AI 校园生活助手</h3>
+    <h4>基础生活服务</h4>
+    <div class="tags">
+      <span class="tag">找空教室</span><span class="tag">查校车</span><span class="tag">食堂推荐</span><span class="tag">快递提醒</span>
+      <span class="tag">宿舍报修</span><span class="tag">校园导航</span><span class="tag">一卡通余额</span>
+    </div>
+    <h4>校园生活治理场景</h4>
+    <div class="card-grid" style="margin-top:12px;">
+      <div class="scenario"><strong>A. 宿舍声环境公约</strong><br>AI 噪音感知、公约生成器、和谐指数仪表盘、匿名温和反馈 → 数据产出：宿舍和谐指数</div>
+      <div class="scenario"><strong>B. 绿分行动库</strong><br>AI 分类助手、校园回收地图、绿色积分中心、小游戏、后勤看板 → 数据产出：绿色校园报告</div>
+      <div class="scenario"><strong>C. 餐桌透明档案</strong><br>食材溯源、安全检测、证照状态、AI 标准化反馈 → 数据产出：餐桌透明指数</div>
+    </div>
+  </div>
+
+  <!-- 模块三 -->
+  <div class="module">
+    <h3>💼 模块三：AI 就业成长中心</h3>
+    <div class="tags">
+      <span class="tag">AI 简历优化</span><span class="tag">模拟面试</span><span class="tag">职业测评</span>
+      <span class="tag">岗位推荐</span><span class="tag">实习推荐</span><span class="tag">企业宣讲提醒</span>
+      <span class="tag green">读取微任务能力凭证</span><span class="tag green">自动生成能力画像</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-muted);margin-top:8px;">
+      核心差异化：把校园微任务、绿色岗位、宿舍调解、食安共建等经历转化为企业可理解的能力证据和简历项目经历。
+    </p>
+  </div>
+
+  <!-- 模块四 -->
+  <div class="module">
+    <h3>💚 模块四：AI 心理健康中心</h3>
+    <div class="tags">
+      <span class="tag rose">每日情绪检测</span><span class="tag rose">AI 陪伴</span><span class="tag rose">压力指数</span>
+      <span class="tag rose">心理预约</span><span class="tag rose">危机预警</span><span class="tag rose">转介提醒</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-muted);margin-top:8px;">
+      连接到宿舍冲突压力识别、就业焦虑提醒。AI 不做诊断，只负责陪伴、筛查和提醒。发现异常立即推送学校心理中心。
+    </p>
+  </div>
+
+  <!-- 模块五 -->
+  <div class="module">
+    <h3>📋 模块五：AI 校园事务 / 校园实践中心</h3>
+    <h4>基础功能</h4>
+    <div class="tags">
+      <span class="tag">自动请假</span><span class="tag">活动报名</span><span class="tag">奖学金提醒</span>
+      <span class="tag">成绩分析</span><span class="tag">学分提醒</span><span class="tag">毕业审核</span><span class="tag">智能问答</span>
+    </div>
+    <h4>校园社会创新微任务</h4>
+    <p style="font-size:14px;color:var(--text-muted);">
+      微任务市场 → 智能匹配引擎 → 成果提交与负责人确认 → 能力凭证链 → 凭证兑换岗位 → 服务记录中心（综测、实践证明、简历、就业画像）
+    </p>
+  </div>
+
+  <!-- 模块六 -->
+  <div class="module">
+    <h3>📊 模块六：AI 校园生态 / 数据 AI</h3>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">
+      连接图书馆、教务、一卡通、宿舍、校园商城、后勤、食堂、回收点、心理中心、就业系统 → 形成校园数字生态。
+    </p>
+    <h4>校园可持续行动数据驾驶舱</h4>
+    <div class="tags">
+      <span class="tag green">宿舍和谐指数</span><span class="tag green">绿色积分与报告</span>
+      <span class="tag amber">餐桌透明指数</span><span class="tag rose">服务记录与凭证</span>
+      <span class="tag">学生参与率</span><span class="tag">高频问题热词</span><span class="tag">满意度趋势</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 场景对比表 ══════════ -->
+<div class="container">
+<section class="section">
+  <div class="section-title"><span class="num">5</span> 四大场景数据流总览</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>模块</th><th>对应场景</th><th>解决问题</th><th>数据产出</th><th>激励回流</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>宿舍声环境公约</strong></td><td>宿舍生活</td><td>噪音沟通缺少数据与规则</td><td>宿舍和谐指数</td><td>公约弹性权限、文明宿舍依据</td></tr>
+        <tr><td><strong>绿分行动库</strong></td><td>垃圾分类与绿色校园</td><td>分不准、找不到点位、无反馈</td><td>绿色积分、回收数据、绿色校园报告</td><td>积分、徽章、志愿时长、绿色岗位资格</td></tr>
+        <tr><td><strong>餐桌透明档案</strong></td><td>校园餐饮安全</td><td>来源、检测、价格和反馈不透明</td><td>餐桌透明指数、食安反馈线索</td><td>餐桌侦探积分、食安共建记录</td></tr>
+        <tr><td><strong>校园社会创新微任务</strong></td><td>校园实践与公共事务</td><td>想参与但无入口、无凭证</td><td>服务记录、能力凭证</td><td>岗位资格、综测材料、实践证明</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ 竞争对比表 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">6</span> 竞争对比</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>对比维度</th><th>传统校园 APP</th><th>单点 AI 工具</th><th>Campus AI</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>服务方式</td><td>只能查询</td><td>能问答</td><td><strong>主动服务 + 行动完成</strong></td></tr>
+        <tr><td>系统入口</td><td>多个系统</td><td>单个聊天入口</td><td><strong>一个校园 AI 入口</strong></td></tr>
+        <tr><td>数据状态</td><td>信息分散</td><td>对话数据孤立</td><td><strong>数据中台统一沉淀</strong></td></tr>
+        <tr><td>学生体验</td><td>人工操作</td><td>回答问题</td><td><strong>直接完成校园事务</strong></td></tr>
+        <tr><td>学习能力</td><td>不会学习用户</td><td>短期上下文</td><td><strong>持续学习需求与场景</strong></td></tr>
+        <tr><td>预测能力</td><td>不能预测</td><td>少量提醒</td><td><strong>主动提醒、预警和推荐</strong></td></tr>
+        <tr><td>激励机制</td><td>缺少激励</td><td>无闭环</td><td><strong>积分、凭证、权益、报告闭环</strong></td></tr>
+        <tr><td>学校价值</td><td>使用率低</td><td>管理价值弱</td><td><strong>降本增效 + 治理数据 + 满意度提升</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ 商业模式 ══════════ -->
+<div class="container">
+<section class="section">
+  <div class="section-title"><span class="num">7</span> 商业模式</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><div class="card-icon blue">🏫</div><h3>B 端收费</h3></div>
+      <p>学校采购校园 AI 平台，按人数收费。例：10,000 名学生 × 100 元/年 = 100 万元/年。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon green">🔄</div><h3>SaaS 订阅</h3></div>
+      <p>学校每年持续支付，含系统维护、模型升级、数据分析、校园驾驶舱、后勤管理后台、就业与心理模块升级。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon amber">📦</div><h3>场景部署服务</h3></div>
+      <p>宿舍声环境公约 · 绿分行动库 · 餐桌透明档案 · 微任务系统 · 统一积分与能力凭证 · 学校管理端看板。首期部署费 + 年度维护费 + 模块升级费。</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon rose">💎</div><h3>增值服务 & 数据服务</h3></div>
+      <p>企业招聘、校园商城、品牌合作、教育课程。校园画像、学习行为分析、就业趋势分析、绿色校园报告、后勤运营建议。</p>
+    </div>
+  </div>
+  <div class="hl-box" style="margin-top:20px;">
+    <p>商业模式本质：学校购买的不是 AI 聊天工具，而是一套面向校园治理的智能化解决方案。</p>
+  </div>
+</section>
+
+<!-- ══════════ 社会价值 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">8</span> 社会价值</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><div class="card-icon blue">🎓</div><h3>对学生</h3></div>
+      <p>学习效率提升 · 减少信息焦虑 · 提高就业竞争力 · 降低生活成本 · 宿舍沟通有依据 · 垃圾分类更快更准 · 餐桌选择更透明 · 公共事务参与有真实记录 · 校内实践沉淀为能力凭证</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon green">🏛️</div><h3>对学校</h3></div>
+      <p>提高数字治理水平 · 降低行政成本 · 提升服务质量 · 增强满意度 · 宿舍治理有数据 · 垃圾分类有看板 · 绿色校园有报告 · 餐桌反馈有复盘 · 就业服务有能力画像</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-icon amber">🌍</div><h3>对社会</h3></div>
+      <p>推动教育数字化 · 促进 AI 教育普及 · 提升人才培养质量 · 培养学生公共参与意识 · 推动绿色校园与可持续发展 · 提升青年社会创新能力</p>
+    </div>
+  </div>
+  <div class="quote">
+    最终形成：学生的每一个"利己"行为，都在为校园公共系统做贡献。
+  </div>
+</section>
+
+<!-- ══════════ 实施路线 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">9</span> 实施路线</div>
+  <div class="module">
+    <h4 style="color:var(--primary);">第一阶段：核心场景 MVP 验证</h4>
+    <p style="font-size:14px;color:var(--text-muted);">验证宿舍声环境公约、绿分行动库、餐桌透明档案、社会创新微任务。产出：产品原型、问卷、访谈记录、试点数据、场景复盘报告。</p>
+  </div>
+  <div class="module">
+    <h4 style="color:var(--primary);">第二阶段：校园小范围试点</h4>
+    <p style="font-size:14px;color:var(--text-muted);">在 1–2 个校内场景试点：宿舍楼栋、食堂窗口、快递站与回收点、社团/后勤微任务。关注月活跃率、积分流通率、微任务完成率、满意度变化。</p>
+  </div>
+  <div class="module">
+    <h4 style="color:var(--primary);">第三阶段：打通积分、凭证和权益</h4>
+    <p style="font-size:14px;color:var(--text-muted);">绿色积分兑换宿舍弹性权益，餐桌侦探积分兑换食安共建任务，微任务凭证兑换绿色岗位和宿舍调解员资格。</p>
+  </div>
+  <div class="module">
+    <h4 style="color:var(--primary);">第四阶段：延展就业与心理模块</h4>
+    <p style="font-size:14px;color:var(--text-muted);">就业 AI 读取微任务能力凭证生成能力画像；心理 AI 结合压力自测、宿舍冲突提供陪伴、筛查和转介提醒。</p>
+  </div>
+  <div class="module">
+    <h4 style="color:var(--primary);">第五阶段：智慧校园操作系统</h4>
+    <p style="font-size:14px;color:var(--text-muted);">打通教务、一卡通、图书馆、后勤、宿舍、心理、就业、社团、活动等系统，形成完整 Campus AI。一个入口 · 多个 AI · 校园数据中台 · 可复制的 SaaS 平台。</p>
+  </div>
+</section>
+
+<!-- ══════════ 项目亮点 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">10</span> 项目亮点</div>
+  <div class="card-grid">
+    <div class="card"><div class="card-head"><div class="card-icon blue">1</div><h3>B2B2C 模式</h3></div><p>学校付费，学生免费。明确商业落地路径。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon green">2</div><h3>多 Agent 协同</h3></div><p>学习、生活、就业、心理、事务、数据六大智能体协同，不是单一聊天机器人。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon amber">3</div><h3>四大场景支撑</h3></div><p>宿舍声环境、绿分行动、餐桌透明、微任务构成清晰产品场景，具备具体落地路径。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon rose">4</div><h3>校园数据中台</h3></div><p>打通教务、后勤、宿舍、餐饮、就业、心理等系统，提升数字治理能力。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon blue">5</div><h3>商业与社会价值兼具</h3></div><p>降本增效同时提升学生体验，符合教育数字化与可持续校园方向。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon green">6</div><h3>可复制、可规模化</h3></div><p>SaaS 模式可快速复制到不同高校，具有较高市场推广潜力。</p></div>
+    <div class="card"><div class="card-head"><div class="card-icon amber">7</div><h3>完整闭环</h3></div><p>生活治理 → 实践凭证 → 就业成长 → 心理支持 → 数据治理，形成可持续运行闭环。</p></div>
+  </div>
+</section>
+
+<!-- ══════════ 一句话总结 ══════════ -->
+<section class="section">
+  <div class="hl-box">
+    <p style="font-size:20px;margin-bottom:12px;">一句话总结</p>
+    <p style="font-size:15px;font-weight:400;line-height:2;">
+      学校买的不是 AI 聊天工具，而是一套能够降低管理成本、提高治理效率、提升学生满意度、沉淀校园数据资产的智慧校园操作系统。<br><br>
+      学生使用的也不是一个普通校园 APP，而是一个能把个人需求、日常行动、公共价值和个人成长连接起来的 Campus AI。
+    </p>
+    <p style="font-size:18px;font-weight:800;margin-top:16px;color:var(--primary-dark);">
+      学海伴舟，陪伴学生成长；学海共治，推动校园改变。
+    </p>
+    <p style="font-size:14px;color:#475569;margin-top:8px;">
+      连接学生服务与学校治理，让每一次反馈都走向解决。你关心什么，就去改变什么。
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 未来方向 ══════════ -->
+<section class="section">
+  <div class="section-title"><span class="num">+</span> 未来规划 & 2.0 方向</div>
+  <div class="tags" style="margin-bottom:16px;">
+    <span class="tag">中小学</span><span class="tag">职业院校</span><span class="tag">国际学校</span>
+    <span class="tag">教育集团</span><span class="tag green">海外高校</span>
+  </div>
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">最终打造：<strong>学海伴舟——全球高校智能校园操作系统。</strong></p>
+  <div class="tags">
+    <span class="tag">AI + 数字孪生校园</span><span class="tag green">AI + 校园数字身份</span>
+    <span class="tag amber">AI + 校园积分生态</span><span class="tag rose">AI + 就业能力画像</span>
+    <span class="tag">AI + 心理风险早筛</span><span class="tag green">AI + ESG 数据报告</span>
+  </div>
+</section>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <strong>学海伴舟 ✖️ 学海共治</strong>
+  全国工科女生赋能大赛 · 02组商业策划书<br>
+  Campus AI — 基于 AI 技术的智慧校园生活操作系统
+</footer>
+
+</body>
+</html>
