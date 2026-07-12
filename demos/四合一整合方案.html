@@ -1,0 +1,1943 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校园可持续行动力生态 — 四合一整合方案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #F5F6FA; color: #2C2C2A; line-height: 1.75; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 24px 32px; }
+
+  /* Cover */
+  .cover { background: linear-gradient(135deg, #0D1B2A 0%, #1B3A4B 40%, #2D5A4E 100%); color: white; padding: 72px 52px; border-radius: 20px; margin-bottom: 40px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -30%; right: -15%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(78,205,196,0.08) 0%, transparent 70%); }
+  .cover::after { content: ''; position: absolute; bottom: -20%; left: -10%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(83,74,183,0.06) 0%, transparent 70%); }
+  .cover-tag { display: inline-block; background: rgba(78,205,196,0.15); border: 1px solid rgba(78,205,196,0.3); border-radius: 20px; padding: 5px 18px; font-size: 12px; margin-bottom: 24px; letter-spacing: 1.5px; color: #4ecdc4; }
+  .cover h1 { font-size: 38px; font-weight: 800; margin-bottom: 14px; line-height: 1.25; position: relative; z-index: 1; }
+  .cover h1 .accent { background: linear-gradient(135deg, #4ecdc4, #6FE6B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .cover-sub { font-size: 17px; opacity: 0.8; margin-bottom: 36px; position: relative; z-index: 1; }
+  .cover-meta { display: flex; gap: 36px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .cover-meta-item { font-size: 13px; opacity: 0.75; }
+  .cover-meta-item strong { display: block; font-size: 26px; opacity: 1; margin-bottom: 2px; }
+  .cover-meta-item.teal strong { color: #4ecdc4; }
+  .cover-meta-item.green strong { color: #6FE6B8; }
+  .cover-meta-item.purple strong { color: #A8A0F0; }
+  .cover-meta-item.amber strong { color: #F2C36B; }
+
+  /* Section */
+  .section { background: white; border-radius: 18px; padding: 44px 48px; margin-bottom: 28px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+  .section-num { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .section-num.teal { color: #4ecdc4; }
+  .section-num.green { color: #1D9E75; }
+  .section-num.purple { color: #534AB7; }
+  .section-num.amber { color: #D4940E; }
+  .section-num.dark { color: #5F5E5A; }
+  .section-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: #1a1a2e; }
+  .section-sub { font-size: 14px; color: #888780; margin-bottom: 32px; }
+  .section-body { font-size: 14.5px; color: #444441; }
+
+  /* Typography */
+  h3 { font-size: 18px; font-weight: 700; color: #1a1a2e; margin: 32px 0 14px; padding-left: 14px; border-left: 4px solid #4ecdc4; }
+  h3.green { border-left-color: #1D9E75; }
+  h3.purple { border-left-color: #534AB7; }
+  h3.amber { border-left-color: #D4940E; }
+  h4 { font-size: 15.5px; font-weight: 600; color: #2C2C2A; margin: 22px 0 10px; }
+  p { margin-bottom: 14px; }
+  ul, ol { padding-left: 22px; margin-bottom: 14px; }
+  li { margin-bottom: 7px; }
+  strong { color: #1a1a2e; }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 24px 0; }
+  .card { background: #F8F9FC; border-radius: 14px; padding: 24px; border: 1px solid rgba(0,0,0,0.04); transition: transform 0.2s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .card-icon { font-size: 30px; margin-bottom: 10px; }
+  .card h4 { margin: 0 0 8px; font-size: 15px; }
+  .card p { font-size: 13px; color: #5F5E5A; margin: 0; }
+
+  /* Module Cards */
+  .module-card { border-radius: 16px; padding: 32px; margin: 24px 0; position: relative; overflow: hidden; }
+  .module-card.m1 { background: linear-gradient(135deg, #E8FBF6 0%, #F0FFFC 100%); border: 1.5px solid #4ecdc4; }
+  .module-card.m2 { background: linear-gradient(135deg, #EDF8EE 0%, #F5FDF5 100%); border: 1.5px solid #1D9E75; }
+  .module-card.m3 { background: linear-gradient(135deg, #F0EEFE 0%, #F8F7FF 100%); border: 1.5px solid #534AB7; }
+  .module-card.m4 { background: linear-gradient(135deg, #FFF6E3 0%, #FFFBF0 100%); border: 1.5px solid #D4940E; }
+  .module-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .module-num { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white; flex-shrink: 0; }
+  .module-num.m1 { background: linear-gradient(135deg, #4ecdc4, #3DB5AC); }
+  .module-num.m2 { background: linear-gradient(135deg, #1D9E75, #15805F); }
+  .module-num.m3 { background: linear-gradient(135deg, #534AB7, #6B5FD0); }
+  .module-num.m4 { background: linear-gradient(135deg, #D4940E, #B86B08); }
+  .module-title { font-size: 19px; font-weight: 700; color: #1a1a2e; }
+  .module-data { font-size: 12px; color: #888780; margin-top: 2px; }
+  .module-data .data-tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+  .module-data .data-tag.m1 { background: #4ecdc4; color: white; }
+  .module-data .data-tag.m2 { background: #1D9E75; color: white; }
+  .module-data .data-tag.m3 { background: #534AB7; color: white; }
+  .module-data .data-tag.m4 { background: #D4940E; color: white; }
+
+  .module-body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .module-col h5 { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px dashed #ccc; }
+  .module-col ul { font-size: 13px; padding-left: 18px; }
+  .module-col li { margin-bottom: 6px; color: #444; }
+
+  /* Table */
+  .data-table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 13px; border-radius: 10px; overflow: hidden; }
+  .data-table th { color: white; padding: 13px 16px; text-align: left; font-weight: 500; font-size: 12px; }
+  .data-table th.teal { background: #4ecdc4; }
+  .data-table th.dark { background: #1a1a2e; }
+  .data-table th.green { background: #1D9E75; }
+  .data-table th.purple { background: #534AB7; }
+  .data-table td { padding: 12px 16px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: #FAFBFC; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+  .tag-red { background: #FCEBEB; color: #A32D2D; }
+  .tag-amber { background: #FAEEDA; color: #854F0B; }
+  .tag-green { background: #EAF3DE; color: #3B6D11; }
+  .tag-blue { background: #E6F1FB; color: #185FA5; }
+  .tag-purple { background: #EEEDFE; color: #534AB7; }
+  .tag-teal { background: #E1F5EE; color: #0F6E56; }
+
+  /* FABE */
+  .fabe-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; }
+  .fabe-card { border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+  .fabe-card::before { content: attr(data-letter); position: absolute; top: -10px; right: 10px; font-size: 80px; font-weight: 900; opacity: 0.08; }
+  .fabe-card.f-f { background: linear-gradient(135deg, #E8FBF6, #F0FFFC); border: 1.5px solid #4ecdc4; }
+  .fabe-card.f-a { background: linear-gradient(135deg, #EAF3DE, #F5FDF5); border: 1.5px solid #1D9E75; }
+  .fabe-card.f-b { background: linear-gradient(135deg, #FAEEDA, #FDF8EF); border: 1.5px solid #D4940E; }
+  .fabe-card.f-e { background: linear-gradient(135deg, #EEEDFE, #F8F7FF); border: 1.5px solid #534AB7; }
+  .fabe-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .fabe-card.f-f .fabe-label { color: #0F6E56; }
+  .fabe-card.f-a .fabe-label { color: #3B6D11; }
+  .fabe-card.f-b .fabe-label { color: #854F0B; }
+  .fabe-card.f-e .fabe-label { color: #534AB7; }
+  .fabe-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+  .fabe-body { font-size: 13px; color: #444; line-height: 1.7; }
+
+  /* Q&A */
+  .qa-group { margin: 28px 0; }
+  .qa-item { background: #F8F9FC; border-radius: 14px; padding: 20px 22px; margin: 14px 0; border: 1px solid rgba(0,0,0,0.05); }
+  .qa-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+  .qa-question { font-size: 14px; font-weight: 800; color: #1a1a2e; margin-bottom: 8px; }
+  .qa-answer { font-size: 13px; color: #444441; line-height: 1.75; }
+  .qa-dimension { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 11px; font-weight: 700; margin-bottom: 8px; background: #EEEDFE; color: #534AB7; }
+
+  /* Speech structure */
+  .speech-timeline { display: grid; gap: 14px; margin: 24px 0; }
+  .speech-item { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 18px; background: #F8F9FC; border-radius: 14px; border-left: 4px solid #4ecdc4; }
+  .speech-item.s2 { border-left-color: #1D9E75; }
+  .speech-item.s3 { border-left-color: #D4940E; }
+  .speech-item.s4 { border-left-color: #534AB7; }
+  .speech-time { font-size: 12px; font-weight: 800; color: #5F5E5A; }
+  .speech-title { font-size: 15px; font-weight: 800; color: #1a1a2e; margin-bottom: 5px; }
+  .speech-desc { font-size: 12.5px; color: #5F5E5A; margin-bottom: 8px; }
+  .speech-script { background: white; border-radius: 10px; padding: 13px 15px; font-size: 12.5px; color: #444441; border: 1px solid rgba(0,0,0,0.05); }
+
+  /* Quote */
+  .quote { background: linear-gradient(135deg, #F0F7FF 0%, #F8FBFF 100%); border-left: 4px solid #4ecdc4; border-radius: 0 12px 12px 0; padding: 20px 26px; margin: 22px 0; font-size: 14.5px; color: #2C2C2A; }
+  .quote.bold { background: linear-gradient(135deg, #E1F5EE 0%, #EEEDFE 100%); font-size: 16px; padding: 28px 32px; border-left-width: 5px; }
+  .quote-author { font-size: 12px; color: #888780; margin-top: 10px; }
+
+  /* Highlight */
+  .hl { background: linear-gradient(transparent 60%, rgba(78,205,196,0.25) 60%); font-weight: 500; }
+  .hl-green { background: linear-gradient(transparent 60%, rgba(29,158,117,0.2) 60%); font-weight: 500; }
+  .hl-purple { background: linear-gradient(transparent 60%, rgba(83,74,183,0.18) 60%); font-weight: 500; }
+
+  /* Divider */
+  .divider { height: 1px; background: #eee; margin: 32px 0; }
+
+  /* Flow diagram */
+  .flow-container { background: #F8F9FC; border-radius: 16px; padding: 36px; margin: 24px 0; }
+  .flow-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+  .flow-node { padding: 14px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; text-align: center; min-width: 140px; max-width: 200px; }
+  .flow-node.m1 { background: #4ecdc4; color: white; }
+  .flow-node.m2 { background: #1D9E75; color: white; }
+  .flow-node.m3 { background: #534AB7; color: white; }
+  .flow-node.m4 { background: #D4940E; color: white; }
+  .flow-node.reward { background: #F2C36B; color: #5C3D0B; }
+  .flow-node.credential { background: #E6F1FB; color: #185FA5; border: 1.5px solid #185FA5; }
+  .flow-arrow { font-size: 20px; color: #aaa; font-weight: 300; }
+  .flow-label { font-size: 10px; color: #888; text-align: center; margin-top: 4px; }
+  .flow-loop-note { text-align: center; font-size: 13px; color: #5F5E5A; margin-top: 20px; font-style: italic; }
+
+  /* Metrics */
+  .metrics { display: flex; gap: 18px; flex-wrap: wrap; margin: 24px 0; }
+  .metric { flex: 1; min-width: 150px; border-radius: 14px; padding: 24px; text-align: center; }
+  .metric.teal { background: linear-gradient(135deg, #E8FBF6, #D0F5EE); }
+  .metric.green { background: linear-gradient(135deg, #EDF8EE, #D4F0D8); }
+  .metric.purple { background: linear-gradient(135deg, #F0EEFE, #E0DDF8); }
+  .metric.amber { background: linear-gradient(135deg, #FAEEDA, #F5E0C0); }
+  .metric-num { font-size: 34px; font-weight: 800; color: #1a1a2e; }
+  .metric-label { font-size: 12px; color: #5F5E5A; margin-top: 6px; }
+
+  /* Badge */
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+  .badge { padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .badge-teal { background: #E1F5EE; color: #0F6E56; }
+  .badge-green { background: #EAF3DE; color: #3B6D11; }
+  .badge-purple { background: #EEEDFE; color: #534AB7; }
+  .badge-amber { background: #FAEEDA; color: #854F0B; }
+  .badge-blue { background: #E6F1FB; color: #185FA5; }
+
+  /* Comparison table */
+  .cmp-table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 13px; }
+  .cmp-table th { background: #1a1a2e; color: white; padding: 11px 14px; text-align: center; font-weight: 500; font-size: 12px; }
+  .cmp-table td { padding: 11px 14px; border-bottom: 1px solid #eee; text-align: center; vertical-align: middle; }
+  .cmp-table tr:nth-child(even) td { background: #FAFBFC; }
+  .cmp-table td:first-child { text-align: left; font-weight: 500; color: #1a1a2e; }
+  .check { color: #1D9E75; font-weight: 700; }
+  .cross { color: #E24B4A; font-weight: 700; }
+  .partial { color: #BA7517; font-weight: 500; }
+
+  /* Roadmap */
+  .roadmap { position: relative; padding-left: 36px; margin: 28px 0; }
+  .roadmap::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #4ecdc4, #1D9E75, #534AB7); }
+  .roadmap-item { position: relative; margin-bottom: 30px; }
+  .roadmap-item::before { content: ''; position: absolute; left: -29px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: white; border: 3px solid #4ecdc4; box-shadow: 0 0 0 2px #4ecdc4; }
+  .roadmap-item.green::before { border-color: #1D9E75; box-shadow: 0 0 0 2px #1D9E75; }
+  .roadmap-item.purple::before { border-color: #534AB7; box-shadow: 0 0 0 2px #534AB7; }
+  .roadmap-date { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .roadmap-item .roadmap-date { color: #4ecdc4; }
+  .roadmap-item.green .roadmap-date { color: #1D9E75; }
+  .roadmap-item.purple .roadmap-date { color: #534AB7; }
+  .roadmap-title { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+  .roadmap-desc { font-size: 13px; color: #5F5E5A; }
+
+  /* Architecture box */
+  .arch-box { background: #F8F9FC; border: 1.5px solid #ddd; border-radius: 12px; padding: 20px; margin: 16px 0; }
+  .arch-box.m1 { border-color: #4ecdc4; }
+  .arch-box.m2 { border-color: #1D9E75; }
+  .arch-box.m3 { border-color: #534AB7; }
+
+  /* Persona */
+  .persona { display: flex; gap: 18px; margin: 22px 0; flex-wrap: wrap; }
+  .persona-card { flex: 1; min-width: 260px; background: #F8F9FC; border-radius: 16px; padding: 26px; border: 1px solid rgba(0,0,0,0.04); }
+  .persona-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+  .persona-name { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+  .persona-tag { font-size: 12px; color: #888780; margin-bottom: 12px; }
+  .persona-story { font-size: 13px; color: #444; line-height: 1.7; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 36px 0; color: #B4B2A9; font-size: 12px; }
+
+  /* Value chain */
+  .value-chain { display: flex; align-items: stretch; gap: 0; margin: 24px 0; flex-wrap: wrap; }
+  .value-step { flex: 1; min-width: 160px; padding: 20px; text-align: center; position: relative; }
+  .value-step:nth-child(odd) { background: #F8F9FC; }
+  .value-step:nth-child(even) { background: #F0F2F8; }
+  .value-step:first-child { border-radius: 14px 0 0 14px; }
+  .value-step:last-child { border-radius: 0 14px 14px 0; }
+  .value-step-num { font-size: 11px; font-weight: 700; color: #aaa; margin-bottom: 6px; }
+  .value-step-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+  .value-step-desc { font-size: 11px; color: #888; }
+  .value-step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #ccc; z-index: 1; }
+
+  /* Highlight box */
+  .hl-box { border-radius: 14px; padding: 28px; margin: 24px 0; }
+  .hl-box.teal { background: linear-gradient(135deg, #E1F5EE, #E8FBF6); border: 1px solid #4ecdc4; }
+  .hl-box.green { background: linear-gradient(135deg, #EDF8EE, #EAF3DE); border: 1px solid #1D9E75; }
+  .hl-box.purple { background: linear-gradient(135deg, #F0EEFE, #EEEDFE); border: 1px solid #534AB7; }
+  .hl-box-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px; }
+
+  /* Visualization components */
+  .viz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 22px 0; }
+  .viz-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+  .viz-title { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  .viz-subtitle { font-size: 11px; color: #888780; margin-bottom: 14px; line-height: 1.6; }
+  .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin: -18px 0 28px; }
+  .kpi-card { background: white; border-radius: 16px; padding: 22px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 3px 14px rgba(0,0,0,0.04); }
+  .kpi-card.teal { border-top: 4px solid #4ecdc4; }
+  .kpi-card.green { border-top: 4px solid #1D9E75; }
+  .kpi-card.purple { border-top: 4px solid #534AB7; }
+  .kpi-card.amber { border-top: 4px solid #D4940E; }
+  .kpi-num { font-size: 30px; font-weight: 800; color: #1a1a2e; line-height: 1.1; }
+  .kpi-card.teal .kpi-num { color: #0F6E56; }
+  .kpi-card.green .kpi-num { color: #1D9E75; }
+  .kpi-card.purple .kpi-num { color: #534AB7; }
+  .kpi-card.amber .kpi-num { color: #D4940E; }
+  .kpi-label { font-size: 12px; font-weight: 700; color: #1a1a2e; margin: 8px 0 4px; }
+  .kpi-desc { font-size: 11px; color: #6E6D67; line-height: 1.6; }
+  .bar-chart { display: grid; gap: 10px; margin: 14px 0; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 42px; align-items: center; gap: 10px; font-size: 12px; }
+  .bar-label { color: #444441; }
+  .bar-track { height: 11px; background: #EEF0F4; border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; background: #4ecdc4; }
+  .bar-fill.teal { background: #4ecdc4; }
+  .bar-fill.green { background: #1D9E75; }
+  .bar-fill.purple { background: #534AB7; }
+  .bar-fill.amber { background: #D4940E; }
+  .bar-value { font-size: 11px; color: #5F5E5A; text-align: right; font-weight: 700; }
+  .donut-wrap { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .donut-chart { width: 118px; height: 118px; border-radius: 50%; position: relative; flex-shrink: 0; background: conic-gradient(#4ecdc4 0 40%, #1D9E75 40% 70%, #D4940E 70% 90%, #534AB7 90% 100%); }
+  .donut-chart::after { content: ''; position: absolute; inset: 18px; background: white; border-radius: 50%; }
+  .donut-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 1; font-size: 18px; font-weight: 800; color: #1a1a2e; }
+  .donut-center span { font-size: 10px; color: #888780; font-weight: 500; margin-top: 2px; }
+  .donut-legend { display: grid; gap: 6px; font-size: 11px; color: #5F5E5A; }
+  .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+  .heatmap-grid { display: grid; grid-template-columns: 56px repeat(5, 1fr); gap: 6px; align-items: center; font-size: 11px; }
+  .heatmap-cell { min-height: 32px; border-radius: 8px; background: #EDF8EE; display: flex; align-items: center; justify-content: center; color: #5F5E5A; font-weight: 600; }
+  .heatmap-cell.mid { background: #FAEEDA; color: #854F0B; }
+  .heatmap-cell.high { background: #FCEBEB; color: #A32D2D; }
+  .heatmap-label { font-size: 11px; color: #777; font-weight: 600; text-align: center; }
+  .funnel-chart { display: grid; gap: 8px; margin: 16px 0; }
+  .funnel-step { margin: 0 auto; padding: 12px 16px; border-radius: 12px; color: white; font-size: 12px; font-weight: 700; text-align: center; }
+  .flywheel { position: relative; min-height: 300px; margin: 22px 0; background: #F8F9FC; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); }
+  .flywheel-node { position: absolute; width: 150px; padding: 14px; border-radius: 14px; color: white; text-align: center; font-size: 13px; font-weight: 700; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+  .flywheel-node.n1 { top: 28px; left: 50%; transform: translateX(-50%); background: #1D9E75; }
+  .flywheel-node.n2 { left: 11%; bottom: 38px; background: #534AB7; }
+  .flywheel-node.n3 { right: 11%; bottom: 38px; background: #4ecdc4; }
+  .flywheel-center { position: absolute; left: 50%; top: 53%; transform: translate(-50%, -50%); width: 185px; height: 185px; border-radius: 50%; background: white; border: 2px dashed #D4940E; display: flex; align-items: center; justify-content: center; text-align: center; padding: 22px; font-size: 13px; font-weight: 700; color: #1a1a2e; line-height: 1.7; }
+  .evidence-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 22px 0; }
+  .evidence-card { background: #F8F9FC; border-radius: 14px; padding: 18px; border-left: 4px solid #4ecdc4; }
+  .evidence-card.green { border-left-color: #1D9E75; }
+  .evidence-card.purple { border-left-color: #534AB7; }
+  .evidence-card.amber { border-left-color: #D4940E; }
+  .evidence-card strong { display: block; font-size: 18px; margin-bottom: 4px; }
+  .evidence-card span { font-size: 11px; color: #666; }
+  .mini-dashboard { background: white; border-radius: 16px; padding: 22px; border: 1px solid rgba(29,158,117,0.18); margin-top: 18px; }
+  .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+  .dashboard-card { background: #F8F9FC; border-radius: 14px; padding: 18px; border: 1px solid rgba(0,0,0,0.04); }
+  .risk-note, .data-source-note { font-size: 11px; color: #888780; background: #FAFBFC; border-radius: 10px; padding: 10px 12px; margin-top: 12px; border: 1px dashed #DDD; }
+  .match-map { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 14px; align-items: center; background: white; border-radius: 14px; padding: 18px; border: 1px dashed #534AB7; margin-top: 16px; }
+  .match-list { display: grid; gap: 8px; }
+  .match-pill { padding: 9px 12px; border-radius: 12px; background: #F0EEFE; font-size: 12px; color: #534AB7; font-weight: 600; }
+  .match-arrow { text-align: center; color: #534AB7; font-size: 22px; }
+  .roadmap-visual { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 22px 0; }
+  .roadmap-phase { background: #F8F9FC; border-radius: 16px; padding: 20px; border-top: 4px solid #4ecdc4; }
+  .roadmap-phase.green { border-top-color: #1D9E75; }
+  .roadmap-phase.purple { border-top-color: #534AB7; }
+  .roadmap-phase-title { font-size: 14px; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+  .roadmap-phase-time { font-size: 11px; color: #888780; margin-bottom: 10px; }
+
+  @media (max-width: 760px) {
+    .kpi-strip, .dashboard-grid, .roadmap-visual { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 1fr; gap: 5px; }
+    .module-body, .fabe-grid { grid-template-columns: 1fr; }
+    .match-map { grid-template-columns: 1fr; }
+    .speech-item { grid-template-columns: 1fr; }
+    .flywheel-node { position: static; transform: none !important; margin: 12px auto; }
+    .flywheel-center { position: static; transform: none; margin: 12px auto; }
+    .flywheel { padding: 14px; }
+  }
+  @media print { body { background: white; } .section { box-shadow: none; border: 1px solid #ddd; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-tag">CAMPUS SUSTAINABLE ACTION ECOLOGY · 大学生社会创新整合方案</div>
+  <h1><span class="accent">校园可持续行动力生态</span><br>四合一整合方案</h1>
+  <p class="cover-sub">宿舍声环境公约 × 绿分行动库 × 餐桌透明档案 × 社会创新微任务<br>—— 让每一个"利己"行为，都在为"公共系统"做贡献</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item teal"><strong>4</strong>大互撑模块</div>
+    <div class="cover-meta-item green"><strong>4</strong>类数据闭环</div>
+    <div class="cover-meta-item purple"><strong>校内</strong>资源流转为主</div>
+    <div class="cover-meta-item amber"><strong>∞</strong>自循环激励叠加</div>
+  </div>
+</div>
+
+<!-- ===== KPI OVERVIEW ===== -->
+<div class="kpi-strip">
+  <div class="kpi-card teal">
+    <div class="kpi-num">82%</div>
+    <div class="kpi-label">宿舍声环境</div>
+    <div class="kpi-desc">Demo 模拟：学生受噪音困扰，需要从情绪沟通转向数据协商。</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="kpi-num">73%</div>
+    <div class="kpi-label">绿分行动库</div>
+    <div class="kpi-desc">Demo 模拟：遇到分类困惑、点位信息不足或做对后缺少反馈。</div>
+  </div>
+  <div class="kpi-card amber">
+    <div class="kpi-num">42</div>
+    <div class="kpi-label">餐桌透明档案</div>
+    <div class="kpi-desc">Demo 模拟：餐桌透明指数为 42/100，来源、检测和价格构成仍需照亮。</div>
+  </div>
+  <div class="kpi-card purple">
+    <div class="kpi-num">68%</div>
+    <div class="kpi-label">社会微任务</div>
+    <div class="kpi-desc">Demo 模拟：有公共事务参与意愿，但需要真实任务和可沉淀凭证。</div>
+  </div>
+  <div class="kpi-card amber">
+    <div class="kpi-num">4类</div>
+    <div class="kpi-label">闭环激励</div>
+    <div class="kpi-desc">积分、凭证、权限在校内资源体系中流转。</div>
+  </div>
+</div>
+<div class="data-source-note" style="margin:-14px 0 28px;">数据说明：本页恢复的数据均作为 Demo 模拟数据 / 测算示例，用于展示产品逻辑和答辩呈现；正式版本需在试点后补充样本来源、采集方法和核验记录。</div>
+
+<!-- ===== SECTION 1: 实地调研 ===== -->
+<div class="section">
+  <div class="section-num dark">Step 01 · 实地调研</div>
+  <h2 class="section-title">问题发现 — 四类校园痛点，一个共同根源</h2>
+  <p class="section-sub">当前页面展示 Demo 模拟数据 + 试点验证框架：用于呈现问题强度、产品逻辑和后续采集方向</p>
+  <div class="section-body">
+
+    <div class="quote bold">
+      <strong>核心洞察：</strong>宿舍噪音冲突、分类行动链路卡住、餐桌食品安全信息不透明、校内公共事务参与入口分散——这些看似无关的校园问题，根源是同一个：<br>
+      <strong>校园缺乏一套把"个人行为"转化为"公共价值"的激励闭环系统。</strong>
+    </div>
+
+    <h3>1.1 调研方法论</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">验证方法</th><th class="dark">Demo 样本 / 数据</th><th class="dark">数据状态</th><th class="dark">核心发现</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>线上问卷</strong></td>
+          <td>1,247 份有效问卷（Demo 模拟样本）</td>
+          <td>待试点核验</td>
+          <td>82% 受噪音困扰；73% 遇到分类行动链路卡点；42/100 餐桌透明指数；68% 想参与公共事务但缺少入口。</td>
+        </tr>
+        <tr>
+          <td><strong>宿舍实勘</strong></td>
+          <td>38 间宿舍（Demo 模拟样本）</td>
+          <td>待试点核验</td>
+          <td>夜间 23:00 后噪音高发，模拟记录显示 58-75 dB 区间更容易触发宿舍矛盾。</td>
+        </tr>
+        <tr>
+          <td><strong>深度访谈</strong></td>
+          <td>24 人（学生 / 宿管 / 辅导员 / 后勤，Demo 模拟样本）</td>
+          <td>待访谈核验</td>
+          <td>学生需要低压力表达，后勤需要结构化线索，校内协作方需要可确认的任务记录。</td>
+        </tr>
+        <tr>
+          <td><strong>回收站观察</strong></td>
+          <td>3 个校园回收点 + 2 类高频投放场景</td>
+          <td>Demo 模拟 / 待核验</td>
+          <td>复杂垃圾判断成本高，回收点信息不清楚，宿舍源头分流不足，可回收物容易混投。</td>
+        </tr>
+        <tr>
+          <td><strong>餐桌透明观察</strong></td>
+          <td>23 家周边摊点 + 56 个食堂窗口 + 189 家外卖店铺</td>
+          <td>Demo 模拟 / 待建档</td>
+          <td>食材来源、检测记录、证照状态、价格构成和反馈渠道需要更透明。</td>
+        </tr>
+        <tr>
+          <td><strong>校内微任务验证</strong></td>
+          <td>12 个任务样例 + 46 名意向参与者</td>
+          <td>Demo 模拟 / 待核验</td>
+          <td>学生有参与意愿，但需要任务入口、成果确认、能力凭证和校内权益回流。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="viz-card">
+      <div class="viz-title">四类校园痛点数据对比｜Demo 模拟</div>
+      <div class="viz-subtitle">横向展示问题强度：噪音、绿分行动、餐桌透明和校内公共事务不是孤立问题，而是公共行动激励不足的不同表现。</div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">宿舍声环境困扰</div>
+          <div class="bar-track"><div class="bar-fill teal" style="width:82%;"></div></div>
+          <div class="bar-value">82%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">分类行动链路卡点</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:73%;"></div></div>
+          <div class="bar-value">73%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">餐桌透明档案完整度</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:42%;"></div></div>
+          <div class="bar-value">42/100</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">校内微任务参与意愿</div>
+          <div class="bar-track"><div class="bar-fill purple" style="width:68%;"></div></div>
+          <div class="bar-value">68%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">能力凭证认可度</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:46%;"></div></div>
+          <div class="bar-value">46%</div>
+        </div>
+      </div>
+      <div class="data-source-note">说明：以上为 Demo 模拟数据，用于演示产品逻辑和页面表达；正式试点需补充样本量、采集时间、采集方法和数据来源。</div>
+    </div>
+
+    <h3>1.2 四类痛点深度拆解</h3>
+
+    <div class="module-card m1">
+      <div class="module-header">
+        <div class="module-num m1">01</div>
+        <div>
+          <div class="module-title">痛点一：宿舍噪音 — "不敢说，只能忍"</div>
+          <div class="module-data">试点观察方向 <span class="data-tag m1">宿舍和谐指数</span></div>
+        </div>
+      </div>
+      <p style="font-size:13.5px; margin-bottom:14px;">Demo 模拟数据显示，在 38 间宿舍样本中，夜间 23:00 后平均噪音进入 <strong>58-75 dB</strong> 区间时，更容易触发宿舍矛盾。核心矛盾不是“能不能彻底消音”，而是学生缺少低压力、可协商、可复盘的沟通机制。</p>
+      <div class="value-chain">
+        <div class="value-step"><div class="value-step-num">第1天</div><div class="value-step-title">忍耐</div><div class="value-step-desc">"算了，不好意思说"</div></div>
+        <div class="value-step"><div class="value-step-num">第3天</div><div class="value-step-title">烦躁</div><div class="value-step-desc">被动攻击、摔门</div></div>
+        <div class="value-step"><div class="value-step-num">第7天</div><div class="value-step-title">爆发</div><div class="value-step-desc">正面冲突、关系破裂</div></div>
+        <div class="value-step"><div class="value-step-num">第14天</div><div class="value-step-title">求助</div><div class="value-step-desc">需要规则与数据支持</div></div>
+      </div>
+      <p style="font-size:13px; margin-top:12px;">Demo 模拟问卷显示：82% 学生受噪音困扰，但仅 18% 尝试过沟通，其中 76% 的沟通以关系恶化收场。MVP 需要验证：有了“高噪声时段、类型标签、公约提醒”后，宿舍成员是否更愿意协商，宿管是否更容易介入调解。</p>
+    </div>
+
+    <div class="module-card m2">
+      <div class="module-header">
+        <div class="module-num m2">02</div>
+        <div>
+          <div class="module-title">痛点二：垃圾分类 — "分不准、找不到点位、做对了也没反馈"</div>
+          <div class="module-data">实地调研发现 <span class="data-tag m2">绿色行动数据断点</span></div>
+        </div>
+      </div>
+      <p style="font-size:13.5px; margin-bottom:14px;">绿分行动库试点阶段不做全量线下投放自动判分，而是通过 AI 查询、地图扫码、小游戏答题、宿舍打卡、绿色岗位巡查、后勤反馈和回收数据，综合发现高频困惑与疑似错投点位。</p>
+      <div class="viz-card" style="margin: 0 0 16px 0;">
+        <div class="viz-title">分类行动链路卡点</div>
+        <div class="viz-subtitle">Demo 模拟：复杂垃圾分不准、回收点找不到、做对后缺少反馈，是分类行动链路卡住的主要原因。</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">复杂垃圾分不准</div><div class="bar-track"><div class="bar-fill green" style="width:86%;"></div></div><div class="bar-value">86%</div></div>
+          <div class="bar-row"><div class="bar-label">回收点找不到</div><div class="bar-track"><div class="bar-fill green" style="width:78%;"></div></div><div class="bar-value">78%</div></div>
+          <div class="bar-row"><div class="bar-label">宿舍源头分流不足</div><div class="bar-track"><div class="bar-fill green" style="width:72%;"></div></div><div class="bar-value">72%</div></div>
+          <div class="bar-row"><div class="bar-label">做对后没有反馈</div><div class="bar-track"><div class="bar-fill green" style="width:81%;"></div></div><div class="bar-value">81%</div></div>
+          <div class="bar-row"><div class="bar-label">后勤缺少数据支撑</div><div class="bar-track"><div class="bar-fill green" style="width:69%;"></div></div><div class="bar-value">69%</div></div>
+        </div>
+      </div>
+      <ul style="font-size:13px; padding-left:20px; margin-bottom:14px;">
+        <li><strong>复杂垃圾分不准</strong>：奶茶杯、外卖盒、纸巾、塑料瓶、快递纸箱、电池、餐厨垃圾等经常需要拆分处理。</li>
+        <li><strong>最近回收点找不到</strong>：学生不知道宿舍楼下、快递站、教学楼、图书馆分别能投什么，也不知道投放前要怎么处理。</li>
+        <li><strong>宿舍源头分流不足</strong>：宿舍里一开始就混在一起，到了楼下更不想重新分，也容易污染可回收物。</li>
+        <li><strong>缺少即时反馈</strong>：做对了没人知道，做错了也没有低压力提示，时间久了就懒得分。</li>
+      </ul>
+      <p style="font-size:13px;">试点访谈可重点追问：“快递纸箱能不能直接放楼下？要不要撕面单、压平？”“做对后是否需要反馈？”核心问题不是单纯知识问题，而是<strong>判断成本 + 点位信息 + 即时反馈 + 后勤运营 + 数据沉淀</strong>的系统问题。</p>
+    </div>
+
+    <div class="module-card m4">
+      <div class="module-header">
+        <div class="module-num m4">03</div>
+        <div>
+          <div class="module-title">痛点三：餐桌食品安全 — "评分很高，但来源和检测看不见"</div>
+          <div class="module-data">公开背景资料整理 + 试点建档 <span class="data-tag m4">餐桌透明档案</span></div>
+        </div>
+      </div>
+      <p style="font-size:13.5px; margin-bottom:14px;">餐桌透明档案不是投诉平台，也不替代监管部门。它把学生关心的食材来源、检测记录、证照状态、价格信息和反馈处理状态整理成可查询档案，帮助学生更规范表达问题，帮助后勤形成复盘线索。</p>
+      <div class="viz-card" style="margin: 0 0 16px 0;">
+        <div class="viz-title">餐桌透明链路卡点</div>
+        <div class="viz-subtitle">Demo 模拟：食材溯源、安全检测、价格构成和反馈渠道，是校园餐桌最需要被“照亮”的部分。</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">食材来源未公示</div><div class="bar-track"><div class="bar-fill amber" style="width:58%;"></div></div><div class="bar-value">58%</div></div>
+          <div class="bar-row"><div class="bar-label">检测记录不可查</div><div class="bar-track"><div class="bar-fill amber" style="width:64%;"></div></div><div class="bar-value">64%</div></div>
+          <div class="bar-row"><div class="bar-label">评分与监管不一致</div><div class="bar-track"><div class="bar-fill amber" style="width:46%;"></div></div><div class="bar-value">46%</div></div>
+          <div class="bar-row"><div class="bar-label">价格构成不透明</div><div class="bar-track"><div class="bar-fill amber" style="width:71%;"></div></div><div class="bar-value">71%</div></div>
+        </div>
+        <div class="data-source-note">注：以上为 Demo 模拟数据，用于展示产品逻辑，不作为学校真实监管结论。</div>
+      </div>
+      <ul style="font-size:13px; padding-left:20px; margin-bottom:14px;">
+        <li><strong>食材溯源不透明</strong>：街边摊、食堂窗口、外卖店铺的供应商、加工点、配送链路不一定可查。</li>
+        <li><strong>安全检测难理解</strong>：学生很难知道最近一次检测时间、检测项目、是否合格、证照是否即将到期。</li>
+        <li><strong>价格与品类信息不清楚</strong>：售卖名称、原材料品类、成本与售价之间缺少公开解释。</li>
+        <li><strong>反馈成本高</strong>：发现问题后不知道向后勤、市场监管还是平台反馈，也不会写规范反馈材料。</li>
+      </ul>
+      <p style="font-size:13px;">核心问题不是“学生挑剔”，而是<strong>食材来源 + 安全检测 + 价格透明 + 标准化反馈</strong>缺少可查询、可行动、可追踪的统一入口。</p>
+    </div>
+
+    <div class="module-card m3">
+      <div class="module-header">
+        <div class="module-num m3">04</div>
+        <div>
+          <div class="module-title">痛点四：校园公共事务 — "想做但找不到，做了也白做"</div>
+          <div class="module-data">校内 MVP 观察方向 <span class="data-tag m3">能力凭证</span></div>
+        </div>
+      </div>
+      <p style="font-size:13.5px; margin-bottom:14px;">校园里有很多公共事务需要学生参与：垃圾分类宣传、投放点巡查、餐桌档案共建、宿舍调解协助、绿色活动记录等。问题在于入口分散、任务不清、成果难确认、能力难沉淀。</p>
+      <div class="card-grid">
+        <div class="card"><div class="card-icon">🔗</div><h4>入口断裂</h4><p>校内公共事务需求存在，但发布渠道分散，学生不知道从哪里报名、做什么、谁确认。</p></div>
+        <div class="card"><div class="card-icon">📋</div><h4>凭证断裂</h4><p>学生完成任务后，成果常常停留在一句“参与过”，缺少任务类型、完成内容、时长和反馈记录。</p></div>
+        <div class="card"><div class="card-icon">⚡</div><h4>激励断裂</h4><p>公共事务与学生成长、综测材料、绿色岗位资格没有打通，持续参与动力不足。</p></div>
+      </div>
+      <p style="font-size:13px;">MVP 阶段先验证校内微任务：由后勤、宿管、社团或项目组发布任务，学生报名后提交成果，负责人确认后生成能力凭证。</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>1.3 核心洞察 — 四类痛点的共同根源</h3>
+
+    <div class="hl-box teal">
+      <div class="hl-box-title">调研结论：四类痛点不是独立的，它们是同一个系统缺陷的不同表现</div>
+      <p style="font-size:14px;">宿舍噪音冲突、垃圾分类行动链路卡住、餐桌食品安全信息不透明、校内公共事务入口分散——表面上看是四个不同领域的问题，但根源是同一个：<strong>校园里缺少一套把"个人关心"转化为"公共价值"的行动闭环。</strong></p>
+      <p style="font-size:14px; margin-top:10px;">学生想安静 → 没有数据支撑沟通 → 只能忍或爆发（噪音）<br>
+      学生想分类 → 分不准、找不到点位、没有即时反馈 → 行动难以持续（垃圾）<br>
+      学生想吃得安心 → 食材来源、检测记录和价格构成看不见 → 只能凭评分和口碑判断（食品安全）<br>
+      学生想参与公共事务 → 没有轻量入口和凭证 → 意愿难以沉淀（校内微任务）<br><br>
+      <strong>如果四类问题能共享一套激励系统，让学生的每一个"利己"行为都自然地为"公共系统"做贡献，四类痛点就能同时缓解。</strong></p>
+    </div>
+
+    <h3>1.4 典型用户画像</h3>
+    <div class="persona">
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#E8FBF6; color:#0F6E56;">😴</div>
+        <div class="persona-name">"安静求救者" 小林</div>
+        <div class="persona-tag">大二 · 受噪音困扰半年 · 想沟通但不敢</div>
+        <div class="persona-story">长期被室友游戏声影响休息，但又担心直接提醒会伤关系。她需要：<strong>数据支撑来理性沟通，而不是情绪对抗</strong>。如果室友能看到匿名聚合的高噪声时段和公约提醒，事情就好办多了。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#EDF8EE; color:#3B6D11;">♻️</div>
+        <div class="persona-name">"想分但卡住" 小赵</div>
+        <div class="persona-tag">大三 · 每周点外卖5次 · 想环保但总在投放点前犹豫</div>
+        <div class="persona-story">每次扔奶茶杯、外卖盒和快递纸箱都要想很久：要不要拆开？要不要倒掉液体？最近哪个点能回收？如果 AI 能给出处理步骤、地图能指到最近点位、做对后能看到绿色积分，他就会更愿意持续分类。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#FFF6E3; color:#854F0B;">🍽️</div>
+        <div class="persona-name">"想吃得明白" 小周</div>
+        <div class="persona-tag">大二 · 常点外卖和食堂窗口 · 关心评分背后的真实安全</div>
+        <div class="persona-story">她看到某家外卖评分很高，但不知道卫生评级、食材来源和最近检测记录。她需要：<strong>一份能搜索、能看溯源、能生成标准化反馈的餐桌透明档案</strong>，让“担心食品安全”变成可查证、可反馈的行动。</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#F0EEFE; color:#534AB7;">🤝</div>
+        <div class="persona-name">"想做没渠道" 小陈</div>
+        <div class="persona-tag">大一 · 想参与校园公共事务 · 简历需要实践经历</div>
+        <div class="persona-story">看到同学简历上有丰富的实践经历很羡慕，但不知道从哪里开始。如果有一个平台能<strong>发布校内真实微任务，完成后获得能力凭证</strong>，而且凭证能换取绿色岗位或校园权益，她会积极参与。</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 平台总览 ===== -->
+<div class="section">
+  <div class="section-num teal">Step 02 · 平台架构</div>
+  <h2 class="section-title">方案总览 — 「校园可持续行动力生态」</h2>
+  <p class="section-sub">四个模块互为支撑，数据互通，激励叠加，形成校内自循环闭环</p>
+  <div class="section-body">
+
+    <div class="quote">
+      <strong>设计理念：</strong>以校内资源流转为主，不靠项目组长期补贴驱动。<br>
+      学生的每一个"利己"行为（想打游戏、想攒证书、想少扔垃圾）<strong>都在为"公共系统"做贡献</strong>，且数据互通、激励叠加。
+    </div>
+
+    <h3>平台全景架构</h3>
+
+    <div class="flow-container">
+      <div style="text-align:center; font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:20px;">「校园可持续行动力生态」四模块数据流转图</div>
+
+      <!-- Four modules -->
+      <div class="flow-row" style="gap:24px;">
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node m1" style="width:100%;">模块一：宿舍声环境公约</div>
+          <div class="flow-label">产出：宿舍和谐指数</div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node m2" style="width:100%;">模块二：绿分行动库</div>
+          <div class="flow-label">产出：绿色积分与校园绿色治理数据</div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node m4" style="width:100%;">模块三：餐桌透明档案</div>
+          <div class="flow-label">产出：餐桌透明指数与食品安全线索</div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node m3" style="width:100%;">模块四：社会创新微任务</div>
+          <div class="flow-label">产出：服务记录与能力凭证</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin:24px 0; font-size:22px; color:#D4940E;">⇅ ⇅ ⇅ ⇅</div>
+
+      <!-- Exchange layer -->
+      <div class="flow-row" style="gap:24px;">
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node reward" style="width:100%;">绿色积分</div>
+          <div class="flow-label">AI查询 / 地图指引 / 正确投放 / 游戏学习 → 获得绿色积分</div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node reward" style="width:100%;">餐桌侦探积分</div>
+          <div class="flow-label">查询档案 / 查看溯源 / 提交反馈 → 获得食品安全行动记录</div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node reward" style="width:100%;">弹性权限</div>
+          <div class="flow-label">积分兑换模块一公约权限</div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div class="flow-node credential" style="width:100%;">能力凭证</div>
+          <div class="flow-label">模块四完成任务 → 获得凭证</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin:24px 0; font-size:22px; color:#534AB7;">⇅ ⇅</div>
+
+      <!-- Cross-module exchange -->
+      <div class="flow-row" style="gap:24px;">
+        <div style="flex:1; min-width:280px;">
+          <div class="flow-node m3" style="width:100%; background:#534AB7;">能力凭证 → 兑换调解员资格</div>
+          <div class="flow-label">模块四凭证 → 模块一岗位</div>
+        </div>
+        <div style="flex:1; min-width:280px;">
+          <div class="flow-node m3" style="width:100%; background:#534AB7;">能力凭证 → 兑换绿色岗位资格</div>
+          <div class="flow-label">模块四凭证 → 绿色岗位</div>
+        </div>
+        <div style="flex:1; min-width:280px;">
+          <div class="flow-node m4" style="width:100%;">餐桌反馈线索 → 后勤复盘</div>
+          <div class="flow-label">餐桌透明档案 → 后勤 / 食安沟通</div>
+        </div>
+      </div>
+
+      <div class="flow-loop-note">↑ 学生通过 AI 查询、地图指引、小游戏学习、宿舍打卡、绿色岗位等获得绿色积分；通过餐桌档案查询、溯源查看和规范反馈获得餐桌侦探积分<br>
+      ↑ 学生在模块四完成微任务 → 获得能力凭证 → 凭证兑换模块一调解员资格、模块二绿色岗位资格或模块三餐桌透明共建任务<br><br>
+      <strong>四个模块形成一个校内闭环——分类、食安、宿舍和公共事务不是孤立行动，而是通过积分、凭证、权益和数据反馈，把日常关心转化为校园内部可流动的公共价值。</strong></div>
+    </div>
+
+    <div class="flow-container">
+      <div style="text-align:center; font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:20px;">从个人行动到公共价值的数据流转</div>
+      <div class="flow-row" style="gap:18px;">
+        <div class="flow-node m1">遵守声环境公约</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m2">AI 查询 / 地图指引 / 正确投放 / 游戏学习</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m4">搜索餐饮档案 / 查看溯源 / 提交标准化反馈</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m3">完成社会创新微任务</div>
+      </div>
+      <div class="flow-label">第一层：学生行为</div>
+      <div style="text-align:center; margin:16px 0; font-size:20px; color:#aaa;">↓</div>
+      <div class="flow-row" style="gap:18px;">
+        <div class="flow-node m1">宿舍和谐指数</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m2">绿色积分 / 回收量 / 碳减排估算 / 后勤反馈</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m4">餐桌透明指数 / 溯源链 / 检测记录 / 反馈线索</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m3">能力凭证 / 服务记录</div>
+      </div>
+      <div class="flow-label">第二层：数据产出</div>
+      <div style="text-align:center; margin:16px 0; font-size:20px; color:#aaa;">↓</div>
+      <div class="flow-row" style="gap:18px;">
+        <div class="flow-node reward">宿舍弹性权限</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node reward">志愿时长 / 综测分 / 荣誉证书 / 绿色岗位资格</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node reward">餐桌侦探积分 / 食安共建任务</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node credential">调解员资格 / 绿色岗位资格</div>
+      </div>
+      <div class="flow-label">第三层：激励回流</div>
+      <div class="data-source-note">注：数据流转以调研统计、试点模拟和 MVP 测算为基础，用于展示产品逻辑与验证方向；碳减排相关数据为估算值。</div>
+    </div>
+
+    <h3>2.2 四模块定位对比</h3>
+    <table class="cmp-table">
+      <thead>
+        <tr><th>维度</th><th>模块一：宿舍声环境公约</th><th>模块二：绿分行动库</th><th>模块三：餐桌透明档案</th><th>模块四：社会创新微任务</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>核心目标</td>
+          <td>用数据+公约替代情绪对抗</td>
+          <td>用校园垃圾分类全链路数字化系统，帮助师生更快、更准、更轻松地完成分类与回收</td>
+          <td>用食材溯源、安全检测和标准化反馈照亮校园餐桌</td>
+          <td>用真实任务+凭证连接校园公共事务</td>
+        </tr>
+        <tr>
+          <td>解决痛点</td>
+          <td>"不敢说，只能忍"</td>
+          <td>复杂垃圾分不准、回收点找不到、宿舍源头分流不足、绿色行为缺少反馈、后勤缺少数据</td>
+          <td>食材来源不可查、检测记录难理解、评分与监管信息不一致、反馈渠道不清楚</td>
+          <td>"想做但找不到，做了也白做"</td>
+        </tr>
+        <tr>
+          <td>产出数据</td>
+          <td><strong>宿舍和谐指数</strong></td>
+          <td><strong>AI 查询热词、点位扫码记录、回收量、碳减排估算、积分行为、宿舍参与率、巡查反馈、绿色校园报告</strong></td>
+          <td><strong>餐桌透明指数、食材溯源链、安全检测记录、价格构成、关注人数、反馈线索</strong></td>
+          <td><strong>服务记录与能力凭证</strong></td>
+        </tr>
+        <tr>
+          <td>技术核心</td>
+          <td>AI噪音识别 + 公约引擎</td>
+          <td>AI 分类助手 + 回收地图 + 投放点管理 + 积分激励 + 后勤数据看板</td>
+          <td>商家档案库 + 溯源链路 + 检测记录解析 + AI 标准化反馈</td>
+          <td>任务拆解 + 能力凭证链</td>
+        </tr>
+        <tr>
+          <td>激励产出</td>
+          <td>弹性权限（公约奖励）</td>
+          <td>绿色积分、徽章、志愿时长、综测分、荣誉证书、绿色岗位资格</td>
+          <td>餐桌侦探积分、食安共建徽章、反馈贡献记录、后勤共创任务资格</td>
+          <td>能力凭证</td>
+        </tr>
+        <tr>
+          <td>跨模块流动</td>
+          <td>接收积分兑换权限 / 接收凭证换岗位</td>
+          <td>绿色积分可流向宿舍公约弹性权益；绿色岗位可接收社会创新微任务能力凭证；分类数据可支撑学校绿色治理成果</td>
+          <td>餐桌侦探积分可流向校园权益；反馈线索进入后勤复盘；食安共建任务可接收能力凭证</td>
+          <td>产出凭证 → 流向模块一调解岗位与模块二绿色岗位</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="hl-box green">
+      <div class="hl-box-title">模块二升级说明：从单点地图到绿分行动库</div>
+      <p style="font-size:14px;">模块二从原来的单一点位地图升级为“绿分行动库”。它不只告诉学生垃圾怎么分，而是把 AI 判断、地图指引、正确投放、游戏学习、积分反馈、宿舍分流、后勤管理和绿色校园报告连接起来，让学生的绿色行动能被记录、被反馈、被激励，并转化为学校可展示的绿色治理数据。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 四大模块深度拆解 ===== -->
+<div class="section">
+  <div class="section-num green">Step 03 · 模块拆解</div>
+  <h2 class="section-title">四大模块深度拆解 — 功能、数据、技术实现</h2>
+  <p class="section-sub">每个模块的验证基础、核心功能、数据产出与技术路径</p>
+  <div class="section-body">
+
+    <!-- Module 1 -->
+    <div class="module-card m1">
+      <div class="module-header">
+        <div class="module-num m1">01</div>
+        <div>
+          <div class="module-title">模块一：宿舍声环境公约</div>
+          <div class="module-data">从"噪音消除"升级为"宿舍自治公约" · 产出 <span class="data-tag m1">宿舍和谐指数</span></div>
+        </div>
+      </div>
+
+      <div class="hl-box teal" style="margin:0 0 20px 0; padding:20px;">
+        <p style="font-size:13px; margin:0;"><strong>验证基础：</strong>宿舍模块先用低敏分贝数据、噪音类型标签、宿舍公约签署和匿名反馈记录做 MVP 验证。核心矛盾不是"噪音太大"，而是"缺乏数据支撑的理性沟通机制"。</p>
+      </div>
+
+      <div class="module-body">
+        <div class="module-col">
+          <h5>核心功能</h5>
+          <ul>
+            <li><strong>AI噪音感知</strong>：手机/ESP32传感器实时监听，YAMNet分类（人声/施工/电器/动物），本地推理&lt;100ms，零隐私上传</li>
+            <li><strong>宿舍公约生成器</strong>：基于噪音数据，AI辅助生成个性化宿舍公约（如"23:00后游戏需戴耳机"），全员电子签约</li>
+            <li><strong>和谐指数仪表盘</strong>：每周自动生成"宿舍和谐指数"（噪音合规率×公约执行率×室友满意度），可视化展示</li>
+            <li><strong>匿名温和反馈</strong>：系统代发噪音提醒（"昨晚23:30检测到游戏噪音超标，已按公约记录"），避免当面冲突</li>
+            <li><strong>公约弹性权限</strong>：和谐指数达标宿舍解锁弹性权限（如多1小时游戏时间、延迟熄灯申请权）</li>
+          </ul>
+        </div>
+        <div class="module-col">
+          <h5>数据产出与流转</h5>
+          <ul>
+            <li><strong>产出数据</strong>：宿舍和谐指数（指标设计，综合噪音合规率、公约执行率、室友互评）</li>
+            <li><strong>数据流向</strong>：和谐指数 → 院系文明宿舍评比依据 → 学校后勤管理数据</li>
+            <li><strong>接收激励</strong>：来自模块二的<strong>绿色积分</strong>可兑换"公约弹性权限"</li>
+            <li><strong>接收凭证</strong>：来自模块四的<strong>能力凭证</strong>可兑换"宿舍调解员"资格</li>
+            <li><strong>技术栈</strong>：YAMNet(TFLite) + Whisper(tiny) + ESP32分贝节点 + FastAPI后端</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:white; border-radius:10px; border:1px dashed #4ecdc4;">
+        <p style="font-size:13px; margin:0;"><strong>升级说明：</strong>原"DormNoise Guardian"方案聚焦于"降噪"（白噪音掩蔽、耳机联动），但调研发现核心问题不在"消音"，而在"沟通"。因此升级为<strong>"宿舍声环境公约"</strong>——用AI数据提供客观依据，用公约机制提供执行框架，用弹性权限提供正向激励。从"技术降噪"转变为"制度+技术+激励"三位一体的治理方案。</p>
+      </div>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <div class="viz-title">夜间噪音高发时段模拟热力图</div>
+          <div class="viz-subtitle">用于帮助宿舍从情绪化争论转向数据化沟通。</div>
+          <div class="heatmap-grid">
+            <div></div><div class="heatmap-label">21:00</div><div class="heatmap-label">22:00</div><div class="heatmap-label">23:00</div><div class="heatmap-label">00:00</div><div class="heatmap-label">01:00</div>
+            <div class="heatmap-label">A栋</div><div class="heatmap-cell">低</div><div class="heatmap-cell mid">中</div><div class="heatmap-cell high">高</div><div class="heatmap-cell high">高</div><div class="heatmap-cell mid">中</div>
+            <div class="heatmap-label">B栋</div><div class="heatmap-cell">低</div><div class="heatmap-cell">低</div><div class="heatmap-cell mid">中</div><div class="heatmap-cell high">高</div><div class="heatmap-cell mid">中</div>
+            <div class="heatmap-label">C栋</div><div class="heatmap-cell">低</div><div class="heatmap-cell mid">中</div><div class="heatmap-cell mid">中</div><div class="heatmap-cell high">高</div><div class="heatmap-cell high">高</div>
+            <div class="heatmap-label">D栋</div><div class="heatmap-cell">低</div><div class="heatmap-cell">低</div><div class="heatmap-cell mid">中</div><div class="heatmap-cell mid">中</div><div class="heatmap-cell">低</div>
+          </div>
+        </div>
+        <div class="viz-card">
+          <div class="viz-title">宿舍和谐指数构成</div>
+          <div class="viz-subtitle">和谐指数不是单一分贝值，而是“客观数据 + 公约执行 + 主观满意度”的综合指数。</div>
+          <div class="donut-wrap">
+            <div class="donut-chart">
+              <div class="donut-center">指标<span>设计</span></div>
+            </div>
+            <div class="donut-legend">
+              <div><span class="legend-dot" style="background:#4ecdc4;"></span>噪音合规率</div>
+              <div><span class="legend-dot" style="background:#1D9E75;"></span>公约执行率</div>
+              <div><span class="legend-dot" style="background:#D4940E;"></span>室友满意度</div>
+              <div><span class="legend-dot" style="background:#534AB7;"></span>反馈处理率</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module-card m2">
+      <div class="module-header">
+        <div class="module-num m2">02</div>
+        <div>
+          <div class="module-title">模块二：绿分行动库｜AI 校园垃圾分类与碳普惠回收系统</div>
+          <div class="module-data">校园垃圾分类全链路数字化系统 · 产出 <span class="data-tag m2">绿色积分与绿色校园报告</span></div>
+        </div>
+      </div>
+
+      <div class="hl-box green" style="margin:0 0 20px 0; padding:20px;">
+        <p style="font-size:13px; margin:0;"><strong>模块定位：</strong>绿分行动库不是单一垃圾分类查询工具，也不是单一回收地图，而是一套面向校园场景的垃圾分类全链路数字化系统。它以 AI 分类助手为入口，连接校园回收地图（含碳减排估算）、投放点指引、分类知识小游戏、绿色积分、宿舍源头分流、校园绿色榜单、后勤数据看板、绿色岗位和绿色校园报告，帮助学校把“学生会不会分、该投哪里、有没有反馈、谁来运营、数据怎么展示”串成一套可持续运行的绿色行动闭环。</p>
+      </div>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <div class="viz-title">学生端</div>
+          <div class="viz-subtitle">把分类从“临时想一想”变成低门槛、可反馈的日常行动。</div>
+          <ul style="font-size:13px; padding-left:18px; margin:0;">
+            <li>AI 分类助手</li>
+            <li>校园回收地图</li>
+            <li>投放点指引</li>
+            <li>绿分游戏乐园</li>
+            <li>绿色积分中心</li>
+            <li>宿舍源头分流</li>
+            <li>校园绿色榜单</li>
+          </ul>
+        </div>
+        <div class="viz-card">
+          <div class="viz-title">运营端</div>
+          <div class="viz-subtitle">把学生行为转化为后勤可看、可管、可复盘的运营线索。</div>
+          <ul style="font-size:13px; padding-left:18px; margin:0;">
+            <li>绿色岗位</li>
+            <li>勤工助学排班</li>
+            <li>投放点巡查</li>
+            <li>后勤数据看板</li>
+            <li>点位优化建议</li>
+            <li>高频困惑分析</li>
+          </ul>
+        </div>
+        <div class="viz-card">
+          <div class="viz-title">成果端</div>
+          <div class="viz-subtitle">把绿色行动沉淀为学校能展示、能申报、能持续运营的材料。</div>
+          <ul style="font-size:13px; padding-left:18px; margin:0;">
+            <li>回收数据</li>
+            <li>碳减排估算</li>
+            <li>积分行为</li>
+            <li>宿舍参与率</li>
+            <li>志愿时长</li>
+            <li>绿色校园报告</li>
+            <li>学校项目申报材料</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:white; border-radius:10px; border:1px dashed #1D9E75;">
+        <p style="font-size:13px; margin:0;"><strong>数据流：</strong>学生 AI 查询 / 地图扫码 / 游戏答题 / 宿舍打卡 / 投放点巡查 → 进入绿分数据中枢 → 沉淀分类知识库、点位库、热词库、巡查反馈库、小游戏题库、积分行为库 → 反向更新 AI 答案、地图提示、小游戏题目、后勤建议和绿色校园报告。试点初期不把每一次线下投放都作为系统判分对象，而是通过多来源数据综合判断高频困惑与疑似错投问题。</p>
+      </div>
+
+      <div class="mini-dashboard">
+        <div class="viz-title">绿分行动库数据看板｜Demo 模拟</div>
+        <div class="viz-subtitle">用于展示系统如何沉淀高频问题、运营线索和绿色校园成果；正式数值需试点后填充。</div>
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="viz-title">AI 查询热词 Top 5</div>
+            <div class="bar-chart">
+              <div class="bar-row"><div class="bar-label">奶茶杯</div><div class="bar-track"><div class="bar-fill green" style="width:100%;"></div></div><div class="bar-value">126</div></div>
+              <div class="bar-row"><div class="bar-label">外卖盒</div><div class="bar-track"><div class="bar-fill green" style="width:78%;"></div></div><div class="bar-value">98</div></div>
+              <div class="bar-row"><div class="bar-label">快递纸箱</div><div class="bar-track"><div class="bar-fill green" style="width:68%;"></div></div><div class="bar-value">86</div></div>
+              <div class="bar-row"><div class="bar-label">电池</div><div class="bar-track"><div class="bar-fill green" style="width:51%;"></div></div><div class="bar-value">64</div></div>
+              <div class="bar-row"><div class="bar-label">纸巾</div><div class="bar-track"><div class="bar-fill green" style="width:41%;"></div></div><div class="bar-value">52</div></div>
+            </div>
+            <div class="viz-subtitle">用于发现最高频分类困惑，并反向更新 AI 知识库与小游戏题库。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">校园回收点活跃度</div>
+            <div class="bar-chart">
+              <div class="bar-row"><div class="bar-label">快递站</div><div class="bar-track"><div class="bar-fill green" style="width:92%;"></div></div><div class="bar-value">92%</div></div>
+              <div class="bar-row"><div class="bar-label">食堂</div><div class="bar-track"><div class="bar-fill green" style="width:84%;"></div></div><div class="bar-value">84%</div></div>
+              <div class="bar-row"><div class="bar-label">宿舍区</div><div class="bar-track"><div class="bar-fill green" style="width:76%;"></div></div><div class="bar-value">76%</div></div>
+              <div class="bar-row"><div class="bar-label">教学楼</div><div class="bar-track"><div class="bar-fill green" style="width:63%;"></div></div><div class="bar-value">63%</div></div>
+              <div class="bar-row"><div class="bar-label">图书馆</div><div class="bar-track"><div class="bar-fill green" style="width:58%;"></div></div><div class="bar-value">58%</div></div>
+            </div>
+            <div class="viz-subtitle">用于识别高频点位和需要优化的投放场景。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">绿色积分来源占比</div>
+            <div class="donut-wrap">
+              <div class="donut-chart" style="background:conic-gradient(#4ecdc4 0 18%, #1D9E75 18% 46%, #D4940E 46% 68%, #534AB7 68% 84%, #6FE6B8 84% 94%, #B8D87A 94% 100%);">
+                <div class="donut-center">6类<span>来源</span></div>
+              </div>
+              <div class="donut-legend">
+                <div><span class="legend-dot" style="background:#4ecdc4;"></span>AI 查询 18%</div>
+                <div><span class="legend-dot" style="background:#1D9E75;"></span>复核投放 28%</div>
+                <div><span class="legend-dot" style="background:#D4940E;"></span>小游戏 22%</div>
+                <div><span class="legend-dot" style="background:#534AB7;"></span>宿舍打卡 16%</div>
+                <div><span class="legend-dot" style="background:#6FE6B8;"></span>绿色岗位 10%</div>
+                <div><span class="legend-dot" style="background:#B8D87A;"></span>回收寻宝 6%</div>
+              </div>
+            </div>
+            <div class="viz-subtitle">证明绿色积分不是单一签到，而是来自多种真实绿色行动。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">小游戏参与与正确率</div>
+            <div class="bar-chart">
+              <div class="bar-row"><div class="bar-label">10秒快分 128人</div><div class="bar-track"><div class="bar-fill amber" style="width:82%;"></div></div><div class="bar-value">82%</div></div>
+              <div class="bar-row"><div class="bar-label">奶茶杯拆解 96人</div><div class="bar-track"><div class="bar-fill amber" style="width:76%;"></div></div><div class="bar-value">76%</div></div>
+              <div class="bar-row"><div class="bar-label">纸箱整理 88人</div><div class="bar-track"><div class="bar-fill amber" style="width:88%;"></div></div><div class="bar-value">88%</div></div>
+              <div class="bar-row"><div class="bar-label">食堂闯关 105人</div><div class="bar-track"><div class="bar-fill amber" style="width:74%;"></div></div><div class="bar-value">74%</div></div>
+              <div class="bar-row"><div class="bar-label">宿舍养成 76人</div><div class="bar-track"><div class="bar-fill amber" style="width:91%;"></div></div><div class="bar-value">91%</div></div>
+              <div class="bar-row"><div class="bar-label">回收寻宝 64人</div><div class="bar-track"><div class="bar-fill amber" style="width:85%;"></div></div><div class="bar-value">85%</div></div>
+            </div>
+            <div class="viz-subtitle">用小游戏数据反哺高频错题和分类知识库。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">宿舍源头分流参与率</div>
+            <div class="donut-wrap">
+              <div class="donut-chart" style="background:conic-gradient(#1D9E75 0 68%, #E6E8EE 68% 100%);">
+                <div class="donut-center">68%<span>已参与</span></div>
+              </div>
+              <div class="donut-legend">
+                <div><span class="legend-dot" style="background:#1D9E75;"></span>已参与 68%</div>
+                <div><span class="legend-dot" style="background:#E6E8EE;"></span>未参与 32%</div>
+              </div>
+            </div>
+            <div class="viz-subtitle">证明分类行为前移到宿舍端，而不是只在楼下投放点临时处理。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">绿色校园报告产出摘要</div>
+            <div class="metrics" style="margin:10px 0; gap:10px;">
+              <div class="metric green" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">568kg</div><div class="metric-label">本周回收量</div></div>
+              <div class="metric teal" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">128kg</div><div class="metric-label">CO₂e估算</div></div>
+              <div class="metric purple" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">128间</div><div class="metric-label">参与宿舍</div></div>
+              <div class="metric amber" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">12,600</div><div class="metric-label">发放积分</div></div>
+              <div class="metric green" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">46次</div><div class="metric-label">绿色岗位</div></div>
+            </div>
+            <div class="viz-subtitle">数据为 Demo 模拟 / 测算示例；碳减排只做估算，不作为绝对精确结论。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Module 3 -->
+    <div class="module-card m4">
+      <div class="module-header">
+        <div class="module-num m4">03</div>
+        <div>
+          <div class="module-title">模块三：餐桌透明档案｜校园食品安全行动助手</div>
+          <div class="module-data">从“看评分”升级为“看溯源、看检测、会反馈” · 产出 <span class="data-tag m4">餐桌透明指数</span></div>
+        </div>
+      </div>
+
+      <div class="hl-box" style="margin:0 0 20px 0; padding:20px; background:linear-gradient(135deg,#FFF6E3,#FFFBF0); border:1px solid #D4940E;">
+        <p style="font-size:13px; margin:0;"><strong>模块定位：</strong>餐桌透明档案吸收“透光 TransLumen”的 demo 思路，把街边摊贩、食堂窗口、外卖店铺的食材来源、加工运输、销售资质、价格构成和安全检测记录整理成可查询档案，让学生从“只看评分和口碑”升级为“看证据、懂风险、能反馈”。</p>
+      </div>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <div class="viz-title">学生端</div>
+          <div class="viz-subtitle">让学生在吃饭前能快速判断“能不能放心吃”。</div>
+          <ul style="font-size:13px; padding-left:18px; margin:0;">
+            <li>搜索摊贩 / 食堂窗口 / 外卖店名</li>
+            <li>查看食材溯源链路</li>
+            <li>查看安全检测与证照状态</li>
+            <li>查看价格构成与品类说明</li>
+            <li>关注商家并获得餐桌侦探积分</li>
+          </ul>
+        </div>
+        <div class="viz-card">
+          <div class="viz-title">运营端</div>
+          <div class="viz-subtitle">让后勤看到食安关注点，而不是等投诉爆发。</div>
+          <ul style="font-size:13px; padding-left:18px; margin:0;">
+            <li>餐饮商家档案库</li>
+            <li>供应商证照到期提醒</li>
+            <li>检测记录缺口提示</li>
+            <li>高关注商家风险排序</li>
+            <li>标准化反馈信生成</li>
+          </ul>
+        </div>
+        <div class="viz-card">
+          <div class="viz-title">成果端</div>
+          <div class="viz-subtitle">把个体担心转成学校可复盘的食安治理材料。</div>
+          <ul style="font-size:13px; padding-left:18px; margin:0;">
+            <li>餐桌透明指数</li>
+            <li>食材溯源完整率</li>
+            <li>安全检测公开率</li>
+            <li>反馈处理记录</li>
+            <li>后勤整改与复盘报告</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mini-dashboard" style="border-color:rgba(212,148,14,0.24);">
+        <div class="viz-title">餐桌透明档案数据看板｜Demo 模拟</div>
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="viz-title">校园餐桌透明指数</div>
+            <div class="donut-wrap">
+              <div class="donut-chart" style="background:conic-gradient(#D4940E 0 42%, #E6E8EE 42% 100%);">
+                <div class="donut-center">42<span>/100</span></div>
+              </div>
+              <div class="donut-legend">
+                <div><span class="legend-dot" style="background:#D4940E;"></span>可追溯与可验证 42%</div>
+                <div><span class="legend-dot" style="background:#E6E8EE;"></span>仍需补充公开信息 58%</div>
+              </div>
+            </div>
+            <div class="viz-subtitle">Demo 模拟指数，用于提示“仍需照亮”的信息缺口。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">可查询对象</div>
+            <div class="metrics" style="margin:10px 0; gap:10px;">
+              <div class="metric amber" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">23家</div><div class="metric-label">周边摊点</div></div>
+              <div class="metric green" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">56个</div><div class="metric-label">食堂窗口</div></div>
+              <div class="metric purple" style="min-width:120px; padding:14px;"><div class="metric-num" style="font-size:22px;">189家</div><div class="metric-label">外卖店铺</div></div>
+            </div>
+            <div class="viz-subtitle">覆盖学生最常接触的三类校园餐饮场景。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">食材溯源链路</div>
+            <div class="value-chain" style="margin:10px 0;">
+              <div class="value-step"><div class="value-step-num">01</div><div class="value-step-title">养殖 / 供应</div><div class="value-step-desc">来源公示</div></div>
+              <div class="value-step"><div class="value-step-num">02</div><div class="value-step-title">加工</div><div class="value-step-desc">资质记录</div></div>
+              <div class="value-step"><div class="value-step-num">03</div><div class="value-step-title">运输</div><div class="value-step-desc">冷链温控</div></div>
+              <div class="value-step"><div class="value-step-num">04</div><div class="value-step-title">销售</div><div class="value-step-desc">窗口 / 平台</div></div>
+            </div>
+            <div class="viz-subtitle">把复杂供应链拆成学生能看懂的四段档案。</div>
+          </div>
+          <div class="dashboard-card">
+            <div class="viz-title">安全反馈行动</div>
+            <div class="bar-chart">
+              <div class="bar-row"><div class="bar-label">关注人数</div><div class="bar-track"><div class="bar-fill amber" style="width:88%;"></div></div><div class="bar-value">1,247</div></div>
+              <div class="bar-row"><div class="bar-label">标准反馈提交</div><div class="bar-track"><div class="bar-fill amber" style="width:52%;"></div></div><div class="bar-value">23</div></div>
+              <div class="bar-row"><div class="bar-label">后勤建议生成</div><div class="bar-track"><div class="bar-fill amber" style="width:64%;"></div></div><div class="bar-value">8</div></div>
+            </div>
+            <div class="viz-subtitle">AI 根据食品安全和消费者权益相关规则生成低门槛反馈草稿。</div>
+          </div>
+        </div>
+        <div class="data-source-note">注：以上为 Demo 模拟数据；正式试点需由学校后勤、监管公开信息和商家公示材料共同校准。</div>
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module-card m3">
+      <div class="module-header">
+        <div class="module-num m3">04</div>
+        <div>
+          <div class="module-title">模块四：校园社会创新微任务</div>
+          <div class="module-data">校内公共事务拆解与能力凭证 · 产出 <span class="data-tag m3">服务记录</span></div>
+        </div>
+      </div>
+
+      <div class="hl-box purple" style="margin:0 0 20px 0; padding:20px;">
+        <p style="font-size:13px; margin:0;"><strong>验证基础：</strong>模块四先收束为校内公共事务 MVP，验证任务发布、学生报名、成果提交、负责人确认、能力凭证和岗位资格兑换。核心问题在<strong>入口断裂、凭证断裂、激励断裂</strong>。</p>
+      </div>
+
+      <div class="module-body">
+        <div class="module-col">
+          <h5>核心功能</h5>
+          <ul>
+            <li><strong>微任务市场</strong>：后勤、宿管、社团或项目组发布校内真实需求（如投放点巡查、餐桌档案共建、宿舍公约协助、绿色活动记录），系统拆解为可完成的轻量任务</li>
+            <li><strong>智能匹配引擎</strong>：根据学生专业、技能标签、地理位置智能推荐任务（如计算机专业→推荐技术类任务）</li>
+            <li><strong>能力凭证链</strong>：完成任务→负责人确认→生成能力凭证（记录任务内容、技能维度、完成质量、负责人评价）</li>
+            <li><strong>凭证兑换岗位</strong>：累积能力凭证可兑换模块一"宿舍调解员"资格、模块二"绿色岗位"资格（如投放点巡查、快递站纸箱整理、食堂高峰指引）</li>
+            <li><strong>服务记录中心</strong>：个人/院系公共事务服务记录，可作为综测、实践证明和岗位资格材料</li>
+          </ul>
+        </div>
+        <div class="module-col">
+          <h5>数据产出与流转</h5>
+          <ul>
+            <li><strong>产出数据</strong>：服务记录与能力凭证（任务类型、完成内容、时长、反馈、确认人）</li>
+            <li><strong>数据流向</strong>：服务记录 → 学生综合素质材料 → 校内绿色岗位和食安共建岗位资格</li>
+            <li><strong>产出激励</strong>：能力凭证 → 流向模块一调解员资格 + 模块二绿色岗位资格</li>
+            <li><strong>校内协同</strong>：后勤 / 宿管 / 社团 / 项目组需求端 → 学生协作端，先形成校内闭环</li>
+            <li><strong>技术栈</strong>：任务匹配规则 + 能力凭证 + 微信小程序 + 后台管理系统</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:white; border-radius:10px; border:1px dashed #534AB7;">
+        <p style="font-size:13px; margin:0;"><strong>运作机制：</strong>校内部门发布绿色行动、餐桌档案或宿舍协作微任务 → 系统推送给匹配学生 → 学生提交成果 → 负责人确认 → 获得能力凭证 → 凭证可申请模块二绿色岗位、模块三食安共建任务或模块一宿舍调解员资格 → <strong>从"一次性参与"升级为"持续性行动者"</strong>。</p>
+      </div>
+
+      <div class="match-map">
+        <div>
+          <div class="viz-title">校内任务供给</div>
+          <div class="match-list">
+            <div class="match-pill">餐桌档案共建</div>
+            <div class="match-pill">宿舍公约协助</div>
+            <div class="match-pill">垃圾分类宣传</div>
+            <div class="match-pill">回收站协助</div>
+            <div class="match-pill">绿色活动记录</div>
+          </div>
+        </div>
+        <div class="match-arrow">⇄</div>
+        <div>
+          <div class="viz-title">学生能力标签</div>
+          <div class="match-list">
+            <div class="match-pill">语言表达</div>
+            <div class="match-pill">新媒体</div>
+            <div class="match-pill">组织协调</div>
+            <div class="match-pill">数据记录</div>
+            <div class="match-pill">环保知识</div>
+          </div>
+        </div>
+      </div>
+      <div class="data-source-note">校内任务供给 × 学生能力标签匹配，用于把“想参与公共事务”转化为可报名、可完成、可评价、可沉淀的微任务。</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 数据流转与激励闭环 ===== -->
+<div class="section">
+  <div class="section-num amber">Step 04 · 激励闭环</div>
+  <h2 class="section-title">数据流转与激励闭环 — 四个模块如何自循环</h2>
+  <p class="section-sub">以校内资源流转为主，不靠项目组长期补贴驱动</p>
+  <div class="section-body">
+
+    <h3>4.1 完整激励流转链路</h3>
+
+    <div class="flow-container">
+      <div style="font-size:13px; font-weight:700; text-align:center; margin-bottom:24px; color:#1a1a2e;">激励闭环全景图：从"利己"行为到"公共系统"贡献</div>
+
+      <div class="flow-row" style="gap:16px; margin-bottom:12px;">
+        <div class="flow-node m2" style="min-width:160px;">学生完成垃圾分类相关行动</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:140px;">获得绿色积分</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node m1" style="min-width:160px;">兑换宿舍公约弹性权限</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:160px;">本周多1小时游戏时间</div>
+      </div>
+      <div class="flow-label" style="margin-bottom:24px;">路径A：AI 查询 / 地图指引 / 游戏学习 / 宿舍打卡 / 绿色岗位 → 绿色积分 → 弹性权益与荣誉激励</div>
+
+      <div class="flow-row" style="gap:16px; margin-bottom:12px;">
+        <div class="flow-node m3" style="min-width:160px;">学生完成校内微任务</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node credential" style="min-width:140px;">获得能力凭证</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node m1" style="min-width:140px;">兑换调解员资格</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m2" style="min-width:160px;">兑换绿色岗位资格</div>
+      </div>
+      <div class="flow-label" style="margin-bottom:24px;">路径B：校内公共事务 → 凭证 → 岗位资格（凭证驱动公共岗位承担）</div>
+
+      <div class="flow-row" style="gap:16px; margin-bottom:12px;">
+        <div class="flow-node m4" style="min-width:160px;">学生查询餐桌档案</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:150px;">获得餐桌侦探积分</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node m4" style="min-width:160px;">提交标准化反馈</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:160px;">后勤食安复盘线索↑</div>
+      </div>
+      <div class="flow-label" style="margin-bottom:24px;">路径C：搜索商家 / 查看溯源 / 关注风险 / AI 反馈 → 餐桌透明指数与食安线索</div>
+
+      <div class="flow-row" style="gap:16px; margin-bottom:12px;">
+        <div class="flow-node m1" style="min-width:160px; background:#4ecdc4;">调解员改善宿舍关系</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:160px;">宿舍和谐指数↑</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-node m2" style="min-width:160px; background:#1D9E75;">绿色岗位维护点位</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node reward" style="min-width:160px;">绿色校园数据↑</div>
+      </div>
+      <div class="flow-label">路径D：岗位履职 → 公共数据提升 → 吸引更多人参与（正反馈飞轮）</div>
+    </div>
+
+    <div class="viz-title" style="margin-top:24px;">四类激励自循环飞轮</div>
+    <div class="flywheel">
+      <div class="flywheel-node n1">绿色积分<br><span style="font-size:11px; font-weight:500;">来自绿分行动</span></div>
+      <div class="flywheel-node n2">能力凭证<br><span style="font-size:11px; font-weight:500;">来自社会微任务</span></div>
+      <div class="flywheel-node n3">宿舍弹性权益<br><span style="font-size:11px; font-weight:500;">来自宿舍公约</span></div>
+      <div class="flywheel-center">利己行为<br>→ 公共数据<br>→ 校园权益<br>→ 再次参与<br><span style="font-size:11px; color:#854F0B;">含餐桌侦探积分</span></div>
+    </div>
+    <div class="data-source-note">飞轮说明：绿色积分、餐桌侦探积分、能力凭证和宿舍弹性权益在校内资源体系中互相流动，以校内资源流转为主，不依赖项目组长期补贴。</div>
+
+    <h3>4.2 激励叠加效应分析</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">学生行为</th><th class="dark">直接收益（利己）</th><th class="dark">系统贡献（利他）</th><th class="dark">叠加效应</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AI查询 / 地图指引 / 正确投放 / 游戏学习 / 宿舍打卡</td>
+          <td>获得绿色积分</td>
+          <td>回收数据、碳减排估算、后勤反馈和绿色校园报告↑</td>
+          <td>积分→弹性权限→宿舍关系改善→和谐指数↑</td>
+        </tr>
+        <tr>
+          <td>搜索餐饮档案 / 查看溯源 / 提交食安反馈</td>
+          <td>获得餐桌侦探积分与食安共建记录</td>
+          <td>餐桌透明指数、安全检测缺口、后勤反馈线索↑</td>
+          <td>食安线索→后勤复盘→透明档案更新→更多学生放心选择</td>
+        </tr>
+        <tr>
+          <td>完成校内微任务</td>
+          <td>获得能力凭证</td>
+          <td>服务记录与能力凭证↑</td>
+          <td>凭证→绿色岗位→巡查数据与知识库维护↑</td>
+        </tr>
+        <tr>
+          <td>担任宿舍调解员</td>
+          <td>管理权限+额外积分</td>
+          <td>宿舍和谐指数↑</td>
+          <td>和谐宿舍→更多弹性权限→正向循环</td>
+        </tr>
+        <tr>
+          <td>参与绿色岗位</td>
+          <td>积分加成+实践经验+志愿时长</td>
+          <td>投放点维护、巡查数据和知识库更新↑</td>
+          <td>更多绿色行动→更多积分流通→学校获得持续治理数据</td>
+        </tr>
+        <tr style="background:#E1F5EE !important;">
+          <td><strong>系统总效应</strong></td>
+          <td colspan="3"><strong>每个"利己"行为都在为"公共系统"做贡献，且数据互通、激励叠加，形成以校内资源流转为主的自循环飞轮</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.3 为什么能自循环？— 经济学逻辑</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h4>校内资源流转</h4>
+        <p>"弹性权限"（如多1小时游戏时间）对学校来说<strong>边际成本为零</strong>——学校不需要花钱，只需要调整管理规则。而"调解员/绿色岗位"本来就需要人做，只是现在有了更清晰的激励机制和数据记录。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h4>激励内生循环</h4>
+        <p>积分不是法币，不会通胀——因为积分锚定"公约弹性权限"这个<strong>真实校园需求</strong>。想获得宿舍弹性权益、证书或志愿时长的学生需要积分→去完成 AI 查询、地图指引、小游戏、宿舍打卡和绿色岗位→学校获得绿色治理数据。需求和供给天然匹配。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h4>网络效应</h4>
+        <p>越多人参与，数据越丰富，体验越好。宿舍和谐指数越准确→公约越合理→更多人愿意遵守→更多积分流通→投放点运营越好→回收数据、碳减排估算和绿色校园报告越完整→学校越支持。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <h4>制度保障</h4>
+        <p>方案与学校现有制度对接：和谐指数→文明宿舍评比；回收数据与碳减排估算→绿色校园考核；餐桌透明档案→后勤食安复盘；校内微任务→综合素质材料。<strong>不另起炉灶，而是增强现有制度</strong>。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 5: FABE价值梳理 ===== -->
+<div class="section">
+  <div class="section-num teal">Step 05 · 方案价值梳理</div>
+  <h2 class="section-title">FABE模型 — 方案价值系统梳理</h2>
+  <p class="section-sub">Feature(特点) → Advantage(优势) → Benefit(好处) → Evidence(证据)</p>
+  <div class="section-body">
+
+    <div class="quote">
+      <strong>目标受众：</strong>全国交流大会评委（社会创新领域专家、企业CSR负责人、高校管理者）<br>
+      <strong>价值主张：</strong>我们不是在做四个独立项目，而是在构建一个<strong>让校园可持续发展行为自循环的激励基础设施</strong>。
+    </div>
+
+    <div class="fabe-grid">
+      <div class="fabe-card f-f" data-letter="F">
+        <div class="fabe-label">FEATURE · 功能</div>
+        <div class="fabe-title">四模块功能完整覆盖</div>
+        <div class="fabe-body">
+          <strong>模块一：宿舍声环境公约</strong>：AI 噪音感知、宿舍公约生成器、和谐指数仪表盘、匿名温和反馈、公约弹性权限。<br><br>
+          <strong>模块二：绿分行动库</strong>：AI 分类助手、校园回收地图、投放点指引、绿分游戏乐园、绿色积分中心、宿舍源头分流、后勤数据看板、绿色岗位、绿色校园报告。<br><br>
+          <strong>模块三：餐桌透明档案</strong>：餐饮档案搜索、食材溯源链、安全检测记录、价格透明、AI 标准化反馈、餐桌透明指数。<br><br>
+          <strong>模块四：校园社会创新微任务</strong>：微任务市场、智能匹配引擎、能力凭证、凭证兑换岗位、服务记录中心。
+        </div>
+      </div>
+
+      <div class="fabe-card f-a" data-letter="A">
+        <div class="fabe-label">ADVANTAGE · 优势</div>
+        <div class="fabe-title">不是并列堆叠，而是共享激励与数据</div>
+        <div class="fabe-body">
+          <ul style="padding-left:16px; margin-top:6px;">
+            <li>四个模块共享积分、凭证、权限和数据，不是四个孤立小工具的并列堆叠。</li>
+            <li>绿分行动库不是单一地图，而是校园垃圾分类全链路系统。</li>
+            <li>宿舍模块不是单纯降噪，而是公约治理。</li>
+            <li>餐桌透明档案不是投诉工具，而是食材溯源、安全检测、价格透明和标准化反馈的行动入口。</li>
+            <li>校园微任务不是普通活动报名，而是校内真实任务 + 负责人确认 + 能力凭证。</li>
+            <li><strong>核心差异：</strong>以校内资源流转为主，不依赖项目组长期补贴。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fabe-card f-b" data-letter="B">
+        <div class="fabe-label">BENEFIT · 价值</div>
+        <div class="fabe-title">学生、学校、后勤共同受益</div>
+        <div class="fabe-body">
+          <strong>对学生：</strong>宿舍沟通更有依据；分类更快、更准、更有反馈；校内公共事务有真实任务和能力凭证；食品安全关心能转化为标准化反馈；个人行动能换取校园权益和成长记录。<br><br>
+          <strong>对后勤 / 学校：</strong>噪音管理有数据；垃圾分类有运营看板；绿色校园有报告；餐桌食品安全有复盘线索；学生实践有记录；学校治理成果更可展示。<br><br>
+          <strong>对校内协作方：</strong>后勤、宿管、社团和项目组获得可报名、可确认、可复盘的学生协作机制，从一次性活动变成持续行动。
+        </div>
+      </div>
+
+      <div class="fabe-card f-e" data-letter="E">
+        <div class="fabe-label">EVIDENCE · 证据</div>
+        <div class="fabe-title">调研、场景、MVP 与管理需求共同支撑</div>
+        <div class="fabe-body">
+          <strong>需求验证：</strong>1,247 份 Demo 模拟问卷，覆盖宿舍、绿分、餐桌透明和校内微任务四类需求。<br><br>
+          <strong>场景验证：</strong>38 间宿舍、3 个校园回收点、23 家周边摊点、56 个食堂窗口、189 家外卖店铺样本、24 人深度访谈，作为 Demo 模拟场景支撑。<br><br>
+          <strong>MVP 验证：</strong>绿分行动库优先验证 AI 查询、地图、积分和看板；宿舍模块验证噪音数据与公约生成；餐桌透明档案验证搜索、溯源链、安全检测与 AI 反馈；微任务模块验证任务匹配与凭证样张。<br><br>
+          <strong>管理验证：</strong>后勤、宿管、辅导员和社团等校内协作方均存在可对接的管理需求，正式版本需继续访谈核验。
+        </div>
+      </div>
+    </div>
+
+    <div class="viz-card">
+      <div class="viz-title">证据仪表盘：我们如何证明方案不是空想？</div>
+      <div class="viz-subtitle">把“调研真实、场景真实、MVP 可做、学校愿意看数据”拆成可核验指标。</div>
+      <div class="evidence-dashboard">
+        <div class="evidence-card"><strong>1,247</strong><span>需求验证：Demo 问卷样本</span></div>
+        <div class="evidence-card teal"><strong>38 间</strong><span>场景验证：宿舍样本</span></div>
+        <div class="evidence-card green"><strong>3 个</strong><span>场景验证：校园回收点</span></div>
+        <div class="evidence-card amber"><strong>268 个</strong><span>食安验证：摊点 / 食堂 / 外卖样本</span></div>
+        <div class="evidence-card purple"><strong>24 人</strong><span>用户访谈：深度访谈样本</span></div>
+        <div class="evidence-card amber"><strong>12 个</strong><span>校内协作：微任务样例</span></div>
+        <div class="evidence-card green"><strong>MVP</strong><span>绿分验证：AI 查询、地图、积分、看板</span></div>
+        <div class="evidence-card amber"><strong>B2B</strong><span>商业验证：绿色校园报告与系统维护需求</span></div>
+      </div>
+      <div class="data-source-note">注：本页数据为 Demo 模拟 / 测算示例，用于展示产品逻辑与验证方向；正式试点需补充真实样本来源和采集方法，碳减排相关数据只做估算。</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 社会与商业价值最大化 ===== -->
+<div class="section">
+  <div class="section-num green">Step 06 · 价值最大化</div>
+  <h2 class="section-title">社会价值与商业价值 — 如何获得最大收益</h2>
+  <p class="section-sub">从校园 MVP 到多场景复制，社会影响力与商业可持续性并行</p>
+  <div class="section-body">
+
+    <h3>6.1 社会价值最大化路径</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h4>推动"安静权"意识觉醒</h4>
+        <p>将宿舍安静权从"可有可无"提升为"可量化、可公约、可执行"的基本权益。先在单校小范围验证，再根据试点数据讨论是否进入学校管理规则。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">♻️</div>
+        <h4>建设绿色校园数据基座</h4>
+        <p>绿分行动库为学校沉淀<strong>AI 查询热词、点位扫码、宿舍源头分流、巡查反馈、回收重量和碳减排估算</strong>。从"年底手工统计"升级为"试点数据可复盘、后勤问题可定位、绿色校园报告可生成"。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍽️</div>
+        <h4>照亮校园餐桌安全</h4>
+        <p>餐桌透明档案把食材来源、安全检测、证照状态、价格构成和标准化反馈集中展示，让学生从“凭口碑选择”升级为“基于证据选择”。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h4>培养公民行动力青年</h4>
+        <p>能力凭证不仅是简历加分项，更是<strong>公共事务参与的真实记录</strong>。学生在校园内完成"微任务→岗位→管理"的成长路径，逐步形成持续行动能力。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h4>可复制的社会创新范式</h4>
+        <p>"四合一自循环"模式先在校园验证，后续可迁移至其他集体生活场景。核心逻辑（利己行为→公共价值→激励闭环）具有可复制潜力，但扩张前提是真实试点数据。</p>
+      </div>
+    </div>
+
+    <div class="viz-grid">
+      <div class="viz-card">
+        <div class="viz-title">校园治理价值</div>
+        <div class="viz-subtitle">宿舍冲突减少，垃圾分类更容易持续，学生参与公共事务的门槛降低。</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">噪音沟通有依据</div><div class="bar-track"><div class="bar-fill teal" style="width:82%;"></div></div><div class="bar-value">强</div></div>
+          <div class="bar-row"><div class="bar-label">分类行动可持续</div><div class="bar-track"><div class="bar-fill green" style="width:73%;"></div></div><div class="bar-value">强</div></div>
+          <div class="bar-row"><div class="bar-label">公共参与低门槛</div><div class="bar-track"><div class="bar-fill purple" style="width:68%;"></div></div><div class="bar-value">强</div></div>
+        </div>
+      </div>
+      <div class="viz-card">
+        <div class="viz-title">学生成长价值</div>
+        <div class="viz-subtitle">从“被管理者”变成“公共系统共建者”。</div>
+        <ul style="font-size:13px; padding-left:18px; margin:0;">
+          <li>绿色行动沉淀为积分记录</li>
+          <li>调解服务沉淀为岗位经历</li>
+          <li>校内微任务沉淀为能力凭证</li>
+          <li>可用于简历、综测、实践证明</li>
+        </ul>
+      </div>
+      <div class="viz-card">
+        <div class="viz-title">学校成果价值</div>
+        <div class="viz-subtitle">学校获得可展示、可申报、可复盘的治理成果。</div>
+        <ul style="font-size:13px; padding-left:18px; margin:0;">
+          <li>绿色校园报告</li>
+          <li>文明宿舍数据</li>
+          <li>公共事务实践数据</li>
+          <li>劳动教育与绿色实践材料</li>
+          <li>项目申报和展示材料</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>6.2 商业价值最大化路径</h3>
+
+    <div style="background: linear-gradient(135deg, #F0EEFE 0%, #E1F5EE 100%); border-radius: 16px; padding: 32px; margin: 24px 0;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:white; border-radius:12px;">
+          <div style="font-size:11px; color:#534AB7; font-weight:700; margin-bottom:4px;">阶段一（0-12月）</div>
+          <div style="font-size:17px; font-weight:800; color:#1a1a2e;">校园 MVP</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">1-2校试点 · 学生端免费 · 验证闭环</div>
+        </div>
+        <div style="font-size:22px; color:#7F77DD;">→</div>
+        <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:white; border-radius:12px;">
+          <div style="font-size:11px; color:#0F6E56; font-weight:700; margin-bottom:4px;">阶段二（12-24月）</div>
+          <div style="font-size:17px; font-weight:800; color:#1a1a2e;">SaaS扩展</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">10-50校测算 · B端订阅 · 数据服务</div>
+        </div>
+        <div style="font-size:22px; color:#1D9E75;">→</div>
+        <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:white; border-radius:12px;">
+          <div style="font-size:11px; color:#854F0B; font-weight:700; margin-bottom:4px;">阶段三（24月+）</div>
+          <div style="font-size:17px; font-weight:800; color:#1a1a2e;">社会企业</div>
+          <div style="font-size:12px; color:#5F5E5A; margin-top:4px;">100+校测算 · 标准化部署包 · 持续维护</div>
+        </div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">收入来源</th><th class="dark">产品形态</th><th class="dark">定价策略</th><th class="dark">成熟期年收入测算</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>B端学校SaaS</strong></td>
+          <td>四合一平台校园版（含数据看板、管理后台、公约引擎）</td>
+          <td>¥3-8万/年/校</td>
+          <td>¥500万（100校测算）</td>
+        </tr>
+        <tr>
+          <td><strong>校内微任务后台</strong></td>
+          <td>后勤 / 宿管 / 社团 / 项目组任务发布与凭证管理</td>
+          <td>¥0.5-2万/年/校内模块</td>
+          <td>¥100万（多校模块测算）</td>
+        </tr>
+        <tr>
+          <td><strong>数据服务</strong></td>
+          <td>绿色校园报告、碳减排估算、餐桌透明指数、后勤运营建议与考核数据包</td>
+          <td>¥1-3万/年/校</td>
+          <td>¥200万</td>
+        </tr>
+        <tr>
+          <td><strong>部署与运维服务</strong></td>
+          <td>绿分行动库点位库、知识库、积分规则和后勤培训配置</td>
+          <td>项目制 ¥2-5万/校</td>
+          <td>¥150万</td>
+        </tr>
+        <tr>
+          <td><strong>功能升级包</strong></td>
+          <td>小游戏题库、积分商城、宿舍源头分流、餐桌透明档案、绿色岗位管理、报告模板</td>
+          <td>按模块订阅/项目制</td>
+          <td>¥100万</td>
+        </tr>
+        <tr>
+          <td><strong>品牌合作</strong></td>
+          <td>环保品牌校园联合活动、企业CSR项目对接</td>
+          <td>项目制合作</td>
+          <td>¥150万</td>
+        </tr>
+        <tr style="background:#E1F5EE !important; font-weight:700;">
+          <td>合计</td>
+          <td>—</td>
+          <td>—</td>
+          <td>¥1,200万/年（测算示例）</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="data-source-note">商业数据说明：以上为 Demo 测算示例，用于展示可持续运营逻辑；真实报价、续费率和规模化收入需通过学校采购访谈与试点成本核算验证。</div>
+
+    <div class="viz-card">
+      <div class="viz-title">四合一平台商业化路径：B2B 校园采购 + 持续服务</div>
+      <div class="viz-subtitle">学生端免费使用；学校购买系统使用权、部署服务和持续维护服务；开发团队不长期承担奖励成本，回收收益只是绿色奖励池补充，不是主要利润来源。</div>
+      <div class="viz-grid" style="margin-bottom:10px;">
+        <div class="kpi-card teal"><div class="kpi-num">1</div><div class="kpi-label">系统部署费</div><div class="kpi-desc">首期配置账户、模块、数据看板与学校后台。</div></div>
+        <div class="kpi-card green"><div class="kpi-num">2</div><div class="kpi-label">年度维护费 / SaaS</div><div class="kpi-desc">持续托管、数据备份、报告生成和权限维护。</div></div>
+        <div class="kpi-card purple"><div class="kpi-num">3</div><div class="kpi-label">功能升级费</div><div class="kpi-desc">小游戏题库、积分商城、绿色岗位、报告模板升级。</div></div>
+        <div class="kpi-card amber"><div class="kpi-num">4</div><div class="kpi-label">食安透明服务</div><div class="kpi-desc">餐饮档案维护、检测记录整理、标准反馈和后勤复盘支持。</div></div>
+        <div class="kpi-card green"><div class="kpi-num">5</div><div class="kpi-label">多校复制收入</div><div class="kpi-desc">形成标准化部署包、运营 SOP 和校际报告模板。</div></div>
+      </div>
+      <div class="value-chain">
+        <div class="value-step"><div class="value-step-num">01</div><div class="value-step-title">学校试点</div><div class="value-step-desc">小范围验证</div></div>
+        <div class="value-step"><div class="value-step-num">02</div><div class="value-step-title">数据沉淀</div><div class="value-step-desc">形成看板</div></div>
+        <div class="value-step"><div class="value-step-num">03</div><div class="value-step-title">后勤减负</div><div class="value-step-desc">定位问题</div></div>
+        <div class="value-step"><div class="value-step-num">04</div><div class="value-step-title">绿色校园报告</div><div class="value-step-desc">成果展示</div></div>
+        <div class="value-step"><div class="value-step-num">05</div><div class="value-step-title">学校续费</div><div class="value-step-desc">持续服务</div></div>
+        <div class="value-step"><div class="value-step-num">06</div><div class="value-step-title">多校复制</div><div class="value-step-desc">标准化输出</div></div>
+      </div>
+    </div>
+
+    <h3>6.3 社会与商业价值的乘数效应</h3>
+
+    <div class="hl-box green">
+      <div class="hl-box-title">关键洞察：社会价值越大，商业价值越大</div>
+      <p style="font-size:14px;">传统社会创新项目常把"社会价值"和"商业收入"放在对立面。但本平台的<strong>四合一自循环设计尝试打破这一对立</strong>：</p>
+      <ul style="font-size:13.5px; padding-left:20px; margin-top:10px;">
+        <li>更多学校采纳 → 宿舍和谐指数标准影响力↑ → SaaS订阅价值↑</li>
+        <li>更多绿分数据 → 绿色校园报告与后勤优化价值↑ → 学校续费意愿↑</li>
+        <li>更多餐桌透明数据 → 食安风险复盘与后勤公信力↑ → 餐饮服务升级需求↑</li>
+        <li>更多能力凭证 → 学生成长记录更清晰 → 校内岗位对接价值↑</li>
+        <li>更多校内协作任务 → 公共事务参与更稳定 → 品牌合作和项目申报空间↑</li>
+      </ul>
+      <p style="font-size:14px; margin-top:12px;"><strong>社会价值不是"成本"，而是"获客渠道"和"护城河"。</strong>前提是先用真实试点数据证明学校确实愿意持续使用。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 6B: 实施路线图 ===== -->
+<div class="section">
+  <div class="section-num amber">Step 06 · 实施路线</div>
+  <h2 class="section-title">实施路线图 — 从想法到自循环生态</h2>
+  <p class="section-sub">渐进耦合策略：先独立验证，再打通流转，最后形成闭环</p>
+  <div class="section-body">
+
+    <h3>6.4 三阶段实施计划</h3>
+
+    <div class="roadmap-visual">
+      <div class="roadmap-phase">
+        <div class="roadmap-phase-title">MVP 验证</div>
+        <div class="roadmap-phase-time">1-2 周</div>
+        <p style="font-size:12px; color:#5F5E5A; margin:0;">验证四个模块最小闭环，产出原型、问卷、访谈和模拟数据。</p>
+      </div>
+      <div class="roadmap-phase green">
+        <div class="roadmap-phase-title">校园试点</div>
+        <div class="roadmap-phase-time">1-2 个月</div>
+        <p style="font-size:12px; color:#5F5E5A; margin:0;">验证学生参与与学校管理价值，产出数据看板、积分体系和报告样张。</p>
+      </div>
+      <div class="roadmap-phase purple">
+        <div class="roadmap-phase-title">多校复制</div>
+        <div class="roadmap-phase-time">3-6 个月</div>
+        <p style="font-size:12px; color:#5F5E5A; margin:0;">验证商业化和复制能力，形成标准化部署包、运营 SOP 和报告模板。</p>
+      </div>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-date">阶段一：单模块 MVP 验证（1-2周）</div>
+        <div class="roadmap-title">先验证每个模块的最小闭环</div>
+        <div class="roadmap-desc">
+          <ul style="margin-top:8px; font-size:13px;">
+            <li><strong>宿舍模块</strong>：噪音数据采集、宿舍公约生成、和谐指数模拟、匿名反馈体验。</li>
+            <li><strong>绿分行动库</strong>：AI 分类问答原型、3-5 个校园回收点地图标注、10-20 名学生测试分类判断速度、绿分小游戏体验、后勤 / 宿管访谈、模拟数据看板、绿色校园报告样张。</li>
+            <li><strong>餐桌透明档案</strong>：录入 3 类餐饮样本（摊贩、食堂窗口、外卖店铺），验证搜索、溯源链、安全检测记录、价格构成和 AI 标准化反馈。</li>
+            <li><strong>社会微任务</strong>：3-5 个真实微任务、学生报名测试、能力凭证样张。</li>
+            <li><strong>关键产出</strong>：原型、问卷、访谈记录、模拟数据与第一版试点复盘。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="roadmap-item green">
+        <div class="roadmap-date">阶段二：校园试点（1-2个月）</div>
+        <div class="roadmap-title">验证学生参与与学校管理价值</div>
+        <div class="roadmap-desc">
+          <ul style="margin-top:8px; font-size:13px;">
+            <li><strong>绿分行动库试点</strong>：宿舍区、食堂、快递站、教学楼四类场景试点；开放 AI 分类助手；运行回收地图；推出绿色积分；绿色岗位报名；后勤数据看板；月度绿色校园报告。</li>
+            <li><strong>餐桌透明试点</strong>：开放食堂窗口、周边摊贩和外卖店铺档案查询；运行餐桌透明指数；生成后勤食品安全复盘线索。</li>
+            <li><strong>四合一试点</strong>：宿舍公约 + 绿色积分 / 餐桌侦探积分兑换弹性权益；社会微任务凭证兑换调解员 / 绿色岗位 / 食安共建任务资格；后勤和辅导员参与数据复盘。</li>
+            <li><strong>关键指标</strong>：月活跃率、积分流通率、AI 查询与点位扫码趋势、疑似错投问题定位、学校管理者反馈。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="roadmap-item purple">
+        <div class="roadmap-date">阶段三：四合一耦合与复制（3-6个月）</div>
+        <div class="roadmap-title">完成单校模板后复制到更多高校</div>
+        <div class="roadmap-desc">
+          <ul style="margin-top:8px; font-size:13px;">
+            <li>绿色积分兑换宿舍公约弹性权益。</li>
+            <li>餐桌侦探积分兑换食安共建任务和校园权益。</li>
+            <li>社会创新微任务凭证兑换绿色岗位资格。</li>
+            <li>绿色岗位与食安共建学生共同维护投放点、餐饮档案和反馈线索。</li>
+            <li>绿色校园报告与餐桌透明报告进入四合一平台成果展示。</li>
+            <li>形成标准化部署包、运营 SOP、报告模板、餐饮档案模板与多校复制方案。</li>
+            <li><strong>关键指标</strong>：合作校数量、续费意愿、部署周期、多校沉淀可复用绿色行动与食安透明数据。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>6.5 团队构成建议</h3>
+
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🔧</div><h4>技术负责人（1人）</h4><p>AI模型部署 + 系统架构，计算机/AI专业</p></div>
+      <div class="card"><div class="card-icon">💻</div><h4>全栈开发（3人）</h4><p>小程序 + 后端 + AI推理，分模块负责</p></div>
+      <div class="card"><div class="card-icon">🎨</div><h4>产品设计（1人）</h4><p>四模块统一UX + 用户研究</p></div>
+      <div class="card"><div class="card-icon">📊</div><h4>数据分析（1人）</h4><p>激励模型 + 和谐指数算法 + A/B测试</p></div>
+      <div class="card"><div class="card-icon">📢</div><h4>校园运营（2人）</h4><p>试点推广 + 社群运营 + 学校对接</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h4>校内协作（1人）</h4><p>后勤 / 宿管 / 社团需求对接 + 微任务审核</p></div>
+    </div>
+
+    <h3>6.6 关键风险与应对</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr><th class="dark">风险</th><th class="dark">概率</th><th class="dark">影响</th><th class="dark">应对策略</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>学校不允许调整管理规则</strong></td>
+          <td><span class="tag tag-amber">中</span></td>
+          <td>高</td>
+          <td>先用数据打动学校，MVP阶段不涉及规则变更；弹性权限从"学校默许"的灰色地带切入（如熄灯后游戏本来就没人管）</td>
+        </tr>
+        <tr>
+          <td><strong>学生参与度不足</strong></td>
+          <td><span class="tag tag-amber">中</span></td>
+          <td>高</td>
+          <td>从"最有痛点"的群体切入（受噪音困扰的早睡党）；积分兑换的"游戏时间"是刚需；校园KOL+宿舍长推广</td>
+        </tr>
+        <tr>
+          <td><strong>隐私争议</strong></td>
+          <td><span class="tag tag-red">高</span></td>
+          <td>高</td>
+          <td>100%本地处理；开源代码接受审计；用户随时关闭；匿名聚合数据；与学校签订数据保护协议</td>
+        </tr>
+        <tr>
+          <td><strong>四模块耦合复杂度</strong></td>
+          <td><span class="tag tag-amber">中</span></td>
+          <td>中</td>
+          <td>渐进耦合策略，先独立后打通；共享技术栈降低复杂度；模块化设计支持独立部署</td>
+        </tr>
+        <tr>
+          <td><strong>竞品抄袭</strong></td>
+          <td><span class="tag tag-blue">低</span></td>
+          <td>中</td>
+          <td>四合一自循环是核心壁垒——单模块容易被抄，但四模块激励流转的系统设计极难复制；数据网络效应持续增强</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 7: 预测评委提问 ===== -->
+<div class="section">
+  <div class="section-num purple">Step 07 · 预测评委提问</div>
+  <h2 class="section-title">预测评委提问与应急 Q&A 包</h2>
+  <p class="section-sub">用 Zoom In、Zoom Out、利益关系人和时间维度，预判四合一方案的尖锐追问</p>
+  <div class="section-body">
+
+    <div class="badge-row">
+      <span class="badge badge-purple">Zoom In</span>
+      <span class="badge badge-green">Zoom Out</span>
+      <span class="badge badge-amber">利益关系人</span>
+      <span class="badge badge-teal">时间维度</span>
+      <span class="badge badge-blue">数据严谨</span>
+    </div>
+
+    <div class="qa-group">
+      <h3 class="purple">7.1 Zoom In — 细节与技术追问</h3>
+
+      <div class="qa-item">
+        <div class="qa-dimension">隐私边界</div>
+        <div class="qa-question">Q1：宿舍声环境检测会不会侵犯隐私？</div>
+        <div class="qa-answer">不会把宿舍变成监控场景。试点阶段优先做低敏数据采集：不上传原始音频，不做语音内容识别，只记录分贝区间、噪音类型标签或匿名聚合结果。用户可以关闭，数据目标是辅助宿舍协商和公约复盘，不是监控学生。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">投放判断</div>
+        <div class="qa-question">Q2：绿分行动库怎么判断学生真的投对了？会不会变成自动监控打分？</div>
+        <div class="qa-answer">试点阶段不把每一次线下投放都作为系统自动判分对象。数据主要来自 AI 查询热词、投放点扫码记录、小游戏答题、宿舍打卡、绿色岗位巡查记录、后勤反馈和回收数据，用于判断高频困惑、疑似错投点位和运营改进方向。低价值行为给少量参与积分，高价值行为需要巡查或后勤复核。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">食安定位</div>
+        <div class="qa-question">Q3：餐桌透明档案会不会变成投诉平台？会不会和食堂、商家产生冲突？</div>
+        <div class="qa-answer">餐桌透明档案不是曝光平台，而是信息查询、标准化反馈和后勤复盘工具。它不替代监管部门，不做未经核实的公开指控，只帮助学生更规范地表达问题，帮助后勤整理线索。数据包括档案完整度、检测记录、证照状态、价格信息和反馈处理状态。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">凭证质量</div>
+        <div class="qa-question">Q4：校园微任务的数据凭证怎么保证不水？</div>
+        <div class="qa-answer">校内微任务需要任务发布方确认，不同任务设置不同权重。系统可以记录签到、成果提交、负责人评价和后勤确认。能力凭证记录任务类型、完成内容、时长和反馈，不把所有参与都等同于高价值服务。</div>
+      </div>
+    </div>
+
+    <div class="qa-group">
+      <h3 class="green">7.2 Zoom Out — 全系统与可持续性质疑</h3>
+
+      <div class="qa-item">
+        <div class="qa-dimension">范围控制</div>
+        <div class="qa-question">Q5：四个模块同时做，会不会太大？为什么不先做一个？</div>
+        <div class="qa-answer">采用渐进耦合策略。第一阶段先独立验证每个模块 MVP，第二阶段打通积分、凭证和权益，第三阶段形成四合一闭环。四个模块共享用户体系、积分体系、数据看板和报告模板。单模块可以验证功能，四合一才能验证自循环。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">数据可信</div>
+        <div class="qa-question">Q6：页面里恢复了很多数据，会不会被质疑没有来源？</div>
+        <div class="qa-answer">回答时要主动说明：这些数字是 Demo 模拟数据和测算示例，用于展示产品逻辑、看板结构和答辩表达，不等同于已完成的真实校园统计。正式版本需要在试点后补充样本量、采集方法、数据来源和核验记录。我们保留数据感，但不把模拟数据伪装成最终结论。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">积分治理</div>
+        <div class="qa-question">Q7：积分会不会通胀？学生会不会为了积分刷行为？</div>
+        <div class="qa-answer">积分分层设计：查询、学习、打卡等低成本行为给低积分；绿色岗位、食安共建、宿舍调解等高价值行为需要确认后给高积分。积分锚定校内权益、荣誉、志愿时长和综测材料，不靠项目组长期采购实物奖励；发放和消耗规则可以按周复盘调整。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">持续运营</div>
+        <div class="qa-question">Q8：四合一系统如何持续运营，而不是做一次比赛 Demo？</div>
+        <div class="qa-answer">学生端免费使用，学校端采购系统使用权、部署服务和持续维护。开发团队收入来自系统部署费、年度维护费、功能升级费、运营服务费和多场景复制。学校获得宿舍治理数据、绿色校园报告、餐桌透明报告和学生实践记录，因此系统有持续维护理由。</div>
+      </div>
+    </div>
+
+    <div class="qa-group">
+      <h3 class="amber">7.3 利益关系人视角</h3>
+
+      <div class="qa-item">
+        <div class="qa-dimension">学校价值</div>
+        <div class="qa-question">Q9：学校为什么愿意配合？</div>
+        <div class="qa-answer">方案不是另起炉灶，而是增强现有管理。宿舍声环境数据可辅助文明宿舍和冲突调解；绿分行动库可生成绿色校园报告；餐桌透明档案可帮助后勤复盘食品安全反馈；校园微任务可沉淀学生实践记录。先做 MVP 数据验证，再推动规则调整。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">后勤减负</div>
+        <div class="qa-question">Q10：后勤会不会觉得这是增加工作量？</div>
+        <div class="qa-answer">系统不是把压力丢给后勤，而是把零散问题整理成结构化线索。绿分看板减少重复宣传和人工统计；餐桌透明档案让反馈更规范；校园微任务可以引入学生协作岗位。后勤获得的是可复盘数据，不是更多无序投诉。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">学生动机</div>
+        <div class="qa-question">Q11：学生真的会用吗？</div>
+        <div class="qa-answer">每个模块都对应学生真实利己需求：想睡得好、想分类更省事、想吃得安心、想获得实践记录。系统不是要求学生额外奉献，而是把原本就关心的事情变成可反馈、可记录、可激励的行动，通过积分、凭证、权益和荣誉形成持续参与。</div>
+      </div>
+    </div>
+
+    <div class="qa-group">
+      <h3>7.4 时间维度 — 过去、现在、未来</h3>
+
+      <div class="qa-item">
+        <div class="qa-dimension">差异化</div>
+        <div class="qa-question">Q12：以前有没有类似项目？你们跟它们有什么不同？</div>
+        <div class="qa-answer">过去常见的是单点工具：降噪 App、垃圾分类小程序、食品安全投诉入口、志愿服务平台。它们的问题是只解决单点，不形成校园内部激励闭环。本方案的不同是四个模块共享积分、凭证、权益和数据，核心壁垒不是某一个功能，而是四模块自循环系统。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-dimension">扩张边界</div>
+        <div class="qa-question">Q13：推广到更多学校后会变成什么样？</div>
+        <div class="qa-answer">不写夸张数字。路径是先在单校试点，再复制到多楼栋、多学院、多校区，最后形成标准化部署包、运营 SOP、绿色校园报告模板和餐桌透明档案模板。所有扩张都以真实试点数据为前提。</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 8: 演讲逻辑结构 ===== -->
+<div class="section">
+  <div class="section-num dark">Step 08 · 路演设计</div>
+  <h2 class="section-title">6 分钟路演逻辑结构</h2>
+  <p class="section-sub">采用 Problem → Solution → Impact 结构，辅以 Why-What-How 逻辑链</p>
+  <div class="section-body">
+
+    <div class="speech-timeline">
+      <div class="speech-item">
+        <div class="speech-time">0:00 - 0:35</div>
+        <div>
+          <div class="speech-title">Problem 开场：四个日常小问题，其实是同一个系统问题</div>
+          <div class="speech-desc">宿舍太吵，不敢说；垃圾想分，但不知道怎么分、投哪里；想吃得安心，却看不到来源和检测；想参与公共事务，却没有轻量入口和能力记录。</div>
+          <div class="speech-script">我们每天都在校园里做很多小选择：晚上能不能安静睡觉，奶茶杯怎么扔，食堂这份饭的食材从哪里来，想参与公共事务却不知道从哪开始。它们看起来是四个小问题，但背后其实是同一个系统缺口：学生的个人关心，很难被转化成学校可看见、可反馈、可持续的公共价值。</div>
+        </div>
+      </div>
+
+      <div class="speech-item s2">
+        <div class="speech-time">0:35 - 1:20</div>
+        <div>
+          <div class="speech-title">Problem 串联：不是学生不愿意，而是行动链路卡住了</div>
+          <div class="speech-desc">宿舍问题卡在沟通，绿分问题卡在判断、点位和反馈，餐桌问题卡在信息透明，微任务问题卡在入口、记录和激励。</div>
+          <div class="speech-script">我们不把这些问题简单归因为学生不自觉。很多时候，学生不是不想沟通，而是没有数据依据；不是不想分类，而是分类行动链路卡住；不是不关心食品安全，而是看不到透明信息；不是不想参与公共事务，而是缺少低门槛入口和能力记录。</div>
+        </div>
+      </div>
+
+      <div class="speech-item s3">
+        <div class="speech-time">1:20 - 2:30</div>
+        <div>
+          <div class="speech-title">Solution 展示：四合一，让个人行动进入公共价值闭环</div>
+          <div class="speech-desc">宿舍声环境公约、绿分行动库、餐桌透明档案、校园社会创新微任务，共享积分、凭证、权益和数据。</div>
+          <div class="speech-script">所以我们设计了四合一的校园可持续行动力生态。第一，用宿舍声环境公约，让噪音沟通有数据、有规则；第二，用绿分行动库，把垃圾分类从一次提醒变成 AI 判断、地图指引、积分反馈和后勤数据看板；第三，用餐桌透明档案，把食材来源、检测记录和反馈流程变成可查询的信息；第四，用校园社会创新微任务，让学生参与公共事务有任务、有记录、有凭证。</div>
+        </div>
+      </div>
+
+      <div class="speech-item s4">
+        <div class="speech-time">2:30 - 3:35</div>
+        <div>
+          <div class="speech-title">How It Works：数据如何流动，激励如何回流？</div>
+          <div class="speech-desc">学生行为进入系统，沉淀为宿舍和谐指数、绿色积分和绿色校园报告、餐桌透明线索、能力凭证和服务记录。</div>
+          <div class="speech-script">这套系统的关键不是功能堆叠，而是数据流动。学生的一次安静行动、一次分类查询、一次餐桌反馈、一次校内微任务，都会沉淀为宿舍和谐指数、绿色积分、餐桌透明线索或能力凭证。然后这些数据再回流成宿舍弹性权益、志愿时长、荣誉证书、绿色岗位资格和学校管理报告。</div>
+        </div>
+      </div>
+
+      <div class="speech-item">
+        <div class="speech-time">3:35 - 4:30</div>
+        <div>
+          <div class="speech-title">Impact 价值：对学生、学校和后勤分别有什么价值？</div>
+          <div class="speech-desc">对学生：睡得更安心、分类更省事、吃得更明白、实践有记录。对学校与后勤：治理有数据、反馈更标准、报告可生成。</div>
+          <div class="speech-script">对学生来说，这不是一套要求他们额外奉献的系统，而是把他们本来就在意的事情变成可反馈、可记录、可激励的行动。对学校来说，它不是增加管理负担，而是把原本分散的投诉、提醒、反馈和活动，整理成可复盘的数据和报告。</div>
+        </div>
+      </div>
+
+      <div class="speech-item s2">
+        <div class="speech-time">4:30 - 5:20</div>
+        <div>
+          <div class="speech-title">Feasibility 可行性：不一次性做大，而是渐进耦合</div>
+          <div class="speech-desc">第一阶段单模块 MVP，第二阶段小范围试点，第三阶段打通积分、凭证和权益，第四阶段再多场景复制。</div>
+          <div class="speech-script">我们不会一开始就把四个模块同时大规模铺开。第一阶段先分别验证 MVP：宿舍公约、绿分地图、餐桌档案、校内微任务。第二阶段在小范围场景试点。第三阶段才打通积分、凭证和权益。这样做既能控制执行难度，也能让每一步都有数据验证。</div>
+        </div>
+      </div>
+
+      <div class="speech-item s3">
+        <div class="speech-time">5:20 - 6:00</div>
+        <div>
+          <div class="speech-title">Closing 收束：每一个利己行为，都在为公共系统做贡献</div>
+          <div class="speech-desc">把四个模块收束成一句主张，并提醒评委：当前是严谨的验证框架，不是夸大落地结果。</div>
+          <div class="speech-script">我们的最终目标不是做四个孤立工具，而是让校园里的每一个利己行为，都能自然地为公共系统做贡献。想睡得安静一点，能沉淀宿舍和谐数据；想扔对一个垃圾，能沉淀绿色校园数据；想吃得安心，能推动餐桌透明；想参与实践，能留下能力凭证。这就是我们所说的校园可持续行动力生态。</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>8.2 演讲高光技巧应用</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🧭</div>
+        <h4>强化视觉效果</h4>
+        <p>用四模块流转图、绿分行动库看板、餐桌透明档案看板和四模块激励飞轮承接叙事；每页只保留一个核心信息。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📌</div>
+        <h4>不造假数据</h4>
+        <p>页面中的百分比和测算要主动标注“Demo 模拟 / 测算示例”。评委更信任有边界的数据表达，而不是把演示数据说成真实结论。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎒</div>
+        <h4>用故事串联四个模块</h4>
+        <p>用一个学生的一天串联：晚上被噪音影响，白天扔外卖盒，中午查看餐桌档案，下午报名校内微任务。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔁</div>
+        <h4>重复核心主张</h4>
+        <p>开场、方案展示和收尾都重复一句话：每一个利己行为，都在为公共系统做贡献。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 9: 总结 ===== -->
+<div class="section" style="background: linear-gradient(135deg, #0D1B2A 0%, #1B3A4B 50%, #2D5A4E 100%); color: white; border: none;">
+  <div style="text-align: center; padding: 20px 0;">
+    <div style="font-size: 13px; letter-spacing: 2px; opacity: 0.6; margin-bottom: 12px;">SUMMARY</div>
+    <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 20px;">校园可持续行动力生态</h2>
+    <p style="font-size: 16px; opacity: 0.85; max-width: 600px; margin: 0 auto 28px; line-height: 1.8;">
+      四个模块互为支撑，数据互通，激励叠加。<br>
+      学生的每一个"利己"行为，都在为"公共系统"做贡献。<br>
+      以校内资源流转为主，不靠项目组长期补贴驱动。
+    </p>
+    <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin: 28px 0;">
+      <div><div style="font-size: 32px; font-weight: 800; color: #4ecdc4;">4</div><div style="font-size: 12px; opacity: 0.6;">互撑模块</div></div>
+      <div><div style="font-size: 32px; font-weight: 800; color: #6FE6B8;">4</div><div style="font-size: 12px; opacity: 0.6;">数据闭环</div></div>
+      <div><div style="font-size: 32px; font-weight: 800; color: #A8A0F0;">校内</div><div style="font-size: 12px; opacity: 0.6;">资源流转</div></div>
+      <div><div style="font-size: 32px; font-weight: 800; color: #F2C36B;">∞</div><div style="font-size: 12px; opacity: 0.6;">自循环飞轮</div></div>
+    </div>
+    <p style="font-size: 14px; opacity: 0.6; margin-top: 20px;">"你关心什么，就去改变什么。"</p>
+  </div>
+</div>
+
+<div class="footer">
+  校园可持续行动力生态 · 四合一整合方案 v1.0 · 2026年7月<br>
+  Demo 模拟数据：1,247份问卷 + 38间宿舍样本 + 24人访谈 + 268个餐饮档案样本<br>
+  整合数据可视化 · FABE价值模型 · 商业化结构图 · 实施路线图<br>
+  供项目汇报、评审展示与校园试点沟通使用
+</div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
